@@ -1,0 +1,25 @@
+{
+"user": {
+  "noUserMention": "Please mention an user or provide her ID",
+  "invalidUser": "Invalid user"
+},
+  "test": {
+    "testing": "Beep boop, testing..."
+  },
+  "messages": {
+    "langChanged": "Successfully changed language to {{language}}"
+  },
+  "music": {
+    "skipped": "⏭ – Music skipped!",
+    "stop": "The player was stopped and the queue was deleted",
+    "pause": "Player paused",
+    "resume": "Resuming music...",
+    "addQueue": "<:queuemusic:571414423152099328> – `{{track}}` ({{duration}}) added to queue",
+    "noVoiceChannel": "You must be in a voice channel to execute this command",
+    "noMusic": "You must provide the music which I'm gonna play.",
+    "nowPlaying": "<a:cd:521088033664270336> – Now Playing: `{{trackInfo}} ` ({{trackDuration}})",
+    "notPlaying": "I'm not playing."
+  }
+
+
+}
