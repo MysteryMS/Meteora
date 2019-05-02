@@ -8,29 +8,25 @@ class PlayCommand extends Command {
     this.usage = '<link/nome>'
   }
 
-  async run(message, args) {
+  async run(message, args, { t }) {
     const mss = require('pretty-ms')
-    if (!message.member.voiceChannel) return message.reply('Você precisa' +
-      ' estar em um canal de voz para executar esse comando!')
+    if (!message.member.voiceChannel) return message.reply(t('commands:music.noVoiceChannel'))
 
-    if (!args[0]) return message.reply("Você precisa indicar o nome da" +
-      " música que quer que eu toque!")
+    if (!args[0]) return message.reply(t('commands:music.noMusic'))
 
     if (this.client.lavalinkManager.manager.has(message.guild.id)) {
       this.client.calls.get(message.guild.id).play(args.join(' ')).then(info => {
-        message.channel.send(`<:queuemusic:571414423152099328> – \`${info.title}\` (${mss(info.length)}) adicionado à fila`)
+        message.channel.send(t('commands:music.addQueue', {track: info.title, duration: mss(info.length)}))
 
       })
     } else {
-      if (!message.member.voiceChannel) return message.reply('Você precisa' +
-        ' estar em um canal de voz para executar esse comando!')
+      if (!message.member.voiceChannel) return message.reply(t('commands:music.noVoiceChannel'))
       if (!args[0]) {
-        return message.reply("Você precisa indicar o nome da" +
-          " música que quer que eu toque!")
+        return message.reply(t('commands:music.noMusic'))
       }
       let player = await this.client.lavalinkManager.join(message.member.voiceChannel.id)
       player.on('playingNow', track => {
-        message.channel.send('<a:cd:521088033664270336> – Tocando Agora: `' + track.info.title + '`' + ` (${mss(track.info.length)})`)
+        message.channel.send(t('commands:music.nowPlaying', {trackInfo: track.info.title, trackDuration: mss(track.info.length)}))
         this.client.calls.get(message.guild.id).playingNow = track
       })
       player.play(args.join(' '))

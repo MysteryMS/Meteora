@@ -1,0 +1,22 @@
+{
+  "test": {
+    "testing": "Beep boop, testando..."
+  },
+  "messages": {
+    "langChanged": "Linguagem alterada para {{language}}"
+  },
+
+  "music": {
+    "skipped": "⏭ – Musica pulada!",
+    "stop": "O player foi parado e a fila foi limpa.",
+    "pause": "Player pausado.",
+    "resume": "Resumindo música...",
+    "addQueue": "<:queuemusic:571414423152099328> – `{{track}} ` ({{duration}}) foi adicionada à fila",
+    "noVoiceChannel": "Você precisa estar em um canal de voz para executar essa comando.",
+    "noMusic": "Você precisa colocar o nome da música",
+    "playingNow": "<a:cd:521088033664270336> – Tocando Agora: `{{trackInfo}} ` ({{trackDuration}})",
+    "notPlaying": "Não estou tocando nada."
+
+  }
+
+}

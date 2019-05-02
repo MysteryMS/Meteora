@@ -6,15 +6,15 @@ class SkipCommand extends Command {
     this.name = 'Skip'
     this.description = 'Pula uma música'
   }
-  async run(message, args) {
+  async run(message, args, { t }) {
     if (!this.client.lavalinkManager.manager.has(message.guild.id)) {
-      return message.reply('Não estou tocando nada!')
+      return message.reply(t('commands:music.notPlaying'))
     }
 
     if (this.client.calls.get(message.guild.id).queue.length === 0) {
-      message.channel.send('⏭ – Música Pulada!').then(() => this.client.calls.get(message.guild.id).player.stop())
+      message.channel.send(t('commands:music.skipped')).then(() => this.client.calls.get(message.guild.id).player.stop())
     } else {
-      message.channel.send('⏭ – Música Pulada!').then(() => this.client.calls.get(message.guild.id).skip())
+      message.channel.send(t('commands:music.skipped')).then(() => this.client.calls.get(message.guild.id).skip())
     }
   }
 }

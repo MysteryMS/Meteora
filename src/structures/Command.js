@@ -26,6 +26,8 @@ class Command {
 
     const prefix = process.env.PREFIX
     const labels = [this.label]
+    const guild = require('../../models/guild')
+    const Discord = require('discord.js')
 
     this.aliases.forEach((alias) => {
       labels.push(alias)
@@ -66,8 +68,13 @@ class Command {
           this.explain(message)
           return true
         }
-
-        await this.run(message, args)
+        guild.findOne({_id: message.guild.id}, async (err, database) => {
+          const t = message.client.localeManager.getT(database.language)
+          //
+          await this.run(message, args, { t })
+        })
+        //const t = this.client.localeManager.getT(guild.language)
+        //await this.run(message, args, { t })
 
         this.client.info("[COMMAND EXECUTED]".blue, `(${message.guild.name} -> #${message.channel.name}) ${message.author.tag}: ${message.content} - OK! Finished in ${Date.now() - start}ms`)
       } catch (err) {
