@@ -1,5 +1,6 @@
 const Command = require('../structures/Command')
 const guild = require('../../models/guild')
+const {RichEmbed} = require('discord.js')
 
 class LanguageCommand extends Command {
   constructor() {
@@ -8,8 +9,11 @@ class LanguageCommand extends Command {
   }
   async run(message, args, { t }) {
     guild.findOne({_id: message.guild.id}, function (err, database) {
-      database.language = args[0]
-      database.save().then(message.reply(t('commands:messages.langChanged', {language: args[0]})))
+      message.channel.send(new RichEmbed()
+        .setTitle(t('commands:message.embed.langTitle'))
+        .setDescription(t('commands:message.embed.langDescription'))
+        .addField(t('commands:messages.embed.language.portugueseField'), "​​​")
+      )
     })
   }
 }
