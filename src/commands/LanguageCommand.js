@@ -8,7 +8,7 @@ class LanguageCommand extends Command {
     this.aliases = ['lang']
   }
   async run(message, args, { t }) {
-    guild.findOne({_id: message.guild.id}, function (err, database) {
+    guild.findOne({_id: message.guild.id}, (err, database) => {
       message.channel.send(new RichEmbed()
         .setTitle(t('commands:message.embed.langTitle'))
         .setDescription(t('commands:message.embed.langDescription'))
