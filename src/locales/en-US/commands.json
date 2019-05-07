@@ -1,11 +1,8 @@
 {
-"user": {
-  "noUserMention": "Please mention an user or provide her ID",
-  "invalidUser": "Invalid user"
+  "user": {
+    "noUserMention": "Please mention an user or provide her ID",
+    "invalidUser": "Invalid user"
 },
-  "test": {
-    "testing": "Beep boop, testing..."
-  },
   "messages": {
     "langChanged": "Successfully changed language to {{language}}"
   },
@@ -18,7 +15,8 @@
     "noVoiceChannel": "You must be in a voice channel to execute this command",
     "noMusic": "You must provide the music which I'm gonna play.",
     "nowPlaying": "<a:cd:521088033664270336> – Now Playing: `{{trackInfo}} ` ({{trackDuration}})",
-    "notPlaying": "I'm not playing."
+    "notPlaying": "I'm not playing.",
+    "maxDuration": "The time cannot be higher than actual music length"
   }
 
 

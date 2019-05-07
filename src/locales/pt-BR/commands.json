@@ -1,6 +1,7 @@
 {
-  "test": {
-    "testing": "Beep boop, testando..."
+  "user": {
+    "noUserMention": "Por favor, mencione um usuário ou o seu ID",
+    "invalidUser": "Usuário inválido"
   },
   "messages": {
     "langChanged": "Linguagem alterada para {{language}}"
@@ -14,8 +15,9 @@
     "addQueue": "<:queuemusic:571414423152099328> – `{{track}} ` ({{duration}}) foi adicionada à fila",
     "noVoiceChannel": "Você precisa estar em um canal de voz para executar essa comando.",
     "noMusic": "Você precisa colocar o nome da música",
-    "playingNow": "<a:cd:521088033664270336> – Tocando Agora: `{{trackInfo}} ` ({{trackDuration}})",
-    "notPlaying": "Não estou tocando nada."
+    "nowPlaying": "<a:cd:521088033664270336> – Tocando Agora: `{{trackInfo}} ` ({{trackDuration}})",
+    "notPlaying": "Não estou tocando nada.",
+    "maxDuration": "O tempo não pode ser maior que a duração atual da música."
 
   }
 
