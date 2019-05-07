@@ -6,12 +6,12 @@ class RewindCommand extends Command {
         super('rewind')
         this.aliases = ['voltar']
         this.name = 'Rewind'
-        this.description = 'Volta a música em determinado tempo'
+        this.description = 'Volta a música em um determinado tempo'
         this.usage = '<tempo(s/m/h)'
     }
     async run(message, args, { t }) {
         const lavaPlayer = this.client.calls.get(message.guild.id)
-        if (!this.client.lavalinkManager.has(message.guild.id)) {
+        if (!this.client.lavalinkManager.manager.has(message.guild.id)) {
             return message.reply(t('commands:music.notPlaying'))
         }
         if (!lavaPlayer.nowPlaying) {
