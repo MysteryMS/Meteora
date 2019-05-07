@@ -23,3 +23,5 @@ class RewindCommand extends Command {
       lavaPlayer.seek(parse[0] - lavaPlayer.player.state.position)
     }
 }
+
+module.exports = RewindCommand
