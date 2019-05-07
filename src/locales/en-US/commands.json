@@ -17,6 +17,13 @@
     "nowPlaying": "<a:cd:521088033664270336> – Now Playing: `{{trackInfo}} ` ({{trackDuration}})",
     "notPlaying": "I'm not playing.",
     "maxDuration": "The time cannot be higher than actual music length"
+  },
+  "language": {
+    "sucessfullChanged": "Language changed to {{language}}",
+    "portugueseField": ":flag_br: Portuguese",
+    "englishField": ":flag_us: English",
+    "title": "Choose a language",
+    "description": "Available languages:"
   }
 
 

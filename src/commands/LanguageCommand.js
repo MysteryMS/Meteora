@@ -10,9 +10,10 @@ class LanguageCommand extends Command {
   async run(message, args, { t }) {
     guild.findOne({_id: message.guild.id}, (err, database) => {
       message.channel.send(new RichEmbed()
-        .setTitle(t('commands:message.embed.langTitle'))
-        .setDescription(t('commands:message.embed.langDescription'))
-        .addField(t('commands:messages.embed.language.portugueseField'), "​​​")
+        .setTitle(t('commands:language.title'))
+        .setDescription(t('commands:language.description'))
+        .addField(t('commands:messages.language.portugueseField'), "​​​")
+        .addField(t('commands:messages.language.englishField'), "​​​")
       )
     })
   }
