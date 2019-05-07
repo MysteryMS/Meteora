@@ -12,8 +12,8 @@ class LanguageCommand extends Command {
       message.channel.send(new RichEmbed()
         .setTitle(t('commands:language.title'))
         .setDescription(t('commands:language.description'))
-        .addField(t('commands:messages.language.portugueseField'), "​​​")
-        .addField(t('commands:messages.language.englishField'), "​​​")
+        .addField(t('commands:language.portugueseField'), "​​​")
+        .addField(t('commands:language.englishField'), "​​​")
       )
     })
   }
