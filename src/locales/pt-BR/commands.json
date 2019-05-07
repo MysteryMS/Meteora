@@ -19,6 +19,13 @@
     "notPlaying": "Não estou tocando nada.",
     "maxDuration": "O tempo não pode ser maior que a duração atual da música."
 
+  },
+  "language": {
+    "sucessfullChanged": "Linguagem alterada para {{language}}",
+    "portugueseField": ":flag_br: Português",
+    "englishField": ":flag_us: Inlgês",
+    "title": "Escola uma linguagem",
+    "description": "Linguagens disponíveis:"
   }
 
 }
