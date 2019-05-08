@@ -28,7 +28,7 @@ class PlayCommand extends Command {
       let player = await this.client.lavalinkManager.join(message.member.voiceChannel.id)
       player.on('playingNow', track => {
         guild.findOne({_id: message.guild.id}, (err, database) => {
-         t = this.client.localeManager.getT(database.lang)
+         t = this.client.localeManager.getT(database.language)
         message.channel.send(t('commands:music.nowPlaying', {trackInfo: track.info.title, trackDuration: mss(track.info.length)}))
         this.client.calls.get(message.guild.id).playingNow = track
 })
