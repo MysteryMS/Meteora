@@ -1,12 +1,11 @@
-require("colors")
+require('colors')
 
 const { Client } = require('discord.js')
 const Discord = require('discord.js')
 const { readSync } = require('readdir')
 const LavalinkManager = require('../lavalink/LavalinkManager')
 const mongoose = require('mongoose')
-const path = require('path')
-const LocaleManager = require(path.join('/utils/LocaleManager'))
+const LocaleManager = require(__dirname +'/utils/LocaleManager')
 
 const Extensions = require('./utils/Extensions')
 
