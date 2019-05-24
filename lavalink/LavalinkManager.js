@@ -14,7 +14,7 @@ class Player extends EventEmitter {
     super()
     this.player = player
     this.queue = []
-    this.playingNow = ''
+    this.nowPlaying = ''
   }
   play (query) {
     return getSongs(this.player.node, `ytsearch:${query}`).then(a => {
@@ -27,7 +27,7 @@ class Player extends EventEmitter {
     let nextSong = this.queue.shift()
     if (!nextSong) return
     this.player.play(nextSong.track)
-    this.emit('playingNow', nextSong)
+    this.emit('nowPlaying', nextSong)
   }
   setVolume (val) {
     if (val > 100) val = 100
@@ -51,10 +51,10 @@ class Player extends EventEmitter {
       let nextSong = this.queue.shift()
       if (!nextSong) return
       this.player.play(nextSong.track)
-      this.emit('playingNow', nextSong)
+      this.emit('nowPlaying', nextSong)
     })
     this.player.play(track.track)
-    return this.emit('playingNow', track)
+    return this.emit('nowPlaying', track)
   }
 }
 
