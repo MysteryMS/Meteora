@@ -2,14 +2,14 @@ const Command = require('../structures/Command')
 const guild = require('../../models/guild')
 
 class PlayCommand extends Command {
-  constructor() {
+  constructor () {
     super('play')
     this.name = 'Play'
     this.description = 'Toque uma música usando um link ou buscando-a'
     this.usage = '<link/nome>'
   }
 
-  async run(message, args, { t }) {
+  async run (message, args, { t }) {
     const mss = require('pretty-ms')
     if (!message.member.voiceChannel) return message.reply(t('commands:music.noVoiceChannel'))
 
@@ -17,8 +17,7 @@ class PlayCommand extends Command {
 
     if (this.client.lavalinkManager.manager.has(message.guild.id)) {
       this.client.calls.get(message.guild.id).play(args.join(' ')).then(info => {
-        message.channel.send(t('commands:music.addQueue', {track: info.title, duration: mss(info.length)}))
-
+        message.channel.send(t('commands:music.addQueue', { track: info.title, duration: mss(info.length) }))
       })
     } else {
       if (!message.member.voiceChannel) return message.reply(t('commands:music.noVoiceChannel'))
@@ -27,11 +26,12 @@ class PlayCommand extends Command {
       }
       let player = await this.client.lavalinkManager.join(message.member.voiceChannel.id)
       player.on('playingNow', track => {
-        guild.findOne({_id: message.guild.id}, (err, database) => {
-         t = this.client.localeManager.getT(database.language)
-        message.channel.send(t('commands:music.nowPlaying', {trackInfo: track.info.title, trackDuration: mss(track.info.length)}))
-        this.client.calls.get(message.guild.id).playingNow = track
-})
+        guild.findOne({ _id: message.guild.id }, (err, database) => {
+          if (err) console.log(err)
+          t = this.client.localeManager.getT(database.language)
+          message.channel.send(t('commands:music.nowPlaying', { trackInfo: track.info.title, trackDuration: mss(track.info.length) }))
+          this.client.calls.get(message.guild.id).playingNow = track
+        })
       })
       player.play(args.join(' '))
       this.client.calls.set(message.guild.id, player)
