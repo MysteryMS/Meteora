@@ -6,7 +6,7 @@ const { readSync } = require('readdir')
 const LavalinkManager = require('../lavalink/LavalinkManager')
 const mongoose = require('mongoose')
 const path = require('path')
-const LocaleManager = require(path.resolve('/utils/LocaleManager'))
+const LocaleManager = require(path.join('/utils/LocaleManager'))
 
 const Extensions = require('./utils/Extensions')
 
