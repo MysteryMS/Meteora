@@ -19,7 +19,7 @@ class NowPlayingCommand extends Command {
       .setTitle(message.guild.name)
       .addField('Música:', `[${this.client.calls.get(message.guild.id).nowPlaying.infotitle}](${this.client.calls.get(message.guild.id).nowPlaying.info.uri})`)
       .addField('Volume:', this.client.calls.get(message.guild.id).player.state.volume + '/100')
-      .addField('Autor:', this.client.calls.get(message.guild.id).nowPlaying.author)
+      .addField('Autor:', this.client.calls.get(message.guild.id).nowPlaying.info.author)
       .addField('Duração:', pms(this.client.calls.get(message.guild.id).player.state.position) + '/' + pms(this.client.calls.get(message.guild.id).nowPlaying.info.length))
     yt(this.client.calls.get(message.guild.id).nowPlaying.info.identifier, function (err, videoInfo) {
       if (err) console.log(err)
