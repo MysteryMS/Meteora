@@ -17,13 +17,13 @@ class LanguageCommand extends Command {
         .addField(t('commands:language.englishField'), '​​​')
         .setColor('#6832e3')
       ).then(async (msg) => {
-        await msg.react('🇧:regional_indicator_r:')
+        await msg.react('🇧🇷')
         await msg.react('🇺:regional_indicator_s:')
-        const collector = msg.createReactionCollector((r, u) => (r.emoji.name === '🇧:regional_indicator_r:', '🇺:regional_indicator_s:') && (u.id !== this.client.user.id && u.id === message.author.id))
+        const collector = msg.createReactionCollector((r, u) => (r.emoji.name === '🇧🇷', '🇺:regional_indicator_s:') && (u.id !== this.client.user.id && u.id === message.author.id))
 
         collector.on('collect', async r => {
           switch (r.emoji.name) {
-            case '🇧:regional_indicator_r:':
+            case '🇧🇷':
               await msg.edit(new RichEmbed().setDescription('Agora vou falar em português!').setColor('#42f445'))
               database.language = 'pt-BR'
               database.save()
