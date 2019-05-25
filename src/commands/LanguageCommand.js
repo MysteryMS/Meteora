@@ -18,8 +18,8 @@ class LanguageCommand extends Command {
         .setColor('#6832e3')
       ).then(async (msg) => {
         await msg.react('🇧🇷')
-        await msg.react('🇺:regional_indicator_s:')
-        const collector = msg.createReactionCollector((r, u) => (r.emoji.name === '🇧🇷', '🇺:regional_indicator_s:') && (u.id !== this.client.user.id && u.id === message.author.id))
+        await msg.react('🇺🇸')
+        const collector = msg.createReactionCollector((r, u) => (r.emoji.name === '🇧🇷', '🇺🇸') && (u.id !== this.client.user.id && u.id === message.author.id))
 
         collector.on('collect', async r => {
           switch (r.emoji.name) {
@@ -29,7 +29,7 @@ class LanguageCommand extends Command {
               database.save()
               break
 
-            case '🇺:regional_indicator_s:':
+            case '🇺🇸':
               await msg.edit(new RichEmbed().setDescription('Now I\'ll speak english!').setColor('#db3939'))
               database.language = 'en-US'
           }
