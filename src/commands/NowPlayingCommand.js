@@ -24,7 +24,8 @@ class NowPlayingCommand extends Command {
       .setThumbnail(yt(this.client.calls.get(message.guild.id).nowPlaying.info.identifier))
     yt(this.client.calls.get(message.guild.id).nowPlaying.info.identifier, function (err, videoInfo) {
       if (err) console.log(err)
-      embed.setThumbnail(videoInfo.thumbnailUrl)
+      console.log(videoInfo)
+      // embed.setThumbnail(videoInfo.thumbnailUrl)
     })
 
     message.channel.send(embed)
