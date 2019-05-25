@@ -19,12 +19,21 @@
     "maxDuration": "The time cannot be higher than actual music length"
   },
   "language": {
-    "sucessfullChanged": "Language changed to {{language}}",
+    "successfullyChanged": "Language changed to {{language}}",
     "portugueseField": ":flag_br: Portuguese",
     "englishField": ":flag_us: English",
     "title": "Choose a language",
     "description": "Available languages:"
+  },
+  "counter": {
+    "firstTimeID": "You must provide the channel ID when activating it for the first time!",
+    "invalidChannel": "I didn't find this channel in the server",
+    "firstActive": "<a:selena:529838831147417620> Counter activated in <#{{channel}}>",
+    "activated": "<a:selena:529838831147417620> Counter activated",
+    "firstTimeDeactivating": "You must activate the counter for the first time before deactivate it",
+    "deactivated": "<a:selena:529838831147417620> Counter deactivated",
+    "firstTimeChangingChannel": "You must activate the counter for the first time before change the channel!",
+    "channelChanged": "<a:selena:529838831147417620> Counter channel changed to <#{{channel}}>"
   }
-
 
 }

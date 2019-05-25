@@ -1,23 +1,25 @@
-const Command = require("../structures/Command")
+const Command = require('../structures/Command')
 
-const {inspect} = require("util")
-const {RichEmbed} = require("discord.js")
+// eslint-disable-next-line no-unused-vars
+const { inspect } = require('util')
+// eslint-disable-next-line no-unused-vars
+const { RichEmbed } = require('discord.js')
 
 class EvalCommand extends Command {
-
-  constructor() {
+  constructor () {
     super('eval')
 
     this.name = 'Eval'
     this.usage = '<código>'
     this.aliases = ['e']
     this.description = 'Executa um código'
-
   }
 
-  async run(message, args) {
+  async run (message, args) {
     const Discord = require('discord.js')
+    // eslint-disable-next-line no-unused-vars
     const parse = require('parse-duration')
+    // eslint-disable-next-line no-unused-vars
     const moment = require('moment')
     const client = new Discord.Client()
     if (!['268526982222970880', '485837271967465472'].includes(message.author.id)) {
@@ -29,6 +31,7 @@ class EvalCommand extends Command {
     let code = args.join(' ')
     if (!code) return message.channel.send(`<:erro_tick:558836213554085908> **|** ${message.author}, não encontrei nenhum código.`)
     try {
+      // eslint-disable-next-line no-eval
       let ev = eval(code)
       let str = util.inspect(ev, {
         depth: 1
@@ -49,7 +52,6 @@ class EvalCommand extends Command {
       message.channel.send(errembed)
     }
   }
-
 }
 
 module.exports = EvalCommand

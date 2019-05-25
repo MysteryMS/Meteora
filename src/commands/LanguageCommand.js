@@ -6,7 +6,9 @@ class LanguageCommand extends Command {
   constructor () {
     super('language')
     this.aliases = ['lang']
+    this.name = 'Language'
   }
+
   async run (message, args, { t }) {
     guild.findOne({ _id: message.guild.id }, async (err, database) => {
       if (err) console.log(err)
@@ -19,19 +21,19 @@ class LanguageCommand extends Command {
       ).then(async (msg) => {
         await msg.react('🇧🇷')
         await msg.react('🇺🇸')
-        const collector = msg.createReactionCollector((r, u) => (r.emoji.name === '🇧🇷', '🇺🇸') && (u.id !== this.client.user.id && u.id === message.author.id))
+        const collector = msg.createReactionCollector((r, u) => (r.emoji.name === '🇧🇷' && '🇺🇸') && (u.id !== this.client.user.id && u.id === message.author.id))
 
         collector.on('collect', async r => {
           switch (r.emoji.name) {
             case '🇧🇷':
-              await msg.edit(new RichEmbed().setDescription('Agora vou falar em português!').setColor('#42f445'))
+              await msg.edit(new RichEmbed().setDescription('Agora irei falar em português!').setColor('#42f445'))
               await msg.clearReactions()
               database.language = 'pt-BR'
               database.save()
               break
 
             case '🇺🇸':
-              await msg.edit(new RichEmbed().setDescription('Now I\'ll speak english!').setColor('#db3939'))
+              await msg.edit(new RichEmbed().setDescription('Now I\'ll speak in English!').setColor('#db3939'))
               await msg.clearReactions()
               database.language = 'en-US'
               database.save()
@@ -41,4 +43,5 @@ class LanguageCommand extends Command {
     })
   }
 }
+
 module.exports = LanguageCommand

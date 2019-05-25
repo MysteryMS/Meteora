@@ -21,11 +21,21 @@
 
   },
   "language": {
-    "sucessfullChanged": "Linguagem alterada para {{language}}",
+    "successfullyChanged": "Linguagem alterada para {{language}}",
     "portugueseField": ":flag_br: Português",
     "englishField": ":flag_us: Inglês",
     "title": "Escolha uma linguagem",
     "description": "Linguagens disponíveis:"
+  },
+  "counter": {
+    "firstTimeID": "Você precisa colocar o ID do canal quando estiver ativando pela primeira vez!",
+    "invalidChannel": "Não encontrei esse canal no servidor.",
+    "firstActive": "<a:selena:529838831147417620> Contador ativado em <#{{channel}}>",
+    "activated": "<a:selena:529838831147417620> Contador ativado",
+    "firstTimeDeactivating": "Você precisa ativar o contador pela primeira vez antes de desativá-lo!",
+    "deactivated": "<a:selena:529838831147417620> Contador desativado",
+    "firstTimeChangingChannel": "Você precisa ativar o contador pela primeira vez antes de trocar o canal!",
+    "channelChanged": "<a:selena:529838831147417620> Canal do contador alterado para <#{{channel}}>"
   }
 
 }

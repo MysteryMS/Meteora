@@ -2,10 +2,10 @@ const Command = require('../structures/Command')
 const guild = require('../../models/guild')
 
 class CounterCommand extends Command {
-  constructor() {
+  constructor () {
     super('counter')
     this.name = 'Counter'
-    this.description = 'Exibe o número de membros no seu servidor no' +
+    this.description = 'Exibe o número de membros do seu servidor no' +
       ' tópico de um canal'
     this.aliases = ['contador']
     this.usage = 'nao ta pronto'
@@ -13,59 +13,54 @@ class CounterCommand extends Command {
     this.botPermissions = ['MANAGE_CHANNELS']
   }
 
-  async run(message, args) {
+  async run (message, args, { t }) {
     switch (args[0]) {
       case 'enable':
-        guild.findOne({_id: message.guild.id}, async function (err, database) {
+        guild.findOne({ _id: message.guild.id }, async function (err, database) {
+          if (err) console.log(err)
           if (database.counterChannel === null) {
-            if (!args[1]) return message.reply("Você precisa" +
-              " colocar" +
-              " o ID do" +
-              " canal quando estiver ativando pela primeira vez!")
-            if (!message.guild.channels.get(args[1])) return message.reply("Não encontrei esse canal no servidor.")
+            if (!args[1]) { // TODO > Traduções para o counter
+              return message.reply(t('commands:counter.firstTimeID'))
+            }
+            if (!message.guild.channels.get(args[1])) return message.reply(t('commands:counter.invalidChannel'))
 
             database.counterChannel = args[1]
             database.counterOn = true
             database.save()
-            message.reply(`<a:selena:529838831147417620> Contador ativado em <#${args[1]}>`)
-
+            message.reply(t('commands:counter.firstActive', { channel: args[1] }))
           } else if (database.counterOn === false) {
             database.counterOn = true
             database.save()
-              .then(message.reply("<a:selena:529838831147417620> Contador" +
-                " ativado"))
+              .then(message.reply(t('commands:counter.activated')))
           }
         })
-        break;
+        break
 
       case 'disable':
-        guild.findOne({_id: message.guild.id}, async function (err, database) {
+        guild.findOne({ _id: message.guild.id }, async function (err, database) {
+          if (err) console.log(err)
           if (database.counterChannel === null) {
-            return message.reply("Você precisa ativar o" +
-              " contador pela primeira vez antes de desativá-lo")
-
+            return message.reply(t('commands:counter.firstTimeDeactivating'))
           } else if (database.counterOn === true) {
             database.counterOn = false
             database.save()
-            message.reply("<a:selena:529838831147417620> Contador desativado")
+            message.reply(t('commands:counter.deactivated'))
           }
         })
-        break;
+        break
 
       case 'change-channel':
-        guild.findOne({_id: message.guild.id}, function (err, database) {
-          if (database.counterChannel === null) return message.reply("Você" +
-            " precisa" +
-            " ativar o" +
-            " contador pela primeira vez antes de trocar o canal!")
+        guild.findOne({ _id: message.guild.id }, function (err, database) {
+          if (err) console.log(err)
+          if (database.counterChannel === null) {
+            return message.reply(t('commands:firstTimeChangingChannel'))
+          }
 
-          if (!message.guild.channels.get(args[1])) return message.reply("Não encontrei esse canal no servidor.")
+          if (!message.guild.channels.get(args[1])) return message.reply(t('commands:counter.invalidChannel'))
           database.counterChannel = args[1]
-          database.save().then(() => message.reply(`Canal do contador alterado para <#${args[1]}>`))
-
+          database.save().then(() => message.reply(t('commands:counter.channelChanged')))
         })
     }
-
   }
 }
 

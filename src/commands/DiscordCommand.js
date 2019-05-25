@@ -1,15 +1,15 @@
 const Command = require('../structures/Command')
-const {RichEmbed} = require('discord.js')
+const { RichEmbed } = require('discord.js')
 
 class DiscordCommand extends Command {
-  constructor() {
+  constructor () {
     super('discord')
     this.description = 'Veja o status atual do Discord'
     this.name = 'Discord'
     this.aliases = ['discordstatus', 'dstts']
   }
 
-  async run(message, args){
+  async run (message, args) {
     const st = require('striptags')
     let a = require('axios')
     let c = require('cheerio')

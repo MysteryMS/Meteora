@@ -1,7 +1,7 @@
 const Command = require('../structures/Command')
 
 class KickCommand extends Command {
-  constructor() {
+  constructor () {
     super('kick')
     this.description = 'Expulse um membro do servidor.'
     this.name = 'Kick'
@@ -11,18 +11,17 @@ class KickCommand extends Command {
     this.botPermissions = ['KICK_MEMBERS']
   }
 
-  async run(message, args) {
+  async run (message, args) {
     const user = message.mentions.members.first() || message.guild.members.get(args[0])
-    const {RichEmbed} = require('discord.js')
+    const { RichEmbed } = require('discord.js')
 
     let member = message.guild.members.get(args[0]) || message.mentions.members.first()
     if (!member) {
       return message.reply('Marque um usuário ou seu ID para eu expulsar!')
     }
     if (!member.kickable) {
-      return message.reply("Eu não consigo expulsar este usuário! Talvez os" +
-        " meus" +
-        " cargos estejam abaixo dos dele. :sob:")
+      return message.reply('Eu não consigo expulsar este usuário! Talvez os' +
+        ' meus cargos estejam abaixo dos dele. :sob:')
     }
 
     let reason = args.slice(1).join(' ')
