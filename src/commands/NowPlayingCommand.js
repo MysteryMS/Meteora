@@ -15,19 +15,18 @@ class NowPlayingCommand extends Command {
     if (this.client.calls.get(message.guild.id).nowPlaying === '') {
       return message.reply('Não há nada tocando!')
     }
-    let embed = new RichEmbed()
-      .setTitle(message.guild.name)
-      .addField('Música:', `[${this.client.calls.get(message.guild.id).nowPlaying.info.title}](${this.client.calls.get(message.guild.id).nowPlaying.info.uri})`)
-      .addField('Volume:', this.client.calls.get(message.guild.id).player.state.volume + '/100')
-      .addField('Autor:', this.client.calls.get(message.guild.id).nowPlaying.info.author)
-      .addField('Duração:', pms(this.client.calls.get(message.guild.id).player.state.position) + '/' + pms(this.client.calls.get(message.guild.id).nowPlaying.info.length))
     yt(this.client.calls.get(message.guild.id).nowPlaying.info.identifier, function (err, videoInfo) {
       if (err) console.log(err)
       console.log(videoInfo.thumbnailUrl)
-      embed.setThumbnail(videoInfo.thumbnailUrl)
+      let embed = new RichEmbed()
+        .setTitle(message.guild.name)
+        .addField('Música:', `[${this.client.calls.get(message.guild.id).nowPlaying.info.title}](${this.client.calls.get(message.guild.id).nowPlaying.info.uri})`)
+        .addField('Volume:', this.client.calls.get(message.guild.id).player.state.volume + '/100')
+        .addField('Autor:', this.client.calls.get(message.guild.id).nowPlaying.info.author)
+        .addField('Duração:', pms(this.client.calls.get(message.guild.id).player.state.position) + '/' + pms(this.client.calls.get(message.guild.id).nowPlaying.info.length))
+        .setThumbnail(videoInfo.thumbnailUrl)
+      message.channel.send(embed)
     })
-
-    message.channel.send(embed)
   }
 }
 
