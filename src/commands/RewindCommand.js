@@ -8,6 +8,7 @@ class RewindCommand extends Command {
     this.name = 'Rewind'
     this.description = 'Volta a música em um determinado tempo'
     this.usage = '<tempo(s/m/h)>'
+    this.category = 'Música'
   }
   async run (message, args, { t }) {
     const lavaPlayer = this.client.calls.get(message.guild.id)

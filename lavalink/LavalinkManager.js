@@ -47,6 +47,7 @@ class Player extends EventEmitter {
   }
   _play (track) {
     this.player.on('end', (data) => {
+      this.nowPlaying = ''
       if (data.reason === 'REPLACED') return console.log('replaced')
       let nextSong = this.queue.shift()
       if (!nextSong) return

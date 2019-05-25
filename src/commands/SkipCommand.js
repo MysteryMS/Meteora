@@ -5,6 +5,7 @@ class SkipCommand extends Command {
     super('skip')
     this.name = 'Skip'
     this.description = 'Pula uma música'
+    this.category = 'Música'
   }
   async run (message, args, { t }) {
     if (!this.client.lavalinkManager.manager.has(message.guild.id)) {

@@ -7,6 +7,7 @@ class PlayCommand extends Command {
     this.name = 'Play'
     this.description = 'Toque uma música usando um link ou buscando-a'
     this.usage = '<link/nome>'
+    this.category = 'Música'
   }
 
   async run (message, args, { t }) {
@@ -30,7 +31,7 @@ class PlayCommand extends Command {
           if (err) console.log(err)
           t = this.client.localeManager.getT(database.language)
           message.channel.send(t('commands:music.nowPlaying', { trackInfo: track.info.title, trackDuration: mss(track.info.length) }))
-          this.client.calls.get(message.guild.id).playingNow = track
+          this.client.calls.get(message.guild.id).nowPlaying = track
         })
       })
       player.play(args.join(' '))

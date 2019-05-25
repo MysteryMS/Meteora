@@ -17,6 +17,7 @@ class LyricsCommand extends Command {
     this.name = 'Lyrics'
     this.aliases = ['letra', 'lyric']
     this.description = 'Exibe a letra de uma música'
+    this.category = 'Música'
   }
 
   async run (message, args) {

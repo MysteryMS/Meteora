@@ -26,6 +26,7 @@ class CounterCommand extends Command {
 
             database.counterChannel = args[1]
             database.counterOn = true
+            database.counterMessage = this.client.channels.get(args[1]).topic
             database.save()
             message.reply(t('commands:counter.firstActive', { channel: args[1] }))
           } else if (database.counterOn === false) {
@@ -58,6 +59,7 @@ class CounterCommand extends Command {
 
           if (!message.guild.channels.get(args[1])) return message.reply(t('commands:counter.invalidChannel'))
           database.counterChannel = args[1]
+          database.counterMessage = this.client.channels.get(args[1]).topic
           database.save().then(() => message.reply(t('commands:counter.channelChanged')))
         })
     }

@@ -8,7 +8,7 @@ class ChannelUpdateListener extends EventListener {
   async run (oldChannel, newChannel) {
     guild.findOne({ _id: newChannel.guild.id }, function (err, database) {
       if (err) console.log(err)
-      if (newChannel.id === database.counterChannel) {
+      if (newChannel.id === database.counterChannel && database.counterOn === true) {
         database.counterMessage = newChannel.topic
         database.save()
       }

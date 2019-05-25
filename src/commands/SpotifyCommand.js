@@ -12,6 +12,7 @@ class SpotifyCommand extends Command {
     this.description = 'Veja as informações de uma música que algum usuário' +
       ' está ouvindo'
     this.usage = '<ID>'
+    this.category = 'Música'
   }
   async run (message, args) {
     let embed = new RichEmbed()
