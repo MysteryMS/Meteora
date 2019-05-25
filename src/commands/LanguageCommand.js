@@ -25,13 +25,16 @@ class LanguageCommand extends Command {
           switch (r.emoji.name) {
             case '🇧🇷':
               await msg.edit(new RichEmbed().setDescription('Agora vou falar em português!').setColor('#42f445'))
+              await msg.clearReactions()
               database.language = 'pt-BR'
               database.save()
               break
 
             case '🇺🇸':
               await msg.edit(new RichEmbed().setDescription('Now I\'ll speak english!').setColor('#db3939'))
+              await msg.clearReactions()
               database.language = 'en-US'
+              database.save()
           }
         })
       })
