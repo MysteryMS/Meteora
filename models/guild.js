@@ -2,6 +2,7 @@ const mongoose = require('mongoose')
 
 const guilds = new mongoose.Schema({
   _id: String,
+  name: String,
   counterOn: Boolean,
   counterChannel: String,
   counterMessage: String,

@@ -1,24 +1,22 @@
-const EventListener = require("../structures/EventListener")
-const guild = require('../../models/guild')
+const EventListener = require('../structures/EventListener')
+const Guild = require('../../models/guild')
 
 class MessageListener extends EventListener {
-
   constructor () {
-    super("message")
+    super('message')
   }
 
-  run(message) {
-    if (message.author.bot)
-      return
+  run (message) {
+    if (message.author.bot) { return }
 
     this.client.commands.forEach((command) => {
-      if (command.handle(message))
-        return
+      if (command.handle(message)) {}
     })
-    guild.findOne({_id: message.guild.id}, function (err, database) {
+    Guild.findOne({ _id: message.guild.id }, function (err, database) {
       if (!database) {
-        new guild({
+        new Guild({
           _id: message.guild.id,
+          name: message.guild.name,
           counterOn: false,
           counterChannel: null,
           counterMessage: null,
@@ -28,7 +26,7 @@ class MessageListener extends EventListener {
           leaveMessage: false,
           leaveMessageMessage: null,
           leaveMessageChannel: null,
-          language: "pt-BR"
+          language: 'pt-BR'
         }).save()
       }
       if (err) return console.log(err)
