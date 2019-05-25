@@ -1,12 +1,12 @@
 const Command = require('../structures/Command')
 
 class SkipCommand extends Command {
-  constructor() {
+  constructor () {
     super('skip')
     this.name = 'Skip'
     this.description = 'Pula uma música'
   }
-  async run(message, args, { t }) {
+  async run (message, args, { t }) {
     if (!this.client.lavalinkManager.manager.has(message.guild.id)) {
       return message.reply(t('commands:music.notPlaying'))
     }

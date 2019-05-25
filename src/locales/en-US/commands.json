@@ -1,6 +1,6 @@
 {
   "user": {
-    "noUserMention": "Please mention an user or provide her ID",
+    "noUserMention": "Please mention an user or the ID",
     "invalidUser": "Invalid user"
 },
   "messages": {

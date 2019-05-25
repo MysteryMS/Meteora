@@ -13,18 +13,18 @@
     "pause": "Player pausado.",
     "resume": "Resumindo música...",
     "addQueue": "<:queuemusic:571414423152099328> – `{{track}} ` ({{duration}}) foi adicionada à fila",
-    "noVoiceChannel": "Você precisa estar em um canal de voz para executar essa comando.",
+    "noVoiceChannel": "Você precisa estar em um canal de voz para executar esse comando.",
     "noMusic": "Você precisa colocar o nome da música",
     "nowPlaying": "<a:cd:521088033664270336> – Tocando Agora: `{{trackInfo}} ` ({{trackDuration}})",
     "notPlaying": "Não estou tocando nada.",
-    "maxDuration": "O tempo não pode ser maior que a duração atual da música."
+    "maxDuration": "O tempo não pode ser maior do que a duração atual da música."
 
   },
   "language": {
     "sucessfullChanged": "Linguagem alterada para {{language}}",
     "portugueseField": ":flag_br: Português",
     "englishField": ":flag_us: Inlgês",
-    "title": "Escola uma linguagem",
+    "title": "Escolha uma linguagem",
     "description": "Linguagens disponíveis:"
   }
 
