@@ -24,7 +24,7 @@ class NowPlayingCommand extends Command {
         .addField('Volume:', this.client.calls.get(message.guild.id).player.state.volume + '/100')
         .addField('Autor:', this.client.calls.get(message.guild.id).nowPlaying.info.author)
         .addField('Duração:', pms(this.client.calls.get(message.guild.id).player.state.position) + '/' + pms(this.client.calls.get(message.guild.id).nowPlaying.info.length))
-        .setThumbnail(videoInfo.thumbnailUrl)
+        .setImage(videoInfo.thumbnailUrl)
       message.channel.send(embed)
     })
   }
