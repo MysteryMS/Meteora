@@ -15,7 +15,7 @@ class NowPlayingCommand extends Command {
     if (this.client.calls.get(message.guild.id).nowPlaying === '') {
       return message.reply('Não há nada tocando!')
     }
-    yt(this.client.calls.get(message.guild.id).nowPlaying.info.identifier, function (err, videoInfo) {
+    yt(this.client.calls.get(message.guild.id).nowPlaying.info.identifier, (err, videoInfo) => {
       if (err) console.log(err)
       console.log(videoInfo.thumbnailUrl)
       let embed = new RichEmbed()
