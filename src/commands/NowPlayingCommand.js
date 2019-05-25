@@ -15,11 +15,6 @@ class NowPlayingCommand extends Command {
     if (this.client.calls.get(message.guild.id).nowPlaying === '') {
       return message.reply('Não há nada tocando!')
     }
-    yt(this.client.calls.get(message.guild.id).nowPlaying.info.identifier, function (err, videoInfo) {
-      if (err) console.log(err)
-      embed.setThumbnail(videoInfo.thumbnailUrl)
-    })
-
     let embed = new RichEmbed()
       .setTitle(message.guild.name)
       .addField('Música:', `[${this.client.calls.get(message.guild.id).nowPlaying.title}](${this.client.calls.get(message.guild.id).nowPlaying.uri})`)
@@ -27,6 +22,11 @@ class NowPlayingCommand extends Command {
       .addField('Autor:', this.client.calls.get(message.guild.id).nowPlaying.author)
       .addField('Duração:', pms(this.client.calls.get(message.guild.id).player.state.position) + '/' + pms(this.client.calls.get(message.guild.id).nowPlaying.length))
       .setThumbnail(yt(this.client.calls.get(message.guild.id).nowPlaying.info.identifier))
+    yt(this.client.calls.get(message.guild.id).nowPlaying.info.identifier, function (err, videoInfo) {
+      if (err) console.log(err)
+      embed.setThumbnail(videoInfo.thumbnailUrl)
+    })
+
     message.channel.send(embed)
   }
 }
