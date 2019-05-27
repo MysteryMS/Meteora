@@ -21,6 +21,8 @@ class HelpCommand extends Command {
     this.client.commands.filter(c => c.category === 'Gerenciamento do' +
       ' servidor').forEach(a => serverm.setTitle('Categoria: Gerenciamento' +
       ' do servidor') && serverm.addField(a.name, a.description) && serverm.setColor('#3eff92') && serverm.setFooter('Use 🤷 como argumento de um comando para mais ajuda!'))
+    message.author.send(util, dev, serverm, music)
+    message.reply('Verifique suas mensagens diretas!')
   }
 }
 
