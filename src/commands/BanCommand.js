@@ -2,17 +2,17 @@ const Command = require("../structures/Command")
 
 class BanCommand extends Command {
 
-  constructor() {
-    super("ban")
-    this.usage = "<usuário> [motivo]"
+  constructor () {
+    super('ban')
+    this.usage = '<usuário> [motivo]'
     this.aliases = ['banir']
     this.name = 'Ban'
     this.description = 'Bana um usuário do seu servidor!'
-    this.memberPermissions = ["BAN_MEMBERS"]
-    this.botPermissions = ["BAN_MEMBERS"]
+    this.memberPermissions = ['BAN_MEMBERS']
+    this.botPermissions = ['BAN_MEMBERS']
   }
 
-  async run(message, args) {
+  async run (message, args) {
     if (args.length === 0) {
       this.explain(message)
       return
