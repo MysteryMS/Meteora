@@ -20,7 +20,7 @@
     "lyrics": "Shows a music lyrics",
     "nowplaying": "Shows the information from the current music",
     "ping": "Altair's response time",
-    "play": "Play a music from a URl or searching it",
+    "play": "Play a music from a URL or searching it",
     "rewind": "Rewinds the current music",
     "skip": "Skips the current music",
     "spotify": "See the current spotify music information of a user"
