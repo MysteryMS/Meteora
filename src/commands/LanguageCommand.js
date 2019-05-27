@@ -23,7 +23,7 @@ class LanguageCommand extends Command {
       ).then(async (msg) => {
         await msg.react('🇧🇷')
         await msg.react('🇺🇸')
-        const collector = msg.createReactionCollector((r, u) => (r.emoji.name === '🇧🇷' && '🇺🇸') && (u.id !== this.client.user.id && u.id === message.author.id))
+        const collector = msg.createReactionCollector((r, u) => (r.emoji.name === '🇧🇷', '🇺🇸') && (u.id !== this.client.user.id && u.id === message.author.id))
 
         collector.on('collect', async r => {
           switch (r.emoji.name) {
