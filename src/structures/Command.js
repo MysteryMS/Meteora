@@ -8,6 +8,7 @@ class Command {
     this.usage = ''
     this.onlyOwner = false
     this.description = ''
+    this.category = ''
     this.memberPermissions = []
     this.botPermissions = []
   }

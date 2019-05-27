@@ -6,6 +6,7 @@ class ClearCommand extends Command {
     this.description = 'Deleta um número específico de mensagens no canal'
     this.name = 'Clear'
     this.usage = '<quantia>'
+    this.category = 'Gerenciamento do servidor'
     this.aliases = ['delete', 'limpar']
     this.memberPermissions = ['MANAGE_MESSAGES']
     this.botPermissions = ['MANAGE_MESSAGES']

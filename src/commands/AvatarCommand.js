@@ -9,6 +9,7 @@ class AvatarCommand extends Command {
     this.name = 'Avatar'
     this.description = 'Veja o avatar de qualquer pessoa!'
     this.usage = '<@usuário/id>'
+    this.catrgory = 'Utils'
     this.aliases = ['pfp']
   }
 

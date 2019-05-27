@@ -9,6 +9,7 @@ class CounterCommand extends Command {
       ' tópico de um canal'
     this.aliases = ['contador']
     this.usage = 'nao ta pronto'
+    this.category = 'Gerenciamento do servidor'
     this.memberPermissions = ['ADMINISTRATOR']
     this.botPermissions = ['MANAGE_CHANNELS']
   }

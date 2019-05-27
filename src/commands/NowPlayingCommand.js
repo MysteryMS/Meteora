@@ -12,6 +12,7 @@ class NowPlayingCommand extends Command {
     this.description = 'Exibe informações da música que está sendo tocada no' +
       ' momento'
     this.aliases = ['np', 'nowPlaying', 'playingnow', 'tocando', 'tocandoagora', 'tocandoagr']
+    this.category = 'Música'
   }
   async run (message, args) {
     if (this.client.calls.get(message.guild.id).nowPlaying === '') {

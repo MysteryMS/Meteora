@@ -7,6 +7,7 @@ class KickCommand extends Command {
     this.name = 'Kick'
     this.usage = '<@usuário/id> [razão]'
     this.aliases = ['expulsar']
+    this.category = 'Gerenciamento do servidor'
     this.memberPermissions = ['KICK_MEMBERS']
     this.botPermissions = ['KICK_MEMBERS']
   }

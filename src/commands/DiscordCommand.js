@@ -6,6 +6,7 @@ class DiscordCommand extends Command {
     super('discord')
     this.description = 'Veja o status atual do Discord'
     this.name = 'Discord'
+    this.category = 'Utils'
     this.aliases = ['discordstatus', 'dstts']
   }
 

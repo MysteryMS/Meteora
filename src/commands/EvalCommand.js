@@ -12,6 +12,7 @@ class EvalCommand extends Command {
     this.name = 'Eval'
     this.usage = '<código>'
     this.aliases = ['e']
+    this.category = 'Dev'
     this.description = 'Executa um código'
   }
 

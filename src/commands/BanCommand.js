@@ -7,6 +7,7 @@ class BanCommand extends Command {
     this.usage = '<usuário> [motivo]'
     this.aliases = ['banir']
     this.name = 'Ban'
+    this.category = 'Gerenciamento do servidor'
     this.description = 'Bana um usuário do seu servidor!'
     this.memberPermissions = ['BAN_MEMBERS']
     this.botPermissions = ['BAN_MEMBERS']

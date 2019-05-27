@@ -7,6 +7,7 @@ class PingCommand extends Command {
     this.aliases = ['pong']
     this.name = 'Ping'
     this.description = 'Tempo de resposta do cliente'
+    this.category = 'Utils'
   }
 
   run(message, args) {
