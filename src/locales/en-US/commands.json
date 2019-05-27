@@ -4,7 +4,9 @@
     "invalidUser": "Invalid user"
 },
   "messages": {
-    "langChanged": "Successfully changed language to {{language}}"
+    "langChanged": "Successfully changed language to {{language}}",
+    "cantDm": "Seems like I can't DM you...",
+    "checkDm": "Check your DM!"
   },
   "music": {
     "skipped": "⏭ – Music skipped!",

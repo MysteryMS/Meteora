@@ -4,7 +4,9 @@
     "invalidUser": "Usuário inválido"
   },
   "messages": {
-    "langChanged": "Linguagem alterada para {{language}}"
+    "langChanged": "Linguagem alterada para {{language}}",
+    "cantDm": "Parece que eu não consigo enviar mensagens para você...",
+    "checkDm": "Verifique suas mensagens diretas!"
   },
 
   "music": {

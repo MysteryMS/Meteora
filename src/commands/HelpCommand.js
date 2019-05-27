@@ -10,23 +10,25 @@ class HelpCommand extends Command {
     this.aliases = ['ajuda']
   }
 
-  async run (message, args) {
+  async run (message, args, { t }) {
     let music = new RichEmbed()
     let util = new RichEmbed()
     let dev = new RichEmbed()
     let serverm = new RichEmbed()
-    this.client.commands.filter(c => c.category === 'Utils').forEach(a => util.setTitle('Categoria: Utils') && util.addField(a.name, a.description) && util.setColor('#ffa730') && util.setFooter('Use 🤷 como argumento de um comando para mais ajuda!'))
-    this.client.commands.filter(c => c.category === 'Música').forEach(a => music.setTitle('Categoria: Música') && music.addField(a.name, a.description) && music.setColor('#4fa1ff') && music.setFooter('Use 🤷 como argumento de um comando para mais ajuda!'))
-    this.client.commands.filter(c => c.category === 'Dev').forEach(a => dev.setTitle('Categoria: Dev') && dev.addField(a.name, a.description) && dev.setColor('#ff4648') && dev.setFooter('Use 🤷 como argumento de um comando para mais ajuda!'))
+    this.client.commands.filter(c => c.category === 'Utils').forEach(a => util.setTitle(t('descriptions:helpEmbed.utilCateg')) && util.addField(a.name, t(`descriptions:descriptions.${a.label}`)) && util.setColor('#ffa730') && util.setFooter(t('descriptions:helpEmbed.argsFooter')))
+
+    this.client.commands.filter(c => c.category === 'Música').forEach(a => music.setTitle(t('descriptions:helpEmbed.musicCateg')) && music.addField(a.name, t(`descriptions:descriptions.${a.label}`)) && music.setColor('#4fa1ff') && music.setFooter(t('descriptions:helpEmbed.argsFooter')))
+
+    this.client.commands.filter(c => c.category === 'Dev').forEach(a => dev.setTitle(t('descriptions:helpEmbed.devCateg')) && dev.addField(a.name, t(`descriptions:descriptions.${a.label}`)) && dev.setColor('#ff4648') && dev.setFooter(t('descriptions:helpEmbed.argsFooter')))
+
     this.client.commands.filter(c => c.category === 'Gerenciamento do' +
-      ' servidor').forEach(a => serverm.setTitle('Categoria: Gerenciamento' +
-      ' do servidor') && serverm.addField(a.name, a.description) && serverm.setColor('#3eff92') && serverm.setFooter('Use 🤷 como argumento de um comando para mais ajuda!'))
-    await message.author.send(util).catch(err => message.reply('Parece que' +
-      ' eu não consigo mandar mensagens para você...') && console.log(err))
+      ' servidor').forEach(a => serverm.setTitle(t('descriptions:descriptions.helpEmbed.serverManagCateg')) && serverm.addField(a.name, t(`descriptions:descriptions.${a.label}`)) && serverm.setColor('#3eff92') && serverm.setFooter(t('descriptions:helpEmbed.argsFooter')))
+
+    await message.author.send(util).catch(err => message.reply(t('commands:messages.cantDm')) && console.log(err))
     await message.author.send(dev)
     await message.author.send(serverm)
     await message.author.send(music)
-    message.reply('Verifique suas mensagens diretas!')
+    message.reply(t('commands:messages.checkDm'))
   }
 }
 
