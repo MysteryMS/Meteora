@@ -7,7 +7,7 @@
     "devCateg": "Category: Dev"
   },
   "descriptions": {
-    "addemoji": "Add an emoji to your server by a URL",
+    "addemoji": "Add an emoji to your server by an URL",
     "avatar": "See someone's profile picture!",
     "ban": "Ban someone from your server!",
     "clear": "Delete specific messages in the channel",
@@ -17,10 +17,10 @@
     "help": "Altair's help command!",
     "kick": "Kick someone from your server",
     "language": "Changes the bot language",
-    "lyrics": "Shows a music lyrics",
+    "lyrics": "Shows a song's lyrics",
     "nowplaying": "Shows the information from the current music",
     "ping": "Altair's response time",
-    "play": "Play a music from a URL or searching it",
+    "play": "Play a song from an URL or searching it",
     "rewind": "Rewinds the current music",
     "skip": "Skips the current music",
     "spotify": "See the current spotify music information of a user"
