@@ -26,7 +26,8 @@ class MessageListener extends EventListener {
           leaveMessage: false,
           leaveMessageMessage: null,
           leaveMessageChannel: null,
-          language: 'pt-BR'
+          language: 'pt-BR',
+          prefix: 'r>>'
         }).save()
       }
       if (err) return console.log(err)

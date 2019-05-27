@@ -20,7 +20,7 @@ class CounterCommand extends Command {
         guild.findOne({ _id: message.guild.id }, async (err, database) => {
           if (err) console.log(err)
           if (database.counterChannel === null) {
-            if (!args[1]) { // TODO > Traduções para o counter
+            if (!args[1]) {
               return message.reply(t('commands:counter.firstTimeID'))
             }
             if (!message.guild.channels.get(args[1])) return message.reply(t('commands:counter.invalidChannel'))

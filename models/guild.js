@@ -12,7 +12,8 @@ const guilds = new mongoose.Schema({
   leaveMessage: Boolean,
   leaveMessageMessage: String,
   leaveMessageChannel: String,
-  language: String
+  language: String,
+  prefix: String
 })
 
 module.exports = mongoose.model('guilds', guilds)
