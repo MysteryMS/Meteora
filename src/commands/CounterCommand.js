@@ -16,7 +16,7 @@ class CounterCommand extends Command {
   async run (message, args, { t }) {
     switch (args[0]) {
       case 'enable':
-        guild.findOne({ _id: message.guild.id }, async function (err, database) {
+        guild.findOne({ _id: message.guild.id }, async (err, database) => {
           if (err) console.log(err)
           if (database.counterChannel === null) {
             if (!args[1]) { // TODO > Traduções para o counter
