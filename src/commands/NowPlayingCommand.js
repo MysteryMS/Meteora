@@ -8,7 +8,7 @@ const yt = require('youtube-info')
 class NowPlayingCommand extends Command {
   constructor () {
     super('nowplaying')
-    this.name = 'Now Playing'
+    this.name = 'NowPlaying'
     this.description = 'Exibe informações da música que está sendo tocada no' +
       ' momento'
     this.aliases = ['np', 'nowPlaying', 'playingnow', 'tocando', 'tocandoagora', 'tocandoagr']

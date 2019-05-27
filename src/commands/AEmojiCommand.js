@@ -4,7 +4,7 @@ class AEmojiCommand extends Command {
   constructor() {
     super('addemoji')
     this.description = 'Adicione um emoji no seu servidor a partir de uma URL'
-    this.name = 'Adicionar Emoji'
+    this.name = 'AddEmoji'
     this.aliases = ['createemoji']
     this.usage = '<link> <nome>'
     this.category = 'Gerenciamento do servidor'
