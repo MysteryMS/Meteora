@@ -13,7 +13,7 @@ class ChannelUpdateListener extends EventListener {
         database.save()
       }
     })
-    if (this.client.lavalinkManager.has(newChannel.guild.id)) {
+    if (this.client.lavalinkManager.manager.has(newChannel.guild.id)) {
       if (newChannel.id === this.client.calls.get(newChannel.guild.id).player.channel && newChannel.members === 1) {
         this.client.channels.get(this.client.calls.get(newChannel.guild.id).messageChannel).send('acabou a festa')
         this.client.calls.get(newChannel.guild.id).player.stop()
