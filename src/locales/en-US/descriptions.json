@@ -24,7 +24,18 @@
     "rewind": "Rewinds the current music",
     "skip": "Skips the current music",
     "spotify": "See the current spotify music information of a user"
-
+  },
+  "misc": {
+    "botPing": "Hi {{user}}, my prefix in this server is `{{prefix}}`! Use `{{prefix}}help` to get a list with my commands!"
+  },
+  "structures": {
+    "botNoPerm": "I can't execute this command because I need the permissions `{{permissions}}`!",
+    "noPerm": "You don't have permission to execute this command",
+    "error": "<:erro_tick:558836213554085908> **|** {{member}} An unexpected error occurred during the execution of this command!\n{{err}}",
+    "embedHowUse": ":interrobang: How to use?",
+    "embedAliases": ":twisted_rightwards_arrows: Aliases",
+    "noAliases": "No aliases.",
+    "executed": "Executed"
   }
 
 

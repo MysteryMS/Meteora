@@ -6,7 +6,10 @@ class MessageListener extends EventListener {
     super('message')
   }
 
-  run (message) {
+  run (message, { t }) {
+    if (message.content.startsWith(`<@${this.client.user.id}`)) {
+      message.reply(t('descriptions:misc.botPing'))
+    }
     if (message.author.bot) { return }
 
     this.client.commands.forEach((command) => {
