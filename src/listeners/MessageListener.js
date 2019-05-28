@@ -6,12 +6,12 @@ class MessageListener extends EventListener {
     super('message')
   }
 
-  run (message) {
-    Guild.findOne({ _id: message.guild.id }, (err, database) => {
-      if (err) console.log(err)
-      let t = this.client.localeManager.getT(database.language)
+  run (message) {   
       if (message.content.startsWith(`<@${this.client.user.id}`)) {
+        Guild.findOne({ _id: message.guild.id }, (err, database) => {
+        let t = this.client.localeManager.getT(database.language)
         message.reply(t('descriptions:misc.botPing'))
+        })
       }
       if (message.author.bot) {
         return
@@ -42,7 +42,6 @@ class MessageListener extends EventListener {
         if (err) return console.log(err)
       })
       message.channel.stopTyping()
-    })
   }
 }
 
