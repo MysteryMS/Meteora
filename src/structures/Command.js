@@ -108,7 +108,7 @@ class Command {
       const embed = new RichEmbed()
       embed.setAuthor(message.author.tag, message.author.displayAvatarURL)
       embed.setTitle(':cyclone: `' + database.prefix + usedLabel + '`')
-      embed.setDescription(this.description)
+      embed.setDescription(t(`descriptions:descriptions.${this.label}`))
       embed.addField(t('descriptions:structures.embedHowUse'), `\`${database.prefix + usedLabel} ${this.usage}\``, false)
       embed.addField(t('descriptions:structures.embedAliases'), `${this.aliases ? unusedLabels.map((label) => '`' + database.prefix + label + '`').join(', ') : t('descriptions:structures.noAliases')}`, false)
 
