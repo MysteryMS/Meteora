@@ -32,6 +32,7 @@ class PlayCommand extends Command {
           t = this.client.localeManager.getT(database.language)
           message.channel.send(t('commands:music.nowPlaying', { trackInfo: track.info.title, trackDuration: mss(track.info.length) }))
           this.client.calls.get(message.guild.id).nowPlaying = track
+          this.client.calls.get(message.guild.id).messageChannel = message.channel.id
         })
       })
       player.play(args.join(' '))
