@@ -110,7 +110,7 @@ class Command {
       embed.setTitle(':cyclone: `' + database.prefix + usedLabel + '`')
       embed.setDescription(t(`descriptions:descriptions.${this.label}`))
       embed.addField(t('descriptions:structures.embedHowUse'), `\`${database.prefix + usedLabel} ${this.usage}\``, false)
-      embed.addField(t('descriptions:structures.embedAliases'), `${this.aliases || [] ? unusedLabels.map((label) => '`' + database.prefix + label + '`').join(', ') : t('descriptions:structures.noAliases')}`, false)
+      embed.addField(t('descriptions:structures.embedAliases'), `${this.aliases !== [] ? unusedLabels.map((label) => '`' + database.prefix + label + '`').join(', ') : t('descriptions:structures.noAliases')}`, false)
 
       embed.setColor('#650b29')
 
