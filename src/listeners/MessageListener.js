@@ -7,7 +7,7 @@ class MessageListener extends EventListener {
   }
 
   run (message) {   
-      if (message.content.startsWith(`<@${this.client.user.id}`)) {
+      if (message.content.startsWith(`<@${this.client.user.id}` || '<@!464304679128530954>')) {
         Guild.findOne({ _id: message.guild.id }, (err, database) => {
         let t = this.client.localeManager.getT(database.language)
         message.reply(t('descriptions:misc.botPing'))
