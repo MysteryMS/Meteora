@@ -14,6 +14,7 @@ class ChannelUpdateListener extends EventListener {
       }
     })
     if (this.client.lavalinkManager.manager.has(newChannel.guild.id)) {
+      console.log('xuxa 2')
       if (newChannel.id === this.client.calls.get(newChannel.guild.id).player.channel) {
         console.log('xuxa meneghel 2')
         this.client.channels.get(this.client.calls.get(newChannel.guild.id).messageChannel).send('acabou a festa')
