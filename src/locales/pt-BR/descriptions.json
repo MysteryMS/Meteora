@@ -29,16 +29,13 @@
     "botPing": "Olá {{user}}, meu prefixo nesse servidor é `{{prefix}}`! Use `{{prefix}}ajuda` para obter uma lista com os meus comandos!"
   },
   "structures": {
-  "botNoPerm": "Eu não consigo executar este comando pois eu preciso das permissões {{permissions}}!",
-  "noPerm": "Você não tem permissão para executar este comando!",
-  "error": "<:erro_tick:558836213554085908> **|** {{member}} Um erro inesperado ocorreu na execução deste comando!\n{{err}}",
-  "embedHowUse": ":interrobang: Como usar?",
-  "embedAliases": ":twisted_rightwards_arrows: Alternativas",
-  "noAliases": "Nenhuma.",
-  "executed": "Executado"
-}
-
-
-
-
+    "botNoPerm": "Eu não consigo executar este comando pois eu preciso das permissões {{permissions}}!",
+    "noPerm": "Você não tem permissão para executar este comando!",
+    "error": "<:erro_tick:558836213554085908> **|** {{member}} Um erro inesperado ocorreu na execução deste comando!\n{{err}}",
+    "embedHowUse": ":interrobang: Como usar?",
+    "embedAliases": ":twisted_rightwards_arrows: Alternativas",
+    "noAliases": "Nenhuma.",
+    "executed": "Executado",
+    "allMembersLeft": "<:voiceleave:561612800804388914> – Todos os membros saíram do canal de voz, desconetando de `\uD83D\uDD08 {{channel}}`!"
+  }
 }

@@ -1,4 +1,5 @@
 const EventListener = require('../structures/EventListener')
+const guild = require('../../models/guild')
 
 class voiceStateListener extends EventListener {
   constructor () {
@@ -6,10 +7,12 @@ class voiceStateListener extends EventListener {
   }
 
   async run (oldMember, newMember) {
+    const xuxa = await guild.findOne({ _id: oldMember.guild.id })
+    let t = this.client.localeManager.getT(xuxa.language)
     if (this.client.lavalinkManager.manager.has(oldMember.guild.id)) {
       if (oldMember.voiceChannel.id === this.client.calls.get(oldMember.guild.id).player.channel) {
         if (oldMember.guild.channels.get(oldMember.voiceChannel.id).members.size === 1) {
-          this.client.channels.get(this.client.calls.get(oldMember.guild.id).messageChannel).send('acabou a festa')
+          this.client.channels.get(this.client.calls.get(oldMember.guild.id).messageChannel).send(t('descriptions:structures.allMembersLeft', { channel: oldMember.voiceChannel.name }))
           this.client.lavalinkManager.manager.leave()
         }
       }

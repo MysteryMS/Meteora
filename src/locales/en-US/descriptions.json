@@ -35,7 +35,8 @@
     "embedHowUse": ":interrobang: How to use?",
     "embedAliases": ":twisted_rightwards_arrows: Aliases",
     "noAliases": "No aliases.",
-    "executed": "Executed"
+    "executed": "Executed",
+    "allMembersLeft": "All members have been left from the voice channel, disconnecting from `\uD83D\uDD08 {{channel}}!`"
   }
 
 
