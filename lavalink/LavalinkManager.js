@@ -16,6 +16,7 @@ class Player extends EventEmitter {
     this.queue = []
     this.nowPlaying = ''
     this.messageChannel = ''
+    this.solveBug = false
   }
   play (query) {
     return getSongs(this.player.node, `ytsearch:${query}`).then(a => {
