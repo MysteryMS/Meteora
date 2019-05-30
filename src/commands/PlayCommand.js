@@ -16,7 +16,7 @@ class PlayCommand extends Command {
 
     if (!args[0]) return message.reply(t('commands:music.noMusic'))
 
-    if (this.client.calls.get(message.guild.id).solveBug) {
+    if (this.client.lavalinkManager.manager.has(message.guild.id)) {
       this.client.calls.get(message.guild.id).play(args.join(' ')).then(info => {
         message.channel.send(t('commands:music.addQueue', { track: info.title, duration: mss(info.length) }))
       })
