@@ -6,42 +6,23 @@ class MessageListener extends EventListener {
     super('message')
   }
 
-  run (message) {   
-      if (message.content.startsWith(`<@${this.client.user.id}` || '<@!464304679128530954>')) {
-        Guild.findOne({ _id: message.guild.id }, (err, database) => {
+  run (message) {
+    if (message.content.startsWith(`<@${this.client.user.id}` || '<@!464304679128530954>')) {
+      Guild.findOne({ _id: message.guild.id }, (err, database) => {
+        if (err) console.log(err)
         let t = this.client.localeManager.getT(database.language)
         message.channel.send(t('descriptions:misc.botPing', { user: message.author, prefix: database.prefix }))
-        })
-      }
-      if (message.author.bot) {
-        return
-      }
+      })
+    }
+    if (message.author.bot) {
+      return
+    }
 
-      this.client.commands.forEach((command) => {
-        if (command.handle(message)) {
-        }
-      })
-      Guild.findOne({ _id: message.guild.id }, function (err, database) {
-        if (!database) {
-          new Guild({
-            _id: message.guild.id,
-            name: message.guild.name,
-            counterOn: false,
-            counterChannel: null,
-            counterMessage: null,
-            wMessage: false,
-            wMessageMessage: null,
-            wMessageChannel: null,
-            leaveMessage: false,
-            leaveMessageMessage: null,
-            leaveMessageChannel: null,
-            language: 'pt-BR',
-            prefix: 'r>>'
-          }).save()
-        }
-        if (err) return console.log(err)
-      })
-      message.channel.stopTyping()
+    this.client.commands.forEach((command) => {
+      if (command.handle(message)) {
+      }
+    })
+    message.channel.stopTyping()
   }
 }
 
