@@ -9,6 +9,7 @@ class RepeatCommand extends Command {
     if (!this.client.lavalinkManager.manager.has(message.guild.id)) return message.channel.send('xuxa morreu')
     message.channel.send('xuxa ok')
     this.client.calls.get(message.guild.id).repeatTrack = this.client.calls.get(message.guild.id).player.track
+    this.client.calls.get(message.guild.id).repeat = true
   }
 }
 
