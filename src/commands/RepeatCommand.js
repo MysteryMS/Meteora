@@ -12,11 +12,13 @@ class RepeatCommand extends Command {
       message.channel.send('xuxa on')
       player.repeatTrack = this.client.calls.get(message.guild.id).player.track
       player.repeat = true
+      return
     }
     if (player.repeat === true) {
       message.channel.send('xuxa off')
       player.repeatTrack = ''
       player.repeat = false
+      return
     }
   }
 }
