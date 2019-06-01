@@ -16,7 +16,7 @@ class Player extends EventEmitter {
     this.queue = []
     this.nowPlaying = ''
     this.messageChannel = ''
-    this.repeat = false
+    this.repeat = true
   }
   play (query) {
     return getSongs(this.player.node, `ytsearch:${query}`).then(a => {
@@ -50,7 +50,7 @@ class Player extends EventEmitter {
   _play (track) {
     this.player.on('end', (data) => {
       this.nowPlaying = ''
-      if (['REPLACED', 'FINISHED'].includes(a => a === data.reason) && this.repeat === true) return this.player.play(track.track)
+      if (data.reason === 'FINISHED' && this.repeat === true) return this.player.play(track.track)
       console.log(data.reason)
       let nextSong = this.queue.shift()
       if (!nextSong) return
