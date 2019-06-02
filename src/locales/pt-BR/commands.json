@@ -11,7 +11,7 @@
 
   "music": {
     "skipped": "⏭ – Musica pulada!",
-    "stop": "O player foi parado e a fila foi limpa.",
+    "stop": "\u23F9 – O player foi parado e a fila foi limpa.",
     "pause": "Player pausado.",
     "resume": "Resumindo música...",
     "addQueue": "<:queuemusic:571414423152099328> – `{{track}} ` ({{duration}}) foi adicionada à fila",
@@ -22,7 +22,12 @@
     "maxDuration": "O tempo não pode ser maior do que a duração atual da música.",
     "maxVolume": "O volume máximo é `150`!",
     "nan": "Seu argumento deve ser um número!",
-    "volChanged": "Volume alterado para `{{volume}}/150`"
+    "volChanged": "Volume alterado para `{{volume}}/150`",
+    "repeatOn": "\uD83D\uDD02 – Repetindo a música atual... (`{{music}}`)",
+    "repeatOff": "🔁 – Voltando a tocar a playlist de música normalmente...",
+    "noQueue": "Não há nada na fila!",
+    "removedQueue": "{{track}} removida da fila",
+    "leave": "<:voiceleave:561612800804388914> – Saindo de `\uD83D\uDD08 {{channel}}`..."
 
   },
   "language": {

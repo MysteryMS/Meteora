@@ -24,7 +24,9 @@
     "rewind": "Volta a música em um determinado tempo",
     "skip": "Pula a música atual",
     "spotify": "Veja informações de uma música do spotify que algum usuário está ouvindo",
-    "volume": "Altere o volume da música atual"
+    "volume": "Altere o volume da música atual",
+    "repeat": "Repete a música atual",
+    "queue": "Mostra a fila de músicas do servidor"
   },
   "misc": {
     "botPing": "Olá {{user}}, meu prefixo nesse servidor é `{{prefix}}`! Use `{{prefix}}ajuda` para obter uma lista com os meus comandos!"

@@ -10,7 +10,7 @@
   },
   "music": {
     "skipped": "⏭ – Music skipped!",
-    "stop": "The player was stopped and the queue was deleted",
+    "stop": "\u23F9 – Player stopped and queue deleted",
     "pause": "Player paused",
     "resume": "Resuming music...",
     "addQueue": "<:queuemusic:571414423152099328> – `{{track}}` ({{duration}}) added to queue",
@@ -21,7 +21,12 @@
     "maxDuration": "The time cannot be higher than actual music length",
     "maxVolume": "The maximum volume is `150`!",
     "nan": "Your argument must be a number!",
-    "volChanged": "Volume changed to `{{volume}}/150`"
+    "volChanged": "Volume changed to `{{volume}}/150`",
+    "repeatOn": "\uD83D\uDD02 – Repeating the current music... (`{{music}}`)",
+    "repeatOff": "\uD83D\uDD01 – Playing the music playlist normally...",
+    "noQueue": "There's nothing in the queue!",
+    "removedQueue": "{{track}} removed from queue",
+    "leave": "<:voiceleave:561612800804388914> – Disconnecting from `\uD83D\uDD08 {{channel}}`..."
   },
   "language": {
     "successfullyChanged": "Language changed to {{language}}",

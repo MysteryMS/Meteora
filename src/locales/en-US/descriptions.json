@@ -24,7 +24,9 @@
     "rewind": "Rewinds the current music",
     "skip": "Skips the current music",
     "spotify": "See the current spotify music information of a user",
-    "volume": "Changes the current music volume"
+    "volume": "Changes the current music volume",
+    "repeat": "Repeats the current song",
+    "queue": "Shows the server music queue"
   },
   "misc": {
     "botPing": "Hi {{user}}, my prefix in this server is `{{prefix}}`! Use `{{prefix}}help` to get a list with my commands!"
