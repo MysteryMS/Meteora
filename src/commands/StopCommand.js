@@ -13,3 +13,5 @@ class StopCommand extends Command {
     message.channel.send(t('commands:music.stop'))
   }
 }
+
+module.exports = StopCommand
