@@ -10,7 +10,7 @@ class VolumeCommand extends Command {
   }
   async run (message, args, { t }) {
     if (!args[0]) return this.explain
-    if (!parseInt(args[0])) {
+    if (isNaN(parseInt(args[0]))) {
       return message.reply(t('commands:music.nan'))
     }
     if (parseInt(args[0]) >= 151) {

@@ -23,7 +23,8 @@
     "play": "Play a song from an URL or searching it",
     "rewind": "Rewinds the current music",
     "skip": "Skips the current music",
-    "spotify": "See the current spotify music information of a user"
+    "spotify": "See the current spotify music information of a user",
+    "volume": "Changes the current music volume"
   },
   "misc": {
     "botPing": "Hi {{user}}, my prefix in this server is `{{prefix}}`! Use `{{prefix}}help` to get a list with my commands!"
