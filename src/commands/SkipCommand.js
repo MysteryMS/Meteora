@@ -11,7 +11,7 @@ class SkipCommand extends Command {
     if (!this.client.lavalinkManager.manager.has(message.guild.id)) {
       return message.reply(t('commands:music.notPlaying'))
     }
-    if (this.client.calls.get(message.guild.id.repeat === true)) {
+    if (this.client.calls.get(message.guild.id).repeat === true) {
       this.client.calls.get(message.guild.id).repeat = false
       this.client.calls.get(message.guild.id).repeatTrack = ''
     }
