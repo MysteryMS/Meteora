@@ -27,10 +27,10 @@ class Player extends EventEmitter {
     })
   }
   skip () {
-    let nextSong = this.queue[0]
+    let nextSong = this.queue.shift()
     if (!nextSong) return
     this.player.play(nextSong.track)
-    this.emit('playingNow', nextSong)
+    return this.emit('playingNow', nextSong)
   }
   setVolume (val) {
     if (val > 100) val = 100
