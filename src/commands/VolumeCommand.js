@@ -19,3 +19,5 @@ class VolumeCommand extends Command {
     this.client.calls.get(message.guild.id).volume(parseInt(args[0])).then(() => message.reply(t('commands:music.volChanged', { volume: parseInt(args[0]) })))
   }
 }
+
+module.exports = VolumeCommand
