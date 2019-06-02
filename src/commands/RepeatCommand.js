@@ -4,6 +4,8 @@ class RepeatCommand extends Command {
   constructor () {
     super('repeat')
     this.aliases = ['repetir']
+    this.name = 'Repeat'
+    this.category = 'Música'
   }
   async run (message, args) {
     let player = this.client.calls.get(message.guild.id)

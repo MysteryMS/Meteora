@@ -36,7 +36,7 @@
     "embedAliases": ":twisted_rightwards_arrows: Aliases",
     "noAliases": "No aliases.",
     "executed": "Executed",
-    "allMembersLeft": "<:voiceleave:561612800804388914> – All members have been left from the voice channel, disconnecting from `\uD83D\uDD08 {{channel}}!`"
+    "allMembersLeft": "<:voiceleave:561612800804388914> – All members have been left from the voice channel, disconnecting from `\uD83D\uDD08 {{channel}}`!"
   }
 
 

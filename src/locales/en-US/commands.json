@@ -18,7 +18,10 @@
     "noMusic": "You must provide the music which I'm gonna play.",
     "nowPlaying": "<a:cd:521088033664270336> – Now Playing: `{{trackInfo}} ` ({{trackDuration}})",
     "notPlaying": "I'm not playing.",
-    "maxDuration": "The time cannot be higher than actual music length"
+    "maxDuration": "The time cannot be higher than actual music length",
+    "maxVolume": "The maximum volume is `150`!",
+    "nan": "Your argument must be a number!",
+    "volChanged": "Volume changed to `{{volume}}/150`"
   },
   "language": {
     "successfullyChanged": "Language changed to {{language}}",
