@@ -50,7 +50,8 @@ class Player extends EventEmitter {
   }
   _play (track) {
     this.player.on('end', (data) => {
-      if (this.repeat === true && data.reason === 'REPLACED') {
+      if (data.reason === 'REPLACED') return
+      if (this.repeat === true) {
         return this.player.play(this.repeatTrack)
       } else {
         let nextSong = this.queue.shift()
