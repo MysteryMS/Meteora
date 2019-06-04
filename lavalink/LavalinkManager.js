@@ -4,7 +4,7 @@ let nodes = require('../lavalinkNodes.json').hosts
 nodes = nodes.map(a => {
   let obj = {}
   obj.host = a
-  obj.port = '2333'
+  obj.port = '32770'
   obj.password = 'youshallnotpass'
   return obj
 })
