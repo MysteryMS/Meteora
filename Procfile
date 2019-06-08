@@ -1,1 +1,1 @@
-worker: node app.js
+worker: pm2 start app.js
