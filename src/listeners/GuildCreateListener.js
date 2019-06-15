@@ -22,7 +22,7 @@ class GuildCreateListener extends EventListener {
           leaveMessageMessage: null,
           leaveMessageChannel: null,
           language: guild.region === 'brazil' ? 'pt-BR' : 'en-US',
-          prefix: 'r>>'
+          prefix: '>'
         }).save()
       }
       if (err) return console.log(err)
