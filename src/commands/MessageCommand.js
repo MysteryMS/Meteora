@@ -27,6 +27,9 @@ class MessageCommand extends Command {
               guild.wMessageChannel = channel
               guild.wMessageOn = true
               guild.save().then(() => message.reply(t('commands:join.successfullyActivated', { channel: `<#${channel}>`, message: messag })))
+            } else {
+              guild.wMessageOn = true
+              guild.save().then(() => message.reply(t('commands:join.activated')))
             }
             break
           case 'leave':
@@ -40,7 +43,7 @@ class MessageCommand extends Command {
               guild.save().then(() => message.reply(t('commands:leave.successfullyActivated', { channel: `<#${channel}>`, message: messag })))
             } else {
               guild.leaveMessage = true
-              guild.save().then(() => message.reply)
+              guild.save().then(() => message.reply(t('commands:leave.activated')))
             }
         }
         break
@@ -57,7 +60,7 @@ class MessageCommand extends Command {
       case 'disable':
         switch (args[1]) {
           case 'join':
-            if (!guild.wMessageOn) {
+            if (guild.wMessageOn === null) {
               guild.wMessageOn = null
               return guild.save().then(() => message.reply(t('commands:join.deactivated')))
             } else {
@@ -66,7 +69,7 @@ class MessageCommand extends Command {
             }
             break
           case 'leave':
-            if (!guild.leaveMessage) {
+            if (guild.leaveMessage === null) {
               guild.leaveMessage = null
               return guild.save().then(() => message.reply(t('commands:leave.deactivated')))
             } else {
