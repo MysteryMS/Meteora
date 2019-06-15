@@ -6,7 +6,8 @@ const { RichEmbed } = require('discord.js')
 class EvalCommand extends Command {
   constructor () {
     super('eval', ['evaluate'])
-
+    this.name = 'Eval'
+    this.category = 'Dev'
     this.onlyOwner = true
   }
 
