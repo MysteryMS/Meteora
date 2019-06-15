@@ -49,11 +49,10 @@ class CounterCommand extends Command {
 
         break
 
-      case '--chanel':
+      case 'change-channel':
         if (database.counterChannel === null) {
           return message.reply(t('commands:firstTimeChangingChannel'))
         }
-
         if (!message.guild.channels.get(args[1])) return message.reply(t('commands:counter.invalidChannel'))
         database.counterChannel = args[1]
         database.counterMessage = this.client.channels.get(args[1]).topic
