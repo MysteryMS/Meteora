@@ -110,7 +110,7 @@ class MessageCommand extends Command {
                 break
               case 'message':
                 if (!guild.leaveMessage) return message.reply(t('commands:join.needFirstAct'))
-                let message3 = args.slice((3).join(' '))
+                let message3 = args.slice(3).join(' ')
                 if (!args[3]) return message.reply(t('commands:leave.noChannel'))
                 guild.leaveMessageMessage = message3
                 guild.save().then(() => message.reply(t('commands:leave.messageChanged', { message: message3 })))
