@@ -16,6 +16,7 @@ class CounterCommand extends Command {
   }
 
   async run (message, args, { t }) {
+    if (!args[0]) return this.explain()
     let database = await guild.findOne({ _id: message.guild.id })
     switch (args[0]) {
       case 'enable':
