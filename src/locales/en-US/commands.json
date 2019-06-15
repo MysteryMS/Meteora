@@ -6,7 +6,8 @@
   "messages": {
     "langChanged": "Successfully changed language to {{language}}",
     "cantDm": "Seems like I can't DM you...",
-    "checkDm": "Check your DM!"
+    "checkDm": "Check your DM!",
+    "invalidChannel": "I didn't find this channel on the server"
   },
   "music": {
     "skipped": "⏭ – Music skipped!",
@@ -44,6 +45,26 @@
     "deactivated": "<a:selena:529838831147417620> Counter deactivated",
     "firstTimeChangingChannel": "You must activate the counter for the first time before change the channel!",
     "channelChanged": "<a:selena:529838831147417620> Counter channel changed to <#{{channel}}>"
+  },
+  "join": {
+    "noMessage": "You must write a message",
+    "noChannel": "You must specify the channel ID where the messages will be sent",
+    "successfullyActivated": "<a:selena:529838831147417620> Welcome messages activated in {{channel}}, with the message `{{message}}`",
+    "deactivated": "<a:selena:529838831147417620> Welcome messages deactivated",
+    "activated": "<a:selena:529838831147417620> Welcome messages activated",
+    "needFirstAct": "You must activate the module for the first time before change something",
+    "channelChanged": "<a:selena:529838831147417620> Welcome messages channel's changed to `{{channel}}`",
+    "messageChanged": "<a:selena:529838831147417620> Welcome messages message's changed to {{message}}"
+  },
+  "leave": {
+    "noMessage": "You must write a message",
+    "noChannel": "You must specify the channel ID where the messages wil be sent",
+    "successfullyActivated": "<a:selena:529838831147417620> Leave messages activated in {{channel}}, with the message `{{message}}`",
+    "deactivated": "<a:selena:529838831147417620> Leave messages deactivated",
+    "activated": "<a:selena:529838831147417620> Leave messages activated",
+    "needFirstAct": "You must activate the module for the first time before change something",
+    "channelChanged": "<a:selena:529838831147417620> Leave message channel's changed to {{channel}}",
+    "messageChanged": "<a:selena:529838831147417620> Leave message message's changed to {{message}}"
   }
 
 }

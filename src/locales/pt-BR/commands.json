@@ -6,7 +6,8 @@
   "messages": {
     "langChanged": "Linguagem alterada para {{language}}",
     "cantDm": "Parece que eu não consigo enviar mensagens para você...",
-    "checkDm": "Verifique suas mensagens diretas!"
+    "checkDm": "Verifique suas mensagens diretas!",
+    "invalidChannel": "Não encontrei esse canal no servidor"
   },
 
   "music": {
@@ -46,6 +47,25 @@
     "deactivated": "<a:selena:529838831147417620> Contador desativado",
     "firstTimeChangingChannel": "Você precisa ativar o contador pela primeira vez antes de trocar o canal!",
     "channelChanged": "<a:selena:529838831147417620> Canal do contador alterado para <#{{channel}}>"
+  },
+  "join": {
+    "noMessage": "Você precisa escrever a mensagem",
+    "noChannel": "Você precisa colocar o ID do canal onde as mensagens serão enviadas",
+    "successfullyActivated": "<a:selena:529838831147417620> Mensagens de boas vindas ativadas em {{channel}}, com a mensagem `{{message}}`",
+    "deactivated": "<a:selena:529838831147417620> Mensagens de boas vindas desativadas",
+    "activated": "<a:selena:529838831147417620> Mensagens de boas vindas ativadas",
+    "needFirstAct": "Você precisa ativar o módulo pela primeira vez antes de alterar alguma coisa!",
+    "channelChanged": "<a:selena:529838831147417620> Canal das mensagens de entrada trocado para `{{channel}}`",
+    "messageChanged": "<a:selena:529838831147417620> Mensagens de boas vindas alterada para {{message}}"
+  },
+  "leave": {
+    "noMessage": "Você precisa escrever a mensagem",
+    "noChannel": "Você precisa colocar o ID do canal onde as mensagens serão enviadas",
+    "successfullyActivated": "<a:selena:529838831147417620> Mensagens de saída ativadas em {{channel}}, com a mensagem `{{message}}`",
+    "deactivated": "<a:selena:529838831147417620> Mensagens de saída desativadas",
+    "activated": "<a:selena:529838831147417620> Mensagens de saída ativadas",
+    "needFirstAct": "Você precisa ativar o móulo pela primeira vez antes de alterar alguma coisa!",
+    "channelChanged": "<a:selena:529838831147417620> Canal das mensagens de saída trocado para {{channel}}",
+    "messageChanged": "<a:selena:529838831147417620> Mensagens de saída alterada para {{message}}"
   }
-
 }

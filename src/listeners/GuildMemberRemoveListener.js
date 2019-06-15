@@ -6,6 +6,14 @@ class GuildMemberRemoveListener extends EventListener {
     super('guildMemberRemove')
   }
   async run (member) {
+    function isJson (str) {
+      try {
+        JSON.parse(str)
+      } catch (e) {
+        return false
+      }
+      return true
+    }
     const map = {
       '0': '0⃣',
       '1': '1⃣',
@@ -23,6 +31,27 @@ class GuildMemberRemoveListener extends EventListener {
       if (err) console.log(err)
       if (database.counterChannel !== null && database.counterMessage !== null && database.counterOn === true) {
         await this.client.guilds.get(member.guild.id).channels.get(database.counterChannel).setTopic(database.counterMessage.replace('[counter]', counter))
+      }
+      if (database.leaveMessage === true && database.leaveMessageMessage !== null && database.leaveMessageChannel !== null) {
+        let values = {
+          'user-id': member.user.id,
+          'user-avatar': member.user.displayAvatarURL,
+          '@user': member.toString(),
+          'user-name': member.user.username,
+          'user-tag': member.user.tag,
+          'guild-id': member.guild.id,
+          'guild-name': member.guild.name,
+          'guild-icon': member.guild.iconURL
+        }
+        let text = database.leaveMessageMessage
+        for (let prop in values) {
+          text = text.replace(`{${prop}}`, values[prop])
+        }
+        if (isJson(text)) {
+          this.client.guilds.get(member.guild.id).channels.get(database.leaveMessageChannel).send(JSON.parse(text))
+        } else {
+          this.client.guilds.get(member.guild.id).channels.get(database.leaveMessageChannel).send(text)
+        }
       }
     })
   }

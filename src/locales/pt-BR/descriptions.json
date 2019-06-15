@@ -27,7 +27,9 @@
     "volume": "Altere o volume da música atual",
     "repeat": "Repete a música atual",
     "queue": "Mostra a fila de músicas do servidor",
-    "removemusic": "Remove uma música da fila (Se o bot estiver tocando)"
+    "removemusic": "Remove uma música da fila (Se o bot estiver tocando)",
+    "leave": "Desconecta do canal de voz",
+    "stop": "Para a música atual"
   },
   "misc": {
     "botPing": "Olá {{user}}, meu prefixo nesse servidor é `{{prefix}}`! Use `{{prefix}}ajuda` para obter uma lista com os meus comandos!"

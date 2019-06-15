@@ -15,7 +15,7 @@ class GuildCreateListener extends EventListener {
           counterOn: false,
           counterChannel: null,
           counterMessage: null,
-          wMessage: false,
+          wMessageOn: false,
           wMessageMessage: null,
           wMessageChannel: null,
           leaveMessage: false,
