@@ -50,9 +50,9 @@ class GuildMemberAddListener extends EventListener {
           text = text.replace(`{${prop}}`, values[prop])
         }
         if (isJson(text)) {
-          this.client.guilds.get(member.guild.id).channels.get(database.leaveMessageChannel).send(JSON.parse(text))
+          this.client.guilds.get(member.guild.id).channels.get(database.wMessageChannel).send(JSON.parse(text))
         } else {
-          this.client.guilds.get(member.guild.id).channels.get(database.leaveMessageChannel).send(text)
+          this.client.guilds.get(member.guild.id).channels.get(database.wMessageChannel).send(text)
         }
       }
     })
