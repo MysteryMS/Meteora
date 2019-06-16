@@ -51,9 +51,9 @@ class MessageCommand extends Command {
         message.channel.send(new RichEmbed()
           .setTitle('Exibindo parâmetros para as mensagens de boas vindas e saída')
           .setDescription('Use `{user-id}` para exibir o ID do usuário\nUse `{user-avatar}` para exibir a foto de perfil do usuário\nUse `{@user}` para mencionar o usuário\nUse `{user-name}` para exibir o nome do usuário\nUse `{user-tag}` para exibir o nome **__e__** a tag do usuário\nUse `{guild-name}` para exibir o nome do servidor\nUse `{guild-id}` para exibir o ID do servidor\nUse `{guild-icon}` para exibir a foto do servidor')
-          .addField(`${guild.prefix}messages enable join/leave [canal] [mensagem]`, 'Ativa as  mensagens de boas vindas/saída (necessário colocar o canal e a mensagem somente quando ativando pela primeira vez)')
-          .addField(`${guild.prefix}messages disable join/leave`, 'Desativa as mensagens de boas vindas/saída')
-          .addField(`${guild.prefix}messages update join/leave channel/message`, 'Atualiza o canal/mensagem das mensagens de boas vindas/saída')
+          .addField(`${guild.prefix}messages enable join|leave [canal] [mensagem]`, 'Ativa as  mensagens de boas vindas/saída (necessário colocar o canal e a mensagem somente quando ativando pela primeira vez)')
+          .addField(`${guild.prefix}messages disable join|leave`, 'Desativa as mensagens de boas vindas/saída')
+          .addField(`${guild.prefix}messages update join|leave channel|message`, 'Atualiza o canal/mensagem das mensagens de boas vindas/saída')
           .setColor('#ffb556')
         )
         break
