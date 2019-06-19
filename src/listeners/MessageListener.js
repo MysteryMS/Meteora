@@ -7,7 +7,7 @@ class MessageListener extends EventListener {
   }
 
   run (message) {
-    if (message.content.startsWith(`<@${this.client.user.id}`)) {
+    if (message.content.startsWith(this.client.user.toString())) {
       Guild.findOne({ _id: message.guild.id }, (err, database) => {
         if (err) console.log(err)
         let t = this.client.localeManager.getT(database.language)
