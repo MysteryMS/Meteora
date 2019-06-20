@@ -7,7 +7,7 @@ class MessageListener extends EventListener {
   }
 
   run (message) {
-    if (message.content.startsWith(`<@${this.client.user.id}` || '<@!464304679128530954>')) {
+    if (message.content.startsWith(this.client.user.toString() || '<!@464304679128530954>')) {
       Guild.findOne({ _id: message.guild.id }, (err, database) => {
         if (err) console.log(err)
         let t = this.client.localeManager.getT(database.language)
