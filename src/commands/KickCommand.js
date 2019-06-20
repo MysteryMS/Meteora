@@ -12,32 +12,25 @@ class KickCommand extends Command {
     this.botPermissions = ['KICK_MEMBERS']
   }
 
-  async run (message, args) {
-    const user = message.mentions.members.first() || message.guild.members.get(args[0])
-    const { RichEmbed } = require('discord.js')
-
+  async run (message, args, { t }) {
     let member = message.guild.members.get(args[0]) || message.mentions.members.first()
     if (!member) {
-      return message.reply('Marque um usuário ou seu ID para eu expulsar!')
+      return message.reply(t('commands:messages.noUserMention'))
     }
     if (!member.kickable) {
-      return message.reply('Eu não consigo expulsar este usuário! Talvez os' +
-        ' meus cargos estejam abaixo dos dele. :sob:')
+      return message.reply(t('commands:kick.cantKick'))
+    }
+    if (message.member.highestRole.comparePositionTo(member.highestRole) < 0) {
+      message.reply(t('commands:kick.justCant'))
+      return
     }
 
-    let reason = args.slice(1).join(' ')
-    if (!reason) reason = 'Nenhuma razão providenciada.'
+    args.shift()
+    const reason = args.length !== 0 ? args.join(' ') : t('commands:kick.noReason')
 
     await member.kick(reason)
 
-    const kickembed = new RichEmbed()
-      .setTitle(`Membro ${member.user.tag} __expulso__!`)
-      .setColor(0xc99462)
-      .addField('**Razão:**', reason)
-      .setThumbnail(`${user.user.displayAvatarURL}`)
-      .setFooter(`Expulso por: ${message.author.tag}`, `${message.author.avatarURL}`)
-
-    return message.channel.send(kickembed)
+    return message.channel.send(t('commands:kick.message', { user: member.toString(), id: member.user.id, kickedBy: message.member.toString(), reason: reason, tag: member.user.tag }))
   }
 }
 

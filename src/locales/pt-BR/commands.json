@@ -1,6 +1,6 @@
 {
   "user": {
-    "noUserMention": "Por favor, mencione um usuário ou o seu ID",
+    "noUserMention": "Por favor, mencione um usuário ou coloque seu ID",
     "invalidUser": "Usuário inválido"
   },
   "messages": {
@@ -67,5 +67,27 @@
     "needFirstAct": "Você precisa ativar o móulo pela primeira vez antes de alterar alguma coisa!",
     "channelChanged": "<a:selena:529838831147417620> Canal das mensagens de saída trocado para {{channel}}",
     "messageChanged": "<a:selena:529838831147417620> Mensagens de saída alterada para {{message}}"
+  },
+  "lyrics": {
+    "embedTitle": "Ver letra em genius.com",
+    "producers": "`(Produtores: {{producers}})`",
+    "album": "do álbum `{{album}}`",
+    "music": "Exibindo letra de `{{music}}`, por `{{artist}}`",
+    "notFound": "Não achei a letra dessa musica...",
+    "noArgs": "Você deve colocar o nome da música",
+    "seeOnGenius": "Ver em genius.com"
+  },
+  "kick": {
+    "message": "Usuário {{user}} `({{tag}} - {{id}})` expulso por {{kickedBy}}, com a razão `{{reason}}`",
+    "noReason": "Nenhuma razão",
+    "cantKick": "Não posso expulsar esse usuário, talvez meus cargos estejam abaixo dele...",
+    "justCant": "Você não pode expulsar esse usuário!"
+  },
+  "ban": {
+    "message": "Usuário {{user}} `({{tag}} - {{id}})` banido por {{bannedBy}}, com a razão `{{reason}}`",
+    "noReason": "Nenhuma razão",
+    "cantBan": "Não posso banir esse usuário, talvez meus cargos estejam abaixo dele...",
+    "justCant": "Você não pode expulsar esse usuário!",
+    "audit": "Banido por {{bannedBy}}. Motivo: {{reason}}"
   }
 }

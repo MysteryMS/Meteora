@@ -21,7 +21,7 @@ class EvalCommand extends Command {
       message.channel.send(inspect(evaluated, { depth: 0 }), { code: 'js' })
     } catch (err) {
       const embed = new RichEmbed()
-        .setTitle('Um erro inesperado ocorreu enquanto o comando estava sendo executado!')
+        .setTitle('Whoopsie!')
         .setDescription('```' + err.stack + '```')
         .setColor('#FF0000')
         .setTimestamp(new Date())

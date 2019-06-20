@@ -1,10 +1,9 @@
-const Command = require("../structures/Command")
+const Command = require('../structures/Command')
 
 class BanCommand extends Command {
-
   constructor () {
     super('ban')
-    this.usage = '<usuário> [motivo]'
+    this.usage = '@usuário [motivo]'
     this.aliases = ['banir']
     this.name = 'Ban'
     this.category = 'Gerenciamento do servidor'
@@ -13,7 +12,7 @@ class BanCommand extends Command {
     this.botPermissions = ['BAN_MEMBERS']
   }
 
-  async run (message, args) {
+  async run (message, args, { t }) {
     if (args.length === 0) {
       this.explain(message)
       return
@@ -22,7 +21,7 @@ class BanCommand extends Command {
     const user = message.mentions.users.first() || await this.client.fetchUser(args[0])
 
     if (!user) {
-      message.reply("Usuário não encontrado!")
+      message.reply(t('commands:messages.invalidUser'))
       return
     }
 
@@ -30,24 +29,22 @@ class BanCommand extends Command {
 
     if (member) {
       if (!member.bannable) {
-        message.reply("Eu não consigo banir este usuário! Talvez os meus cargos estejam abaixo dos dele. :sob:")
+        message.reply(t('commands:ban.cantBan'))
         return
       }
 
       if (message.member.highestRole.comparePositionTo(member.highestRole) < 0) {
-        message.reply("Você não pode banir este usuário!")
+        message.reply(t('commands:ban.justCant'))
         return
       }
     }
 
     args.shift()
-    const reason = args.length !== 0 ? args.join(" ") : "Sem motivo definido"
+    const reason = args.length !== 0 ? args.join(' ') : t('commands:ban.noReason')
 
-    await message.guild.ban(user, {reason: `Punido por ${message.author.tag} - Motivo: ${reason}`})
-    message.reply("<a:selena:529839043119284225> **|**Usuário banido com" +
-      " sucesso!")
+    await message.guild.ban(user, { reason: t('commands:ban.audit', { user: message.author.tag, reason: reason }) })
+    message.channel.send(t('commands:ban.message', { user: member.toString(), id: member.user.id, kickedBy: message.member.toString(), reason: reason, tag: member.user.tag }))
   }
-
 }
 
 module.exports = BanCommand

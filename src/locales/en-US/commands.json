@@ -1,6 +1,6 @@
 {
   "user": {
-    "noUserMention": "Please mention an user or the ID",
+    "noUserMention": "Please mention an user or provide it's ID",
     "invalidUser": "Invalid user"
 },
   "messages": {
@@ -65,6 +65,28 @@
     "needFirstAct": "You must activate the module for the first time before change something",
     "channelChanged": "<a:selena:529838831147417620> Leave message channel's changed to {{channel}}",
     "messageChanged": "<a:selena:529838831147417620> Leave message message's changed to {{message}}"
+  },
+  "lyrics": {
+    "embedTitle": "See lyrics em genius.com",
+    "producers": "`(Producers: {{producers}})`",
+    "album": "from the album `{{album}}`",
+    "music": "Showing lyrics of `{{music}}`, by `{{artist}}`",
+    "notFound": "I didn't found this song lyrics...",
+    "noArgs": "You must provide the name of the music",
+    "seeOnGenius": "See in genius.com"
+  },
+  "kick": {
+    "message": "User {{user}} `({{tag}} - {{id}})` kicked by {{kickedBy}}, with the reason `{{reason}}`.",
+    "noReason": "No Reason",
+    "cantKick": "I cant't kick this user, perhaps my roles are above them...",
+    "justCant": "You can't kick this user!"
+  },
+  "ban": {
+    "message": "User {{user}} `({{tag}} - {{id}})` banned by {{kickedBy}}, with the reason `{{reason}}`.",
+    "noReason": "No reason",
+    "cantBan": "I can't ban this user, perhaps my roles are above them...",
+    "justCant": "You can't ban this user!",
+    "audit":" Banned by {{user}}. Reason {{reason}}"
   }
 
 }
