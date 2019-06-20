@@ -78,13 +78,13 @@
   "kick": {
     "message": "User {{user}} `({{tag}} - {{id}})` kicked by {{kickedBy}}, with the reason `{{reason}}`.",
     "noReason": "No Reason",
-    "cantKick": "I cant't kick this user, perhaps my roles are above them...",
+    "cantKick": "I cant't kick this user, perhaps my roles are below them...",
     "justCant": "You can't kick this user!"
   },
   "ban": {
     "message": "User {{user}} `({{tag}} - {{id}})` banned by {{kickedBy}}, with the reason `{{reason}}`.",
     "noReason": "No reason",
-    "cantBan": "I can't ban this user, perhaps my roles are above them...",
+    "cantBan": "I can't ban this user, perhaps my roles are below them...",
     "justCant": "You can't ban this user!",
     "audit":" Banned by {{user}}. Reason {{reason}}"
   }
