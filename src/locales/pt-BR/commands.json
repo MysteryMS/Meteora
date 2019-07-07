@@ -92,7 +92,8 @@
   },
   "unban": {
     "message": "Usuário `{{user}}` desbanido do servidor por {{author}}",
-    "error": "Algo de errado ocorreu ao tentar desbanir esse usuário. Talvez esse banimento não exista!"
+    "error": "Algo de errado ocorreu ao tentar desbanir esse usuário. Talvez esse banimento não exista!",
+    "noUser": "Você precisa colocar o usuário a ser desbanido!"
   },
   "inviteMessage": "Quer me convidar pro seu servidor? Lugar certo! Clique [aqui]({{link}}) para abrir o meu convite em um navegador externo."
 }

@@ -90,7 +90,8 @@
   },
   "unban": {
     "message": "User `{{user}}` unbanned from the server by {{author}}",
-    "error": "Something went wrong while unbanning this user. Maybe this ban doesn't exist!"
+    "error": "Something went wrong while unbanning this user. Maybe this ban doesn't exist!",
+    "noUser": "You must provide the user to be unbanned!"
   },
   "inviteMessage": "Wanna invite me to you server? Awesome! Just click [here]({{link}}) to open the link in an external browser."
 
