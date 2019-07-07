@@ -89,5 +89,10 @@
     "cantBan": "Não posso banir esse usuário, talvez meus cargos estejam abaixo dele...",
     "justCant": "Você não pode expulsar esse usuário!",
     "audit": "Banido por {{bannedBy}}. Motivo: {{reason}}"
-  }
+  },
+  "unban": {
+    "message": "Usuário `{{user}}` desbanido do servidor por {{author}}",
+    "error": "Algo de errado ocorreu ao tentar desbanir esse usuário. Talvez esse banimento não exista!"
+  },
+  "inviteMessage": "Quer me convidar pro seu servidor? Lugar certo! Clique [aqui]({{link}}) para abrir o meu convite em um navegador externo."
 }

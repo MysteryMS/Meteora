@@ -23,7 +23,7 @@
     "play": "Play a song from an URL or searching it",
     "rewind": "Rewinds the current music",
     "skip": "Skips the current music",
-    "spotify": "See the current spotify music information of a user",
+    "spotify": "See the current spotify music information of an user",
     "volume": "Changes the current music volume",
     "repeat": "Repeats the current song",
     "queue": "Shows the server music queue",

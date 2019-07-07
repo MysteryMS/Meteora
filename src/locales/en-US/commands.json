@@ -87,6 +87,11 @@
     "cantBan": "I can't ban this user, perhaps my roles are below them...",
     "justCant": "You can't ban this user!",
     "audit":" Banned by {{user}}. Reason {{reason}}"
-  }
+  },
+  "unban": {
+    "message": "User `{{user}}` unbanned from the server by {{author}}",
+    "error": "Something went wrong while unbanning this user. Maybe this ban doesn't exist!"
+  },
+  "inviteMessage": "Wanna invite me to you server? Awesome! Just click [here]({{link}}) to open the link in an external browser."
 
 }
