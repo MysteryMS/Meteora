@@ -51,7 +51,6 @@ class Player extends EventEmitter {
   }
   _play (track) {
     this.player.on('end', (data) => {
-      this.nowPlaying = ''
       if (data.reason === 'REPLACED') return
       if (this.repeat === true) {
         return this.player.play(this.repeatTrack)
