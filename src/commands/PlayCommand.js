@@ -17,7 +17,7 @@ class PlayCommand extends Command {
     if (!args[0]) return message.reply(t('commands:music.noMusic'))
 
     if (this.client.lavalinkManager.manager.has(message.guild.id)) {
-      this.client.calls.get(message.guild.id).play(args.join(' ')).then(info => {
+      this.client.player.get(message.guild.id).play(args.join(' ')).then(info => {
         message.channel.send(t('commands:music.addQueue', { track: info.title, duration: mss(info.length) }))
       })
     } else {
@@ -31,13 +31,13 @@ class PlayCommand extends Command {
           if (err) console.log(err)
           t = this.client.localeManager.getT(database.language)
           message.channel.send(t('commands:music.nowPlaying', { trackInfo: track.info.title, trackDuration: mss(track.info.length) }))
-          this.client.calls.get(message.guild.id).nowPlaying = track
-          this.client.calls.get(message.guild.id).messageChannel = message.channel.id
-          this.client.calls.get(message.guild.id).solveBug = true
+          this.client.player.get(message.guild.id).nowPlaying = track
+          this.client.player.get(message.guild.id).messageChannel = message.channel.id
+          this.client.player.get(message.guild.id).solveBug = true
         })
       })
       player.play(args.join(' '))
-      this.client.calls.set(message.guild.id, player)
+      this.client.player.set(message.guild.id, player)
     }
   }
 }

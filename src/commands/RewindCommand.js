@@ -11,7 +11,7 @@ class RewindCommand extends Command {
     this.category = 'Música'
   }
   async run (message, args, { t }) {
-    const lavaPlayer = this.client.calls.get(message.guild.id)
+    const lavaPlayer = this.client.player.get(message.guild.id)
     if (!this.client.lavalinkManager.manager.has(message.guild.id)) {
       return message.reply(t('commands:music.notPlaying'))
     }

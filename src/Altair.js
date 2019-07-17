@@ -5,7 +5,7 @@ const Discord = require('discord.js')
 const { readSync } = require('readdir')
 const LavalinkManager = require('../lavalink/LavalinkManager')
 const mongoose = require('mongoose')
-const LocaleManager = require(__dirname +'/utils/LocaleManager')
+const LocaleManager = require(__dirname + '/utils/LocaleManager')
 
 const Extensions = require('./utils/Extensions')
 
@@ -17,7 +17,7 @@ class Altair extends Client {
   async start (token) {
     try {
       this.commands = []
-      this.calls = new Discord.Collection()
+      this.player = new Discord.Collection()
       this.lavalinkManager = new LavalinkManager(this)
       await mongoose.connect('mongodb+srv://MysteryMS:xuxameneghel@altair-pclds.mongodb.net/test?retryWrites=true&w=majority', { useNewUrlParser: true }).then(() => console.log('> | Conectado ao Banco de Dados'.blue))
       this.localeManager = new LocaleManager()
