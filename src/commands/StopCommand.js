@@ -9,7 +9,7 @@ class StopCommand extends Command {
   }
   async run (message, args, { t }) {
     if (!this.client.lavalinkManager.manager.has(message.guild.id)) return message.reply(t('commands:music.notPlaying'))
-    this.client.calls.get(message.guild.id).player.stop()
+    this.client.player.get(message.guild.id).player.stop()
     message.channel.send(t('commands:music.stop'))
   }
 }

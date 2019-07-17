@@ -16,7 +16,7 @@ class VolumeCommand extends Command {
     if (parseInt(args[0]) >= 151) {
       return message.reply(t('commands:music.maxVolume'))
     }
-    this.client.calls.get(message.guild.id).player.volume(parseInt(args[0]))
+    this.client.player.get(message.guild.id).player.volume(parseInt(args[0]))
     message.reply(t('commands:music.volChanged', { volume: parseInt(args[0]) }))
   }
 }

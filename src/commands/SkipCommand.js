@@ -11,16 +11,16 @@ class SkipCommand extends Command {
     if (!this.client.lavalinkManager.manager.has(message.guild.id)) {
       return message.reply(t('commands:music.notPlaying'))
     }
-    if (this.client.calls.get(message.guild.id).repeat === true) {
-      this.client.calls.get(message.guild.id).repeat = false
-      this.client.calls.get(message.guild.id).repeatTrack = ''
+    if (this.client.player.get(message.guild.id).repeat === true) {
+      this.client.player.get(message.guild.id).repeat = false
+      this.client.player.get(message.guild.id).repeatTrack = ''
     }
 
-    if (this.client.calls.get(message.guild.id).queue.length === 0) {
-      this.client.calls.get(message.guild.id).nowPlaying = ''
-      message.channel.send(t('commands:music.skipped')).then(() => this.client.calls.get(message.guild.id).player.stop())
+    if (this.client.player.get(message.guild.id).queue.length === 0) {
+      this.client.player.get(message.guild.id).nowPlaying = ''
+      message.channel.send(t('commands:music.skipped')).then(() => this.client.player.get(message.guild.id).player.stop())
     } else {
-      message.channel.send(t('commands:music.skipped')).then(() => this.client.calls.get(message.guild.id).skip())
+      message.channel.send(t('commands:music.skipped')).then(() => this.client.player.get(message.guild.id).skip())
     }
   }
 }
