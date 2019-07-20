@@ -42,7 +42,7 @@ class ExecCommand extends Command {
     ls.on('close', (code) => {
       if (a.length > 15) a = []
 
-      a.push('<a:selena:529838831147417620> OK; **|** Finished with code ' + code)
+      a.push('✔ OK; | Finished with code ' + code)
 
       setTimeout(() => {
         o.edit('```' + a.join('\n') + '```')
