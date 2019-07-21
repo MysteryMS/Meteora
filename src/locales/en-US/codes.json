@@ -1,0 +1,84 @@
+{
+    "100": {
+        "title": "🐱 Code 100 - Continue",
+        "description": "The HTTP 100 informational status response code indicates that everything so far is OK and that the client should continue with the request or ignore it if it is already finished.\n\nTo have a server check the request's headers, a client must send Expect: 100-continue as a header in its initial request and receive a 100 Continue status code in response before sending the body."
+    },
+    "101": {
+        "title": "🐱 Código 101 - Switching Protocols",
+        "description": "The HTTP 101 response code indicates the protocol the server is switching to as requested by a client which sent the message including the `Upgrade` request header.\n\nThe server includes in this response an `Upgrade` response header to indicate the protocol it switched to. The process is described in detail in the article [Protocol upgrade mechanism](https://developer.mozilla.org/en-US/docs/Web/HTTP/Protocol_upgrade_mechanism).",
+        "url": "https://http.cat/101"
+    },
+    "200": {
+        "title": "🐱 Code 200 - OK",
+        "description": "The HTTP 200 OK success status response code indicates that the request has succeeded. A 200 response is cacheable by default.\n\nThe meaning of a success depends on the HTTP request method:\n\n`GET`: The resource has been fetched and is transmitted in the message body.\n`HEAD`: The entity headers are in the message body.\n`POST`: The resource describing the result of the action is transmitted in the message body.\n`TRACE`: The message body contains the request message as received by the server.\n\nThe successful result of a `PUT` or a `DELETE` is often not a `200 OK` but a `204 No Content` (or a `201 Created` when the resource is uploaded for the first time).",
+        "url": "https://http.cat/200"
+    },
+    "201": {
+        "title": "🐱 Código 201 - Crated",
+        "description": "The HTTP 201 success status response code indicates that the request has succeeded and has led to the creation of a resource. The new resource is effectively created before this response is sent back and the new resource is returned in the body of the message, its location being either the URL of the request, or the content of the `Location` header.\n\nThe common use case of this status code is as the result of a `POST` request.",
+        "url": "https://http.cat/201"
+    },
+    "202":{
+        "title": "🐱 Code 202 - Accepted",
+        "description": "The HTTP 202 response status code indicates that the request has been received but not yet acted upon. It is non-committal, meaning that there is no way for the HTTP to later send an asynchronous response indicating the outcome of processing the request. It is intended for cases where another process or server handles the request, or for batch processing.",
+        "url": "https://http.cat/202"
+    },
+    "204": {
+        "title": "🐱 Code 204 - No Content",
+        "description": "The HTTP 204 success status response code indicates that the request has succeeded, but that the client doesn't need to go away from its current page. A 204 response is cacheable by default. An `ETag` header is included in such a response.\n\nThe common use case is to return `204` as a result of a `PUT` request, updating a resource, without changing the current content of the page displayed to the user. If the resource is created, `201 Created` is returned instead. If the page should be changed to the newly updated page, the `200` should be used instead.",
+        "url": "https://http.cat/204"
+    },
+    "206": {
+        "title": "🐱 Code 206 - Partial Content",
+        "description": "The HTTP 206 success status response code indicates that the request has succeeded and has the body contains the requested ranges of data, as described in the `Range` header of the request.\n\nIf there is only one range, the `Content-Type` of the whole response is set to the type of the document, and a `Content-Range` is provided.\n\nIf several ranges are sent back, the `Content-Type` is set to `multipart/byteranges` and each fragment covers one range, with `Content-Range` and `Content-Type` describing it."
+    },
+    "301": {
+        "title": "🐱 Código 301 - Moved Permanently",
+        "description": "The HTTP redirect status response code indicates that the resource requested has been definitively moved to the URL given by the Location headers. A browser redirects to this page and search engines update their links to the resource (in 'SEO-speak', it is said that the 'link-juice' is sent to the new URL)."
+    },
+    "302": {
+        "title": "🐱 Code 302 - Found",
+        "description": "The HTTP 302 redirect status response code indicates that the resource requested has been temporarily moved to the URL given by the Location header. A browser redirects to this page but search engines don't update their links to the resource (in 'SEO-speak', it is said that the 'link-juice' is not sent to the new URL).",
+        "url": "https://http.cat/302"
+    },
+    "303": {
+        "title":"🐱 Code 303 - See Other",
+        "description": "The HTTP 303 redirect status response code indicates that the redirects don't link to the newly uploaded resources but to another page, like a confirmation page or an upload progress page. This response code is usually sent back as a result of `PUT` or `POST`. The method used to display this redirected page is always `GET`.",
+        "url": "https://http.cat/303"
+    },
+    "304": {
+        "title": "🐱 Code 304 - Not Modified",
+        "description": "The HTTP 304 client redirection response code indicates that there is no need to retransmit the requested resources. It is an implicit redirection to a cached resource. This happens when the request method is [safe](https://developer.mozilla.org/en-US/docs/Glossary/safe), like a `GET` or a `HEAD` request, or when the request is conditional and uses a `If-None-Match` or a `If-Modified-Since` header.",
+        "url": "https://http.cat/304"
+    },
+    "307": {
+        "title": "🐱 Code 307 - Temporary Redirect",
+        "description": "HTTP 307 Temporary Redirect redirect status response code indicates that the resource requested has been temporarily moved to the URL given by the Location headers.\n\nThe method and the body of the original request are reused to perform the redirected request. In the cases where you want the method used to be changed to `GET`, use `303 See Other` instead. This is useful when you want to give an answer to a `PUT` method that is not the uploaded resources, but a confirmation message (like \"You successfully uploaded XYZ\").",
+        "url": "https://http.cat/307"
+    },
+    "400": {
+        "title": "🐱 Code 100 - Bad Request",
+        "description": "The HyperText Transfer Protocol (HTTP) 400 Bad Request response status code indicates that the server cannot or will not process the request due to something that is perceived to be a client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing).",
+        "url": "https://http.cat/400"
+    },
+    "401": {
+        "title": "🐱 Code 401 - Unauthorized",
+        "description": "The HTTP 401 client error status response code indicates that the request has not been applied because it lacks valid authentication credentials for the target resource.\n\nThis status is sent with a [WWW-Authenticate](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/WWW-Authenticate) header that contains information on how to authorize correctly.\n\nThis status is similar to `403`, but in this case, authentication is possible",
+        "url": "https://http.cat/402"
+    },
+    "402": {
+        "title": "🐱 Code 402 - Payment Required",
+        "description": "The HTTP 402 is a nonstandard client error status response code that is reserved for future use.\n\nSomethimes this code indicates that the request can not be processed until the client makes a payment. Originally it was created to enable digital cash or (micro) payment systems and would indicate that the requested content is not available until the client makes a payment. However, no standard use convention exists and different entities use it in different contexts.",
+        "url": "https://http.cat/402"
+    },
+    "403": {
+        "title": "🐱 Code 403 - Forbidden",
+        "description": "The HTTP 403 client error status response code indicates that the server understood the request but refuses to authorize it.\n\nThis status is similar to `401`, but in this case, re-authenticating will make no difference. The access is permanently forbidden and tied to the application logic, such as insufficient rights to a resource.",
+        "url": "https://http.cat/403"
+    },
+    "404": {
+        "title": "🐱 Code 404 - Not Found",
+        "description": "The HTTP 404 Not Found client error response code indicates that the server can't find the requested resource. Links which lead to a 404 page are often called broken or dead links, and can be subject to [link rot](https://en.wikipedia.org/wiki/Link_rot).",
+        "url": "https://http.cat/404"
+    }
+}
