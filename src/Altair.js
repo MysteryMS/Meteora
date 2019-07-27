@@ -19,7 +19,7 @@ class Altair extends Client {
       this.commands = []
       this.player = new Discord.Collection()
       this.lavalinkManager = new LavalinkManager(this)
-      await mongoose.connect('mongodb+srv://MysteryMS:xuxameneghel@altair-pclds.mongodb.net/test?retryWrites=true&w=majority', { useNewUrlParser: true }).then(() => console.log('> | Conectado ao Banco de Dados'.blue))
+      await mongoose.connect('mongodb+srv://MysteryMS:xuxameneghel@altair-pclds.mongodb.net/test?retryWrites=true&w=majority', { useNewUrlParser: true }).then(() => this.info('Conxão estabelecida com o banco de dados'))
       this.localeManager = new LocaleManager()
 
       await this.login(token)
@@ -30,7 +30,7 @@ class Altair extends Client {
       new Extensions(this).loadExtensions()
 
       this.info('Conectado ao websocket')
-      this.atenttion(`Conexão estabelecida com ${this.guilds.size} guilds.`)
+      this.atenttion(`Conexão estabelecida com ${this.guilds.size} guilds`)
     } catch (err) {
       this.error(`Erro!\n${err.stack}`)
     }
