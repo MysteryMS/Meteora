@@ -29,8 +29,8 @@ class Altair extends Client {
 
       new Extensions(this).loadExtensions()
 
-      this.info('Altair inicializada com sucesso!')
-      this.info(`${this.user.tag} - ${this.user.id}`)
+      this.info('Conectado ao websocket')
+      this.atenttion(`Conexão estabelecida com ${this.guilds.size} guilds.`)
     } catch (err) {
       this.error(`Erro!\n${err.stack}`)
     }
@@ -58,22 +58,20 @@ class Altair extends Client {
     })
   }
 
-  info (msg, ...args) {
-    const date = new Date()
+  atenttion (msg, ...args) {
+    console.log(`[${'ATTENTTION'.underline.cyan}]`, msg, ...args)
+  }
 
-    console.log(`[${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}.${date.getMilliseconds()}]`.yellow, `[${"INFO".blue}]`, msg, ...args)
+  info (msg, ...args) {
+    console.log(`[${'INFO'.bold.green}]`, msg, ...args)
   }
 
   warn (msg, ...args) {
-    const date = new Date()
-
-    console.log(`[${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}.${date.getMilliseconds()}]`.yellow, `[${"WARN".yellow}]`, msg, ...args)
+    console.log(`[${'WARN'.yellow}]`, msg, ...args)
   }
 
   error (msg, ...args) {
-    const date = new Date()
-
-    console.log(`[${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}.${date.getMilliseconds()}]`.yellow, `[${"ERROR".red}]`, msg, ...args)
+    console.log(`[${'ERROR'.bold.red}]`, msg, ...args)
   }
 }
 

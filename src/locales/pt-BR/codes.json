@@ -1,0 +1,92 @@
+{
+    "100": {
+        "title": "🐱 Código 100 - Continue",
+        "description": "O Status HTTP 100 indica que até o momento tudo está OK e que o cliente pode continuar com a requisição ou ignorar caso já tenha terminado.\n\nPara ter uma verificação pelo servidor o cliente deve enviar o header `Expect`: `100-continue` na requisição inicial e receber o status `100 Continue` antes de enviar o body da requisição.",
+        "url": "https://http.cat/100"
+    },
+    "101": {
+        "title": "🐱 Código 101 - Switching Protocols",
+        "description": "O Status HTTP 101 indica que o protocolo do servidor está sendo trocado conforme solicitado pelo cliente que mandou o body da requisição com a mensagem incluindo `Upgrade`.\n\nO servidor incluí nessa resposta um body da requisição com `Upgrade` para indicar que o protocolo está trocado. O processo é descrito detalhadamente no artigo [Protocol upgrade mechanism](https://developer.mozilla.org/en-US/docs/Web/HTTP/Protocol_upgrade_mechanis) (apenas em inglês).",
+        "url": "https://http.cat/101"
+    },
+    "200": {
+        "title": "🐱 Código 200 - OK",
+        "description": "O código HTTP 200 é a resposta de status de sucesso que indica que a requisição foi bem sucedida. Uma resposta 200 é cacheável por padrão.\n\nO significado de sucesso depende do método de requisição HTTP:\n\n`GET`: O recurso foi carregado e transmitido no corpo da mensagem.\n`HEAD`: Os cabeçalhos da entidade estão no corpo da mensagem.\n`POST`: O recurso descrevendo o resultado da ação é transmitido no corpo da mensagem.\n`TRACE`: O corpo da mensagem contém a mensagem da requisição tal qual foi recebida pelo servidor.\n\nO resultado de sucesso de um `PUT` ou `DELETE` geralmente não são `200 OK`, e sim `204 No Content` (ou `201 Created` quando o recurso é carregado pela primeira vez).",
+        "url": "https://http.cat/200"
+    },
+    "201": {
+        "title": "🐱 Código 201 - Crated",
+        "description": "O status HTTP 201 é utilizado como resposta de sucesso, indica que a requisição foi bem sucedida e que um novo recurso foi criado. Este novo recurso é efetivamente criado antes do retorno da resposta e o novo recurso é enviado no corpo da mensagem (pode vir na URL ou na header `Location`).\n\nComumente, este status é utilizado em requisições do tipo `POST`.",
+        "url": "https://http.cat/201"
+    },
+    "202":{
+        "title": "🐱 Código 202 - Accepted",
+        "description": "O status HTTP 202 indica que a requisição foi recebida mas não foi atuada. É não-comprometedor, o que significa que não há como o HTTP enviar posteriormente uma resposta assíncrona indicando o resultado do processamento da solicitação.",
+        "url": "https://http.cat/202"
+    },
+    "204": {
+        "title": "🐱 Código 204 - No Content",
+        "description": "O status HTTP de sucesso 204 indica que a solicitação foi bem sucedida e o cliente não precisa sair da página atual. Uma resposta `204` é armazenada em cache por padrão. Um cabeçalho `ETag` está incluso na resposta.\n\nO caso de uso comum é retornar `204` como resultado de uma solicitação `PUT`, atualizando um recurso, sem alterar o conteúdo atual da página exibida para o usuário. Se o recurso for criado, `201 Created` será retornado. Se a página for alterada para a página recém-atualizada, o 200 deve ser usado em vez disso.",
+        "url": "https://http.cat/204"
+    },
+    "206": {
+        "title": "🐱 Código 206 - Partial Conent",
+        "description": "O status HTTP de sucesso 206 indica que a requisição obteve sucesso e o body contém os intervalos de dados requisitados, como descrito no header `Range` da requisição. Se houver apenas um intervalo, o `Content Type` da requisição é definido para o tipo do documento, e o `Content-Range` é provienciado. Se vários intervalos forem enviados de volta, o `Content-Type` é definido para `multipart/byteranges` e cada fragmento cobre um intervalo, com `Content-Range` e `Content-Type` os descrevendo.",
+        "url": "https://http.cat/206"
+    },
+    "300": {
+        "title": "🐱 Código 300 - Multiple Choices",
+        "description": "O status HTTP de redirecionamento 300 indica que a requisição tem mais de uma possível resposta. O usuário deve escolher uma delas. Como não há uma maneira padronizada de escolher uma das respotas, esse código é muito raramente usado. Se o servidor tiver uma escolha preferida, ele deve gerar o header `Location`.",
+        "url": "https://http.cat/300"
+    },
+    "301": {
+        "title": "🐱 Código 301 - Moved Permanently",
+        "description": "O status HTTP de redirecionamento 301 indica que o recurso requisitado foi movido para a URL dada pelo header `Location`. Um navegador redireciona para essa página e os mecanismos de pesquisa os atualizam  (em 'SEO-speak', é dito que o 'link-juice' foi enviado para a nova URL).",
+        "url": "https://http.cat/301"
+    },
+    "302": {
+        "title":"🐱 Código 302 - Found",
+        "descrption": "O código de estado HTTP 302 indica que o recurso foi temporariamente movido para a URL informada pelo cabeçalho Location. Os navegadores redirecionam para essa página porém os mecanismos de busca não atualizam o link inicial.",
+        "url": "https://http.cat/302"
+    },
+    "303": {
+        "title":"🐱 Código 303 - See Other",
+        "description": "O código de resposta de status de redirecionamento do HTTP 303 indica que o direcionamento não une a um recurso carregado novo, mas a outra página, com uma página de confirmação ou de progresso de carregamento. Este código de resposta normalmente é retornado como resultado de um `PUT` ou `POST`. O método usado para mostrar esta página redirecionada é sempre `GET`.",
+        "url": "https://http.cat/303"
+    },
+    "304": {
+        "title":"🐱 Código 304 - Not Modified",
+        "description": "O código de resposta HTTP de redirecionamento do cliente 304 indica que não há necessidade de retransmitir a requisição de recursos. É um redirecionamento implícito para o recurso em cache. Isto ocorre quando o método de requisição é [safe](https://developer.mozilla.org/pt-BR/docs/Glossary/safe) (apenas em inglês), assim como uma requisição `GET` ou `HEAD`, ou quando a requisição é condicional e usa um cabeçalho `If-None-Match` ou `If-Modified-Since`.",
+        "url": "https://http.cat/304"
+    },
+    "307": {
+        "title": "🐱 Código 307 - Temporary Redirect",
+        "description": "O código de reposta HTTP 307 indica que o recurso da requisição foi temporariamente alterado para a URL informada no cabeçalho `Location`.\n\nO método e o corpo da requisição original são reutilizados para realizar a requisição de redirecionamento. Em casos onde você deseja que o método utilizado seja alterado para `GET`, utilize o código de estado `303 See Other`. Isto é util quando você deseja dar uma resposta a um método `PUT` que não seja o recurso enviado, mas uma mensagem de confirmação (como por exemplo \"Envio de XYZ concluído com sucesso\").",
+        "url": "https://http.cat/307"
+    },
+    "400": {
+        "title": "🐱 Código 100 - Bad Request",
+        "description": "O código de status de resposta HTTP 400 indica que o servidor não pode ou não irá processar a requisição devido a alguma coisa que foi entendida como um erro do cliente (por exemplo, sintaxe de requisição mal formada, enquadramento de mensagem de requisição inválida ou requisição de roteamento enganosa).",
+        "url": "https://http.cat/400"
+    },
+    "401": {
+        "title": "🐱 Código 401 - Unauthorized",
+        "description": "O código de resposta de status de erro do cliente HTTP 401 indica que a solicitação não foi aplicada porque não possui credenciais de autenticação válidas para o recurso de destino.\n\nEsse status é enviado com um cabeçalho [WWW-Authenticate](https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Headers/WWW-Authenticate) que contém informações sobre como autorizar corretamente.\n\nEsse status é semelhante a 403, mas neste caso, a autenticação é possível.",
+        "url": "https://http.cat/401"
+    },
+    "402": {
+        "title":"🐱 Código 402 - Payment Required",
+        "description": "O código de reposta de status de erro do cliente HTTP 402 é reservado para uso futuro\n\nÁs vezes, esse código indica que a requisição não pode ser processada até que o cliente faça um pagamento. Originalmente, ele foi criado para habilitar o dinheiro digital ou (micro) sistemas de pagamento, e indica que o conteúdo requisitado não está disponível até que o cliente realize um pagamento.",
+        "url": "https://http.cat/402"
+    },
+    "403": {
+        "title": "🐱 Código 403 - Forbidden",
+        "description": "O código de resposta de status de erro do cliente HTTP 403 indica que o servidor entendeu o pedido, mas se recusa a autorizá-lo.\n\nEsse status é semelhante ao `401` , mas neste caso, a re-autenticação não fará diferença. O acesso é permanentemente proibido e vinculado à lógica da aplicação (como uma senha incorreta).",
+        "url": "https://http.cat/403"
+    },
+    "404": {
+        "title":"🐱 Código 404 - Not Found",
+        "description": "A resposta de erro 404 indica que o servidor não conseguiu encontrar o recurso solicitado. Normalmente, links que levam para uma página 404 estão quebrados ou desativados, e podem estar sujeitos a [link rot](https://en.wikipedia.org/wiki/Link_rot) (apenas em inglês).",
+        "url": "https://http.cat/404"
+    }
+}

@@ -38,9 +38,6 @@ class Command {
 
       if (withPrefixLabels.includes(usedLabel)) {
         try {
-          const start = Date.now()
-          this.client.info('[COMMAND EXECUTED]'.yellow, `(${message.guild.name} -> #${message.channel.name}) ${message.author.tag}: ${message.content}`)
-
           message.channel.startTyping()
 
           const args = rawArgs
@@ -77,8 +74,6 @@ class Command {
           })
           // const t = this.client.localeManager.getT(guild.language)
           // await this.run(message, args, { t })
-
-          this.client.info('[COMMAND EXECUTED]'.blue, `(${message.guild.name} -> #${message.channel.name}) ${message.author.tag}: ${message.content} - OK! Finished in ${Date.now() - start}ms`)
         } catch (err) {
           message.channel.send(t('descriptions:structures.error', { member: message.author, err: err }))
 
