@@ -9,7 +9,7 @@ module.exports = class LocaleManager {
   }
   _loadLocales () {
     readdirSync(`${__dirname}/../locales/`).forEach((lang) => {
-      console.log(`[INFO] Idioma carregado: ${lang}`.bold.green)
+      console.log(`[INFO] Idioma carregado: ${lang}`.bold.magenta)
       const categoryObject = {}
       readdirSync(`${__dirname}/../locales/${lang}`).forEach((category) => {
         categoryObject[category.split('.')[0]] = require(`${__dirname}/../locales/${lang}/${category}`)
