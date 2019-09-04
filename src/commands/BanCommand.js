@@ -21,7 +21,7 @@ class BanCommand extends Command {
     const user = message.mentions.users.first() || await this.client.fetchUser(args[0])
 
     if (!user) {
-      message.reply(t('commands:messages.invalidUser'))
+      await message.reply(t('commands:messages.invalidUser'))
       return
     }
 
@@ -29,12 +29,12 @@ class BanCommand extends Command {
 
     if (member) {
       if (!member.bannable) {
-        message.reply(t('commands:ban.cantBan'))
+        await message.reply(t('commands:ban.cantBan'))
         return
       }
 
       if (message.member.highestRole.comparePositionTo(member.highestRole) < 0) {
-        message.reply(t('commands:ban.justCant'))
+        await message.reply(t('commands:ban.justCant'))
         return
       }
     }

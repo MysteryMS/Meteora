@@ -44,9 +44,9 @@ class LyricsCommand extends Command {
       // await message.channel.send(embed)
 
       let chunks = chunkString(lyrics.lyrics)
-      chunks.forEach(async (chunk) => {
-        await message.channel.send(`\`\`\`yaml\n${chunk}\`\`\``)
-        await message.channel.send(embed)
+      chunks.forEach((chunk) => {
+        message.channel.send(`\`\`\`yaml\n${chunk}\`\`\``)
+        message.channel.send(embed)
       })
     })
   }

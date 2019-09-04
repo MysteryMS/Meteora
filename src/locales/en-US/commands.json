@@ -93,6 +93,17 @@
     "error": "Something went wrong while unbanning this user. Maybe this ban doesn't exist!",
     "noUser": "You must provide the user to be unbanned!"
   },
-  "inviteMessage": "Wanna invite me to you server? Awesome! Just click [here]({{link}}) to open the link in an external browser."
+  "inviteMessage": "Wanna invite me to you server? Awesome! Just click [here]({{link}}) to open the link in an external browser.",
+  "userinfo": {
+    "status": "Status",
+    "administrator": "True",
+    "admField": "Administrator?",
+    "highestRole": "Highest Role",
+    "userId": "User ID",
+    "createdAt": "Account created at",
+    "noAdm": "False",
+    "user": "Showing information about {{user}}",
+    "botUser": "<:botTag:618594972903538708> Showing information about {{user}}"
+  }
 
 }

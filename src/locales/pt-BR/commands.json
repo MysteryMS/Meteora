@@ -95,5 +95,16 @@
     "error": "Algo de errado ocorreu ao tentar desbanir esse usuário. Talvez esse banimento não exista!",
     "noUser": "Você precisa colocar o usuário a ser desbanido!"
   },
-  "inviteMessage": "Quer me convidar pro seu servidor? Lugar certo! Clique [aqui]({{link}}) para abrir o meu convite em um navegador externo."
+  "inviteMessage": "Quer me convidar pro seu servidor? Lugar certo! Clique [aqui]({{link}}) para abrir o meu convite em um navegador externo.",
+  "userinfo": {
+    "status": "Status",
+    "administrator": "Sim",
+    "admField": "Administrador?",
+    "highestRole": "Cargo mais alto",
+    "userId": "ID do usuário",
+    "createdAt": "Conta criada em",
+    "noAdm": "Não",
+    "user": "Exibindo informações de {{user}}",
+    "botUser": "<:botTag:618594972903538708> Exibindo informações de {{user}}"
+  }
 }
