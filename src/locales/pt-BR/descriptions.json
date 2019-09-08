@@ -30,7 +30,10 @@
     "removemusic": "Remove uma música da fila (Se o bot estiver tocando)",
     "leave": "Desconecta do canal de voz",
     "stop": "Para a música atual",
-    "mdn": "Procura algo no MDN"
+    "mdn": "Procura algo no MDN",
+    "messages": "Defina mensagens personalizadas sempre que um membro sair e/ou entrar",
+    "unban": "Desbana um membro do seu servidor",
+    "invite": "Me convide para o seu servidor!"
   },
   "misc": {
     "botPing": "Olá {{user}}, meu prefixo nesse servidor é `{{prefix}}`! Use `{{prefix}}ajuda` para obter uma lista com os meus comandos!"

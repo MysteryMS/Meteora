@@ -25,7 +25,7 @@ class HelpCommand extends Command {
       ' servidor').forEach(a => serverm.setTitle(t('descriptions:helpEmbed.serverManagCateg')) && serverm.addField(a.name, t(`descriptions:descriptions.${a.label}`)) && serverm.setColor('#3eff92') && serverm.setFooter(t('descriptions:helpEmbed.argsFooter')))
 
     await message.author.send(util).catch(err => message.reply(t('commands:messages.cantDm')) && console.log(err))
-    await message.author.send(dev)
+    // await message.author.send(dev)
     await message.author.send(serverm)
     await message.author.send(music)
     message.reply(t('commands:messages.checkDm'))
