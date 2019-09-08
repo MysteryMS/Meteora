@@ -7,6 +7,7 @@ class EvalCommand extends Command {
   constructor () {
     super('eval', ['evaluate'])
     this.name = 'Eval'
+    this.onlyOwner = true
   }
 
   async run (message, args) {

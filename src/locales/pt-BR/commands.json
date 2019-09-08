@@ -106,5 +106,9 @@
     "noAdm": "Não",
     "user": "Exibindo informações de {{user}}",
     "botUser": "<:botTag:618594972903538708> Exibindo informações de {{user}}"
-  }
+  },
+  "mdn": {
+    "noArgs": "Escreva algo para procurar no MDN",
+    "notFound": "Informação `{{search}}` não encontrada."
+}
 }
