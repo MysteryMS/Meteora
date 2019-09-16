@@ -1,4 +1,4 @@
-const Command = require('../structures/Command')
+import Command from '../structures/Command'
 
 class SkipCommand extends Command {
   constructor () {
@@ -25,4 +25,4 @@ class SkipCommand extends Command {
   }
 }
 
-module.exports = SkipCommand
+export default SkipCommand

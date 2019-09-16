@@ -1,5 +1,5 @@
-const Command = require('../structures/Command')
-const { RichEmbed } = require('discord.js')
+import Command from '../structures/Command'
+import { RichEmbed } from 'discord.js'
 
 class HelpCommand extends Command {
   constructor () {
@@ -32,4 +32,4 @@ class HelpCommand extends Command {
   }
 }
 
-module.exports = HelpCommand
+export default HelpCommand

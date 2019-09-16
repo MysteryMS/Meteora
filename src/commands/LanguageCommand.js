@@ -1,6 +1,6 @@
-const Command = require('../structures/Command')
-const guild = require('../../models/guild')
-const { RichEmbed } = require('discord.js')
+import Command from '../structures/Command'
+import { findOne } from '../../models/guild'
+import { RichEmbed } from 'discord.js'
 
 class LanguageCommand extends Command {
   constructor () {
@@ -12,7 +12,7 @@ class LanguageCommand extends Command {
   }
 
   async run (message, args, { t }) {
-    guild.findOne({ _id: message.guild.id }, async (err, database) => {
+    findOne({ _id: message.guild.id }, async (err, database) => {
       if (err) console.log(err)
       message.channel.send(new RichEmbed()
         .setTitle(t('commands:language.title'))
@@ -46,4 +46,4 @@ class LanguageCommand extends Command {
   }
 }
 
-module.exports = LanguageCommand
+export default LanguageCommand

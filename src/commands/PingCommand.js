@@ -1,8 +1,7 @@
-const Command = require("../structures/Command")
+import Command from '../structures/Command'
 
 class PingCommand extends Command {
-
-  constructor() {
+  constructor () {
     super('ping')
     this.aliases = ['pong']
     this.name = 'Ping'
@@ -10,10 +9,9 @@ class PingCommand extends Command {
     this.category = 'Utils'
   }
 
-  run(message, args) {
+  run (message, args) {
     message.reply(`**Pong!** :ping_pong: \`${message.client.ping}ms\``)
   }
-
 }
 
-module.exports = PingCommand
+export default PingCommand

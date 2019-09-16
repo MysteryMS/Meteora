@@ -1,7 +1,7 @@
-const splashy = require('splashy')
-const got = require('got')
-const { RichEmbed } = require('discord.js')
-const Command = require('../structures/Command')
+import splashy from 'splashy'
+import got from 'got'
+import { RichEmbed } from 'discord.js'
+import Command from '../structures/Command'
 
 class AvatarCommand extends Command {
   constructor () {
@@ -28,4 +28,4 @@ class AvatarCommand extends Command {
   }
 }
 
-module.exports = AvatarCommand
+export default AvatarCommand

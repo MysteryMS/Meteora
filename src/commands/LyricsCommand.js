@@ -1,7 +1,7 @@
-const { RichEmbed } = require('discord.js')
-const GeniusAPI = require('genius-api')
-const Lyricist = require('lyricist')
-const Command = require('../structures/Command')
+import { RichEmbed } from 'discord.js'
+import GeniusAPI from 'genius-api'
+import Lyricist from 'lyricist'
+import Command from '../structures/Command'
 
 let genius = new GeniusAPI(process.env.GENIUS_TOKEN)
 let lyricist = new Lyricist(process.env.GENIUS_TOKEN)
@@ -52,4 +52,4 @@ class LyricsCommand extends Command {
   }
 }
 
-module.exports = LyricsCommand
+export default LyricsCommand

@@ -1,4 +1,4 @@
-const Command = require('../structures/Command.js')
+import Command from '../structures/Command.js'
 
 class ExecCommand extends Command {
   constructor () {
@@ -51,4 +51,4 @@ class ExecCommand extends Command {
   }
 }
 
-module.exports = ExecCommand
+export default ExecCommand

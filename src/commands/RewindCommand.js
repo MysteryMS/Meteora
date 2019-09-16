@@ -1,5 +1,5 @@
-const Command = require('../structures/Command')
-const parse = require('parse-duration')
+import Command from '../structures/Command'
+import parse from 'parse-duration'
 
 class RewindCommand extends Command {
   constructor () {
@@ -23,4 +23,4 @@ class RewindCommand extends Command {
   }
 }
 
-module.exports = RewindCommand
+export default RewindCommand

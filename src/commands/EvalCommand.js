@@ -1,7 +1,7 @@
-const Command = require('../structures/Command')
+import Command from '../structures/Command'
 
-const { inspect } = require('util')
-const { RichEmbed } = require('discord.js')
+import { inspect } from 'util'
+import { RichEmbed } from 'discord.js'
 
 class EvalCommand extends Command {
   constructor () {
@@ -31,4 +31,4 @@ class EvalCommand extends Command {
   }
 }
 
-module.exports = EvalCommand
+export default EvalCommand

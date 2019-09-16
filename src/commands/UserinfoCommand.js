@@ -1,8 +1,8 @@
-const Command = require('../structures/Command')
-const { RichEmbed } = require('discord.js')
-const moment = require('moment')
-const splashy = require('splashy')
-const got = require('got')
+import Command from '../structures/Command'
+import { RichEmbed } from 'discord.js'
+import moment from 'moment'
+import splashy from 'splashy'
+import got from 'got'
 
 class UserinfoCommand extends Command {
   constructor () {
@@ -53,4 +53,4 @@ class UserinfoCommand extends Command {
   }
 }
 
-module.exports = UserinfoCommand
+export default UserinfoCommand

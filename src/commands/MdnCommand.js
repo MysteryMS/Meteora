@@ -1,7 +1,7 @@
-const Command = require('../structures/Command')
-const Torn = require('turndown')
-const fetch = require('node-fetch')
-const { RichEmbed } = require('discord.js')
+import Command from '../structures/Command'
+import Torn from 'turndown'
+import fetch from 'node-fetch'
+import { RichEmbed } from 'discord.js'
 
 class MdnCommand extends Command {
   constructor () {
@@ -27,4 +27,4 @@ class MdnCommand extends Command {
   }
 }
 
-module.exports = MdnCommand
+export default MdnCommand

@@ -1,6 +1,6 @@
-const Command = require('../structures/Command')
-const { RichEmbed } = require('discord.js')
-const mss = require('pretty-ms')
+import Command from '../structures/Command'
+import { RichEmbed } from 'discord.js'
+import mss from 'pretty-ms'
 
 class QueueCommand extends Command {
   constructor () {
@@ -18,4 +18,4 @@ class QueueCommand extends Command {
   }
 }
 
-module.exports = QueueCommand
+export default QueueCommand

@@ -1,4 +1,4 @@
-const Command = require('../structures/Command')
+import Command from '../structures/Command'
 
 class KickCommand extends Command {
   constructor () {
@@ -34,4 +34,4 @@ class KickCommand extends Command {
   }
 }
 
-module.exports = KickCommand
+export default KickCommand

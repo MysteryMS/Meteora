@@ -1,5 +1,5 @@
-const Command = require('../structures/Command')
-const guild = require('../../models/guild')
+import Command from '../structures/Command'
+import { findOne } from '../../models/guild'
 
 class PlayCommand extends Command {
   constructor () {
@@ -27,7 +27,7 @@ class PlayCommand extends Command {
       }
       let player = await this.client.lavalinkManager.join(message.member.voiceChannel.id)
       player.on('playingNow', track => {
-        guild.findOne({ _id: message.guild.id }, (err, database) => {
+        findOne({ _id: message.guild.id }, (err, database) => {
           if (err) console.log(err)
           t = this.client.localeManager.getT(database.language)
           message.channel.send(t('commands:music.nowPlaying', { trackInfo: track.info.title, trackDuration: mss(track.info.length) }))
@@ -42,4 +42,4 @@ class PlayCommand extends Command {
   }
 }
 
-module.exports = PlayCommand
+export default PlayCommand

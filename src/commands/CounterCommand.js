@@ -1,6 +1,6 @@
-const Command = require('../structures/Command')
-const guild = require('../../models/guild')
-const { RichEmbed } = require('discord.js')
+import Command from '../structures/Command'
+import { findOne } from '../../models/guild'
+import { RichEmbed } from 'discord.js'
 
 class CounterCommand extends Command {
   constructor () {
@@ -17,7 +17,7 @@ class CounterCommand extends Command {
 
   async run (message, args, { t }) {
     if (!args[0]) return this.explain()
-    let database = await guild.findOne({ _id: message.guild.id })
+    let database = await findOne({ _id: message.guild.id })
     switch (args[0]) {
       case 'enable':
         if (database.counterChannel === null) {
@@ -73,4 +73,4 @@ class CounterCommand extends Command {
   }
 }
 
-module.exports = CounterCommand
+export default CounterCommand
