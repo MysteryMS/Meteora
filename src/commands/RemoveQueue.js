@@ -1,4 +1,4 @@
-import Command from '../structures/Command'
+const Command = require('../structures/Command')
 
 class RemoveQueue extends Command {
   constructor () {
@@ -14,4 +14,4 @@ class RemoveQueue extends Command {
   }
 }
 
-export default RemoveQueue
+module.exports = RemoveQueue

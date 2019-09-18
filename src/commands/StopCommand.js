@@ -1,4 +1,4 @@
-import Command from '../structures/Command'
+const Command = require('../structures/Command')
 
 class StopCommand extends Command {
   constructor () {
@@ -14,4 +14,4 @@ class StopCommand extends Command {
   }
 }
 
-export default StopCommand
+module.exports = StopCommand

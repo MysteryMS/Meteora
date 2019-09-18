@@ -1,9 +1,9 @@
-import Command from '../structures/Command'
-import pms from 'pretty-ms'
-import got from 'got'
-import splashy from 'splashy'
-import { RichEmbed } from 'discord.js'
-import yt from 'youtube-info'
+const Command = require('../structures/Command')
+const pms = require('pretty-ms')
+const got = require('got')
+const splashy = require('splashy')
+const { RichEmbed } = require('discord.js')
+const yt = require('youtube-info')
 
 class NowPlayingCommand extends Command {
   constructor () {
@@ -36,4 +36,4 @@ class NowPlayingCommand extends Command {
   }
 }
 
-export default NowPlayingCommand
+module.exports = NowPlayingCommand

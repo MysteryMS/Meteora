@@ -1,4 +1,4 @@
-import Command from '../structures/Command.js'
+const Command = require('../structures/Command.js')
 
 class ColorsCommand extends Command {
   constructor () {
@@ -19,4 +19,4 @@ class ColorsCommand extends Command {
   }
 }
 
-export default ColorsCommand
+module.exports = ColorsCommand

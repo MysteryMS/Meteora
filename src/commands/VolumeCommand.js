@@ -1,4 +1,4 @@
-import Command from '../structures/Command'
+const Command = require('../structures/Command')
 
 class VolumeCommand extends Command {
   constructor () {
@@ -21,4 +21,4 @@ class VolumeCommand extends Command {
   }
 }
 
-export default VolumeCommand
+module.exports = VolumeCommand

@@ -1,6 +1,6 @@
-import Command from '../structures/Command'
-import { findOne } from '../../models/guild'
-import { RichEmbed } from 'discord.js'
+const Command = require('../structures/Command')
+const xuxa = require('../../models/guild')
+const { RichEmbed } = require('discord.js')
 
 class MessageCommand extends Command {
   constructor () {
@@ -12,7 +12,7 @@ class MessageCommand extends Command {
 
   async run (message, args, { t }) {
     if (!args[0]) return this.explain()
-    let guild = await findOne({ _id: message.guild.id })
+    let guild = await xuxa.findOne({ _id: message.guild.id })
     let channel = args[2]
     let messag = args.slice(3).join(' ')
     switch (args[0]) {
@@ -120,4 +120,4 @@ class MessageCommand extends Command {
   }
 }
 
-export default MessageCommand
+module.exports = MessageCommand

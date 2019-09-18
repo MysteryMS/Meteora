@@ -1,4 +1,4 @@
-import Command from '../structures/Command'
+const Command = require('../structures/Command')
 
 class RepeatCommand extends Command {
   constructor () {
@@ -21,8 +21,9 @@ class RepeatCommand extends Command {
       message.channel.send(t('commands:music.repeatOff'))
       player.repeatTrack = ''
       player.repeat = false
+      return
     }
   }
 }
 
-export default RepeatCommand
+module.exports = RepeatCommand

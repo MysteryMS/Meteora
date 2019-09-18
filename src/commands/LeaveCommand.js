@@ -1,4 +1,4 @@
-import Command from '../structures/Command'
+const Command = require('../structures/Command')
 
 class LeaveCommand extends Command {
   constructor () {
@@ -15,4 +15,4 @@ class LeaveCommand extends Command {
   }
 }
 
-export default LeaveCommand
+module.exports = LeaveCommand
