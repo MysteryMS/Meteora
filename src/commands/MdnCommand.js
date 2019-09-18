@@ -7,7 +7,6 @@ class MdnCommand extends Command {
   constructor () {
     super('mdn')
     this.name = 'MDN'
-    this.category = 'Utils'
     this.usage = '<query>'
   }
   async run (message, args, { t }) {

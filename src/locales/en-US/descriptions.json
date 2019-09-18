@@ -30,10 +30,7 @@
     "removemusic": "Removes a music from the queue (If the bot is playing)",
     "leave": "Disconnects from the voice channel",
     "stop": "Stops the current music",
-    "mdn": "Searches on MDN",
-    "messages": "Set custom messages whenever a member join and/or leaves",
-    "unban": "Unban someone from your server",
-    "invite": "Invite me to your server"
+    "mdn": "Searches on MDN"
   },
   "misc": {
     "botPing": "Hi {{user}}, my prefix in this server is `{{prefix}}`! Use `{{prefix}}help` to get a list with my commands!"
