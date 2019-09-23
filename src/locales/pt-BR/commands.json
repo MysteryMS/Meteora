@@ -88,7 +88,7 @@
     "noReason": "Nenhuma razão",
     "cantBan": "Não posso banir esse usuário, talvez meus cargos estejam abaixo dele...",
     "justCant": "Você não pode expulsar esse usuário!",
-    "audit": "Banido por {{bannedBy}}. Motivo: {{reason}}"
+    "audit": "Banido por {{kickedBy}}. Motivo: {{reason}}"
   },
   "unban": {
     "message": "Usuário `{{user}}` desbanido do servidor por {{author}}",
