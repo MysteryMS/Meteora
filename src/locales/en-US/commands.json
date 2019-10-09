@@ -108,6 +108,12 @@
   "mdn": {
     "noArgs": "Supply something to search on MDN",
     "notFound": "Requested information `{{search}}` not found. Sorry."
-  }
+  },
+  "channel": {
+  "invalid": "Invalid channel or not supplied!",
+  "noArgs": "Supply the new channel's name.",
+  "renamedTo": "Channel renamed to `{{channel}}`.",
+    "created": "Created channel `{{channel}}`."
+}
 
 }
