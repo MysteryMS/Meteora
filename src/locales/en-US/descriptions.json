@@ -30,10 +30,13 @@
     "removemusic": "Removes a music from the queue (If the bot is playing)",
     "leave": "Disconnects from the voice channel",
     "stop": "Stops the current music",
-    "mdn": "Searches on MDN"
+    "mdn": "Searches on MDN",
+    "invite": "Get my invite link!",
+    "unban": "Unban someone from your server.",
+    "channel": "Changes the channel name to another one giving real spaces between words."
   },
   "misc": {
-    "botPing": "Hi {{user}}, my prefix in this server is `{{prefix}}`! Use `{{prefix}}help` to get a list with my commands!"
+    "botPing": "Heya {{user}}! My prefix in this server is `{{prefix}}`! Use `{{prefix}}help` to get a list with my commands!"
   },
   "structures": {
     "botNoPerm": "I can't execute this command because I need the permissions `{{permissions}}`!",

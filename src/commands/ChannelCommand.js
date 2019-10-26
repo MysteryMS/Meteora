@@ -3,13 +3,13 @@ const Command = require('../structures/Command')
 class ChannelCommand extends Command {
   constructor () {
     super('channel')
+    this.name = 'Channel'
     this.category = 'Gerenciamento do servidor'
-    this.usage = ''
     this.memberPermissions = ['MANAGE_CHANNELS']
   }
 
   async run (message, args, { t }) {
-    if (!args[0]) return message.reply('/`rename`/`create`')
+    if (!args[0]) return message.reply('`rename <channel> <name>`/`create <name>`')
     /* if (args[0] === 'rename-all') {
       message.channel.send('⚠ – Atenção!\nEssa operação irá renomear **__TODOS__** os canais, tirando respectivamente seus traços (`-`) e colocando um espaço.\nDeseja continuar? (Sim)')
       const filter = m => ((m.content.startsWith('Sim') || m.content.startsWith('sim') || m.content.startsWith('Yes') || m.content.startsWith('yes')) && m.author.id === message.author.id)

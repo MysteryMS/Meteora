@@ -30,10 +30,13 @@
     "removemusic": "Remove uma música da fila (Se o bot estiver tocando)",
     "leave": "Desconecta do canal de voz",
     "stop": "Para a música atual",
-    "mdn": "Procura algo no MDN"
+    "mdn": "Procura algo no MDN",
+    "invite": "Obtenha meu convite!",
+    "unban": "Retire o ban de alguém do seu servidor.",
+    "channel": "Troque o nome do canal para outro dando um espaço real entre as palavras."
   },
   "misc": {
-    "botPing": "Olá {{user}}, meu prefixo nesse servidor é `{{prefix}}`! Use `{{prefix}}ajuda` para obter uma lista com os meus comandos!"
+    "botPing": "Olá {{user}}! Meu prefixo nesse servidor é `{{prefix}}`! Use `{{prefix}}ajuda` para obter uma lista com os meus comandos!"
   },
   "structures": {
     "botNoPerm": "Eu não consigo executar este comando pois eu preciso das permissões {{permissions}}!",
