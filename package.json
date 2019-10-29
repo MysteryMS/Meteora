@@ -31,7 +31,7 @@
   "devDependencies": {},
   "scripts": {
     "start": "node app.js",
-    "test": "node app.js"
+    "test": "echo xuxa"
   },
   "author": "",
   "license": "MIT"
