@@ -114,6 +114,11 @@
   "noArgs": "Supply the new channel's name.",
   "renamedTo": "Channel renamed to `{{channel}}`.",
     "created": "Created channel `{{channel}}`."
-}
+},
+  "analyzeText": {
+    "invalid": "This text couldn't be analyzed, I'm sorry.",
+    "analyzed": "`\uD83D\uDE2D Sadness:` {{sadness}}\n`\uD83D\uDE02 Joy:` {{joy}}\n`\uD83D\uDE1F Fear:` {{fear}}\n`\uD83E\uDD22 Disgust:` {{disgust}}\n`\uD83D\uDCA2 Anger:` {{anger}}",
+    "text": "\uD83D\uDD20 - Analyzed Text: `{{text}}`"
+  }
 
 }
