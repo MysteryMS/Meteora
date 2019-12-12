@@ -1,5 +1,5 @@
 const Command = require('../structures/Command')
-const NaturalLanguageUnderstandingV1 = require('ibm-watson/natural-language-understanding/v1')
+//const NaturalLanguageUnderstandingV1 = require('ibm-watson/natural-language-understanding/v1')
 const { IamAuthenticator } = require('ibm-watson/auth')
 
 class AnalyzeTextCommand extends Command {
