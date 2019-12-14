@@ -33,7 +33,7 @@
   },
   "scripts": {
     "start": "node app.js",
-    "test": "echo xuxa"
+    "test": "node app.js"
   },
   "author": "",
   "license": "MIT"
