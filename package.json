@@ -32,7 +32,7 @@
     "ibm-watson": "^5.2.1"
   },
   "engines": {
-    "node": "12"
+    "node": "12.x.x"
   },
   "scripts": {
     "start": "node app.js",
