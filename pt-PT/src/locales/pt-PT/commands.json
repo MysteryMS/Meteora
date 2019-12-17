@@ -1,123 +1,123 @@
 {
   "user": {
-    "noUserMention": "Por favor, mencione um usuário ou coloque seu ID",
-    "invalidUser": "Usuário inválido"
+    "noUserMention": "Please mention an user or provide it's ID",
+    "invalidUser": "Invalid user"
   },
   "messages": {
-    "langChanged": "Linguagem alterada para {{language}}",
-    "cantDm": "Parece que eu não consigo enviar mensagens para você...",
-    "checkDm": "Verifique suas mensagens diretas!",
-    "invalidChannel": "Não encontrei esse canal no servidor"
+    "langChanged": "Successfully changed language to {{language}}",
+    "cantDm": "Seems like I can't DM you...",
+    "checkDm": "Check your DM!",
+    "invalidChannel": "I didn't find this channel on the server"
   },
   "music": {
-    "skipped": "⏭ – Musica pulada!",
-    "stop": "⏹ – O player foi parado e a fila foi limpa.",
-    "pause": "Player pausado.",
-    "resume": "Resumindo música...",
-    "addQueue": "<:queuemusic:571414423152099328> – `{{track}} ` ({{duration}}) foi adicionada à fila",
-    "noVoiceChannel": "Você precisa estar em um canal de voz para executar esse comando.",
-    "noMusic": "Você precisa colocar o nome da música",
-    "nowPlaying": "<a:cd:521088033664270336> – Tocando Agora: `{{trackInfo}} ` ({{trackDuration}})",
-    "notPlaying": "Não estou tocando nada.",
-    "maxDuration": "O tempo não pode ser maior do que a duração atual da música.",
-    "maxVolume": "O volume máximo é `150`!",
-    "nan": "Seu argumento deve ser um número!",
-    "volChanged": "Volume alterado para `{{volume}}/150`",
-    "repeatOn": "🔂 – Repetindo a música atual... (`{{music}}`)",
-    "repeatOff": "🔁 – Voltando a tocar a playlist de música normalmente...",
-    "noQueue": "Não há nada na fila!",
-    "removedQueue": "{{track}} removida da fila",
-    "leave": "<:voiceleave:561612800804388914> – Saindo de `🔈 {{channel}}`..."
+    "skipped": "⏭ – Music skipped!",
+    "stop": "⏹ – Player stopped and queue deleted",
+    "pause": "Player paused",
+    "resume": "Resuming music...",
+    "addQueue": "<:queuemusic:571414423152099328> – `{{track}}` ({{duration}}) added to queue",
+    "noVoiceChannel": "You must be in a voice channel to execute this command",
+    "noMusic": "You must provide the music which I'm gonna play.",
+    "nowPlaying": "<a:cd:521088033664270336> – Now Playing: `{{trackInfo}} ` ({{trackDuration}})",
+    "notPlaying": "I'm not playing.",
+    "maxDuration": "The time cannot be higher than actual music length",
+    "maxVolume": "The maximum volume is `150`!",
+    "nan": "Your argument must be a number!",
+    "volChanged": "Volume changed to `{{volume}}/150`",
+    "repeatOn": "🔂 – Repeating the current music... (`{{music}}`)",
+    "repeatOff": "🔁 – Playing the music playlist normally...",
+    "noQueue": "There's nothing in the queue!",
+    "removedQueue": "{{track}} removed from queue",
+    "leave": "<:voiceleave:561612800804388914> – Disconnecting from `🔈 {{channel}}`..."
   },
   "language": {
-    "successfullyChanged": "Linguagem alterada para {{language}}",
-    "portugueseField": ":flag_br: Português",
-    "englishField": ":flag_us: Inglês",
-    "title": "Escolha uma linguagem",
-    "description": "Linguagens disponíveis:"
+    "successfullyChanged": "Language changed to {{language}}",
+    "portugueseField": ":flag_br: Portuguese",
+    "englishField": ":flag_us: English",
+    "title": "Choose a language",
+    "description": "Available languages:"
   },
   "counter": {
-    "firstTimeID": "Você precisa colocar o ID do canal quando estiver ativando pela primeira vez!",
-    "invalidChannel": "Não encontrei esse canal no servidor.",
-    "firstActive": "<a:selena:529838831147417620> Contador ativado em <#{{channel}}>",
-    "activated": "<a:selena:529838831147417620> Contador ativado",
-    "firstTimeDeactivating": "Você precisa ativar o contador pela primeira vez antes de desativá-lo!",
-    "deactivated": "<a:selena:529838831147417620> Contador desativado",
-    "firstTimeChangingChannel": "Você precisa ativar o contador pela primeira vez antes de trocar o canal!",
-    "channelChanged": "<a:selena:529838831147417620> Canal do contador alterado para <#{{channel}}>"
+    "firstTimeID": "You must provide the channel ID when activating it for the first time!",
+    "invalidChannel": "I didn't find this channel in the server",
+    "firstActive": "<a:selena:529838831147417620> Counter activated in <#{{channel}}>",
+    "activated": "<a:selena:529838831147417620> Counter activated",
+    "firstTimeDeactivating": "You must activate the counter for the first time before deactivate it",
+    "deactivated": "<a:selena:529838831147417620> Counter deactivated",
+    "firstTimeChangingChannel": "You must activate the counter for the first time before change the channel!",
+    "channelChanged": "<a:selena:529838831147417620> Counter channel changed to <#{{channel}}>"
   },
   "join": {
-    "noMessage": "Você precisa escrever a mensagem",
-    "noChannel": "Você precisa colocar o ID do canal onde as mensagens serão enviadas",
-    "successfullyActivated": "<a:selena:529838831147417620> Mensagens de boas vindas ativadas em {{channel}}, com a mensagem `{{message}}`",
-    "deactivated": "<a:selena:529838831147417620> Mensagens de boas vindas desativadas",
-    "activated": "<a:selena:529838831147417620> Mensagens de boas vindas ativadas",
-    "needFirstAct": "Você precisa ativar o módulo pela primeira vez antes de alterar alguma coisa!",
-    "channelChanged": "<a:selena:529838831147417620> Canal das mensagens de entrada trocado para `{{channel}}`",
-    "messageChanged": "<a:selena:529838831147417620> Mensagens de boas vindas alterada para {{message}}"
+    "noMessage": "You must write a message",
+    "noChannel": "You must specify the channel ID where the messages will be sent",
+    "successfullyActivated": "<a:selena:529838831147417620> Welcome messages activated in {{channel}}, with the message `{{message}}`",
+    "deactivated": "<a:selena:529838831147417620> Welcome messages deactivated",
+    "activated": "<a:selena:529838831147417620> Welcome messages activated",
+    "needFirstAct": "You must activate the module for the first time before change something",
+    "channelChanged": "<a:selena:529838831147417620> Welcome messages channel's changed to `{{channel}}`",
+    "messageChanged": "<a:selena:529838831147417620> Welcome messages message's changed to {{message}}"
   },
   "leave": {
-    "noMessage": "Você precisa escrever a mensagem",
-    "noChannel": "Você precisa colocar o ID do canal onde as mensagens serão enviadas",
-    "successfullyActivated": "<a:selena:529838831147417620> Mensagens de saída ativadas em {{channel}}, com a mensagem `{{message}}`",
-    "deactivated": "<a:selena:529838831147417620> Mensagens de saída desativadas",
-    "activated": "<a:selena:529838831147417620> Mensagens de saída ativadas",
-    "needFirstAct": "Você precisa ativar o móulo pela primeira vez antes de alterar alguma coisa!",
-    "channelChanged": "<a:selena:529838831147417620> Canal das mensagens de saída trocado para {{channel}}",
-    "messageChanged": "<a:selena:529838831147417620> Mensagens de saída alterada para {{message}}"
+    "noMessage": "You must write a message",
+    "noChannel": "You must specify the channel ID where the messages wil be sent",
+    "successfullyActivated": "<a:selena:529838831147417620> Leave messages activated in {{channel}}, with the message `{{message}}`",
+    "deactivated": "<a:selena:529838831147417620> Leave messages deactivated",
+    "activated": "<a:selena:529838831147417620> Leave messages activated",
+    "needFirstAct": "You must activate the module for the first time before change something",
+    "channelChanged": "<a:selena:529838831147417620> Leave message channel's changed to {{channel}}",
+    "messageChanged": "<a:selena:529838831147417620> Leave message message's changed to {{message}}"
   },
   "lyrics": {
-    "embedTitle": "Ver letra em genius.com",
-    "producers": "`(Produtores: {{producers}})`",
-    "album": "do álbum `{{album}}`",
-    "music": "Exibindo letra de `{{music}}`, por `{{artist}}`",
-    "notFound": "Não achei a letra dessa musica...",
-    "noArgs": "Você deve colocar o nome da música",
-    "seeOnGenius": "Ver em genius.com"
+    "embedTitle": "See lyrics em genius.com",
+    "producers": "`(Producers: {{producers}})`",
+    "album": "from the album `{{album}}`",
+    "music": "Showing lyrics of `{{music}}`, by `{{artist}}`",
+    "notFound": "I didn't found this song lyrics...",
+    "noArgs": "You must provide the name of the music",
+    "seeOnGenius": "See in genius.com"
   },
   "kick": {
-    "message": "Usuário {{user}} `({{tag}} - {{id}})` expulso por {{kickedBy}}, com a razão `{{reason}}`",
-    "noReason": "Nenhuma razão",
-    "cantKick": "Não posso expulsar esse usuário, talvez meus cargos estejam abaixo dele...",
-    "justCant": "Você não pode expulsar esse usuário!"
+    "message": "User {{user}} `({{tag}} - {{id}})` kicked by {{kickedBy}}, with the reason `{{reason}}`.",
+    "noReason": "No Reason",
+    "cantKick": "I cant't kick this user, perhaps my roles are below them...",
+    "justCant": "You can't kick this user!"
   },
   "ban": {
-    "message": "Usuário {{user}} `({{tag}} - {{id}})` banido por {{bannedBy}}, com a razão `{{reason}}`",
-    "noReason": "Nenhuma razão",
-    "cantBan": "Não posso banir esse usuário, talvez meus cargos estejam abaixo dele...",
-    "justCant": "Você não pode expulsar esse usuário!",
-    "audit": "Banido por {{kickedBy}}. Motivo: {{reason}}"
+    "message": "User {{user}} `({{tag}} - {{id}})` banned by {{kickedBy}}, with the reason `{{reason}}`.",
+    "noReason": "No reason",
+    "cantBan": "I can't ban this user, perhaps my roles are below them...",
+    "justCant": "You can't ban this user!",
+    "audit": " Banned by {{user}}. Reason {{reason}}"
   },
   "unban": {
-    "message": "Usuário `{{user}}` desbanido do servidor por {{author}}",
-    "error": "Algo de errado ocorreu ao tentar desbanir esse usuário. Talvez esse banimento não exista!",
-    "noUser": "Você precisa colocar o usuário a ser desbanido!"
+    "message": "User `{{user}}` unbanned from the server by {{author}}",
+    "error": "Something went wrong while unbanning this user. Maybe this ban doesn't exist!",
+    "noUser": "You must provide the user to be unbanned!"
   },
-  "inviteMessage": "Quer me convidar pro seu servidor? Lugar certo! Clique [aqui]({{link}}) para abrir o meu convite em um navegador externo.",
+  "inviteMessage": "Wanna invite me to you server? Awesome! Just click [here]({{link}}) to open the link in an external browser.",
   "userinfo": {
     "status": "Status",
-    "administrator": "Sim",
-    "admField": "Administrador?",
-    "highestRole": "Cargo mais alto",
-    "userId": "ID do usuário",
-    "createdAt": "Conta criada em",
-    "noAdm": "Não",
-    "user": "Exibindo informações de {{user}}",
-    "botUser": "<:botTag:618594972903538708> Exibindo informações de {{user}}"
+    "administrator": "True",
+    "admField": "Administrator?",
+    "highestRole": "Highest Role",
+    "userId": "User ID",
+    "createdAt": "Account created at",
+    "noAdm": "False",
+    "user": "Showing information about {{user}}",
+    "botUser": "<:botTag:618594972903538708> Showing information about {{user}}"
   },
   "mdn": {
-    "noArgs": "Escreva algo para procurar no MDN",
-    "notFound": "Informação `{{search}}` não encontrada."
+    "noArgs": "Supply something to search on MDN",
+    "notFound": "Requested information `{{search}}` not found. Sorry."
   },
   "channel": {
-    "invalid": "Canal inválido ou não especificado!",
-    "noArgs": "Especifique o novo nome do canal.",
-    "renamedTo": "Canal renomeado para `{{channel}}`.",
-    "created": "O canal `{{channel}}` foi criado."
+    "invalid": "Invalid channel or not supplied!",
+    "noArgs": "Supply the new channel's name.",
+    "renamedTo": "Channel renamed to `{{channel}}`.",
+    "created": "Created channel `{{channel}}`."
   },
   "analyzeText": {
-    "invalid": "Esse texto não pôde ser analizado, me desculpe.",
-    "analyzed": "`😭 Tristeza:` {{sadness}}\n`😂 Humor:` {{joy}}\n`😟 Medo:` {{fear}}\n`🤢 Nojo:` {{disgust}}\n`💢 Raiva:` {{anger}}",
-    "text": "🔠 - Texto Analizado: `{{text}}`"
+    "invalid": "This text couldn't be analyzed, I'm sorry.",
+    "analyzed": "`😭 Sadness:` {{sadness}}\n`😂 Joy:` {{joy}}\n`😟 Fear:` {{fear}}\n`🤢 Disgust:` {{disgust}}\n`💢 Anger:` {{anger}}",
+    "text": "🔠 - Analyzed Text: `{{text}}`"
   }
 }
