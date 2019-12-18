@@ -4,7 +4,7 @@ const parse = require('parse-duration')
 class RewindCommand extends Command {
   constructor () {
     super('rewind')
-    this.aliases = ['voltar']
+    this.aliases = ['voltar', 'backmusic', 'rwd']
     this.name = 'Rewind'
     this.description = 'Volta a música em um determinado tempo'
     this.usage = '<tempo(s/m/h)>'
