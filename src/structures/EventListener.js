@@ -14,4 +14,3 @@ class EventListener {
 }
 
 module.exports = EventListener
-
