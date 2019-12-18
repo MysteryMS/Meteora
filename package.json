@@ -34,7 +34,7 @@
   },
   "scripts": {
     "start": "node app.js",
-    "test": "node app.js"
+    "test": "standard --fix"
   },
   "author": "",
   "license": "MIT",

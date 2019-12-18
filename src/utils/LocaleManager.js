@@ -20,21 +20,23 @@ module.exports = class LocaleManager {
   getT (langString) {
     const lang = this.langs.get(langString)
     if (!lang) return null
-    else return function t (localeKey, placeholders) {
-      let categoryAndLocale = localeKey.split(':')
-      let category = lang[categoryAndLocale[0]]
-      if (!category) return null
-      let objectAndKey = categoryAndLocale[1].split('.')
+    else {
+      return function t (localeKey, placeholders) {
+        let categoryAndLocale = localeKey.split(':')
+        let category = lang[categoryAndLocale[0]]
+        if (!category) return null
+        let objectAndKey = categoryAndLocale[1].split('.')
 
-      let locale = objectAndKey.length > 1 ? category[objectAndKey[0]][objectAndKey[1]] : category[objectAndKey[0]]
-      if (!locale) return null
+        let locale = objectAndKey.length > 1 ? category[objectAndKey[0]][objectAndKey[1]] : category[objectAndKey[0]]
+        if (!locale) return null
 
-      if (placeholders) {
-        for (const holder in placeholders) {
-          locale = locale.split(`{{${holder}}}`).join(placeholders[holder])
+        if (placeholders) {
+          for (const holder in placeholders) {
+            locale = locale.split(`{{${holder}}}`).join(placeholders[holder])
+          }
         }
+        return locale
       }
-      return locale
     }
   }
 }

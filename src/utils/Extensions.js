@@ -1,12 +1,11 @@
-const { Message } = require("discord.js")
+const { Message } = require('discord.js')
 
 class Extensions {
-
   constructor (client) {
     this.client = client
   }
 
-  loadExtensions() {
+  loadExtensions () {
     Message.prototype.reply = function (options = {}) {
       return this.channel.send(this.author, options)
     }
@@ -19,7 +18,6 @@ class Extensions {
       return this.channel.send(`${this.author} ${msg}`, options)
     }
   }
-
 }
 
 module.exports = Extensions

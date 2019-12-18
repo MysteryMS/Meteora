@@ -5,7 +5,7 @@ const Discord = require('discord.js')
 const { readSync } = require('readdir')
 const LavalinkManager = require('../lavalink/LavalinkManager')
 const mongoose = require('mongoose')
-const LocaleManager = require(__dirname + '/utils/LocaleManager')
+const LocaleManager = require('./utils/LocaleManager')
 const Extensions = require('./utils/Extensions')
 
 class Altair extends Client {

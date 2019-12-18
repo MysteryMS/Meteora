@@ -21,7 +21,6 @@ class RepeatCommand extends Command {
       message.channel.send(t('commands:music.repeatOff'))
       player.repeatTrack = ''
       player.repeat = false
-      return
     }
   }
 }

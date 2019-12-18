@@ -1,12 +1,11 @@
 class EventListener {
-
   constructor (eventName) {
     this.eventName = eventName
   }
 
-  run(...args) {}
+  run (...args) {}
 
-  register(client) {
+  register (client) {
     this.client = client
 
     client.on(this.eventName, (...args) => this.run(...args))

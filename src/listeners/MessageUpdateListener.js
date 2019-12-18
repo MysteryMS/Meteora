@@ -1,21 +1,17 @@
-const EventListener = require("../structures/EventListener")
+const EventListener = require('../structures/EventListener')
 
 class MessageUpdateListener extends EventListener {
-
   constructor () {
-    super("messageUpdate")
+    super('messageUpdate')
   }
 
-  run(oldMessage, newMessage) {
-    if (newMessage.author.bot)
-      return
+  run (oldMessage, newMessage) {
+    if (newMessage.author.bot) { return }
 
     this.client.commands.forEach((command) => {
-      if (command.handle(newMessage))
-        return
+      if (command.handle(newMessage)) {}
     })
   }
-
 }
 
 module.exports = MessageUpdateListener
