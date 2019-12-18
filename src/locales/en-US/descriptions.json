@@ -29,7 +29,7 @@
     "queue": "Shows the server music queue",
     "removemusic": "Removes a music from the queue (If the bot is playing)",
     "leave": "Disconnects from the voice channel",
-    "stop": "Stops the current music",
+    "stop": "Stops the current music and terminates the active queue.",
     "mdn": "Searches on MDN",
     "invite": "Get my invite link!",
     "unban": "Unban someone from your server.",
