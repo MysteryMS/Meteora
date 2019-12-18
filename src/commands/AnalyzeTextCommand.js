@@ -36,7 +36,7 @@ class AnalyzeTextCommand extends Command {
       .then(analysisResults => {
         let ready = analysisResults.result.keywords[0].emotion
         if (!analysisResults.result.keywords[0]) return message.reply(t('commands:analyzeText.invalid'))
-        if (!ready.sadness) return message.reply(t('commands:analyzedText.invalud'))
+        if (!ready.sadness) return message.reply(t('commands:analyzedText.invalid'))
         message.channel.send(t('commands:analyzeText.text', { text: args.join(' ') }))
         message.channel.send(t('commands:analyzeText.analyzed', { sadness: ready.sadness, joy: ready.joy, fear: ready.fear, anger: ready.anger, disgust: ready.disgust }))
       })
