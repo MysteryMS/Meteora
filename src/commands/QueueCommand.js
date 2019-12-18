@@ -9,7 +9,7 @@ class QueueCommand extends Command {
     this.category = 'Música'
     this.aliases = ['fila']
   }
-  async run (message, args, { t }) {
+  async run (message, args, server, { t }) {
     if (!this.client.lavalinkManager.manager.has(message.guild.id) || this.client.player.get(message.guild.id).queue.length === 0) return message.reply(t('commands:music.noQueue'))
     let player = this.client.player.get(message.guild.id)
     let embed = new RichEmbed().setAuthor(`Fila de ${message.guild.name}`, message.guild.iconURL).setColor('#9dffe0')

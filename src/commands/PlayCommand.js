@@ -10,7 +10,7 @@ class PlayCommand extends Command {
     this.category = 'Música'
   }
 
-  async run (message, args, { t }) {
+  async run (message, args, server, { t }) {
     const mss = require('pretty-ms')
     if (!message.member.voiceChannel) return message.reply(t('commands:music.noVoiceChannel'))
 

@@ -15,7 +15,7 @@ class CounterCommand extends Command {
     this.botPermissions = ['MANAGE_CHANNELS']
   }
 
-  async run (message, args, { t }) {
+  async run (message, args, server, { t }) {
     if (!args[0]) return this.explain()
     let database = await guild.findOne({ _id: message.guild.id })
     switch (args[0]) {

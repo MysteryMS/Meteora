@@ -12,7 +12,7 @@ class UserinfoCommand extends Command {
     this.usage = '<@user/id>'
   }
 
-  async run (message, args, { t }) {
+  async run (message, args, server, { t }) {
     if ((args[0] && args[0].match(/<@!?[0-9]+>/g)) || (args[0] && args[0].match(/[0-9]/g))) {
       this.client.fetchUser(args[0].replace(/[^0-9]+/g, '')).then(async (user) => {
         if (user) {

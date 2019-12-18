@@ -6,7 +6,7 @@ class AnalyzeTextCommand extends Command {
   constructor () {
     super('analyzetext')
   }
-  async run (message, args, { t }) {
+  async run (message, args, server, { t }) {
     const naturalLanguageUnderstanding = new NaturalLanguageUnderstandingV1({
       version: '2019-07-12',
       authenticator: new IamAuthenticator({

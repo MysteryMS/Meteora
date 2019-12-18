@@ -9,7 +9,7 @@ class MdnCommand extends Command {
     this.name = 'MDN'
     this.usage = '<query>'
   }
-  async run (message, args, { t }) {
+  async run (message, args, server, { t }) {
     if (!args[0]) return message.reply(t('commands:mdn.noArgs'))
     const res = await fetch(`https://mdn.pleb.xyz/search?q=${args.join(' ')}`)
     const body = await res.json()

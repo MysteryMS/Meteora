@@ -7,7 +7,7 @@ class RepeatCommand extends Command {
     this.name = 'Repeat'
     this.category = 'Música'
   }
-  async run (message, args, { t }) {
+  async run (message, args, server, { t }) {
     let player = this.client.player.get(message.guild.id)
     if (!this.client.lavalinkManager.manager.has(message.guild.id)) return message.reply(t('commands:music.notPlaying'))
     if (this.client.player.get(message.guild.id).nowPlaying === '') return message.reply(t('commands:music.notPlaying'))

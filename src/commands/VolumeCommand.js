@@ -8,7 +8,7 @@ class VolumeCommand extends Command {
     this.aliases = ['vl']
     this.explain = '<volume>'
   }
-  async run (message, args, { t }) {
+  async run (message, args, server, { t }) {
     if (!this.client.lavalinkManager.manager.has(message.guild.id)) return message.reply(t('commands:music.notPlaying'))
     if (isNaN(parseInt(args[0]))) {
       return message.reply(t('commands:music.nan'))

@@ -10,7 +10,7 @@ class HelpCommand extends Command {
     this.aliases = ['ajuda']
   }
 
-  async run (message, args, { t }) {
+  async run (message, args, server, { t }) {
     let music = new RichEmbed()
     let util = new RichEmbed()
     let dev = new RichEmbed()

@@ -11,7 +11,7 @@ class LanguageCommand extends Command {
     this.category = 'Gerenciamento do servidor'
   }
 
-  async run (message, args, { t }) {
+  async run (message, args, server, { t }) {
     guild.findOne({ _id: message.guild.id }, async (err, database) => {
       if (err) console.log(err)
       message.channel.send(new RichEmbed()

@@ -12,7 +12,7 @@ class KickCommand extends Command {
     this.botPermissions = ['KICK_MEMBERS']
   }
 
-  async run (message, args, { t }) {
+  async run (message, args, server, { t }) {
     let member = message.guild.members.get(args[0]) || message.mentions.members.first()
     if (!member) {
       return message.reply(t('commands:messages.noUserMention'))

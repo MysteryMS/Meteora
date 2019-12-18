@@ -20,7 +20,7 @@ class LyricsCommand extends Command {
     this.category = 'Música'
   }
 
-  async run (message, args, { t }) {
+  async run (message, args, server, { t }) {
     if (!args[0]) {
       return message.channel.send(t('commands:lyrics.noArgs'))
     }

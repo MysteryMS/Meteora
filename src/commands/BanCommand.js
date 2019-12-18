@@ -12,7 +12,7 @@ class BanCommand extends Command {
     this.botPermissions = ['BAN_MEMBERS']
   }
 
-  async run (message, args, { t }) {
+  async run (message, args, server, { t }) {
     if (args.length === 0) {
       this.explain(message)
       return

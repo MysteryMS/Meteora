@@ -10,7 +10,7 @@ class MessageCommand extends Command {
     this.usage = '-p'
   }
 
-  async run (message, args, { t }) {
+  async run (message, args, server, { t }) {
     if (!args[0]) return this.explain()
     let guild = await xuxa.findOne({ _id: message.guild.id })
     let channel = args[2]

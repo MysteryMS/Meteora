@@ -8,7 +8,7 @@ class ChannelCommand extends Command {
     this.memberPermissions = ['MANAGE_CHANNELS']
   }
 
-  async run (message, args, { t }) {
+  async run (message, args, server, { t }) {
     if (!args[0]) return message.reply('`rename <channel> <name>`/`create <name>`')
     /* if (args[0] === 'rename-all') {
       message.channel.send('⚠ – Atenção!\nEssa operação irá renomear **__TODOS__** os canais, tirando respectivamente seus traços (`-`) e colocando um espaço.\nDeseja continuar? (Sim)')
