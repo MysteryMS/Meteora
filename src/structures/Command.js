@@ -31,6 +31,7 @@ class Command {
       labels.push(alias)
     })
     guild.findOne({ _id: message.guild.id }, (err, database) => {
+      let server = database
       let t = this.client.localeManager.getT(database.language)
       const prefix = database.prefix
       if (err) console.log(err)
@@ -69,11 +70,8 @@ class Command {
           guild.findOne({ _id: message.guild.id }, async (err, database) => {
             if (err) console.log(err)
             const t = message.client.localeManager.getT(database.language)
-            //
-            await this.run(message, args, { t })
+            await this.run(message, args, server, { t })
           })
-          // const t = this.client.localeManager.getT(guild.language)
-          // await this.run(message, args, { t })
         } catch (err) {
           message.channel.send(t('descriptions:structures.error', { member: message.author, err: err }))
 

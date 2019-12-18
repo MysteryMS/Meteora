@@ -33,7 +33,8 @@
     "mdn": "Procura algo no MDN",
     "invite": "Obtenha meu convite!",
     "unban": "Retire o ban de alguém do seu servidor.",
-    "channel": "Troque o nome do canal para outro dando um espaço real entre as palavras."
+    "channel": "Troque o nome do canal para outro dando um espaço real entre as palavras.",
+    "prefixo": "Troca o prefixo do bot."
   },
   "misc": {
     "botPing": "Olá {{user}}! Meu prefixo nesse servidor é `{{prefix}}`! Use `{{prefix}}ajuda` para obter uma lista com os meus comandos!"
