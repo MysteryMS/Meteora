@@ -3,7 +3,7 @@ const Command = require('../structures/Command')
 class RepeatCommand extends Command {
   constructor () {
     super('repeat')
-    this.aliases = ['repetir']
+    this.aliases = ['repetir', 'loop']
     this.name = 'Repeat'
     this.category = 'Música'
   }
