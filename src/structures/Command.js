@@ -33,7 +33,7 @@ class Command {
     guild.findOne({ _id: message.guild.id }, (err, database) => {
       let server = database
       let t = this.client.localeManager.getT(database.language)
-      const prefix = process.env.PREFIX
+      const prefix = database.prefix
       if (err) console.log(err)
       const withPrefixLabels = labels.map((label) => prefix + label)
 
