@@ -33,7 +33,6 @@ class PlayCommand extends Command {
           message.channel.send(t('commands:music.nowPlaying', { trackInfo: track.info.title ? track.info.title : 'Sem Título', trackDuration: mss(track.info.length) }))
           this.client.player.get(message.guild.id).nowPlaying = track
           this.client.player.get(message.guild.id).messageChannel = message.channel.id
-          this.client.player.get(message.guild.id).solveBug = true
         })
       })
       player.play(args.join(' '))

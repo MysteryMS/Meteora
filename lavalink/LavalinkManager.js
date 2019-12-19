@@ -23,7 +23,6 @@ class Player extends EventEmitter {
   }
 
   play (query) {
-    if (this.playlist) return this.player.loadPlaylist(this.playlistSongs.shift())
     return getSongs(this.player.node, `ytsearch:${query}`).then(a => {
       if (!a[0]) return null
       this._addToQueue(a[0])
