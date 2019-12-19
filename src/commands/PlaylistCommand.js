@@ -22,6 +22,7 @@ class PlaylistCommand extends Command {
     player.play(playlist.shift())
 
     this.client.player.set(message.guild.id, player)
+    this.client.lavalinkManager.playlist = true
 
     player.on('playingNow', track => {
       let a = this.client.localeManager.getT(server.language)
