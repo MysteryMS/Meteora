@@ -64,7 +64,7 @@ class Player extends EventEmitter {
       if (this.repeat === true) {
         return this.player.play(this.repeatTrack)
       }
-      if (this.playlist) {
+      if (this.playlist === true) {
         return this.player.loadPlaylist(this.playlistSongs)
       }
       let nextSong = this.queue.shift()
