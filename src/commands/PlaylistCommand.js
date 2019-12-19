@@ -5,6 +5,7 @@ class PlaylistCommand extends Command {
   constructor () {
     super('playlist')
     this.name = 'Playlist'
+    this.onlyOwner = true
   }
 
   async run (message, args, server, { t }) {
@@ -15,9 +16,7 @@ class PlaylistCommand extends Command {
         await message.reply(songs)
     } */
     let player = await this.client.lavalinkManager.join(message.member.voiceChannel.id)
-    let playlist = this.client.lavalinkManager.playlistSongs = ['dont start' +
-    ' now', 'the' +
-    ' river aurora', 'conqueror aurora']
+    let playlist = this.client.lavalinkManager.playlistSongs = ['dont start now', 'the river aurora', 'conqueror aurora']
 
     player.play(playlist.shift())
 
