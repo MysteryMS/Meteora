@@ -24,6 +24,7 @@ class Player extends EventEmitter {
 
   play (query) {
     return getSongs(this.player.node, `ytsearch:${query}`).then(a => {
+      if (this.playlist === true) return this._play(a.info.track)
       if (!a[0]) return null
       this._addToQueue(a[0])
       return a[0].info
@@ -60,6 +61,7 @@ class Player extends EventEmitter {
 
   _play (track) {
     this.player.on('end', (data) => {
+      console.log('reached end')
       if (data.reason === 'REPLACED') return
       if (this.repeat === true) return this.player.play(this.repeatTrack)
       if (this.playlist === true) return this.player.loadPlaylist(this.playlistSongs)
@@ -74,6 +76,7 @@ class Player extends EventEmitter {
 
   loadPlaylist (playlist) {
     this.player.on('end', (data) => {
+      console.log('reached the other end')
       if (data.reason === 'REPLACED') return
       if (this.repeat === true) return this.player.play(this.repeatTrack)
       if (this.playlist === true) return this.player.loadPlaylist(this.playlistSongs)
