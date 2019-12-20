@@ -15,20 +15,18 @@ class NowPlayingCommand extends Command {
     this.category = 'Música'
   }
   async run (message, args) {
-    if (this.client.player.get(message.guild.id).nowPlaying === '') {
-      return message.reply('Não há nada tocando!')
-    }
+    if (this.client.player.get(message.guild.id).nowPlaying === '') return message.reply('Não há nada tocando!')
+    let p = this.client.player.get(message.guild.id)
     yt(this.client.player.get(message.guild.id).nowPlaying.info.identifier, async (err, videoInfo) => {
       const { body } = await got(videoInfo.thumbnailUrl, { encoding: null })
       const palette = await splashy(body)
       if (err) console.log(err)
-      console.log(videoInfo.thumbnailUrl)
       let embed = new RichEmbed()
         .setTitle(message.guild.name)
-        .addField('Música:', `[${this.client.player.get(message.guild.id).nowPlaying.info.title}](${this.client.player.get(message.guild.id).nowPlaying.info.uri})`, true)
-        .addField('Volume:', this.client.player.get(message.guild.id).player.state.volume + '/100', true)
-        .addField('Autor:', this.client.player.get(message.guild.id).nowPlaying.info.author, true)
-        .addField('Duração:', pms(this.client.player.get(message.guild.id).player.state.position) + '/' + pms(this.client.player.get(message.guild.id).nowPlaying.info.length), true)
+        .addField('Música:', `[${p.nowPlaying.info.title}](${this.client.player.get(message.guild.id).nowPlaying.info.uri})`, true)
+        .addField('Volume:', p.player.state.volume + '/100', true)
+        .addField('Autor:', p.nowPlaying.info.author)
+        .addField('Duração:', pms(p.player.state.position) + '/' + pms(p.nowPlaying.info.length), true)
         .setImage(videoInfo.thumbnailUrl)
         .setColor(palette[0])
       message.channel.send(embed)
