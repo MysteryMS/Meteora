@@ -66,7 +66,7 @@ class Player extends EventEmitter {
         getSongs(this.player.node, `ytsearch:${song}`).then(a => {
           if (!a[0]) return null
           this.player.play(a[0].info.track)
-          return this.emit('nowPlaying', a[0].info)
+          this.emit('nowPlaying', a[0])
         })
       }
       if (this.repeat === true) return this.player.play(this.repeatTrack)
