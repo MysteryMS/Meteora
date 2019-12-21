@@ -62,13 +62,12 @@ class Player extends EventEmitter {
     this.player.on('end', (data) => {
       if (data.reason === 'REPLACED') return
       if (this.player.playlist === true) {
-        let song = this.player.playlistSongs
-        let s = song.shift()
+        let song = this.player.playlistSongs.shift()
         if (!song) return null
-        getSongs(this.player.node, `ytsearch:${s}`).then(a => {
+        getSongs(this.player.node, `ytsearch:${song}`).then(a => {
           if (!a[0]) return null
           this.player.play(a[0].info.track)
-          this.emit('nowPlaying', a[0])
+          return this.emit('nowPlaying', a[0])
         })
       }
       if (this.repeat === true) return this.player.play(this.repeatTrack)
