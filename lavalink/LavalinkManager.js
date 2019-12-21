@@ -83,10 +83,13 @@ class Player extends EventEmitter {
     this.emit('nowPlaying', songToPlay)
     this.player.once('end', (data) => {
      if (data.reason === 'REPLACED') return
-     loadPlaylist(this.playlistSongs)
+     this.tryLoad(this.playlistSongs)
     })
   })
 }
+   tryLoad (a) {
+     this.loadPlaylist(a)
+   }
 } 
 
 module.exports = class LavalinkManager {
