@@ -66,7 +66,7 @@ class Player extends EventEmitter {
         console.log('is true')
         const playlist = this.player.playlistSongs.shift()
         console.log(playlist)
-        getSongs(this.player.node, `ytsearch:${playlist}`).then(a => { return this.player.play(a.track) && console.log('got') })
+        getSongs(this.player.node, `ytsearch:${playlist}`).then(a => { return this.player.play(a[0].track) && console.log('got') })
      }
       if (this.repeat === true) return this.player.play(this.repeatTrack)
       let nextSong = this.queue.shift()
