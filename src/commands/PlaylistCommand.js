@@ -19,7 +19,7 @@ class PlaylistCommand extends Command {
     let playlist = ['aurora soft universe','charlie puth attenttion', 'the river aurora', 'in bottle aurora']
 
     player.loadPlaylist(playlist)
-    this.client.player.get(message.guild.id).playlistSongs = playlist
+    this.client.player.get(message.guild.id).player.playlistSongs = playlist
 
     this.client.player.set(message.guild.id, player)
     this.client.player.get(message.guild.id).player.playlist = true
