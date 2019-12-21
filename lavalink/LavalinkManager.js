@@ -62,7 +62,7 @@ class Player extends EventEmitter {
     this.player.on('end', (data) => {
       if (data.reason === 'REPLACED') return
       if (this.player.playlist === true) {
-        this.loadPlaylist(this.playlistSongs)
+        loadPlaylist(this.playlistSongs)
       }
       if (this.repeat === true) return this.player.play(this.repeatTrack)
       let nextSong = this.queue.shift()
@@ -74,18 +74,13 @@ class Player extends EventEmitter {
     return this.emit('nowPlaying', track)
   }
 
-   playASong (arr) {
-    let song = arr.shift()
-  getSongs(this.player.node, `ytsearch:${song}`).then(tracks => {
-    let song = tracks[0]
-    if (!song) return
-    this.player.play(song.track)
-    this.emit('nowPlaying', tracks)
-    this.player.once('end', (data) => {
-      if (data.reason === 'REPLACED') return
-      let nextSong = remainingSongs[0]
-      if (!nextSong) remainingSongs = songs
-    })
+   loadPlaylist (array) {
+    let song = array.shift()
+    getSongs(this.player.node, `ytsearch:${song}`).then(tracks => {
+    let songToPlay = tracks[0]
+    if (!songToPlay) return
+    this.player.play(songToPlay.track)
+    return this.emit('nowPlaying', songToPlay)
   })
 }
 } 
