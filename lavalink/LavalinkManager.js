@@ -20,6 +20,7 @@ class Player extends EventEmitter {
     this.repeat = false
     this.playlistSongs = []
     this.playlist = false
+    this.playlistId = ''
   }
 
   play (query) {
@@ -31,6 +32,7 @@ class Player extends EventEmitter {
   }
 
   skip () {
+    if (this.playlist === true) return this.loadPlaylist(this.playlistSongs)
     this.nowPlaying = ''
     let nextSong = this.queue.shift()
     if (!nextSong) return

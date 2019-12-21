@@ -30,6 +30,7 @@ class PlaylistCommand extends Command {
         this.client.player.set(message.guild.id, player)
         this.client.player.get(message.guild.id).player.playlistSongs = theMusic
         this.client.player.get(message.guild.id).player.playlist = true
+        this.client.player.get(message.guild.id).player.playlistId = args[1]
 
         player.on('nowPlaying', track => {
           let a = this.client.localeManager.getT(server.language)
@@ -40,6 +41,21 @@ class PlaylistCommand extends Command {
           this.client.player.get(message.guild.id).nowPlaying = track
           this.client.player.get(message.guild.id).messageChannel = message.channel.id
         })
+        break
+
+      case 'add':
+        let thePlaylist = server.playlist.get(`${args[1]}`)
+        if (!thePlaylist) return message.reply('Hmmm... essa playlist não foi encontrada. Tem certeza que você colocou o número certo?!')
+        let newSongs = args.slice(1)
+        let newPlaylist = newSongs.forEach(a => thePlaylist.push(a))
+        server.playlist = newPlaylist
+        server.save().then(message.reply('Novas faixas adicionadas com sucesso!'))
+        break
+      case 'remove':
+        let playlistDelete = server.playlist.get(`${args[1]}`)
+        if (!playlistDelete) return message.reply('Hmmm... essa playlist não foi encontrada. Tem certeza que você colocou o número certo?!')
+        server.playlist = playlistDelete.delete(`${args[1]}`)
+        server.save().then(message.reply('Playlist deletada com sucesso!'))
     }
   }
 }

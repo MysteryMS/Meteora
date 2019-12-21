@@ -29,7 +29,7 @@ class NowPlayingCommand extends Command {
         .addField('Duração:', pms(p.player.state.position) + '/' + pms(p.nowPlaying.info.length), true)
         .setImage(videoInfo.thumbnailUrl)
         .setColor(palette[0])
-      message.channel.send(embed)
+      await message.channel.send(embed)
     })
   }
 }

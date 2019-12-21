@@ -13,6 +13,7 @@
     "eslint": "^5.16.0",
     "genius-api": "^0.4.1",
     "got": "^9.6.0",
+    "ibm-watson": "latest",
     "lyricist": "^2.2.2",
     "moment": "^2.24.0",
     "mongoose": "^5.5.5",
@@ -27,7 +28,7 @@
     "striptags": "^3.1.1",
     "turndown": "^5.0.3",
     "youtube-info": "^1.3.2",
-    "ibm-watson": "latest"
+    "yt-scraper": "^1.1.0"
   },
   "engines": {
     "node": "12.x.x"
@@ -35,7 +36,7 @@
   "scripts": {
     "start": "node app.js",
     "test": "standard --fix",
-    "update":"pm2 restart altair && pm2 logs altair"
+    "update": "pm2 restart altair && pm2 logs altair"
   },
   "author": "",
   "license": "MIT",
