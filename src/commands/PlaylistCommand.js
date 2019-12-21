@@ -9,30 +9,38 @@ class PlaylistCommand extends Command {
   }
 
   async run (message, args, server, { t }) {
-    /* switch (args[0]) {
+    switch (args[0]) {
       case 'create':
-        if (!args[2]) return message.reply('no...')
+        if (server.playlist) return message.reply('Atuazlmente, servidores têm um limite de uma playlist.')
+        if (!args[1]) return message.reply('Especifique as músicas que você deseja adicionar.\n_A música precisa estar com o link no formato `youtu.be`_')
         let songs = args.slice(1)
-        await message.reply(songs)
-    } */
-    let player = await this.client.lavalinkManager.join(message.member.voiceChannel.id)
-    let playlist = ['aurora soft universe','charlie puth attenttion', 'the river aurora', 'in bottle aurora']
+        server.playlist = new Map().set('1', songs)
+        server.save().then(message.reply(`Playlist criada com sucesso!\nUtilize \`${server.prefix}playlist load 1\` para tocá-la `))
+        break
 
-    player.loadPlaylist(playlist)
+      case 'load':
+        if (!message.member.voiceChannelID) return message.reply(t('commands:music.noVoiceChannel'))
+        if (!server.playlist) return message.reply('Poxa... parece que você não tem nenhuma playlist ainda. Que tal criar uma?!')
+        let theMusic = server.playlist.get(`${args[1]}`)
+        if (!theMusic) return message.reply('Hmmm... essa playlist não foi encontrada. Tem certeza que você colocou o número certo?!')
+        let player = await this.client.lavalinkManager.join(message.member.voiceChannel.id)
 
-    this.client.player.set(message.guild.id, player)
-    this.client.player.get(message.guild.id).player.playlistSongs = playlist
-    this.client.player.get(message.guild.id).player.playlist = true
+        player.loadPlaylist(theMusic)
 
-    player.on('nowPlaying', track => {
-      let a = this.client.localeManager.getT(server.language)
-      message.channel.send(a('commands:music.nowPlaying', {
-        trackInfo: track.info.title ? track.info.title : 'Sem Título',
-        trackDuration: mss(track.info.length)
-      }))
-      this.client.player.get(message.guild.id).nowPlaying = track
-      this.client.player.get(message.guild.id).messageChannel = message.channel.id
-    })
+        this.client.player.set(message.guild.id, player)
+        this.client.player.get(message.guild.id).player.playlistSongs = theMusic
+        this.client.player.get(message.guild.id).player.playlist = true
+
+        player.on('nowPlaying', track => {
+          let a = this.client.localeManager.getT(server.language)
+          message.channel.send(a('commands:music.nowPlaying', {
+            trackInfo: track.info.title ? track.info.title : 'Sem Título',
+            trackDuration: mss(track.info.length)
+          }))
+          this.client.player.get(message.guild.id).nowPlaying = track
+          this.client.player.get(message.guild.id).messageChannel = message.channel.id
+        })
+    }
   }
 }
 module.exports = PlaylistCommand
