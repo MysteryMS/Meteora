@@ -74,13 +74,20 @@ class Player extends EventEmitter {
     return this.emit('nowPlaying', track)
   }
 
-  loadPlaylist (t) {
-    getSongs(this.player.node, `ytsearch:${t}`).then(a => {
-      if (!a[0]) return null
-      this.player.play(a[0].info.track)
-      return this.emit('nowPlaying', a[0].info)
+   playASong (arr) {
+    let song = arr.shift()
+  getSongs(client, `ytsearch:${song}`).then(tracks => {
+    let song = tracks[0]
+    if (!song) return
+    this.player.play(song.track)
+    this.emit('nowPlaying', tracks)
+    this.player.once('end', (data) => {
+      if (data.reason === 'REPLACED') return
+      let nextSong = remainingSongs[0]
+      if (!nextSong) remainingSongs = songs
     })
-  } 
+  })
+}
 } 
 
 module.exports = class LavalinkManager {
