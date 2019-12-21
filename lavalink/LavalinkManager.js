@@ -80,7 +80,11 @@ class Player extends EventEmitter {
     let songToPlay = tracks[0]
     if (!songToPlay) return
     this.player.play(songToPlay.track)
-    return this.emit('nowPlaying', songToPlay)
+    this.emit('nowPlaying', songToPlay)
+    player.once('end', (data) => {
+     if (data.reason === 'REPLACED') return
+     loadPlaylist(this.playlistSongs)
+    })
   })
 }
 } 
