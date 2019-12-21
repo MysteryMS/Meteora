@@ -17,6 +17,7 @@ class QueueCommand extends Command {
     if (this.client.player.get(message.guild.id).player.playlist === true) {
       server.playlist.get(this.client.player.get(message.guild.id).player.playlistId).forEach((a, i) => {
         info.videoInfo(a).then(b => { embed.addField(`${i + 1} – b.title`, `${b.views} views`) })
+        message.channel.send(embed)
       })
     }
     let player = this.client.player.get(message.guild.id)
