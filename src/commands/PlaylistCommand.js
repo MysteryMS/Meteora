@@ -51,6 +51,7 @@ class PlaylistCommand extends Command {
         server.playlist = newPlaylist
         server.save().then(message.reply('Novas faixas adicionadas com sucesso!'))
         break
+
       case 'remove':
         let playlistDelete = server.playlist.get(`${args[1]}`)
         if (!playlistDelete) return message.reply('Hmmm... essa playlist não foi encontrada. Tem certeza que você colocou o número certo?!')
