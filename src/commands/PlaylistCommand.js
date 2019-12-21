@@ -5,6 +5,7 @@ class PlaylistCommand extends Command {
   constructor () {
     super('playlist')
     this.name = 'Playlist'
+    this.onlyOwner = true
   }
 
   async run (message, args, server, { t }) {
@@ -15,16 +16,15 @@ class PlaylistCommand extends Command {
         await message.reply(songs)
     } */
     let player = await this.client.lavalinkManager.join(message.member.voiceChannel.id)
-    let playlist = this.client.lavalinkManager.playlistSongs = ['dont start' +
-    ' now', 'the' +
-    ' river aurora', 'conqueror aurora']
+    let playlist = ['aurora soft universe','charlie puth attenttion', 'the river aurora', 'in bottle aurora']
 
-    player.play(playlist.shift())
+    player.loadPlaylist(playlist)
 
     this.client.player.set(message.guild.id, player)
-    this.client.lavalinkManager.playlist = true
+    this.client.player.get(message.guild.id).player.playlistSongs = playlist
+    this.client.player.get(message.guild.id).player.playlist = true
 
-    player.on('playingNow', track => {
+    player.on('nowPlaying', track => {
       let a = this.client.localeManager.getT(server.language)
       message.channel.send(a('commands:music.nowPlaying', {
         trackInfo: track.info.title ? track.info.title : 'Sem Título',
@@ -32,7 +32,6 @@ class PlaylistCommand extends Command {
       }))
       this.client.player.get(message.guild.id).nowPlaying = track
       this.client.player.get(message.guild.id).messageChannel = message.channel.id
-      //  await this.client.lavalinkManager.loadPlaylist(playlist)
     })
   }
 }
