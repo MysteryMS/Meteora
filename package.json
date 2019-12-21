@@ -34,7 +34,8 @@
   },
   "scripts": {
     "start": "node app.js",
-    "test": "standard --fix"
+    "test": "standard --fix",
+    "update":"pm2 restart altair && pm2 logs altair"
   },
   "author": "",
   "license": "MIT",

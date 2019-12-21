@@ -61,7 +61,7 @@ class Player extends EventEmitter {
   _play (track) {
     this.player.on('end', (data) => {
       console.log('reached end')
-      if (this.playlist === true) {
+      if (this.player.playlist === true) {
         console.log('is true')
         const playlist = this.playlistSongs.shift()
         console.log('playlist')
