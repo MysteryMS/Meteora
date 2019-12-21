@@ -16,7 +16,7 @@ class PlaylistCommand extends Command {
         await message.reply(songs)
     } */
     let player = await this.client.lavalinkManager.join(message.member.voiceChannel.id)
-    let playlist = this.client.player.get(message.guild.id).player.playlistSongs = ['charlie puth attenttion', 'the river aurora', 'conqueror aurora']
+    let playlist = this.client.player.get(message.guild.id).player.playlistSongs = ['aurora soft universe','charlie puth attenttion', 'the river aurora', 'conqueror aurora']
 
     player.play(playlist[0])
 
