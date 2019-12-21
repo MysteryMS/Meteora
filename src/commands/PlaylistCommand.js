@@ -18,12 +18,12 @@ class PlaylistCommand extends Command {
     let player = await this.client.lavalinkManager.join(message.member.voiceChannel.id)
     let playlist = this.client.player.get(message.guild.id).player.playlistSongs = ['dont start now video', 'the river aurora', 'conqueror aurora']
 
-    player.play(playlist.shift())
+    player.play(playlist[0])
 
     this.client.player.set(message.guild.id, player)
     this.client.player.get(message.guild.id).player.playlist = true
 
-    player.on('playingNow', track => {
+    player.on('nowPlaying', track => {
       let a = this.client.localeManager.getT(server.language)
       message.channel.send(a('commands:music.nowPlaying', {
         trackInfo: track.info.title ? track.info.title : 'Sem Título',
@@ -31,7 +31,6 @@ class PlaylistCommand extends Command {
       }))
       this.client.player.get(message.guild.id).nowPlaying = track
       this.client.player.get(message.guild.id).messageChannel = message.channel.id
-      //  await this.client.lavalinkManager.loadPlaylist(playlist)
     })
   }
 }
