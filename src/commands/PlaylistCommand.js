@@ -22,16 +22,6 @@ class PlaylistCommand extends Command {
 
     this.client.player.set(message.guild.id, player)
     this.client.player.get(message.guild.id).player.playlist = true
-
-    player.on('nowPlaying', track => {
-      let a = this.client.localeManager.getT(server.language)
-      message.channel.send(a('commands:music.nowPlaying', {
-        trackInfo: track.info.title ? track.info.title : 'Sem Título',
-        trackDuration: mss(track.info.length)
-      }))
-      this.client.player.get(message.guild.id).nowPlaying = track
-      this.client.player.get(message.guild.id).messageChannel = message.channel.id
-    })
   }
 }
 module.exports = PlaylistCommand
