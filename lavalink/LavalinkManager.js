@@ -76,7 +76,7 @@ class Player extends EventEmitter {
 
    playASong (arr) {
     let song = arr.shift()
-  getSongs(client, `ytsearch:${song}`).then(tracks => {
+  getSongs(this.player.node, `ytsearch:${song}`).then(tracks => {
     let song = tracks[0]
     if (!song) return
     this.player.play(song.track)
