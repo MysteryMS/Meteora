@@ -46,9 +46,9 @@ class PlaylistCommand extends Command {
       case 'add':
         let thePlaylist = server.playlist.get(`${args[1]}`)
         if (!thePlaylist) return message.reply('Hmmm... essa playlist não foi encontrada. Tem certeza que você colocou o número certo?!')
-        let newSongs = args.slice(1)
-        let newPlaylist = newSongs.forEach(a => thePlaylist.push(a))
-        server.playlist = newPlaylist
+        let newSongs = args.slice(2)
+        newSongs.forEach(ab => thePlaylist.push(ab))
+        server.playlist = new Map().set(`${args[1]}`, thePlaylist)
         server.save().then(message.reply('Novas faixas adicionadas com sucesso!'))
         break
 
