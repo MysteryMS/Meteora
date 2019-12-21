@@ -66,7 +66,6 @@ class Player extends EventEmitter {
         let song = this.player.playlistSongs.shift()
         if (!song)
         this.play(song)
-        return this.emit('nowPlaying', track)
       }
       let nextSong = this.queue.shift()
       if (!nextSong) return
