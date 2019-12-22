@@ -124,6 +124,15 @@
     "changed": "Successfully changed prefix to `{{prefix}}`!",
     "maxLength": "The prefix has a maximum length of 4 characters.",
     "noArgs": "Argue the new prefix."
+  },
+  "playlist": {
+    "onlyOne": "Currently, servers can have only one playlist.",
+    "argueSongs": "Argue the songs you want to add.\n_The link must be in the `youtu.be` format_",
+    "created": "Successfully created the playlist!\nUse `{{prefix}}playlist load 1` to play it.",
+    "noPlaylist": "Oh no... seems like you don't have a playlist in this server yet. Why don't you create one?!",
+    "notFound": "Hmmm... this playlist was not found. Are you sure you entered the correct number?",
+    "newTracks": "Successfully added new tracks.",
+    "deleted": "Successfully deleted the playlist."
   }
 
 }

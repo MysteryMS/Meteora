@@ -126,5 +126,14 @@
     "changed": "Prefixo alterado para `{{prefix}}`!",
     "maxLength": "O prefixo tem um limite de 4 caracteres.",
     "noArgs": "Especifique o novo prefixo."
+  },
+  "playlist": {
+    "onlyOne": "Atualmente, servidores podem conter apenas uma playlist.",
+    "argueSongs": "Especifique as faixas que você deseja adicionar.\n_O link precisa estar no formato `youtu.be`_",
+    "created": "Playlist criada com sucesso!\nUse `{{prefix}}playlist load 1` para tocar.",
+    "noPlaylist": "Poxa... parece que você ainda não tem uma playlist neste servidor. Por que você não cria uma?!",
+    "notFound": "Hmmm... essa playlist não foi encontrada. Você tem certeza que colocou o número correto?",
+    "newTracks": "Novas faixas adicionadas com sucesso.",
+    "deleted": "Playlist apagada com sucesso."
   }
 }
