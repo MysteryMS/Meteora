@@ -28,7 +28,8 @@ class HelpCommand extends Command {
     await message.author.send(dev)
     await message.author.send(serverm)
     await message.author.send(music)
-    message.reply(t('commands:messages.checkDm'))
+    await message.author.send(t('descriptions:helpEmbed.invite'))
+    await message.reply(t('commands:messages.checkDm'))
   }
 }
 
