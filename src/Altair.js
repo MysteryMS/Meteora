@@ -17,7 +17,7 @@ class Altair extends Client {
     try {
       this.commands = []
       this.player = new Discord.Collection()
-     // this.lavalinkManager = new LavalinkManager(this)
+      this.lavalinkManager = new LavalinkManager(this)
       await mongoose.connect('mongodb+srv://MysteryMS:xuxameneghel@altair-pclds.mongodb.net/test?retryWrites=true&w=majority', { useNewUrlParser: true }).then(() => this.info('Conexão estabelecida com o banco de dados'))
       this.localeManager = new LocaleManager()
 
