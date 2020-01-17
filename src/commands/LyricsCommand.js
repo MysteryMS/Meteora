@@ -6,10 +6,6 @@ const Command = require('../structures/Command')
 let genius = new GeniusAPI(process.env.GENIUS_TOKEN)
 let lyricist = new Lyricist(process.env.GENIUS_TOKEN)
 
-function chunkString (str) {
-  return str.match(/(.|[\r\n]){1,1950}/g)
-}
-
 class LyricsCommand extends Command {
   constructor () {
     super('lyrics')
@@ -43,8 +39,7 @@ class LyricsCommand extends Command {
 
       // await message.channel.send(embed)
 
-      let chunks = chunkString(lyrics.lyrics)
-        message.channel.send(`\`\`\`yaml\n${lyrics.lyrics}\`\`\``, { split: true })
+        message.channel.send(`${lyrics.lyrics}`, { split: true })
         message.channel.send(embed)
     })
   }
