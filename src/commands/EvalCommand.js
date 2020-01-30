@@ -16,7 +16,7 @@ class EvalCommand extends Command {
 
     try {
       // eslint-disable-next-line no-eval
-      const evaluated = await eval(code)
+      const evaluated = await Promise.resolve(eval(code))
 
       message.channel.send(inspect(evaluated, { depth: 0 }), { code: 'js' })
     } catch (err) {
