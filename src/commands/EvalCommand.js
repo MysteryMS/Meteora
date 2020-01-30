@@ -16,9 +16,9 @@ class EvalCommand extends Command {
 
     try {
       // eslint-disable-next-line no-eval
-      const evaluated = await eval(code)
+      const evaluated = (async() => await eval(code))
 
-      message.channel.send(inspect(evaluated, { depth: 0 }), { code: 'js' })
+      message.channel.send(inspect(evaluated(), { depth: 0 }), { code: 'js' })
     } catch (err) {
       const embed = new RichEmbed()
         .setTitle('Whoopsie!')
