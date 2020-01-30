@@ -16,12 +16,12 @@ class EvalCommand extends Command {
 
     try {
       // eslint-disable-next-line no-eval
-      const evaluated = (async() => eval(code))
+      const evaluated = eval(code)
 
       message.channel.send(inspect(evaluated(), { depth: 0 }), { code: 'js' })
     } catch (err) {
       const embed = new RichEmbed()
-        .setTitle('Whoopsie!')
+        .setTitle('Something went wrong.')
         .setDescription('```' + err.stack + '```')
         .setColor('#FF0000')
         .setTimestamp(new Date())
