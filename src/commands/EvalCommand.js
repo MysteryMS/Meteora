@@ -7,11 +7,10 @@ class EvalCommand extends Command {
   constructor () {
     super('eval', ['evaluate'])
     this.name = 'Eval'
-    this.onlyOwner = true
   }
 
   async run (message, args) {
-    if (message.author.id !== '268526982222970880') return
+    if (!['268526982222970880', '485837271967465472'].includes(message.author.id)) return
     const code = args.join(' ')
 
     try {
