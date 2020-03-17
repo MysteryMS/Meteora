@@ -8,7 +8,7 @@ class voiceStateListener extends EventListener {
 
   async run (oldMember, newMember) {
     const xuxa = await guild.findOne({ _id: oldMember.guild.id })
-    let t = this.client.localeManager.getT(xuxa.language)
+    const t = this.client.localeManager.getT(xuxa.language)
     if (this.client.lavalinkManager.manager.has(oldMember.guild.id)) {
       if (oldMember.voiceChannelID === this.client.player.get(oldMember.guild.id).player.channel) {
         if (oldMember.guild.channels.get(oldMember.voiceChannel.id).members.size === 1) {

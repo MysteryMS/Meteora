@@ -1,5 +1,5 @@
 const Command = require('../structures/Command')
-const { RichEmbed } = require('discord.js')
+const { MessagEmbed } = require('discord.js')
 const moment = require('moment')
 const splashy = require('splashy')
 const got = require('got')
@@ -19,7 +19,7 @@ class UserinfoCommand extends Command {
           const url = user.displayAvatarURL
           const { body } = await got(url, { encoding: null })
           const palette = await splashy(body)
-          let embed = new RichEmbed()
+          const embed = new MessagEmbed()
             .setThumbnail(user.displayAvatarURL)
             .setTitle(message.author.bot ? t('commands:userinfo.botUser', { user: user.tag }) : t('commands:userinfo.user', { user: user.tag }))
             .addField(t('commands:userinfo.createdAt'), moment(user.createdAt).format('LLLL'))
@@ -39,7 +39,7 @@ class UserinfoCommand extends Command {
       const url = message.author.displayAvatarURL
       const { body } = await got(url, { encoding: null })
       const palette = await splashy(body)
-      let embed = new RichEmbed()
+      const embed = new MessagEmbed()
         .setThumbnail(message.author.displayAvatarURL)
         .setTitle(message.author.bot ? t('commands:userinfo.botUser', { user: message.author.tag }) : t('commands:userinfo.user', { user: message.author.tag }))
         .addField(t('commands:userinfo.createdAt'), moment(message.author.createdAt).format('LLLL'))

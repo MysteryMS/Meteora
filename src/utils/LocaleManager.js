@@ -7,6 +7,7 @@ module.exports = class LocaleManager {
 
     this._loadLocales()
   }
+
   _loadLocales () {
     readdirSync(`${__dirname}/../locales/`).forEach((lang) => {
       console.log(`[INFO] Idioma carregado: ${lang}`.bold.magenta)
@@ -17,15 +18,16 @@ module.exports = class LocaleManager {
       this.langs.set(lang, categoryObject)
     })
   }
+
   getT (langString) {
     const lang = this.langs.get(langString)
     if (!lang) return null
     else {
       return function t (localeKey, placeholders) {
-        let categoryAndLocale = localeKey.split(':')
-        let category = lang[categoryAndLocale[0]]
+        const categoryAndLocale = localeKey.split(':')
+        const category = lang[categoryAndLocale[0]]
         if (!category) return null
-        let objectAndKey = categoryAndLocale[1].split('.')
+        const objectAndKey = categoryAndLocale[1].split('.')
 
         let locale = objectAndKey.length > 1 ? category[objectAndKey[0]][objectAndKey[1]] : category[objectAndKey[0]]
         if (!locale) return null

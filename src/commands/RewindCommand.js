@@ -10,6 +10,7 @@ class RewindCommand extends Command {
     this.usage = '<tempo(s/m/h)>'
     this.category = 'Música'
   }
+
   async run (message, args, server, { t }) {
     const lavaPlayer = this.client.player.get(message.guild.id)
     if (!this.client.lavalinkManager.manager.has(message.guild.id)) {

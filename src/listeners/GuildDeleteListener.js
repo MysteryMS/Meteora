@@ -5,6 +5,7 @@ class GuildRemoveListener extends EventListener {
   constructor () {
     super('guildDelete')
   }
+
   async run (guild) {
     Guild.findOneAndDelete({ _id: guild.id }, (error, database) => {
       if (error) this.error(error)

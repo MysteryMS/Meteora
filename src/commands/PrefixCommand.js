@@ -5,6 +5,7 @@ class PrefixCommand extends Command {
     super('prefix')
     this.name = 'Prefix'
   }
+
   async run (message, args, server, { t }) {
     if (!args.length) return message.reply(t('commands:prefix.noArgs'))
     if (args[0].split('').length >= 4) return message.reply(t('commands:prefix.maxLength'))

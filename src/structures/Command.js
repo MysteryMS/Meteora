@@ -1,4 +1,4 @@
-const { RichEmbed } = require('discord.js')
+const { MessagEmbed } = require('discord.js')
 
 class Command {
   constructor (label, aliases = []) {
@@ -31,8 +31,8 @@ class Command {
       labels.push(alias)
     })
     guild.findOne({ _id: message.guild.id }, (err, database) => {
-      let server = database
-      let t = this.client.localeManager.getT(database.language)
+      const server = database
+      const t = this.client.localeManager.getT(database.language)
       const prefix = database.prefix
       if (err) console.log(err)
       const withPrefixLabels = labels.map((label) => prefix + label)
@@ -90,7 +90,7 @@ class Command {
   async explain (message) {
     const guild = require('../../models/guild')
     guild.findOne({ _id: message.guild.id }, (err, database) => {
-      let t = this.client.localeManager.getT(database.language)
+      const t = this.client.localeManager.getT(database.language)
       if (err) console.log(err)
       const splitted = message.content.split(' ')
 
@@ -98,7 +98,7 @@ class Command {
       const allLabels = [this.label]
       this.aliases.forEach((alias) => allLabels.push(alias))
       const unusedLabels = allLabels.filter((label) => label !== usedLabel)
-      const embed = new RichEmbed()
+      const embed = new MessagEmbed()
       embed.setAuthor(message.author.tag, message.author.displayAvatarURL)
       embed.setTitle(':cyclone: `' + database.prefix + usedLabel + '`')
       embed.setDescription(t(`descriptions:descriptions.${this.label}`))

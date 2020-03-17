@@ -2,7 +2,7 @@ const Command = require('../structures/Command')
 const pms = require('pretty-ms')
 const got = require('got')
 const splashy = require('splashy')
-const { RichEmbed } = require('discord.js')
+const { MessagEmbed } = require('discord.js')
 const yt = require('youtube-info')
 
 class NowPlayingCommand extends Command {
@@ -14,14 +14,15 @@ class NowPlayingCommand extends Command {
     this.aliases = ['np', 'nowPlaying', 'playingnow', 'tocando', 'tocandoagora', 'tocandoagr']
     this.category = 'Música'
   }
+
   async run (message, args) {
     if (this.client.player.get(message.guild.id).nowPlaying === '') return message.reply('Não há nada tocando!')
-    let p = this.client.player.get(message.guild.id)
+    const p = this.client.player.get(message.guild.id)
     yt(this.client.player.get(message.guild.id).nowPlaying.info.identifier, async (err, videoInfo) => {
       const { body } = await got(videoInfo.thumbnailUrl, { encoding: null })
       const palette = await splashy(body)
       if (err) console.log(err)
-      let embed = new RichEmbed()
+      const embed = new MessagEmbed()
         .setTitle(message.guild.name)
         .addField('Música:', `[${p.nowPlaying.info.title}](${this.client.player.get(message.guild.id).nowPlaying.info.uri})`, true)
         .addField('Volume:', p.player.state.volume + '/100', true)

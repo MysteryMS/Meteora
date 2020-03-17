@@ -13,7 +13,7 @@ class PlaylistCommand extends Command {
       case 'create':
         if (server.playlist) return message.reply(t('commands:playlist.onlyOne'))
         if (!args[1]) return message.reply(t('commands:playlist.argueSongs'))
-        let songs = args.slice(1)
+        const songs = args.slice(1)
         server.playlist = new Map().set('1', songs)
         server.save().then(message.reply(t('commands:playlist.created', { prefix: server.prefix })))
         break
@@ -21,9 +21,9 @@ class PlaylistCommand extends Command {
       case 'load':
         if (!message.member.voiceChannelID) return message.reply(t('commands:music.noVoiceChannel'))
         if (!server.playlist) return message.reply(t('commands:playlist.noPlaylist'))
-        let theMusic = server.playlist.get(`${args[1]}`)
+        const theMusic = server.playlist.get(`${args[1]}`)
         if (!theMusic) return message.reply(t('commands:playlist.notFound'))
-        let player = await this.client.lavalinkManager.join(message.member.voiceChannel.id)
+        const player = await this.client.lavalinkManager.join(message.member.voiceChannel.id)
 
         player.loadPlaylist(theMusic)
 
@@ -33,7 +33,7 @@ class PlaylistCommand extends Command {
         this.client.player.get(message.guild.id).player.playlistId = args[1]
 
         player.on('nowPlaying', track => {
-          let a = this.client.localeManager.getT(server.language)
+          const a = this.client.localeManager.getT(server.language)
           message.channel.send(a('commands:music.nowPlaying', {
             trackInfo: track.info.title ? track.info.title : 'Sem Título',
             trackDuration: mss(track.info.length)
@@ -44,16 +44,16 @@ class PlaylistCommand extends Command {
         break
 
       case 'add':
-        let thePlaylist = server.playlist.get(`${args[1]}`)
+        const thePlaylist = server.playlist.get(`${args[1]}`)
         if (!thePlaylist) return message.reply(t('commands:playlist.notFound'))
-        let newSongs = args.slice(2)
+        const newSongs = args.slice(2)
         newSongs.forEach(ab => thePlaylist.push(ab))
         server.playlist = new Map().set(`${args[1]}`, thePlaylist)
         server.save().then(message.reply(t('commands:playlist.newTracks')))
         break
 
       case 'remove':
-        let playlistDelete = server.playlist.get(`${args[1]}`)
+        const playlistDelete = server.playlist.get(`${args[1]}`)
         if (!playlistDelete) return message.reply(t('commands:playlist.notFound'))
         server.playlist = playlistDelete.delete(`${args[1]}`)
         server.save().then(message.reply(t('commands:playlist.deleted')))

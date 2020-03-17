@@ -12,7 +12,7 @@ class PlayCommand extends Command {
 
   async run (message, args, server, { t }) {
     const mss = require('pretty-ms')
-    if (!message.member.voiceChannel) return message.reply(t('commands:music.noVoiceChannel'))
+    if (!message.member.voice.channel) return message.reply(t('commands:music.noVoiceChannel'))
 
     if (!args[0]) return message.reply(t('commands:music.noMusic'))
 
@@ -25,7 +25,7 @@ class PlayCommand extends Command {
       if (!args[0]) {
         return message.reply(t('commands:music.noMusic'))
       }
-      let player = await this.client.lavalinkManager.join(message.member.voiceChannel.id)
+      const player = await this.client.lavalinkManager.join(message.member.voiceChannel.id)
       player.on('nowPlaying', track => {
         guild.findOne({ _id: message.guild.id }, (err, database) => {
           if (err) console.log(err)

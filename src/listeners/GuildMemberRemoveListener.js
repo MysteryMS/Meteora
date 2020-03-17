@@ -5,6 +5,7 @@ class GuildMemberRemoveListener extends EventListener {
   constructor () {
     super('guildMemberRemove')
   }
+
   async run (member) {
     function isJson (str) {
       try {
@@ -15,16 +16,16 @@ class GuildMemberRemoveListener extends EventListener {
       return true
     }
     const map = {
-      '0': '0⃣',
-      '1': '1⃣',
-      '2': '2⃣',
-      '3': '3⃣',
-      '4': '4⃣',
-      '5': '5⃣',
-      '6': '6⃣',
-      '7': '7⃣',
-      '8': '8⃣',
-      '9': '9⃣'
+      0: '0⃣',
+      1: '1⃣',
+      2: '2⃣',
+      3: '3⃣',
+      4: '4⃣',
+      5: '5⃣',
+      6: '6⃣',
+      7: '7⃣',
+      8: '8⃣',
+      9: '9⃣'
     }
     const counter = member.guild.memberCount.toString().split('').map(str => map[str]).join('')
     Guild.findOne({ _id: member.guild.id }, async (err, database) => {
@@ -33,7 +34,7 @@ class GuildMemberRemoveListener extends EventListener {
         await this.client.guilds.get(member.guild.id).channels.get(database.counterChannel).setTopic(database.counterMessage.replace('[counter]', counter))
       }
       if (database.leaveMessage === true && database.leaveMessageMessage !== null && database.leaveMessageChannel !== null) {
-        let values = {
+        const values = {
           'user-id': member.user.id,
           'user-avatar': member.user.displayAvatarURL,
           '@user': member.toString(),
@@ -44,7 +45,7 @@ class GuildMemberRemoveListener extends EventListener {
           'guild-icon': member.guild.iconURL
         }
         let text = database.leaveMessageMessage
-        for (let prop in values) {
+        for (const prop in values) {
           text = text.replace(`{${prop}}`, values[prop])
         }
         if (isJson(text)) {

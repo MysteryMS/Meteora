@@ -3,7 +3,7 @@ const splashy = require('splashy')
 const got = require('got')
 const moment = require('moment')
 
-const { RichEmbed } = require('discord.js')
+const { MessagEmbed } = require('discord.js')
 
 class SpotifyCommand extends Command {
   constructor () {
@@ -14,11 +14,12 @@ class SpotifyCommand extends Command {
     this.usage = '<ID>'
     this.category = 'Música'
   }
+
   async run (message, args) {
-    let embed = new RichEmbed()
-    let user = message.mentions.members.first() || message.guild.members.get(args[0]) || message.member
+    const embed = new MessagEmbed()
+    const user = message.mentions.members.first() || message.guild.members.get(args[0]) || message.member
     if (user.presence.game.name !== 'Spotify' || null) return message.reply('O usuário não está ouvindo nada!')
-    let spot = user.presence
+    const spot = user.presence
 
     embed.setTitle(`<:ispotefai:571513977717260288> Spotify de ${user.user.username}`)
     embed.setDescription(`🔠 **Nome da música**: ${spot.game.details}\n\n🎤 **Cantor(a)**: ${spot.game.state}\n\n📀 **Álbum**: ${spot.game.assets.largeText}\n\n🕘 **Duração**: ${moment(spot.game.timestamps.end).format('mm') - moment(spot.game.timestamps.start).format('mm')}:${moment(spot.game.timestamps.end).format('ss') - moment(spot.game.timestamps.start).format('ss')}\n\n\nOuça essa música clicando [aqui](${'https://open.spotify.com/track/' + spot.game.syncID})!`)

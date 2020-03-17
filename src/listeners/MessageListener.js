@@ -10,7 +10,7 @@ class MessageListener extends EventListener {
     if (message.mentions.users.has(this.client.user.id)) {
       Guild.findOne({ _id: message.guild.id }, (err, database) => {
         if (err) console.log(err)
-        let t = this.client.localeManager.getT(database.language)
+        const t = this.client.localeManager.getT(database.language)
         message.channel.send(t('descriptions:misc.botPing', { user: message.author, prefix: database.prefix }))
       })
     }

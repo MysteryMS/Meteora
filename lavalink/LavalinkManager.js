@@ -2,7 +2,7 @@ const { PlayerManager } = require('discord.js-lavalink')
 const { EventEmitter } = require('events')
 let nodes = require('../lavalinkNodes.json').hosts
 nodes = nodes.map(a => {
-  let obj = {}
+  const obj = {}
   obj.host = a
   obj.port = '2333'
   obj.password = 'youshallnotpass'
@@ -34,7 +34,7 @@ class Player extends EventEmitter {
   skip () {
     if (this.playlist === true) return this.loadPlaylist(this.playlistSongs)
     this.nowPlaying = ''
-    let nextSong = this.queue.shift()
+    const nextSong = this.queue.shift()
     if (!nextSong) return
     this.player.play(nextSong.track)
     return this.emit('playingNow', nextSong)
@@ -67,7 +67,7 @@ class Player extends EventEmitter {
         // loadPlaylist(this.playlistSongs)
       }
       if (this.repeat === true) return this.player.play(this.repeatTrack)
-      let nextSong = this.queue.shift()
+      const nextSong = this.queue.shift()
       if (!nextSong) return
       this.player.play(nextSong.track)
       this.emit('nowPlaying', nextSong)
@@ -77,13 +77,13 @@ class Player extends EventEmitter {
   }
 
   loadPlaylist (array) {
-    let song = array.shift()
+    const song = array.shift()
     if (!song) {
       this.player.playlist = false
       return this.player.stop()
     }
     getSongs(this.player.node, `ytsearch:${song}`).then(tracks => {
-      let songToPlay = tracks[0]
+      const songToPlay = tracks[0]
       if (!songToPlay) return
       this.player.play(songToPlay.track)
       this.emit('nowPlaying', songToPlay)
