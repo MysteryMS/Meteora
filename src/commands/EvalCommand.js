@@ -10,7 +10,7 @@ class EvalCommand extends Command {
   }
 
   async run (message, args) {
-    if (!['268526982222970880', '485837271967465472'].includes(message.author.id)) return
+    if (!['268526982222970880', '485837271967465472', '375627393773207554'].includes(message.author.id)) return
     const code = args.join(' ')
 
     try {
