@@ -1,6 +1,6 @@
 {
-  "name": "altair",
-  "version": "1.0.0",
+  "name": "meteora",
+  "version": "3.0.0",
   "description": "",
   "main": "app.js",
   "dependencies": {
@@ -36,7 +36,7 @@
   "scripts": {
     "start": "node app.js",
     "test": "standard --fix",
-    "update": "pm2 restart altair && pm2 logs altair"
+    "update": "pm2 restart meteora && pm2 logs meteora"
   },
   "author": "",
   "license": "MIT",

@@ -3,7 +3,7 @@ const splashy = require('splashy')
 const got = require('got')
 const moment = require('moment')
 
-const { MessagEmbed } = require('discord.js')
+const { MessageEmbed } = require('discord.js')
 
 class SpotifyCommand extends Command {
   constructor () {
@@ -16,7 +16,7 @@ class SpotifyCommand extends Command {
   }
 
   async run (message, args) {
-    const embed = new MessagEmbed()
+    const embed = new MessageEmbed()
     const user = message.mentions.members.first() || message.guild.members.get(args[0]) || message.member
     if (user.presence.game.name !== 'Spotify' || null) return message.reply('O usuário não está ouvindo nada!')
     const spot = user.presence

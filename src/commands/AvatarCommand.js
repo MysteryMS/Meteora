@@ -1,6 +1,6 @@
 const splashy = require('splashy')
 const got = require('got')
-const { MessagEmbed } = require('discord.js')
+const { MessageEmbed } = require('discord.js')
 const Command = require('../structures/Command')
 
 class AvatarCommand extends Command {
@@ -14,7 +14,7 @@ class AvatarCommand extends Command {
   }
 
   async run (message, args) {
-    const uEmbed = new MessagEmbed()
+    const uEmbed = new MessageEmbed()
     const user = message.mentions.users.first() || this.client.users.get(args[0]) || message.author
     uEmbed.setImage(user.displayAvatarURL({ type: 'png' }))
     uEmbed.setAuthor('Avatar de ' + user.username)

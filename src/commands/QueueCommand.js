@@ -1,5 +1,5 @@
 const Command = require('../structures/Command')
-const { MessagEmbed } = require('discord.js')
+const { MessageEmbed } = require('discord.js')
 const mss = require('pretty-ms')
 const info = require('yt-scraper')
 
@@ -13,7 +13,7 @@ class QueueCommand extends Command {
 
   async run (message, args, server, { t }) {
     if (!this.client.lavalinkManager.manager.has(message.guild.id) || this.client.player.get(message.guild.id).queue.length === 0) return message.reply(t('commands:music.noQueue'))
-    const embed = new MessagEmbed().setAuthor(`Fila de ${message.guild.name}`, message.guild.iconURL).setColor('#9dffe0')
+    const embed = new MessageEmbed().setAuthor(`Fila de ${message.guild.name}`, message.guild.iconURL).setColor('#9dffe0')
 
     if (this.client.player.get(message.guild.id).player.playlist === true) {
       server.playlist.get(this.client.player.get(message.guild.id).player.playlistId).forEach((a, i) => {

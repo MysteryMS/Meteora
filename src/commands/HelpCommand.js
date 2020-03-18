@@ -1,5 +1,5 @@
 const Command = require('../structures/Command')
-const { MessagEmbed } = require('discord.js')
+const { MessageEmbed } = require('discord.js')
 
 class HelpCommand extends Command {
   constructor () {
@@ -11,10 +11,10 @@ class HelpCommand extends Command {
   }
 
   async run (message, args, server, { t }) {
-    const music = new MessagEmbed()
-    const util = new MessagEmbed()
-    const dev = new MessagEmbed()
-    const serverm = new MessagEmbed()
+    const music = new MessageEmbed()
+    const util = new MessageEmbed()
+    const dev = new MessageEmbed()
+    const serverm = new MessageEmbed()
     this.client.commands.filter(c => c.category === 'Utils').forEach(a => util.setTitle(t('descriptions:helpEmbed.utilsCateg')) && util.addField(a.name, t(`descriptions:descriptions.${a.label}`)) && util.setColor('#ffa730') && util.setFooter(t('descriptions:helpEmbed.argsFooter')))
 
     this.client.commands.filter(c => c.category === 'Música').forEach(a => music.setTitle(t('descriptions:helpEmbed.musicCateg')) && music.addField(a.name, t(`descriptions:descriptions.${a.label}`)) && music.setColor('#4fa1ff') && music.setFooter(t('descriptions:helpEmbed.argsFooter')))

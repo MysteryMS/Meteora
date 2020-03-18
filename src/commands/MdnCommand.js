@@ -1,7 +1,7 @@
 const Command = require('../structures/Command')
 const Torn = require('turndown')
 const fetch = require('node-fetch')
-const { MessagEmbed } = require('discord.js')
+const { MessageEmbed } = require('discord.js')
 
 class MdnCommand extends Command {
   constructor () {
@@ -17,7 +17,7 @@ class MdnCommand extends Command {
     if (!body.Title || !body.Summary || !body.URL) return message.reply(t('commands:mdn.notFound', { search: args.join(' ') }))
     const summary = body.Summary.replace(/<code><strong>(.+)<\/strong><\/code>/g, '<strong><code>$1<\/code><\/strong>') //eslint-disable-line
     const turndown = new Torn()
-    const embed = new MessagEmbed()
+    const embed = new MessageEmbed()
       .setTitle(body.Title)
       .setURL(`https://developer.mozilla.org${body.URL}`)
       .setDescription(turndown.turndown(summary))

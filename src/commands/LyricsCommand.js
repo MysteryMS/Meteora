@@ -1,4 +1,4 @@
-const { MessagEmbed } = require('discord.js')
+const { MessageEmbed } = require('discord.js')
 const GeniusAPI = require('genius-api')
 const Lyricist = require('lyricist')
 const Command = require('../structures/Command')
@@ -29,7 +29,7 @@ class LyricsCommand extends Command {
       const primaryArtist = lyrics.primary_artist.name
       const otherArtists = (lyrics.producer_artists || []).map(a => a.name)
 
-      const embed = new MessagEmbed()
+      const embed = new MessageEmbed()
         .setAuthor(t('commands:lyrics.seeOnGenius'), 'https://yt3.ggpht.com/a/AGF-l78KfkxP3w_VPAOLVcIbHQaEfKoWpEDMpudm8g=s900-mo-c-c0xffffffff-rj-k-no', lyrics.url)
         .setDescription(`${t('commands:lyrics.music', { music: lyrics.title, artist: primaryArtist })} ${otherArtists.length === 0 ? '' : t('commands:lyrics.producers', { producers: otherArtists.join(', ') })} ${lyrics.album ? t('commands:lyrics.album', { album: lyrics.album.name }) : '(single)'}`)
         .setThumbnail(lyrics.song_art_image_url)

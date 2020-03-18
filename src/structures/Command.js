@@ -1,4 +1,4 @@
-const { MessagEmbed } = require('discord.js')
+const { MessageEmbed } = require('discord.js')
 
 class Command {
   constructor (label, aliases = []) {
@@ -98,7 +98,7 @@ class Command {
       const allLabels = [this.label]
       this.aliases.forEach((alias) => allLabels.push(alias))
       const unusedLabels = allLabels.filter((label) => label !== usedLabel)
-      const embed = new MessagEmbed()
+      const embed = new MessageEmbed()
       embed.setAuthor(message.author.tag, message.author.displayAvatarURL)
       embed.setTitle(':cyclone: `' + database.prefix + usedLabel + '`')
       embed.setDescription(t(`descriptions:descriptions.${this.label}`))

@@ -1,7 +1,7 @@
 const Command = require('../structures/Command')
 
 const { inspect } = require('util')
-const { MessagEmbed } = require('discord.js')
+const { MessageEmbed } = require('discord.js')
 
 class EvalCommand extends Command {
   constructor () {
@@ -19,7 +19,7 @@ class EvalCommand extends Command {
 
       message.channel.send(inspect(evaluated, { depth: 0 }), { code: 'js' })
     } catch (err) {
-      const embed = new MessagEmbed()
+      const embed = new MessageEmbed()
         .setTitle('Something went wrong.')
         .setDescription('```' + err.stack + '```')
         .setColor('#FF0000')

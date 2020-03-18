@@ -1,6 +1,6 @@
 const Command = require('../structures/Command')
 const guild = require('../../models/guild')
-const { MessagEmbed } = require('discord.js')
+const { MessageEmbed } = require('discord.js')
 
 class LanguageCommand extends Command {
   constructor () {
@@ -14,7 +14,7 @@ class LanguageCommand extends Command {
   async run (message, args, server, { t }) {
     guild.findOne({ _id: message.guild.id }, async (err, database) => {
       if (err) console.log(err)
-      message.channel.send(new MessagEmbed()
+      message.channel.send(new MessageEmbed()
         .setTitle(t('commands:language.title'))
         .setDescription(t('commands:language.description'))
         .addField(t('commands:language.portugueseField'), '​​​')
@@ -28,14 +28,14 @@ class LanguageCommand extends Command {
         collector.on('collect', async r => {
           switch (r.emoji.name) {
             case '🇧🇷':
-              await msg.edit(new MessagEmbed().setDescription('Agora irei falar em português!').setColor('#42f445'))
+              await msg.edit(new MessageEmbed().setDescription('Agora irei falar em português!').setColor('#42f445'))
               await msg.reactions.removeAll()
               database.language = 'pt-BR'
               database.save()
               break
 
             case '🇺🇸':
-              await msg.edit(new MessagEmbed().setDescription('Now I\'ll speak in English!').setColor('#db3939'))
+              await msg.edit(new MessageEmbed().setDescription('Now I\'ll speak in English!').setColor('#db3939'))
               await msg.reactions.removeAll()
               database.language = 'en-US'
               database.save()

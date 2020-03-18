@@ -2,7 +2,7 @@ const Command = require('../structures/Command')
 const pms = require('pretty-ms')
 const got = require('got')
 const splashy = require('splashy')
-const { MessagEmbed } = require('discord.js')
+const { MessageEmbed } = require('discord.js')
 const yt = require('youtube-info')
 
 class NowPlayingCommand extends Command {
@@ -22,7 +22,7 @@ class NowPlayingCommand extends Command {
       const { body } = await got(videoInfo.thumbnailUrl, { encoding: null })
       const palette = await splashy(body)
       if (err) console.log(err)
-      const embed = new MessagEmbed()
+      const embed = new MessageEmbed()
         .setTitle(message.guild.name)
         .addField('Música:', `[${p.nowPlaying.info.title}](${this.client.player.get(message.guild.id).nowPlaying.info.uri})`, true)
         .addField('Volume:', p.player.state.volume + '/100', true)
