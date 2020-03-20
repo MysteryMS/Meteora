@@ -11,7 +11,7 @@ class NowPlayingCommand extends Command {
     this.name = 'NowPlaying'
     this.description = 'Exibe informações da música que está sendo tocada no' +
       ' momento'
-    this.aliases = ['np', 'nowPlaying', 'playingnow', 'tocando', 'tocandoagora', 'tocandoagr']
+    this.aliases = ['np', 'nowPlaying', 'playMusic', 'tocando', 'tocandoagora', 'tocandoagr']
     this.category = 'Música'
   }
 

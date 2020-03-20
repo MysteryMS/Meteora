@@ -33,11 +33,10 @@ class Player extends EventEmitter {
 
   skip () {
     if (this.playlist === true) return this.loadPlaylist(this.playlistSongs)
-    this.nowPlaying = ''
     const nextSong = this.queue.shift()
     if (!nextSong) return
     this.player.play(nextSong.track)
-    return this.emit('playingNow', nextSong)
+    return this.emit('playMusic', nextSong)
   }
 
   setVolume (val) {
@@ -70,10 +69,10 @@ class Player extends EventEmitter {
       const nextSong = this.queue.shift()
       if (!nextSong) return
       this.player.play(nextSong.track)
-      this.emit('nowPlaying', nextSong)
+      this.emit('playMusic', nextSong)
     })
     this.player.play(track.track)
-    return this.emit('nowPlaying', track)
+    return this.emit('playMusic', track)
   }
 
   loadPlaylist (array) {
@@ -86,7 +85,7 @@ class Player extends EventEmitter {
       const songToPlay = tracks[0]
       if (!songToPlay) return
       this.player.play(songToPlay.track)
-      this.emit('nowPlaying', songToPlay)
+      this.emit('playMusic', songToPlay)
       this.player.once('end', (data) => {
         if (data.reason === 'REPLACED') return
         this.loadPlaylist(this.player.playlistSongs)

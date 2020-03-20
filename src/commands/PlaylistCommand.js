@@ -19,11 +19,11 @@ class PlaylistCommand extends Command {
         break
 
       case 'load':
-        if (!message.member.voiceChannelID) return message.reply(t('commands:music.noVoiceChannel'))
+        if (!message.member.voice.channelID) return message.reply(t('commands:music.noVoiceChannel'))
         if (!server.playlist) return message.reply(t('commands:playlist.noPlaylist'))
         const theMusic = server.playlist.get(`${args[1]}`)
         if (!theMusic) return message.reply(t('commands:playlist.notFound'))
-        const player = await this.client.lavalinkManager.join(message.member.voiceChannel.id)
+        const player = await this.client.lavalinkManager.join(message.member.voice.channelID)
 
         player.loadPlaylist(theMusic)
 
@@ -32,7 +32,7 @@ class PlaylistCommand extends Command {
         this.client.player.get(message.guild.id).player.playlist = true
         this.client.player.get(message.guild.id).player.playlistId = args[1]
 
-        player.on('nowPlaying', track => {
+        player.on('playMusic', track => {
           const a = this.client.localeManager.getT(server.language)
           message.channel.send(a('commands:music.nowPlaying', {
             trackInfo: track.info.title ? track.info.title : 'Sem Título',

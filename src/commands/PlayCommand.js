@@ -21,12 +21,12 @@ class PlayCommand extends Command {
         message.channel.send(t('commands:music.addQueue', { track: info.title ? info.title : 'Sem Título', duration: mss(info.length) }))
       })
     } else {
-      if (!message.member.voiceChannel) return message.reply(t('commands:music.noVoiceChannel'))
+      if (!message.member.voice.channelID) return message.reply(t('commands:music.noVoiceChannel'))
       if (!args[0]) {
         return message.reply(t('commands:music.noMusic'))
       }
-      const player = await this.client.lavalinkManager.join(message.member.voiceChannel.id)
-      player.on('nowPlaying', track => {
+      const player = await this.client.lavalinkManager.join(message.member.voice.channelID)
+      player.on('playMusic', track => {
         guild.findOne({ _id: message.guild.id }, (err, database) => {
           if (err) console.log(err)
           t = this.client.localeManager.getT(database.language)
