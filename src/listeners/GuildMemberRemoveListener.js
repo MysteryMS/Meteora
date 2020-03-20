@@ -31,7 +31,7 @@ class GuildMemberRemoveListener extends EventListener {
     Guild.findOne({ _id: member.guild.id }, async (err, database) => {
       if (err) console.log(err)
       if (database.counterChannel !== null && database.counterMessage !== null && database.counterOn === true) {
-        await this.client.guilds.get(member.guild.id).channels.get(database.counterChannel).setTopic(database.counterMessage.replace('[counter]', counter))
+        await this.client.guilds.cache.get(member.guild.id).channels.get(database.counterChannel).setTopic(database.counterMessage.replace('[counter]', counter))
       }
       if (database.leaveMessage === true && database.leaveMessageMessage !== null && database.leaveMessageChannel !== null) {
         const values = {
@@ -49,9 +49,9 @@ class GuildMemberRemoveListener extends EventListener {
           text = text.replace(`{${prop}}`, values[prop])
         }
         if (isJson(text)) {
-          this.client.guilds.get(member.guild.id).channels.get(database.leaveMessageChannel).send(JSON.parse(text))
+          this.client.guilds.cache.get(member.guild.id).channels.get(database.leaveMessageChannel).send(JSON.parse(text))
         } else {
-          this.client.guilds.get(member.guild.id).channels.get(database.leaveMessageChannel).send(text)
+          this.client.guilds.cache.get(member.guild.id).channels.get(database.leaveMessageChannel).send(text)
         }
       }
     })
