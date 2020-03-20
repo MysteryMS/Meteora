@@ -9,7 +9,7 @@ class SkipCommand extends Command {
   }
 
   async run (message, args, server, { t }) {
-    if (!this.client.lavalinkManager.manager.has(message.guild.id)) {
+    if (!this.client.lavalinkManager.manager.players.has(message.guild.id)) {
       return message.reply(t('commands:music.notPlaying'))
     }
     if (this.client.player.get(message.guild.id).repeat === true) {

@@ -12,7 +12,7 @@ class QueueCommand extends Command {
   }
 
   async run (message, args, server, { t }) {
-    if (!this.client.lavalinkManager.manager.has(message.guild.id) || this.client.player.get(message.guild.id).queue.length === 0) return message.reply(t('commands:music.noQueue'))
+    if (!this.client.lavalinkManager.manager.players.has(message.guild.id) || this.client.player.get(message.guild.id).queue.length === 0) return message.reply(t('commands:music.noQueue'))
     const embed = new MessageEmbed().setAuthor(`Fila de ${message.guild.name}`, message.guild.iconURL).setColor('#9dffe0')
 
     if (this.client.player.get(message.guild.id).player.playlist === true) {
