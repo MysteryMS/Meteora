@@ -29,7 +29,7 @@ class Altair extends Client {
       new Extensions(this).loadExtensions()
 
       this.info('Conectado ao websocket')
-      this.atenttion(`Conexão estabelecida com ${this.guilds.size} servidores`)
+      this.atenttion(`Conexão estabelecida com ${this.guilds.cache.size} servidores`)
     } catch (err) {
       this.error(`Erro!\n${err.stack}`)
     }
