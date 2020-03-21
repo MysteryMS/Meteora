@@ -19,8 +19,9 @@ class RewindCommand extends Command {
     if (parse(args[0]) > lavaPlayer.player.state.position) {
       return message.reply(t('commands:music.maxDuration'))
     }
-    lavaPlayer.player.seek(lavaPlayer.player.state.position - parse(args[0]))
-    return message.channel.send('⏪')
+    if (parse[0] === 0) return message.reply('couldn\'t')
+    await lavaPlayer.player.seek(lavaPlayer.player.state.position - parse(args[0]))
+    return message.channel.send(t('commands:rewind.rewound'))
   }
 }
 
