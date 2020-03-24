@@ -5,14 +5,14 @@ class LeaveCommand extends Command {
     super('leave')
     this.category = 'Música'
     this.name = 'Leave'
-    this.aliases = ['sair', 'quit']
+    this.aliases = ['sair', 'quit', 'disconnect']
   }
 
   async run (message, args, server, { t }) {
     if (!this.client.lavalinkManager.manager.players.has(message.guild.id)) return message.reply(t('commands:music.notPlaying'))
-    this.client.lavalinkManager.manager.leave(message.guild.id)
-    this.client.lavalinkManager.manager.delete(message.guild.id)
-    message.channel.send(t('commands:music.leave', { channel: message.guild.member(this.client.user).voiceChannel.name }))
+    await this.client.lavalinkManager.manager.leave(message.guild.id)
+    this.client.lavalinkManager.manager.players.delete(message.guild.id)
+    message.channel.send(t('commands:music.leave', { channel: message.guild.member(this.client.user).voice.channel.name }))
   }
 }
 
