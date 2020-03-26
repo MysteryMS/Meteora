@@ -16,9 +16,9 @@ class AvatarCommand extends Command {
   async run (message, args) {
     const uEmbed = new MessageEmbed()
     const user = message.mentions.users.first() || this.client.users.get(args[0]) || message.author
-    uEmbed.setImage(user.displayAvatarURL({ type: 'png' }))
+    uEmbed.setImage(user.displayAvatarURL({ format: 'png' }))
     uEmbed.setAuthor('Avatar de ' + user.username)
-    const url = user.displayAvatarURL({ type: 'png' })
+    const url = user.displayAvatarURL({ format: 'png' })
     const { body } = await got(url, { encoding: null })
     const palette = await splashy(body)
     uEmbed.setColor(palette[0])

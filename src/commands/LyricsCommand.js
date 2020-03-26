@@ -4,7 +4,7 @@ const Lyricist = require('lyricist')
 const Command = require('../structures/Command')
 
 const genius = new GeniusAPI(process.env.GENIUS_TOKEN)
-const lyricist = new Lyricist(process.env.GENIUS_TOKEN)
+const lyricist = new Lyricist('13i0JEHl3u8SKiH8jYhyNjjF6pcL5m2uuqUIoG75nbsx8F8p74b3EjD7oUeKJR79')
 
 class LyricsCommand extends Command {
   constructor () {

@@ -24,7 +24,7 @@
     "play": "Toque uma música a partir de uma URL ou buscando-a",
     "rewind": "Volta a música em um determinado tempo",
     "skip": "Pula a música atual",
-    "spotify": "Veja informações de uma música do spotify que algum usuário está ouvindo",
+    "spotify": "Veja informações de uma música do Spotify que algum usuário está ouvindo",
     "volume": "Altere o volume da música atual",
     "repeat": "Repete a música atual",
     "queue": "Mostra a fila de músicas do servidor",

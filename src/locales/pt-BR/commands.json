@@ -24,11 +24,12 @@
     "maxVolume": "O volume máximo é `150`!",
     "nan": "Seu argumento deve ser um número!",
     "volChanged": "Volume alterado para `{{volume}}/150`",
-    "repeatOn": "\uD83D\uDD02 – Repetindo a música atual... (`{{music}}`)",
-    "repeatOff": "🔁 – Voltando a tocar a playlist de música normalmente...",
+    "repeatOn": "\uD83D\uDD02 – Repetindo a música atual (`{{music}}`).",
+    "repeatOff": "🔁 – Voltando a tocar a playlist de música normalmente.",
     "noQueue": "Não há nada na fila!",
     "removedQueue": "{{track}} removida da fila",
-    "leave": "<:voiceleave:561612800804388914> – Saindo de `\uD83D\uDD08 {{channel}}`..."
+    "leave": "<:voiceleave:561612800804388914> – Saindo de `\uD83D\uDD08 {{channel}}`.",
+    "queue": "Fila de {{guild}}"
 
   },
   "language": {
