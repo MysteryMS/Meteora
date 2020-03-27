@@ -13,7 +13,6 @@ class PlayCommand extends Command {
   async run (message, args, server, { t }) {
     const mss = require('pretty-ms')
     if (!message.member.voice.channel) return message.reply(t('commands:music.noVoiceChannel'))
-
     if (!args[0]) return message.reply(t('commands:music.noMusic'))
 
     if (this.client.lavalinkManager.manager.players.has(message.guild.id)) {

@@ -18,9 +18,11 @@ class Altair extends Client {
       this.commands = []
       this.player = new Discord.Collection()
       this.lavalinkManager = new LavalinkManager(this)
-      await mongoose.connect('mongodb+srv://MysteryMS:xuxameneghel@altair-pclds.mongodb.net/test?retryWrites=true&w=majority', { useNewUrlParser: true }).then(() => this.info('🗄 – Database connection established'))
+      await mongoose.connect('mongodb+srv://MysteryMS:xuxameneghel@altair-pclds.mongodb.net/test?retryWrites=true&w=majority', { useNewUrlParser: true }).then(() => this.info('🔌  – Database connection established'))
       this.localeManager = new LocaleManager()
-
+      this.info('Attempting Lavalink connection')
+      this.lavalinkManager.manager.connect()
+        .catch(err => { this.error('[LAVALINK CONNECTION ERROR] '.brightRed + err) })
       await this.login(token)
 
       this.registerListeners()
@@ -28,10 +30,10 @@ class Altair extends Client {
 
       new Extensions(this).loadExtensions()
 
-      this.info('🔌 – Websocket connection established ')
-      this.headsup(`🧿 – Ongoing connection with ${this.guilds.cache.size} guilds`)
+      this.info('🔌  – Websocket connection established ')
+      this.headsup(`🧿  – Ongoing connection with ${this.guilds.cache.size} guilds`)
     } catch (err) {
-      this.error(`❌ – Failed to start application\n${err.stack}`)
+      this.error(`❌  – Failed to start application\n${err.stack}`)
     }
   }
 
@@ -58,11 +60,11 @@ class Altair extends Client {
   }
 
   headsup (msg, ...args) {
-    console.log(`[${'HEADS UP!'.underline.cyan}]`, msg, ...args)
+    console.log(`[${'HEADS UP!'.underline.bold.cyan}]`, msg, ...args)
   }
 
   info (msg, ...args) {
-    console.log(`[${'INFO'.bold.green}]`, msg, ...args)
+    console.log(`[${'INFO'.bold.white}]`, msg, ...args)
   }
 
   warn (msg, ...args) {

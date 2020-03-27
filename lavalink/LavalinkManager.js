@@ -1,5 +1,6 @@
-const { PlayerManager } = require('discord.js-lavalink')
+const { Manager } = require('@lavacord/discord.js')
 const { EventEmitter } = require('events')
+require('colors')
 let nodes = require('../lavalinkNodes.json').hosts
 nodes = nodes.map(a => {
   const obj = {}
@@ -71,6 +72,9 @@ class Player extends EventEmitter {
       this.player.play(nextSong.track)
       this.emit('playMusic', nextSong)
     })
+    this.player.on('error', (error) => {
+      console.log(`[LAVALINK ERROR]: ${error}`.green.bold)
+    })
     this.player.play(track.track)
     return this.emit('playMusic', track)
   }
@@ -97,21 +101,21 @@ class Player extends EventEmitter {
 module.exports = class LavalinkManager {
   constructor (client) {
     this.client = client
-    this.manager = new PlayerManager(client, nodes, {
-      shards: 1,
-      user: '464304679128530954'
+    this.manager = new Manager(client, nodes, {
+      user: '464304679128530954',
+      shards: 1
     })
   }
 
   getBestHost () {
-    return this.manager.nodes.array()[Math.floor(Math.random() * nodes.length)]
+    return nodes[Math.floor(Math.random() * nodes.length)]
   }
 
   async join (channel) {
     return new Player(await this.manager.join({
-      channel: channel,
       guild: this.client.channels.cache.get(channel).guild.id,
-      host: this.getBestHost().host
+      channel: channel,
+      node: this.getBestHost().host
     }, { selfdeaf: true }))
   }
 }
