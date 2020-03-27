@@ -21,9 +21,9 @@ class voiceStateListener extends EventListener {
       }
     }
     if (oldState.member.id === '464304679128530954') {
-      this.client.lavalinkManager.manager.players.delete(oldState.guild.id)
-      this.client.player.delete(oldState.guild.id)
-      this.client.lavalinkManager.manager.voiceServers.delete(oldState.guild.id)
+     // this.client.lavalinkManager.manager.players.delete(oldState.guild.id)
+      // this.client.player.delete(oldState.guild.id)
+     // this.client.lavalinkManager.manager.voiceServers.delete(oldState.guild.id)
     }
   }
 }
