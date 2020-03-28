@@ -1,14 +1,16 @@
 const { Manager } = require('@lavacord/discord.js')
 const { EventEmitter } = require('events')
 require('colors')
-let nodes = require('../lavalinkNodes.json').hosts
-nodes = nodes.map(a => {
-  const obj = {}
-  obj.host = a
-  obj.port = '2333'
-  obj.password = 'youshallnotpass'
-  return obj
-})
+const otherNodes = [{ host: '13.90.193.26', port: '2333', password: 'youshallnotpass', id: '1' }]
+// let nodes = require('../lavalinkNodes.json').hosts
+// nodes = nodes.map(a => {
+//   const obj = {}
+//   obj.host = a.ip.address
+//   obj.port = '2333'
+//   obj.password = 'youshallnotpass'
+//   obj.id = a.ip.id
+//   return obj
+// })
 
 class Player extends EventEmitter {
   constructor (player) {
@@ -73,7 +75,7 @@ class Player extends EventEmitter {
       this.emit('playMusic', nextSong)
     })
     this.player.on('error', (error) => {
-      console.log(`[LAVALINK ERROR]: ${error}`.green.bold)
+      console.log(`[LAVALINK ERROR]: ${error.stack}`.green.bold)
     })
     this.player.play(track.track)
     return this.emit('playMusic', track)
@@ -101,21 +103,21 @@ class Player extends EventEmitter {
 module.exports = class LavalinkManager {
   constructor (client) {
     this.client = client
-    this.manager = new Manager(client, nodes, {
+    this.manager = new Manager(client, otherNodes, {
       user: '464304679128530954',
       shards: 1
     })
   }
 
-  getBestHost () {
-    return nodes[Math.floor(Math.random() * nodes.length)]
-  }
+  // getBestHost () {
+  //   return nodes[Math.floor(Math.random() * nodes.length)]
+  // }
 
   async join (channel) {
     return new Player(await this.manager.join({
       guild: this.client.channels.cache.get(channel).guild.id,
       channel: channel,
-      node: this.getBestHost().host
+      node: otherNodes[0].id
     }, { selfdeaf: true }))
   }
 }
