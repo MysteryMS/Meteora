@@ -6,7 +6,7 @@
   "messages": {
     "langChanged": "Successfully changed language to {{language}}",
     "cantDm": "Seems like I can't DM you...",
-    "checkDm": "Check your DM!",
+    "checkDm": "Check your direct messages!",
     "invalidChannel": "I didn't find this channel on the server"
   },
   "music": {

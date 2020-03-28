@@ -5,6 +5,7 @@ class PlaylistCommand extends Command {
     super('playlist')
     this.name = 'Playlist'
     this.onlyOwner = true
+    this.category = 'music'
   }
 
   async run (message, args, server, { t }) {

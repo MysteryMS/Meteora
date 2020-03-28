@@ -12,7 +12,7 @@ class NowPlayingCommand extends Command {
     this.description = 'Exibe informações da música que está sendo tocada no' +
       ' momento'
     this.aliases = ['np', 'nowPlaying', 'playMusic', 'tocando', 'tocandoagora', 'tocandoagr']
-    this.category = 'Música'
+    this.category = 'music'
   }
 
   async run (message, args) {

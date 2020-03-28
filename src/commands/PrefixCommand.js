@@ -4,6 +4,7 @@ class PrefixCommand extends Command {
   constructor () {
     super('prefix')
     this.name = 'Prefix'
+    this.category = 'server'
   }
 
   async run (message, args, server, { t }) {

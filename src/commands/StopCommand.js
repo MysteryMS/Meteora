@@ -3,7 +3,7 @@ const Command = require('../structures/Command')
 class StopCommand extends Command {
   constructor () {
     super('stop')
-    this.category = 'Música'
+    this.category = 'music'
     this.name = 'Stop'
     this.aliases = ['parar']
   }

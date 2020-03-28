@@ -7,7 +7,7 @@ class PlayCommand extends Command {
     this.name = 'Play'
     this.description = 'Toque uma música usando um link ou buscando-a'
     this.usage = '<link/nome>'
-    this.category = 'Música'
+    this.category = 'music'
   }
 
   async run (message, args, server, { t }) {

@@ -4,7 +4,7 @@ class RemoveQueue extends Command {
   constructor () {
     super('removemusic')
     this.name = 'RemoveMusic'
-    this.category = 'Música'
+    this.category = 'music'
   }
 
   async run (message, args, server, { t }) {

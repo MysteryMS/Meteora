@@ -5,7 +5,7 @@ class InviteCommnd extends Command {
   constructor () {
     super('invite')
     this.name = 'Invite'
-    this.category = 'Utils'
+    this.category = 'utils'
     this.aliases = ['convite']
   }
 

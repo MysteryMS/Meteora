@@ -3,10 +3,12 @@ const parse = require('parse-duration')
 
 class ForwardCommand extends Command {
   constructor () {
-    super('foward')
-    this.name = 'Foward'
+    super('forward')
+    this.name = 'Forward'
     this.aliases = ['fwd']
+    this.category = 'music'
   }
+
   async run (message, args, server, { t }) {
     if (!this.client.lavalinkManager.manager.players.has(message.guild.id)) return message.reply(t('commands:music.notPlaying'))
     if (parse(args[0]) === 0) return message.reply(t('commands:forward.error'))

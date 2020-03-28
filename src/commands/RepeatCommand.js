@@ -5,7 +5,7 @@ class RepeatCommand extends Command {
     super('repeat')
     this.aliases = ['repetir', 'loop']
     this.name = 'Repeat'
-    this.category = 'Música'
+    this.category = 'music'
   }
 
   async run (message, args, server, { t }) {

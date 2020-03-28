@@ -5,10 +5,10 @@ const { MessageEmbed } = require('discord.js')
 class LanguageCommand extends Command {
   constructor () {
     super('language')
-    this.aliases = ['lang']
+    this.aliases = ['lang', 'idioma']
     this.name = 'Language'
     this.description = 'Altere a linguagem do bot!'
-    this.category = 'Gerenciamento do servidor'
+    this.category = 'server'
   }
 
   async run (message, args, server, { t }) {

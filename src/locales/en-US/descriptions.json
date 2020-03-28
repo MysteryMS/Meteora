@@ -1,11 +1,11 @@
 {
   "helpEmbed": {
     "argsFooter": "Use \uD83E\uDD37 as a command argument to see more info!",
-    "serverManagCateg": "Category: Server management",
-    "utilsCateg": "Category: Utils",
-    "musicCateg": "Category: Music",
-    "devCateg": "Category: Dev",
-    "invite": "Looking for something else? Join my server! https://discord.gg/f92jhpg"
+    "utilsCateg": "Utility",
+    "musicCateg": "Music",
+    "botCateg": "Bot",
+    "invite": "Found a bug? Need support? Have a suggestion? Join my support server! https://discord.gg/MfkVHGB",
+    "author:": "Hi there, {{user}}"
   },
   "descriptions": {
     "addemoji": "Add an emoji to your server by an URL",
@@ -15,12 +15,12 @@
     "counter": "Show the total members in your server in a chat topic",
     "discord": "See the Discord status",
     "eval": "Evaluates a code",
-    "help": "Altair's help command!",
+    "help": "Metora's help command!",
     "kick": "Kick someone from your server",
     "language": "Changes the bot language",
     "lyrics": "Shows a song's lyrics",
     "nowplaying": "Shows the information from the current music",
-    "ping": "Altair's response time",
+    "ping": "Meteora's response time",
     "play": "Play a song from an URL or searching it",
     "rewind": "Rewinds the current music",
     "skip": "Skips the current music",

@@ -10,6 +10,7 @@ class UserinfoCommand extends Command {
     this.name = 'Userinfo'
     this.aliases = ['ui', 'infouser', 'user']
     this.usage = '<@user/id>'
+    this.category = 'util'
   }
 
   async run (message, args, server, { t }) {

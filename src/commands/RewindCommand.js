@@ -8,7 +8,7 @@ class RewindCommand extends Command {
     this.name = 'Rewind'
     this.description = 'Volta a música em um determinado tempo'
     this.usage = '<tempo(s/m/h)>'
-    this.category = 'Música'
+    this.category = 'music'
   }
 
   async run (message, args, server, { t }) {

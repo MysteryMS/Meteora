@@ -1,11 +1,10 @@
 {
   "helpEmbed": {
-    "argsFooter": "Use \uD83E\uDD37 como argumento de um comando para ver mais informações!",
-    "serverManagCateg": "Categoria: Gerenciamento do servidor",
-    "utilsCateg": "Categoria: Utils",
-    "musicCateg": "Categoria: Música",
-    "devCateg": "Categoria: Dev",
-    "invite": "Procurando por algo a mais? Entre no meu servidor! https://discord.gg/f92jhpg"
+    "utilsCateg": "Utilidade",
+    "musicCateg": "Música",
+    "botCateg": "Bot",
+    "invite": "Encontrou um bug? Precisa de suporte? Tem uma sugestão? Entre no meu servidor de suporte! https://discord.gg/MfkVHGB",
+    "author": "Olá, {{user}}"
   },
   "descriptions": {
     "addemoji": "Adiciona um emoji ao seu servidor a partir de uma URL",
@@ -15,12 +14,12 @@
     "counter": "Mostra o número total de membros do seu servidor no tópico de um canal",
     "discord": "Veja os status do Discord",
     "eval": "Executa um código",
-    "help": "Comando de ajuda da Altair!",
+    "help": "Comando de ajuda da Meteora!",
     "kick": "Expulsa alguém do seu servidor",
     "language": "Muda o idioma do bot",
     "lyrics": "Mostra a letra de uma música",
     "nowplaying": "Mostra informações da música que está tocando",
-    "ping": "Tempo de resposta da Altair",
+    "ping": "Tempo de resposta da Meteora",
     "play": "Toque uma música a partir de uma URL ou buscando-a",
     "rewind": "Volta a música em um determinado tempo",
     "skip": "Pula a música atual",

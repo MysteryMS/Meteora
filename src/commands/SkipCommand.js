@@ -5,7 +5,7 @@ class SkipCommand extends Command {
     super('skip')
     this.name = 'Skip'
     this.description = 'Pula uma música'
-    this.category = 'Música'
+    this.category = 'music'
   }
 
   async run (message, args, server, { t }) {

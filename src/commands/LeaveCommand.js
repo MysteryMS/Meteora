@@ -5,7 +5,8 @@ class LeaveCommand extends Command {
     super('leave')
     this.category = 'Música'
     this.name = 'Leave'
-    this.aliases = ['sair', 'quit', 'disconnect']
+    this.aliases = ['sair', 'quit', 'disconnect', 'dc']
+    this.category = 'music'
   }
 
   async run (message, args, server, { t }) {

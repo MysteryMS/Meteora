@@ -7,7 +7,7 @@ class QueueCommand extends Command {
   constructor () {
     super('queue')
     this.name = 'Queue'
-    this.category = 'Música'
+    this.category = 'music'
     this.aliases = ['fila', 'q']
   }
 

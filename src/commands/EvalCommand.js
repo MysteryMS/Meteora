@@ -22,7 +22,7 @@ class EvalCommand extends Command {
       const embed = new MessageEmbed()
         .setTitle('Something went wrong.')
         .setDescription('```' + err.stack + '```')
-        .setColor('#FF0000')
+        .setColor('#c62b1d')
         .setTimestamp(new Date())
 
       message.channel.send({ embed })

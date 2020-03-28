@@ -6,30 +6,28 @@ class HelpCommand extends Command {
     super('help')
     this.name = 'Help'
     this.description = 'Comando de ajuda do bot!'
-    this.category = 'Utils'
+    this.category = 'util'
     this.aliases = ['ajuda']
   }
 
   async run (message, args, server, { t }) {
-    const music = new MessageEmbed()
-    const util = new MessageEmbed()
-    const dev = new MessageEmbed()
-    const serverm = new MessageEmbed()
-    this.client.commands.filter(c => c.category === 'Utils').forEach(a => util.setTitle(t('descriptions:helpEmbed.utilsCateg')) && util.addField(a.name, t(`descriptions:descriptions.${a.label}`)) && util.setColor('#ffa730') && util.setFooter(t('descriptions:helpEmbed.argsFooter')))
-
-    this.client.commands.filter(c => c.category === 'Música').forEach(a => music.setTitle(t('descriptions:helpEmbed.musicCateg')) && music.addField(a.name, t(`descriptions:descriptions.${a.label}`)) && music.setColor('#4fa1ff') && music.setFooter(t('descriptions:helpEmbed.argsFooter')))
-
-    this.client.commands.filter(c => c.category === 'Dev').forEach(a => dev.setTitle(t('descriptions:helpEmbed.devCateg')) && dev.addField(a.name, t(`descriptions:descriptions.${a.label}`)) && dev.setColor('#ff4648') && dev.setFooter(t('descriptions:helpEmbed.argsFooter')))
-
-    this.client.commands.filter(c => c.category === 'Gerenciamento do' +
-      ' servidor').forEach(a => serverm.setTitle(t('descriptions:helpEmbed.serverManagCateg')) && serverm.addField(a.name, t(`descriptions:descriptions.${a.label}`)) && serverm.setColor('#3eff92') && serverm.setFooter(t('descriptions:helpEmbed.argsFooter')))
-
-    await message.author.send(util).catch(err => message.reply(t('commands:messages.cantDm')) && console.log(err))
-    await message.author.send(dev)
-    await message.author.send(serverm)
-    await message.author.send(music)
+    const embed = new MessageEmbed()
+      .addField(`${t('descriptions:helpEmbed.utilsCateg')} (${this.getCommandSize('util', this)})`, this.getCategory('util', server.prefix, this))
+      .addField(`${t('descriptions:helpEmbed.musicCateg')} (${this.getCommandSize('music', this)})`, this.getCategory('music', server.prefix, this))
+      .addField(`${t('descriptions:helpEmbed.botCateg')} (${this.getCommandSize('server')})`, this.getCategory('server', server.prefix))
+      .setColor('#de3368')
+      .setAuthor(t('descriptions:helpEmbed.author', { user: message.author.username }), message.author.displayAvatarURL())
+    await message.author.send(embed).catch(() => message.channel.send(t('commands:messages.cantDm')))
     await message.author.send(t('descriptions:helpEmbed.invite'))
     await message.reply(t('commands:messages.checkDm'))
+  }
+
+  getCommandSize (category) {
+    return this.client.commands.filter(c => c.category === category).length
+  }
+
+  getCategory (category, prefix) {
+    return this.client.commands.filter(c => c.category === category).map(c => `\`${prefix}${c.label}\``).join(', ')
   }
 }
 
