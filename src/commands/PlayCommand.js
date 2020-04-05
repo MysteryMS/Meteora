@@ -7,6 +7,7 @@ class PlayCommand extends Command {
     this.name = 'Play'
     this.description = 'Toque uma música usando um link ou buscando-a'
     this.usage = '<link/nome>'
+    this.aliases = ["p"]
     this.category = 'music'
     this.botPermissions = ['CONNECT', 'SPEAK']
   }
