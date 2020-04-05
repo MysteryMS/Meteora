@@ -1,5 +1,4 @@
 const Command = require('../structures/Command')
-const guild = require('../../models/guild')
 const { MessageEmbed } = require('discord.js')
 
 class LanguageCommand extends Command {
