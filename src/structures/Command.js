@@ -48,8 +48,8 @@ class Command {
 
           if (missingMemberPermissions.length !== 0) { // ;w;
             if (missingMemberPermissions.length === 1) {
-            message.reply(t('descriptions:structures.singlePermission', { permissions: missingMemberPermissions.join(', ')}))
-            return true
+              message.reply(t('descriptions:structures.singlePermission', { permissions: missingMemberPermissions.join(', ') }))
+              return true
             }
             if (missingMemberPermissions.length > 1) {
               message.reply(t('descriptions:structures.multiPermissions', { permissions: missingMemberPermissions.join(', ') }))
