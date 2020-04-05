@@ -9,6 +9,7 @@ class QueueCommand extends Command {
     this.name = 'Queue'
     this.category = 'music'
     this.aliases = ['fila', 'q']
+    this.botPermissions = ['ADD_REACTIONS']
   }
 
   async run (message, args, server, { t }) {
@@ -35,7 +36,7 @@ class QueueCommand extends Command {
           msg.reactions.cache.get(r.emoji.name).users.remove(message.author.id)
         }
         if (r.emoji.name === '⏹️') {
-          this.client.lavalinkManager.manager.players.get(message.guild.id).stop()
+          this.client.player.get(message.guild.id).player.stop()
           message.channel.send(t('commands:music.stop'))
           collector.stop()
           msg.reactions.removeAll()
