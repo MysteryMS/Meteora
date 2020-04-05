@@ -5,7 +5,7 @@ class VolumeCommand extends Command {
     super('volume')
     this.name = 'Volume'
     this.category = 'music'
-    this.aliases = ['vl']
+    this.aliases = ['vl', "vol"]
     this.explain = '<volume>'
   }
 
