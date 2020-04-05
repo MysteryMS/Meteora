@@ -18,7 +18,7 @@ class Altair extends Client {
       this.commands = []
       this.player = new Discord.Collection()
       this.lavalinkManager = new LavalinkManager(this)
-      await mongoose.connect('mongodb+srv://MysteryMS:xuxameneghel@altair-pclds.mongodb.net/test?retryWrites=true&w=majority', { useNewUrlParser: true }).then(() => this.info('🔌  – Database connection established'))
+      await mongoose.connect('mongodb://meteora:oaUKzwfSahrcl9k7@altair-shard-00-00-pclds.mongodb.net:27017,altair-shard-00-01-pclds.mongodb.net:27017,altair-shard-00-02-pclds.mongodb.net:27017/test?ssl=true&replicaSet=Altair-shard-0&authSource=admin&retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true }).then(() => this.info('🔌  – Database connection established')).catch(e => this.error(e))
       this.localeManager = new LocaleManager()
       this.info('Attempting Lavalink connection')
       this.lavalinkManager.manager.connect()

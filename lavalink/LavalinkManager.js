@@ -65,17 +65,17 @@ class Player extends EventEmitter {
   _play (track) {
     this.player.on('end', (data) => {
       if (data.reason === 'REPLACED') return
-      if (this.player.playlist === true) {
+      if (this.player.playlist) {
         // loadPlaylist(this.playlistSongs)
       }
-      if (this.repeat === true) return this.player.play(this.repeatTrack)
+      if (this.repeat) return this.player.play(this.repeatTrack)
       const nextSong = this.queue.shift()
       if (!nextSong) return
       this.player.play(nextSong.track)
       this.emit('playMusic', nextSong)
     })
     this.player.on('error', (error) => {
-      console.log(`[LAVALINK ERROR]: ${error.stack}`.green.bold)
+      console.log(`[LAVALINK ERROR]: ${error}`.green.bold)
     })
     this.player.play(track.track)
     return this.emit('playMusic', track)

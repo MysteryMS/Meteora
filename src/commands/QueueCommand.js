@@ -23,7 +23,28 @@ class QueueCommand extends Command {
     }
     const player = this.client.player.get(message.guild.id)
     player.queue.forEach((track, i) => embed.addField(`${i + 1} – ${track.info.title}`, mss(track.info.length)))
-    await message.channel.send(embed)
+    await message.channel.send(embed).then(async (msg) => {
+      const filter = (reaction, user) => ['⏭️', '⏹️'].includes(reaction.emoji.name) && user.id === message.author.id
+      const collector = msg.createReactionCollector(filter, { time: 20000 })
+      await msg.react('⏭️')
+      await msg.react('⏹️')
+      collector.on('collect', r => {
+        if (r.emoji.name === '⏭️') {
+          this.client.player.get(message.guild.id).skip()
+          message.channel.send(t('commands:music.skipped'))
+          msg.reactions.cache.get(r.emoji.name).users.remove(message.author.id)
+        }
+        if (r.emoji.name === '⏹️') {
+          this.client.lavalinkManager.manager.players.get(message.guild.id).stop()
+          message.channel.send(t('commands:music.stop'))
+          collector.stop()
+          msg.reactions.removeAll()
+        }
+      })
+      collector.on('end', () => {
+        msg.reactions.removeAll()
+      })
+    })
   }
 }
 

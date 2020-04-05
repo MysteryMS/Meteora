@@ -47,8 +47,14 @@ class Command {
           const missingMemberPermissions = this.memberPermissions.filter((permission) => !message.member.hasPermission(permission))
 
           if (missingMemberPermissions.length !== 0) { // ;w;
-            message.reply(t('descriptions:structures.noPerm'))
+            if (missingMemberPermissions.length === 1) {
+            message.reply(t('descriptions:structures.singlePermission', { permissions: missingMemberPermissions.join(', ')}))
             return true
+            }
+            if (missingMemberPermissions.length > 1) {
+              message.reply(t('descriptions:structures.multiPermissions', { permissions: missingMemberPermissions.join(', ') }))
+              return true
+            }
           }
 
           const missingBotPermissions = this.botPermissions.filter((permission) => !message.guild.me.hasPermission(permission))

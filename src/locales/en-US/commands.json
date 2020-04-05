@@ -28,7 +28,8 @@
     "noQueue": "There's nothing in the queue!",
     "removedQueue": "{{track}} removed from queue",
     "leave": "<:voiceleave:561612800804388914> – Disconnecting from `\uD83D\uDD08 {{channel}}`.",
-    "queue": "{{guild}}'s queue"
+    "queue": "{{guild}}'s queue",
+    "noResults": "I did not found any musics. Please try a new search!"
   },
   "language": {
     "successfullyChanged": "Language changed to {{language}}",

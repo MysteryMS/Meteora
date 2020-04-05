@@ -8,6 +8,7 @@ class PlayCommand extends Command {
     this.description = 'Toque uma música usando um link ou buscando-a'
     this.usage = '<link/nome>'
     this.category = 'music'
+    this.botPermissions = ['CONNECT', 'SPEAK']
   }
 
   async run (message, args, server, { t }) {
@@ -17,6 +18,7 @@ class PlayCommand extends Command {
 
     if (this.client.lavalinkManager.manager.players.has(message.guild.id)) {
       this.client.player.get(message.guild.id).play(args.join(' ')).then(info => {
+        if (!info) return message.reply(t('commands:music.noResults'))
         message.channel.send(t('commands:music.addQueue', { track: info.title ? info.title : 'Sem Título', duration: mss(info.length) }))
       })
     } else {

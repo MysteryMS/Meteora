@@ -40,8 +40,9 @@
     "botPing": "Olá {{user}}! Meu prefixo nesse servidor é `{{prefix}}`! Use `{{prefix}}ajuda` para obter uma lista com os meus comandos!"
   },
   "structures": {
-    "botNoPerm": "Eu não consigo executar este comando pois eu preciso das permissões {{permissions}}!",
-    "noPerm": "Você não tem permissão para executar este comando!",
+    "botNoPerm": "Eu não consigo executar este comando pois eu preciso das seguintes permissões: `{{permissions}}`.",
+    "singlePermission": "Você precisa da permissão `{{permissions}}` para executar esse comando.",
+    "multiPermissions": "Você precisa das seguintes permissões para executar esse comando: `{{permissions}}`.",
     "error": "<:erro_tick:558836213554085908> **|** {{member}} Um erro inesperado ocorreu na execução deste comando!\n{{err}}",
     "embedHowUse": ":interrobang: Como usar?",
     "embedAliases": ":twisted_rightwards_arrows: Alternativas",

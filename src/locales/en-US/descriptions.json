@@ -42,7 +42,8 @@
   },
   "structures": {
     "botNoPerm": "I can't execute this command because I need the permissions `{{permissions}}`!",
-    "noPerm": "You don't have permission to execute this command",
+    "singlePermission": "In order to execute this command you must have the `{{permissions}}` permission.",
+    "multiPermissions": "In order to execute this command you must have the following permissions: `{{permissions}}`.",
     "error": "<:erro_tick:558836213554085908> **|** {{member}} An unexpected error occurred during the execution of this command!\n{{err}}",
     "embedHowUse": ":interrobang: How to use?",
     "embedAliases": ":twisted_rightwards_arrows: Aliases",
