@@ -75,7 +75,7 @@ class Player extends EventEmitter {
       this.emit('playMusic', nextSong)
     })
     this.player.on('error', (error) => {
-      console.log(`[LAVALINK ERROR]: ${error}`.green.bold)
+      console.log('[LAVALINK ERROR]'.green.bold, error)
     })
     this.player.play(track.track)
     return this.emit('playMusic', track)
@@ -119,6 +119,10 @@ module.exports = class LavalinkManager {
       channel: channel,
       node: otherNodes[0].id
     }, { selfdeaf: true }))
+  }
+
+  async search (query) {
+    return getSongs(otherNodes[0], `ytsearch:${query}`)
   }
 }
 

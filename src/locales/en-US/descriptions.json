@@ -49,6 +49,7 @@
     "embedAliases": ":twisted_rightwards_arrows: Aliases",
     "noAliases": "No aliases.",
     "executed": "Executed",
+    "betaCommand": "Sorry, you cannot use this command (for now)...",
     "allMembersLeft": "<:voiceleave:561612800804388914> – All members have been left from the voice channel, disconnecting from `\uD83D\uDD08 {{channel}}`!"
   },
   "commands": {

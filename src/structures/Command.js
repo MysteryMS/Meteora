@@ -7,6 +7,7 @@ class Command {
     this.usage = ''
     this.onlyOwner = false
     this.description = ''
+    this.beta = false
     this.category = ''
     this.memberPermissions = []
     this.botPermissions = []
@@ -68,6 +69,10 @@ class Command {
             message.reply(t('descriptions:structures.noPerm'))
             return true
           }
+          if (this.beta && message.author.id !== process.env.OWNER_ID) {
+            message.reply(t('descriptions:structures.betaCommand'))
+            return true
+          }
 
           if (args[0] === '🤷') {
             this.explain(message)
@@ -105,7 +110,7 @@ class Command {
       this.aliases.forEach((alias) => allLabels.push(alias))
       const unusedLabels = allLabels.filter((label) => label !== usedLabel)
       const embed = new MessageEmbed()
-      embed.setAuthor(message.author.tag, message.author.displayAvatarURL)
+      embed.setAuthor(message.author.tag, message.author.displayAvatarURL())
       embed.setTitle(':cyclone: `' + database.prefix + usedLabel + '`')
       embed.setDescription(t(`descriptions:descriptions.${this.label}`))
       embed.addField(t('descriptions:structures.embedHowUse'), `\`${database.prefix + usedLabel} ${this.usage}\``, false)
