@@ -31,12 +31,13 @@ class QueueCommand extends Command {
       await msg.react('⏹️')
       collector.on('collect', r => {
         if (r.emoji.name === '⏭️') {
-          this.client.player.get(message.guild.id).skip()
+          player.skip()
           message.channel.send(t('commands:music.skipped'))
           msg.reactions.cache.get(r.emoji.name).users.remove(message.author.id)
         }
         if (r.emoji.name === '⏹️') {
-          this.client.player.get(message.guild.id).player.stop()
+          player.queue[0] = undefined
+          player.player.stop()
           message.channel.send(t('commands:music.stop'))
           collector.stop()
           msg.reactions.removeAll()

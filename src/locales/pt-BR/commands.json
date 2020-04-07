@@ -140,10 +140,18 @@
   },
   "rewind": {
     "rewound": "⏪ – Música retrocedida",
-    "error": "Eu não consegui retroceder a música."
+    "error": "Não foi possível retroceder a música.",
+    "moreThanZero": "O tempo para retroceder deve ser maior que 0"
   },
   "forward": {
     "forwarded": "⏩ – Música avançada",
-    "error": "Eu não consegui avançar a música."
+    "error": "Não foi possível avançar a música.",
+    "moreThanZero": "O tempo para avançar deve ser maior que 0"
+  },
+  "search": {
+    "noQuery": "Escreva algo para pesquisar.",
+    "results": "Resultados para {{query}}",
+    "sendNumber": "Envie o número da música que você deseja tocar",
+    "invalidNumber": "O número deve estar entre 1 e 9"
   }
 }

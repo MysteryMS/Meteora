@@ -1,11 +1,9 @@
 const Command = require('../structures/Command')
-const mss = require('pretty-ms')
 class PlaylistCommand extends Command {
   constructor () {
     super('playlist')
     this.name = 'Playlist'
     this.onlyOwner = true
-    this.category = 'music'
   }
 
   async run (message, args, server, { t }) {
@@ -29,19 +27,9 @@ class PlaylistCommand extends Command {
         player.loadPlaylist(theMusic)
 
         this.client.player.set(message.guild.id, player)
-        this.client.player.get(message.guild.id).player.playlistSongs = theMusic
-        this.client.player.get(message.guild.id).player.playlist = true
-        this.client.player.get(message.guild.id).player.playlistId = args[1]
-
-        player.on('playMusic', track => {
-          const a = this.client.localeManager.getT(server.language)
-          message.channel.send(a('commands:music.nowPlaying', {
-            trackInfo: track.info.title ? track.info.title : 'Sem Título',
-            trackDuration: mss(track.info.length)
-          }))
-          this.client.player.get(message.guild.id).nowPlaying = track
-          this.client.player.get(message.guild.id).messageChannel = message.channel.id
-        })
+        player.playlistSongs = theMusic
+        player.playlist = true
+        player.playlistId = args[1]
         break
       }
 

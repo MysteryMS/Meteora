@@ -1,16 +1,9 @@
 const { Manager } = require('@lavacord/discord.js')
 const { EventEmitter } = require('events')
+const guild = require('../models/guild')
+const pms = require('pretty-ms')
 require('colors')
 const otherNodes = [{ host: '13.90.193.26', port: '2333', password: 'youshallnotpass', id: '1' }]
-// let nodes = require('../lavalinkNodes.json').hosts
-// nodes = nodes.map(a => {
-//   const obj = {}
-//   obj.host = a.ip.address
-//   obj.port = '2333'
-//   obj.password = 'youshallnotpass'
-//   obj.id = a.ip.id
-//   return obj
-// })
 
 class Player extends EventEmitter {
   constructor (player) {
@@ -18,7 +11,7 @@ class Player extends EventEmitter {
     this.player = player
     this.queue = []
     this.nowPlaying = ''
-    this.messageChannel = ''
+    this.channel = {}
     this.repeatTrack = ''
     this.repeat = false
     this.playlistSongs = []
@@ -42,17 +35,8 @@ class Player extends EventEmitter {
     return this.emit('playMusic', nextSong)
   }
 
-  setVolume (val) {
-    if (val > 100) val = 100
-    return this.player.volume(val)
-  }
-
   seek (pos) {
     return this.player.seek(pos)
-  }
-
-  pause () {
-    return this.player.paused ? this.player.resume() : this.player.pause()
   }
 
   _addToQueue (track) {
@@ -62,12 +46,26 @@ class Player extends EventEmitter {
     return this.queue.push(track)
   }
 
+  playNow (query) {
+    getSongs(this.player.node, `ytsearch:${query}`).then(results => {
+      if (!results[0]) return null
+      this._play(results[0])
+      return results[0].info
+    })
+  }
+
   _play (track) {
+    this.on('playMusic', async (track) => {
+      const lang = await guild.findOne({ _id: this.channel.guild.id })
+      const t = this.player.manager.client.localeManager.getT(lang.language)
+      this.nowPlaying = track
+      return this.channel.send(t('commands:music.nowPlaying', {
+        trackInfo: track.info.title,
+        trackDuration: pms(track.info.length)
+      }))
+    })
     this.player.on('end', (data) => {
       if (data.reason === 'REPLACED') return
-      if (this.player.playlist) {
-        // loadPlaylist(this.playlistSongs)
-      }
       if (this.repeat) return this.player.play(this.repeatTrack)
       const nextSong = this.queue.shift()
       if (!nextSong) return

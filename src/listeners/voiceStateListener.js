@@ -12,7 +12,7 @@ class voiceStateListener extends EventListener {
     if (this.client.lavalinkManager.manager.players.has(oldState.guild.id)) {
       if (oldState.channelID === this.client.lavalinkManager.manager.voiceStates.get(oldState.guild.id).channel_id) {
         if (oldState.channel.members.size === 1) {
-          this.client.channels.cache.get(this.client.player.get(oldState.guild.id).messageChannel).send(t('descriptions:structures.allMembersLeft', { channel: oldState.channel.name }))
+          this.client.player.get(oldState.guild.id).channel.send(t('descriptions:structures.allMembersLeft', { channel: oldState.channel.name }))
           await this.client.lavalinkManager.manager.leave(oldState.guild.id)
           this.client.lavalinkManager.manager.players.delete(oldState.guild.id)
           this.client.player.delete(oldState.guild.id)

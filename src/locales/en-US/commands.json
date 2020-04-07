@@ -138,11 +138,19 @@
   },
   "rewind": {
     "rewound": "⏪ – Music rewound",
-    "error": "I could not rewind the music."
+    "error": "I could not rewind the music.",
+    "moreThanZero": "The time to rewind must be higher than 0"
   },
   "forward": {
     "forwarded": "⏩ – Music forwarded",
-    "error": "I could not forward the music."
+    "error": "I could not forward the music.",
+    "moreThanZero": "The time to forward must be higher than 0"
+  },
+  "search": {
+    "noQuery": "Write something to search.",
+    "results": "Search results for {{query}}",
+    "sendNumber": "Send the music number you would like to play",
+    "invalidNumber": "The number must be between 1 and 9"
   }
 
 }

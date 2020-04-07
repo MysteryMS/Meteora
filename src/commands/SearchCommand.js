@@ -5,11 +5,13 @@ const pms = require('pretty-ms')
 class SearchCommand extends Command {
   constructor () {
     super('search')
-    this.beta = true
+    this.aliases = ['pesquisar', 'procurar']
+    this.name = 'Search'
+    this.category = 'music'
   }
 
   async run (message, args, server, { t }) {
-    if (!args) return message.reply('escreve porra')
+    if (!args) return message.reply(t('commands:search.noQuery'))
     const emojiMappings = {
       1: '1️⃣',
       2: '2️⃣',
@@ -22,19 +24,26 @@ class SearchCommand extends Command {
       9: '9️⃣'
     }
     this.client.lavalinkManager.search(args.join(' ')).then(async response => {
-      if (!message.member.voice.channel) return message.reply('vc precisa estar no vc')
+      if (!message.member.voice.channel) return message.reply(t('commands:music.noVoiceChannel'))
       await message.channel.send(new MessageEmbed()
-        .setTitle(`Search results for "${args.join(' ')}"`)
-        .setDescription(response.map((a, i) => `**${emojiMappings[i + 1]}** → \`${a.info.title}\` **[${a.info.author}]** *(${pms(a.info.length)})*\n`).slice(0, 9))
+        .setTitle(t('commands:search.results', { query: args.join(' ') }))
+        .setDescription(response.map((a, i) => `${emojiMappings[i + 1]} → ${a.info.title} **[${a.info.author}]** \`(${pms(a.info.length)})\`\n`).slice(0, 9))
         .setColor('#ff413f')
       )
-      await message.reply('Send the music number you would like to play.')
+      await message.reply(t('commands:search.sendNumber'))
       const filter = (m) => (m.author.id === message.author.id)
       const collector = message.channel.createMessageCollector(filter, { time: 15000 })
       collector.on('collect', async (m) => {
-        if (isNaN(Number(m.content))) return message.reply('vc tem q por um numero seu imbecil..')
-        if (Number(m.content) > 9 || Number(m.content) < 1) return message.reply('eh entre 1 e 9')
+        if (isNaN(Number(m.content))) return
+        if (Number(m.content) > 9 || Number(m.content) < 1) return message.reply(t('commands:search.invalidNumber'))
+        if (this.client.player.has(message.guild.id)) {
+          this.client.player.get(message.guild.id).play(response[m.content - 1].info.identifier).then(info => {
+            if (!info) return message.reply(t('commands:music.noResults'))
+            message.channel.send(t('commands:music.addQueue', { track: info.title, duration: pms(info.length) }))
+          })
+        }
         const player = await this.client.lavalinkManager.join(message.member.voice.channelID)
+        player.channel = message.channel
         player.play(response[m.content - 1].info.identifier)
         collector.stop()
         this.client.player.set(message.guild.id, player)
