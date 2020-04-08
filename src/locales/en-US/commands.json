@@ -31,42 +31,18 @@
     "queue": "{{guild}}'s queue",
     "noResults": "I did not found any musics. Please try a new search!"
   },
+  "play": {
+    "usage": "<music>"
+  },
+  "volume": {
+    "usage": "<volume>"
+  },
   "language": {
     "successfullyChanged": "Language changed to {{language}}",
     "portugueseField": ":flag_br: Portuguese",
     "englishField": ":flag_us: English",
     "title": "Choose a language",
     "description": "Available languages:"
-  },
-  "counter": {
-    "firstTimeID": "You must provide the channel ID when activating it for the first time!",
-    "invalidChannel": "I didn't find this channel in the server",
-    "firstActive": "<a:selena:529838831147417620> Counter activated in <#{{channel}}>",
-    "activated": "<a:selena:529838831147417620> Counter activated",
-    "firstTimeDeactivating": "You must activate the counter for the first time before deactivate it",
-    "deactivated": "<a:selena:529838831147417620> Counter deactivated",
-    "firstTimeChangingChannel": "You must activate the counter for the first time before change the channel!",
-    "channelChanged": "<a:selena:529838831147417620> Counter channel changed to <#{{channel}}>"
-  },
-  "join": {
-    "noMessage": "You must write a message",
-    "noChannel": "You must specify the channel ID where the messages will be sent",
-    "successfullyActivated": "<a:selena:529838831147417620> Welcome messages activated in {{channel}}, with the message `{{message}}`",
-    "deactivated": "<a:selena:529838831147417620> Welcome messages deactivated",
-    "activated": "<a:selena:529838831147417620> Welcome messages activated",
-    "needFirstAct": "You must activate the module for the first time before change something",
-    "channelChanged": "<a:selena:529838831147417620> Welcome messages channel's changed to `{{channel}}`",
-    "messageChanged": "<a:selena:529838831147417620> Welcome messages message's changed to {{message}}"
-  },
-  "leave": {
-    "noMessage": "You must write a message",
-    "noChannel": "You must specify the channel ID where the messages wil be sent",
-    "successfullyActivated": "<a:selena:529838831147417620> Leave messages activated in {{channel}}, with the message `{{message}}`",
-    "deactivated": "<a:selena:529838831147417620> Leave messages deactivated",
-    "activated": "<a:selena:529838831147417620> Leave messages activated",
-    "needFirstAct": "You must activate the module for the first time before change something",
-    "channelChanged": "<a:selena:529838831147417620> Leave message channel's changed to {{channel}}",
-    "messageChanged": "<a:selena:529838831147417620> Leave message message's changed to {{message}}"
   },
   "lyrics": {
     "embedTitle": "See lyrics em genius.com",
@@ -75,25 +51,8 @@
     "music": "Showing lyrics of `{{music}}`, by `{{artist}}`",
     "notFound": "I didn't found this song lyrics...",
     "noArgs": "You must provide the name of the music",
-    "seeOnGenius": "See in genius.com"
-  },
-  "kick": {
-    "message": "User {{user}} `({{tag}} - {{id}})` kicked by {{kickedBy}}, with the reason `{{reason}}`.",
-    "noReason": "No Reason",
-    "cantKick": "I cant't kick this user, perhaps my roles are below them...",
-    "justCant": "You can't kick this user!"
-  },
-  "ban": {
-    "message": "User {{user}} `({{tag}} - {{id}})` banned by {{kickedBy}}, with the reason `{{reason}}`.",
-    "noReason": "No reason",
-    "cantBan": "I can't ban this user, perhaps my roles are below them...",
-    "justCant": "You can't ban this user!",
-    "audit":" Banned by {{user}}. Reason {{reason}}"
-  },
-  "unban": {
-    "message": "User `{{user}}` unbanned from the server by {{author}}",
-    "error": "Something went wrong while unbanning this user. Maybe this ban doesn't exist!",
-    "noUser": "You must provide the user to be unbanned!"
+    "seeOnGenius": "See in genius.com",
+    "usage": "<track-name>"
   },
   "inviteMessage": "Wanna invite me to you server? Awesome! Just click [here]({{link}}) to open the link in an external browser.",
   "userinfo": {
@@ -108,24 +67,13 @@
     "botUser": "<:botTag:618594972903538708> Showing information about {{user}}"
   },
   "mdn": {
-    "noArgs": "Supply something to search on MDN",
+    "usage": "<search-query>",
     "notFound": "Requested information `{{search}}` not found. Sorry."
-  },
-  "channel": {
-  "invalid": "Invalid channel or not supplied!",
-  "noArgs": "Supply the new channel's name.",
-  "renamedTo": "Channel renamed to `{{channel}}`.",
-    "created": "Created channel `{{channel}}`."
-},
-  "analyzeText": {
-    "invalid": "This text couldn't be analyzed, I'm sorry.",
-    "analyzed": "`\uD83D\uDE2D Sadness:` {{sadness}}\n`\uD83D\uDE02 Joy:` {{joy}}\n`\uD83D\uDE1F Fear:` {{fear}}\n`\uD83E\uDD22 Disgust:` {{disgust}}\n`\uD83D\uDCA2 Anger:` {{anger}}",
-    "text": "\uD83D\uDD20 - Analyzed Text: `{{text}}`"
   },
   "prefix": {
     "changed": "Successfully changed prefix to `{{prefix}}`!",
     "maxLength": "The prefix has a maximum length of 4 characters.",
-    "noArgs": "Argue the new prefix."
+    "usage": "<prefix>"
   },
   "playlist": {
     "onlyOne": "Currently, servers can have only one playlist.",
@@ -147,10 +95,13 @@
     "moreThanZero": "The time to forward must be higher than 0"
   },
   "search": {
-    "noQuery": "Write something to search.",
+    "usage": "<search-query>",
     "results": "Search results for {{query}}",
     "sendNumber": "Send the music number you would like to play",
     "invalidNumber": "The number must be between 1 and 9"
+  },
+  "lastfm": {
+    "usage": "<user>"
   }
 
 }

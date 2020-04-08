@@ -8,6 +8,7 @@ class SearchCommand extends Command {
     this.aliases = ['pesquisar', 'procurar']
     this.name = 'Search'
     this.category = 'music'
+    this.usage = 'search'
   }
 
   async run (message, args, server, { t }) {

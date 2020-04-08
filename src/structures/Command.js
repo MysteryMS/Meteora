@@ -69,9 +69,8 @@ class Command {
             message.reply(t('descriptions:structures.noPerm'))
             return true
           }
-          if (this.beta && message.author.id !== process.env.OWNER_ID) {
+          if (this.beta) {
             message.reply(t('descriptions:structures.betaCommand'))
-            return true
           }
 
           if (args[0] === '🤷') {
@@ -100,29 +99,26 @@ class Command {
 
   async explain (message) {
     const guild = require('../../models/guild')
-    guild.findOne({ _id: message.guild.id }, (err, database) => {
-      const t = this.client.localeManager.getT(database.language)
-      if (err) console.log(err)
-      const splitted = message.content.split(' ')
+    const server = await guild.findOne({ _id: message.guild.id })
+    const t = this.client.localeManager.getT(server.language)
+    const splitted = message.content.split(' ')
+    const usedLabel = splitted[0].replace(server.prefix, '')
+    const allLabels = [this.label]
+    this.aliases.forEach((alias) => allLabels.push(alias))
+    const unusedLabels = allLabels.filter((label) => label !== usedLabel)
+    const embed = new MessageEmbed()
+    embed.setAuthor(message.author.tag, message.author.displayAvatarURL())
+    embed.setTitle('🔤 `' + server.prefix + usedLabel + '`')
+    embed.setDescription(t(`descriptions:descriptions.${this.label}`))
+    embed.addField(t('descriptions:structures.embedHowUse'), `\`${server.prefix + usedLabel} ${t(`commands:${this.usage}.usage`)}\``, false)
+    embed.addField(t('descriptions:structures.embedAliases'), `${!this.aliases ? unusedLabels.map((label) => '`' + server.prefix + label + '`').join(', ') : t('descriptions:structures.noAliases')}`, false)
 
-      const usedLabel = splitted[0].replace(database.prefix, '')
-      const allLabels = [this.label]
-      this.aliases.forEach((alias) => allLabels.push(alias))
-      const unusedLabels = allLabels.filter((label) => label !== usedLabel)
-      const embed = new MessageEmbed()
-      embed.setAuthor(message.author.tag, message.author.displayAvatarURL())
-      embed.setTitle(':cyclone: `' + database.prefix + usedLabel + '`')
-      embed.setDescription(t(`descriptions:descriptions.${this.label}`))
-      embed.addField(t('descriptions:structures.embedHowUse'), `\`${database.prefix + usedLabel} ${this.usage}\``, false)
-      embed.addField(t('descriptions:structures.embedAliases'), `${!this.aliases ? unusedLabels.map((label) => '`' + database.prefix + label + '`').join(', ') : t('descriptions:structures.noAliases')}`, false)
+    embed.setColor('#1e1e1e')
 
-      embed.setColor('#650b29')
+    embed.setFooter(t('descriptions:structures.executed'))
+    embed.setTimestamp(new Date())
 
-      embed.setFooter(t('descriptions:structures.executed'))
-      embed.setTimestamp(new Date())
-
-      message.channel.send({ embed })
-    })
+    message.channel.send({ embed })
   }
 }
 

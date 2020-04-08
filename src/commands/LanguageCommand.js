@@ -9,6 +9,7 @@ class LanguageCommand extends Command {
     this.description = 'Altere a linguagem do bot!'
     this.category = 'server'
     this.memberPermissions = ['MANAGE_GUILD']
+    this.usage = 'language'
   }
 
   async run (message, args, server, { t }) {

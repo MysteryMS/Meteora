@@ -7,6 +7,7 @@ class ForwardCommand extends Command {
     this.name = 'Forward'
     this.aliases = ['fwd', 'avançar']
     this.category = 'music'
+    this.usage = 'forward'
   }
 
   async run (message, args, server, { t }) {

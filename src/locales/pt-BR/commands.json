@@ -31,7 +31,12 @@
     "leave": "<:voiceleave:561612800804388914> – Saindo de `\uD83D\uDD08 {{channel}}`.",
     "queue": "Fila de {{guild}}",
     "noResults": "Não encontrei nenhuma música. Por favor, tente uma nova pesquisa!"
-
+  },
+  "play": {
+    "usage": "<música>"
+  },
+  "volume": {
+    "usage": "<volume>"
   },
   "language": {
     "successfullyChanged": "Linguagem alterada para {{language}}",
@@ -76,26 +81,8 @@
     "album": "do álbum `{{album}}`",
     "music": "Exibindo letra de `{{music}}`, por `{{artist}}`",
     "notFound": "Não achei a letra dessa musica...",
-    "noArgs": "Você deve colocar o nome da música",
+    "usage": "<música>",
     "seeOnGenius": "Ver em genius.com"
-  },
-  "kick": {
-    "message": "Usuário {{user}} `({{tag}} - {{id}})` expulso por {{kickedBy}}, com a razão `{{reason}}`",
-    "noReason": "Nenhuma razão",
-    "cantKick": "Não posso expulsar esse usuário, talvez meus cargos estejam abaixo dele...",
-    "justCant": "Você não pode expulsar esse usuário!"
-  },
-  "ban": {
-    "message": "Usuário {{user}} `({{tag}} - {{id}})` banido por {{bannedBy}}, com a razão `{{reason}}`",
-    "noReason": "Nenhuma razão",
-    "cantBan": "Não posso banir esse usuário, talvez meus cargos estejam abaixo dele...",
-    "justCant": "Você não pode expulsar esse usuário!",
-    "audit": "Banido por {{kickedBy}}. Motivo: {{reason}}"
-  },
-  "unban": {
-    "message": "Usuário `{{user}}` desbanido do servidor por {{author}}",
-    "error": "Algo de errado ocorreu ao tentar desbanir esse usuário. Talvez esse banimento não exista!",
-    "noUser": "Você precisa colocar o usuário a ser desbanido!"
   },
   "inviteMessage": "Quer me convidar pro seu servidor? Lugar certo! Clique [aqui]({{link}}) para abrir o meu convite em um navegador externo.",
   "userinfo": {
@@ -110,7 +97,7 @@
     "botUser": "<:botTag:618594972903538708> Exibindo informações de {{user}}"
   },
   "mdn": {
-    "noArgs": "Escreva algo para procurar no MDN",
+    "usage": "<argumento-de-pesquisa",
     "notFound": "Informação `{{search}}` não encontrada."
   },
   "channel": {
@@ -127,7 +114,7 @@
   "prefix": {
     "changed": "Prefixo alterado para `{{prefix}}`!",
     "maxLength": "O prefixo tem um limite de 4 caracteres.",
-    "noArgs": "Especifique o novo prefixo."
+    "usage": "<pefixo>"
   },
   "playlist": {
     "onlyOne": "Atualmente, servidores podem conter apenas uma playlist.",
@@ -149,9 +136,12 @@
     "moreThanZero": "O tempo para avançar deve ser maior que 0"
   },
   "search": {
-    "noQuery": "Escreva algo para pesquisar.",
+    "usage": "<argumento-de-pesquisa>",
     "results": "Resultados para {{query}}",
     "sendNumber": "Envie o número da música que você deseja tocar",
     "invalidNumber": "O número deve estar entre 1 e 9"
+  },
+  "lastfm": {
+    "usage": "<usuário>"
   }
 }

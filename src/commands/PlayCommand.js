@@ -5,7 +5,7 @@ class PlayCommand extends Command {
     super('play')
     this.name = 'Play'
     this.description = 'Toque uma música usando um link ou buscando-a'
-    this.usage = '<link/nome>'
+    this.usage = 'play'
     this.aliases = ['p']
     this.category = 'music'
     this.botPermissions = ['CONNECT', 'SPEAK']
@@ -13,8 +13,8 @@ class PlayCommand extends Command {
 
   async run (message, args, server, { t }) {
     const mss = require('pretty-ms')
+    if (!args[0]) return this.explain(message)
     if (!message.member.voice.channel) return message.reply(t('commands:music.noVoiceChannel'))
-    if (!args[0]) return message.reply(t('commands:music.noMusic'))
     if (this.client.lavalinkManager.manager.players.has(message.guild.id)) {
       this.client.player.get(message.guild.id).play(args.join(' ')).then(info => {
         if (!info) return message.reply(t('commands:music.noResults'))

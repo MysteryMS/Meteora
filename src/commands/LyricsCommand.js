@@ -14,12 +14,11 @@ class LyricsCommand extends Command {
     this.aliases = ['letra', 'lyric']
     this.description = 'Exibe a letra de uma música'
     this.category = 'music'
+    this.usage = 'lyrics'
   }
 
   async run (message, args, server, { t }) {
-    if (!args[0]) {
-      return message.channel.send(t('commands:lyrics.noArgs'))
-    }
+    if (!args[0]) return this.explain(message)
     genius.search(args.join(' ')).then(async (response) => {
       if (!response || !response.hits || !response.hits[0]) return message.channel.send(t('commands:lyrics.notFound'))
 
