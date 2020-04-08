@@ -70,7 +70,7 @@ class Player extends EventEmitter {
       const nextSong = this.queue.shift()
       if (!nextSong) return
       this.player.play(nextSong.track)
-      this.emit('playMusic', nextSong)
+      return this.emit('playMusic', nextSong)
     })
     this.player.on('error', (error) => {
       console.log('[LAVALINK ERROR]'.green.bold, error)

@@ -101,6 +101,7 @@
     "invalidNumber": "The number must be between 1 and 9"
   },
   "lastfm": {
+    "nullUser": "I didn't find this user",
     "usage": "<user>"
   }
 
