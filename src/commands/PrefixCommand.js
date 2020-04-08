@@ -5,6 +5,7 @@ class PrefixCommand extends Command {
     super('prefix')
     this.name = 'Prefix'
     this.category = 'server'
+    this.memberPermissions = ['MANAGE_GUILD']
   }
 
   async run (message, args, server, { t }) {
