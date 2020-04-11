@@ -5,7 +5,7 @@
     "musicCateg": "Music",
     "botCateg": "Bot",
     "invite": "Found a bug? Need support? Have a suggestion? Join my support server! https://discord.gg/J2wCMUJ",
-    "author:": "Hi there, {{user}}"
+    "author": "Hi there, {{user}}"
   },
   "descriptions": {
     "avatar": "See someone's profile picture!",
