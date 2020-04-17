@@ -1,6 +1,6 @@
 {
   "user": {
-    "noUserMention": "Please mention an user or provide it's ID",
+    "noUserMention": "Please mention an user or provide their ID",
     "invalidUser": "Invalid user"
 },
   "messages": {
@@ -12,13 +12,11 @@
   "music": {
     "skipped": "⏭ – Music skipped!",
     "stop": "\u23F9 – Player stopped and queue deleted",
-    "pause": "Player paused",
-    "resume": "Resuming music...",
     "addQueue": "<:queuemusic:571414423152099328> – `{{track}}` ({{duration}}) added to queue",
     "noVoiceChannel": "You must be in a voice channel to execute this command",
     "noMusic": "You must provide the music which I'm gonna play.",
     "nowPlaying": "<a:cd:521088033664270336> – Now Playing: `{{trackInfo}} ` ({{trackDuration}})",
-    "notPlaying": "I'm not playing.",
+    "notPlaying": "There is nothing playing",
     "maxDuration": "The time cannot be higher than actual music length",
     "maxVolume": "The maximum volume is `150`!",
     "nan": "Your argument must be a number!",
@@ -96,13 +94,30 @@
   },
   "search": {
     "usage": "<search-query>",
-    "results": "Search results for {{query}}",
-    "sendNumber": "Send the music number you would like to play",
+    "results": "Search results for `{{query}}`",
+    "sendNumber": "Choose a number between 1 and 10 according to the results",
     "invalidNumber": "The number must be between 1 and 9"
   },
   "lastfm": {
     "nullUser": "I didn't find this user",
-    "usage": "<user>"
+    "usage": "<user>",
+    "profile": "{{user}}'s profile",
+    "nowPlaying": "{{user}} is **now playing** `{{track}}`, by `{{artist}}` on `{{album}}`",
+    "notPlaying": "{{user}} is not listening",
+    "recentTracks": "\uD83D\uDD59 Recently played tracks"
+  },
+  "nowPlaying": {
+    "noMusic": "There is nothing playing",
+    "music": "Music:",
+    "artist": "Artist:",
+    "author": "Author",
+    "length": "Length"
+  },
+  "playPause": {
+    "paused": "⏸️ – Music paused",
+    "alreadyPaused": "The track is already paused",
+    "resume":"▶ – Resuming music",
+    "alreadyPlaying": "The music is already playing"
   }
 
 }

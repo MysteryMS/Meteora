@@ -15,8 +15,8 @@ class NowPlayingCommand extends Command {
     this.category = 'music'
   }
 
-  async run (message, args) {
-    if (this.client.player.get(message.guild.id).nowPlaying === '') return message.reply('Não há nada tocando!')
+  async run (message, args, server, { t }) {
+    if (this.client.player.get(message.guild.id).nowPlaying === '') return message.reply(t('commands:nowPlaying.noMusic'))
     const p = this.client.player.get(message.guild.id)
     yt(this.client.player.get(message.guild.id).nowPlaying.info.identifier, async (err, videoInfo) => {
       const { body } = await got(videoInfo.thumbnailUrl, { encoding: null })
@@ -24,10 +24,10 @@ class NowPlayingCommand extends Command {
       if (err) console.log(err)
       const embed = new MessageEmbed()
         .setTitle(message.guild.name)
-        .addField('Música:', `[${p.nowPlaying.info.title}](${this.client.player.get(message.guild.id).nowPlaying.info.uri})`, true)
+        .addField(t('commands:nowPlaying.music'), `[${p.nowPlaying.info.title}](${this.client.player.get(message.guild.id).nowPlaying.info.uri})`, true)
         .addField('Volume:', p.player.state.volume + '/100', true)
-        .addField('Autor:', p.nowPlaying.info.author)
-        .addField('Duração:', pms(p.player.state.position) + '/' + pms(p.nowPlaying.info.length), true)
+        .addField(t('commands:nowPlaying.author'), p.nowPlaying.info.author)
+        .addField(t('commands:nowPlaying.length'), pms(p.player.state.position) + '/' + pms(p.nowPlaying.info.length), true)
         .setImage(videoInfo.thumbnailUrl)
         .setColor(palette[0])
       await message.channel.send(embed)

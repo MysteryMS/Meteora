@@ -6,8 +6,7 @@ class LastfmCommand extends Command {
   constructor () {
     super('lastfm')
     this.name = 'LastFM'
-    this.category = 'beta'
-    this.beta = true
+    this.category = 'music'
     this.usage = 'lastfm'
   }
 
@@ -19,14 +18,14 @@ class LastfmCommand extends Command {
     const usersongsRes = await fetch(`http://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=${args[0].toLowerCase()}&api_key=afb11275992190009c27cad73bd65129&format=json`)
     const userSongs = await usersongsRes.json()
     const currentTrack = userSongs.recenttracks.track[0]
-    if (!currentTrack) return message.reply('nao achou..')
-    const recentTracks = userSongs.recenttracks.track.slice(currentTrack['@attr'] ? 1 : 0, 11).map(t => `\`${t.name}\` - [${t.artist['#text']}]`)
+    if (!currentTrack) return message.reply(t('commands:lastfm.nullUser'))
+    const recentTracks = userSongs.recenttracks.track.slice(currentTrack['@attr'] ? 1 : 0, 10).map(t => `\`${t.name}\` - ${t.artist['#text']}`)
 
-    const nowplayingTrack = currentTrack['@attr'] ? `${user.user.name} is **now playing** \`${currentTrack.name}\`, on \`${currentTrack.album['#text']}\` by \`${currentTrack.artist['#text']}\`` : `${user.user.name} is not listening at the moment.`
+    const nowplayingTrack = currentTrack['@attr'] ? t('commands:lastfm.nowPlaying', { user: user.user.name, track: currentTrack.name, album: currentTrack.album['#text'], artist: currentTrack.artist['#text'] }) : t('commands:lastfm.notPlaying', { user: user.user.name })
     const userEmbed = new MessageEmbed()
-      .setAuthor(`${user.user.name}'s Profile`, user.user.image[1]['#text'], user.user.url)
+      .setAuthor(t('commands:lastfm.profile', { user: user.user.name }), user.user.image[1]['#text'], user.user.url)
       .setDescription(nowplayingTrack)
-      .addField('Recent played tracks', recentTracks)
+      .addField(t('commands:lastfm.recentTracks'), recentTracks)
       .setColor('#d31f27')
       .setFooter('Last.fm', 'https://pt.seaicons.com/wp-content/uploads/2015/06/last.fm-icon.png')
     // eslint-disable-next-line no-unused-expressions

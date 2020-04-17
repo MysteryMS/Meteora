@@ -19,7 +19,7 @@
     "noVoiceChannel": "Você precisa estar em um canal de voz para executar esse comando.",
     "noMusic": "Você precisa colocar o nome da música",
     "nowPlaying": "<a:cd:521088033664270336> – Tocando Agora: `{{trackInfo}} ` ({{trackDuration}})",
-    "notPlaying": "Não estou tocando nada.",
+    "notPlaying": "Não há nada tocando",
     "maxDuration": "O tempo não pode ser maior do que a duração atual da música.",
     "maxVolume": "O volume máximo é `150`!",
     "nan": "Seu argumento deve ser um número!",
@@ -142,7 +142,25 @@
     "invalidNumber": "O número deve estar entre 1 e 9"
   },
   "lastfm": {
-    "nullUser": "I didn't found this user",
-    "usage": "<usuário>"
+    "nullUser": "Não encontrei esse usuário",
+    "usage": "<usuário>",
+    "profile": "Perfil de {{user}}",
+    "nowPlaying": "{{user}} **está ouvindo** `{{track}}`, por `{{artist}}` do álbum `{{album}}`",
+    "notPlaying": "{{user}} não está ouvindo nada",
+    "recentTracks": "\uD83D\uDD59 Faixas tocadas recentemente"
+  },
+  "nowPlaying": {
+    "noMusic": "Não há nada tocando",
+    "music": "Música:",
+    "artist": "Artista:",
+    "author": "Autor",
+    "length": "Duração"
+  },
+  "playPause": {
+    "paused": "⏸️ – Música pausada",
+    "alreadyPaused": "A música já está pausada",
+    "resume":"▶ – Resumindo música",
+    "alreadyPlaying": "A música já está tocando"
   }
+
 }

@@ -5,7 +5,8 @@ const guilds = new mongoose.Schema({
   name: String,
   language: String,
   prefix: String,
-  playlist: Map
+  playlist: Map,
+  djRole: String
 })
 
 module.exports = mongoose.model('guilds', guilds)

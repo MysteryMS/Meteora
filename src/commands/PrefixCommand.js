@@ -6,10 +6,11 @@ class PrefixCommand extends Command {
     this.name = 'Prefix'
     this.category = 'server'
     this.memberPermissions = ['MANAGE_GUILD']
+    this.usage = 'prefix'
   }
 
   async run (message, args, server, { t }) {
-    if (!args.length) return message.reply(t('commands:prefix.noArgs'))
+    if (!args[0]) return this.explain(message)
     if (args[0].split('').length >= 4) return message.reply(t('commands:prefix.maxLength'))
     server.prefix = args[0]
     server.save().then(message.reply(t('commands:prefix.changed', { prefix: args[0] })))

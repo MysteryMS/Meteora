@@ -73,7 +73,7 @@ class Player extends EventEmitter {
       return this.emit('playMusic', nextSong)
     })
     this.player.on('error', (error) => {
-      console.log('[LAVALINK ERROR]'.green.bold, error)
+      console.log(error)
     })
     this.player.play(track.track)
     return this.emit('playMusic', track)
