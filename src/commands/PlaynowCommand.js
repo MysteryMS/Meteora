@@ -12,7 +12,7 @@ class PlaynowCommand extends Command {
   async run (message, args, server, { t }) {
     if (!args[0]) return this.explain(message)
     if (this.client.lavalinkManager.manager.players.has(message.guild.id)) {
-      if (message.member.voice.channelID) return message.reply(t('commands:music.noVoiceChannel'))
+      if (!message.member.voice.channelID) return message.reply(t('commands:music.noVoiceChannel'))
       this.client.player.get(message.guild.id).playNow(args.join(' '))
     } else {
       if (!message.member.voice.channelID) return message.reply(t('commands:music.noVoiceChannel'))
