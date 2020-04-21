@@ -9,7 +9,6 @@ class MdnCommand extends Command {
     this.name = 'MDN'
     this.usage = 'mdn'
     this.category = 'util'
-    this.usage = 'mdn'
   }
 
   async run (message, args, server, { t }) {
