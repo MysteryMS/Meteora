@@ -110,8 +110,8 @@
   },
   "nowPlaying": {
     "noMusic": "Não há nada tocando",
-    "music": "Música:",
-    "artist": "Artista:",
+    "music": "Música",
+    "artist": "Artista",
     "author": "Autor",
     "length": "Duração"
   },
