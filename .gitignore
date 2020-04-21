@@ -3,5 +3,5 @@
 .idea/
 .env
 test.js
-.vscode/
 ./dashboard
+/.vscode/

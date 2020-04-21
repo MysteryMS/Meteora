@@ -8,7 +8,7 @@ const mongoose = require('mongoose')
 const LocaleManager = require('./utils/LocaleManager')
 const Extensions = require('./utils/Extensions')
 
-class Altair extends Client {
+class Meteora extends Client {
   constructor (options = {}) {
     super(options)
   }
@@ -18,7 +18,7 @@ class Altair extends Client {
       this.commands = []
       this.player = new Discord.Collection()
       this.lavalinkManager = new LavalinkManager(this)
-      await mongoose.connect('mongodb://meteora:oaUKzwfSahrcl9k7@altair-shard-00-00-pclds.mongodb.net:27017,altair-shard-00-01-pclds.mongodb.net:27017,altair-shard-00-02-pclds.mongodb.net:27017/test?ssl=true&replicaSet=Altair-shard-0&authSource=admin&retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true }).then(() => this.info('🔌  – Database connection established')).catch(e => this.error(e))
+      await mongoose.connect('mongodb://meteora:oaUKzwfSahrcl9k7@altair-shard-00-00-pclds.mongodb.net:27017,altair-shard-00-01-pclds.mongodb.net:27017,altair-shard-00-02-pclds.mongodb.net:27017/test?ssl=true&replicaSet=Meteora-shard-0&authSource=admin&retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true }).then(() => this.info('🔌  – Database connection established')).catch(e => this.error(e))
       this.localeManager = new LocaleManager()
       this.dashboardMaintenance = false
       this.info('Attempting Lavalink connection')
@@ -78,4 +78,4 @@ class Altair extends Client {
   }
 }
 
-module.exports = Altair
+module.exports = Meteora

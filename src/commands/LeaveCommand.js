@@ -10,7 +10,7 @@ class LeaveCommand extends Command {
   }
 
   async run (message, args, server, { t }) {
-    if (!this.client.lavalinkManager.manager.players.has(message.guild.id)) return message.reply(t('commands:music.notPlaying'))
+    if (!message.guild.me.voice.channel) return message.reply(t('commands:music.notPlaying'))
     await this.client.lavalinkManager.manager.leave(message.guild.id)
     this.client.lavalinkManager.manager.players.delete(message.guild.id)
     this.client.player.delete(message.guild.id)

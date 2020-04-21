@@ -1,10 +1,8 @@
 const { MessageEmbed } = require('discord.js')
-const GeniusAPI = require('genius-api')
 const Lyricist = require('lyricist')
 const Command = require('../structures/Command')
-
-const genius = new GeniusAPI(process.env.GENIUS_TOKEN)
-const lyricist = new Lyricist('13i0JEHl3u8SKiH8jYhyNjjF6pcL5m2uuqUIoG75nbsx8F8p74b3EjD7oUeKJR79')
+const fetch = require('node-fetch')
+const lyricist = new Lyricist(process.env.GENIUS_TOKEN)
 
 class LyricsCommand extends Command {
   constructor () {
@@ -19,10 +17,15 @@ class LyricsCommand extends Command {
 
   async run (message, args, server, { t }) {
     if (!args[0]) return this.explain(message)
-    genius.search(args.join(' ')).then(async (response) => {
-      if (!response || !response.hits || !response.hits[0]) return message.channel.send(t('commands:lyrics.notFound'))
+    const query = args.splice(1).join(' ')
+    fetch(`https://api.genius.com/search?q=${query}`, {
+      method: 'get',
+      headers: { Authorization: `Bearer ${process.env.GENIUS_TOKEN}` }
+    }).then(async r => {
+      const response = await r.json()
+      if (!response.response.hits) return message.channel.send(t('commands:lyrics.notFound'))
 
-      const lyrics = await lyricist.song(response.hits[0].result.id, { fetchLyrics: true })
+      const lyrics = await lyricist.song(response.response.hits[0].result.id, { fetchLyrics: true })
       if (!lyrics) message.channel.send(t('commands:lyrics.notFound'))
 
       const primaryArtist = lyrics.primary_artist.name
@@ -32,13 +35,10 @@ class LyricsCommand extends Command {
         .setAuthor(t('commands:lyrics.seeOnGenius'), 'https://yt3.ggpht.com/a/AGF-l78KfkxP3w_VPAOLVcIbHQaEfKoWpEDMpudm8g=s900-mo-c-c0xffffffff-rj-k-no', lyrics.url)
         .setDescription(`${t('commands:lyrics.music', { music: lyrics.title, artist: primaryArtist })} ${otherArtists.length === 0 ? '' : t('commands:lyrics.producers', { producers: otherArtists.join(', ') })} ${lyrics.album ? t('commands:lyrics.album', { album: lyrics.album.name }) : '(single)'}`)
         .setThumbnail(lyrics.song_art_image_url)
-        .setColor('#f0f400')
+        .setColor('#fdfa3e')
         .setURL(lyrics.url)
         .setFooter(primaryArtist, lyrics.primary_artist.image_url)
-
-      // await message.channel.send(embed)
-
-      message.channel.send(`${lyrics.lyrics}`, { split: true })
+      message.channel.send(`${lyrics.lyrics}`, { split: true, code: 'ini' })
       message.channel.send(embed)
     })
   }

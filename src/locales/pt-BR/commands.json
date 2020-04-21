@@ -21,16 +21,17 @@
     "nowPlaying": "<a:cd:521088033664270336> – Tocando Agora: `{{trackInfo}} ` ({{trackDuration}})",
     "notPlaying": "Não há nada tocando",
     "maxDuration": "O tempo não pode ser maior do que a duração atual da música.",
-    "maxVolume": "O volume máximo é `150`!",
-    "nan": "Seu argumento deve ser um número!",
+    "maxVolume": "O volume máximo é `150`.",
+    "nan": "Seu argumento deve ser um número.",
     "volChanged": "Volume alterado para `{{volume}}/150`",
     "repeatOn": "\uD83D\uDD02 – Repetindo a música atual (`{{music}}`).",
     "repeatOff": "🔁 – Tocando a playlist de música normalmente.",
     "noQueue": "Não há nada na fila!",
-    "removedQueue": "{{track}} removida da fila",
+    "removedQueue": "🚮 – Faixa `{{track}}` removida da fila",
     "leave": "<:voiceleave:561612800804388914> – Saindo de `\uD83D\uDD08 {{channel}}`.",
     "queue": "Fila de {{guild}}",
-    "noResults": "Não encontrei nenhuma música. Por favor, tente uma nova pesquisa!"
+    "noResults": "Não encontrei nenhuma música. Por favor, tente uma nova pesquisa!",
+    "usage": "remove <número-da-faixa>"
   },
   "play": {
     "usage": "<música>"
@@ -44,26 +45,6 @@
     "englishField": ":flag_us: Inglês",
     "title": "Escolha uma linguagem",
     "description": "Linguagens disponíveis:"
-  },
-  "counter": {
-    "firstTimeID": "Você precisa colocar o ID do canal quando estiver ativando pela primeira vez!",
-    "invalidChannel": "Não encontrei esse canal no servidor.",
-    "firstActive": "<a:selena:529838831147417620> Contador ativado em <#{{channel}}>",
-    "activated": "<a:selena:529838831147417620> Contador ativado",
-    "firstTimeDeactivating": "Você precisa ativar o contador pela primeira vez antes de desativá-lo!",
-    "deactivated": "<a:selena:529838831147417620> Contador desativado",
-    "firstTimeChangingChannel": "Você precisa ativar o contador pela primeira vez antes de trocar o canal!",
-    "channelChanged": "<a:selena:529838831147417620> Canal do contador alterado para <#{{channel}}>"
-  },
-  "join": {
-    "noMessage": "Você precisa escrever a mensagem",
-    "noChannel": "Você precisa colocar o ID do canal onde as mensagens serão enviadas",
-    "successfullyActivated": "<a:selena:529838831147417620> Mensagens de boas vindas ativadas em {{channel}}, com a mensagem `{{message}}`",
-    "deactivated": "<a:selena:529838831147417620> Mensagens de boas vindas desativadas",
-    "activated": "<a:selena:529838831147417620> Mensagens de boas vindas ativadas",
-    "needFirstAct": "Você precisa ativar o módulo pela primeira vez antes de alterar alguma coisa!",
-    "channelChanged": "<a:selena:529838831147417620> Canal das mensagens de entrada trocado para `{{channel}}`",
-    "messageChanged": "<a:selena:529838831147417620> Mensagens de boas vindas alterada para {{message}}"
   },
   "leave": {
     "noMessage": "Você precisa escrever a mensagem",
@@ -85,31 +66,9 @@
     "seeOnGenius": "Ver em genius.com"
   },
   "inviteMessage": "Quer me convidar pro seu servidor? Lugar certo! Clique [aqui]({{link}}) para abrir o meu convite em um navegador externo.",
-  "userinfo": {
-    "status": "Status",
-    "administrator": "Sim",
-    "admField": "Administrador?",
-    "highestRole": "Cargo mais alto",
-    "userId": "ID do usuário",
-    "createdAt": "Conta criada em",
-    "noAdm": "Não",
-    "user": "Exibindo informações de {{user}}",
-    "botUser": "<:botTag:618594972903538708> Exibindo informações de {{user}}"
-  },
   "mdn": {
     "usage": "<argumento-de-pesquisa",
     "notFound": "Informação `{{search}}` não encontrada."
-  },
-  "channel": {
-    "invalid": "Canal inválido ou não especificado!",
-    "noArgs": "Especifique o novo nome do canal.",
-    "renamedTo": "Canal renomeado para `{{channel}}`.",
-    "created": "O canal `{{channel}}` foi criado."
-  },
-  "analyzeText": {
-    "invalid": "Esse texto não pôde ser analizado, me desculpe.",
-    "analyzed": "`\uD83D\uDE2D Tristeza:` {{sadness}}\n`\uD83D\uDE02 Humor:` {{joy}}\n`\uD83D\uDE1F Medo:` {{fear}}\n`\uD83E\uDD22 Nojo:` {{disgust}}\n`\uD83D\uDCA2 Raiva:` {{anger}}",
-    "text": "\uD83D\uDD20 - Texto Analizado: `{{text}}`"
   },
   "prefix": {
     "changed": "Prefixo alterado para `{{prefix}}`!",
@@ -161,6 +120,9 @@
     "alreadyPaused": "A música já está pausada",
     "resume":"▶ – Resumindo música",
     "alreadyPlaying": "A música já está tocando"
+  },
+  "genius": {
+    "usage": "<[lyrics <música>] | [annotation <id-anotação>]>"
   }
 
 }

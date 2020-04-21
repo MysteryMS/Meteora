@@ -10,10 +10,19 @@ class QueueCommand extends Command {
     this.category = 'music'
     this.aliases = ['fila', 'q']
     this.botPermissions = ['ADD_REACTIONS']
+    this.usage = 'music'
   }
 
   async run (message, args, server, { t }) {
     if (!this.client.lavalinkManager.manager.players.has(message.guild.id) || this.client.player.get(message.guild.id).queue.length === 0) return message.reply(t('commands:music.noQueue'))
+    if (args[0] === 'remove') {
+      if (!args[1]) return this.explain(message)
+      const player = this.client.player.get(message.guild.id)
+      if (isNaN(parseInt(args[1]))) return message.reply(t('commands:music.nan'))
+      if (args[1] < 1 || args[1] > player.queue.length) return message.reply('xota')
+      message.channel.send(t('commands:music.removedQueue', { track: player.queue[args[1] - 1].info.title }))
+      return player.queue.splice(args[1] - 1, 1)
+    }
     const embed = new MessageEmbed().setAuthor(t('commands:music.queue', { guild: message.guild.name }), message.guild.iconURL()).setColor('#9dffe0')
 
     if (this.client.player.get(message.guild.id).player.playlist === true) {

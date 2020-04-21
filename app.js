@@ -6,7 +6,7 @@ if (!process.env.TOKEN) {
 }
 
 const token = process.env.TOKEN
-const Altair = require('./src/Altair')
+const Meteora = require('./src/Meteora')
 
-const bot = new Altair()
+const bot = new Meteora()
 bot.start(token)

@@ -11,7 +11,6 @@
     "avatar": "See someone's profile picture!",
     "eval": "Evaluates a code",
     "help": "Metora's help command",
-    "kick": "Kick someone from your server",
     "language": "Changes the bot language",
     "lyrics": "Shows a song's lyrics",
     "nowplaying": "Shows the information from the current music",
@@ -22,18 +21,19 @@
     "spotify": "See the current Spotify music information of an user",
     "volume": "Changes the current music volume",
     "repeat": "Repeats the current song",
-    "queue": "Shows the server music queue",
-    "removemusic": "Removes a music from the queue",
+    "queue": "Removes a music from the queue",
     "leave": "Disconnects from the voice channel",
     "stop": "Stops the current music and terminates the active queue.",
     "mdn": "Searches something on MDN",
     "invite": "Get my invite link!",
-    "unban": "Unban someone from your server.",
-    "channel": "Changes the channel name to another one giving real spaces between words.",
-    "prefix": "Changes the bot's prefix."
+    "prefix": "Changes the bot's prefix.",
+    "lastfm": "See an user's profile on Last.fm",
+    "playnow": "Immediately plays a track, ignoring the current one and/or the queue",
+    "search": "Searches a music on YouTube",
+    "forward": "Forwards the current music"
   },
   "misc": {
-    "botPing": "Heya {{user}}! My prefix in this server is `{{prefix}}`! Use `{{prefix}}help` to get a list with my commands!"
+    "botPing": "Hey, {{user}}! My prefix in this server is `{{prefix}}`! Use `{{prefix}}help` to get a list with my commands!"
   },
   "structures": {
     "botNoPerm": "I can't execute this command because I need the permissions `{{permissions}}`!",

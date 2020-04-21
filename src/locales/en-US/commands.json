@@ -24,10 +24,12 @@
     "repeatOn": "\uD83D\uDD02 – Repeating the current music (`{{music}}`).",
     "repeatOff": "\uD83D\uDD01 – Playing the music playlist normally.",
     "noQueue": "There's nothing in the queue!",
-    "removedQueue": "{{track}} removed from queue",
+    "removedQueue": "\uD83D\uDEAE – Track `{{track}}` removed from queue",
     "leave": "<:voiceleave:561612800804388914> – Disconnecting from `\uD83D\uDD08 {{channel}}`.",
     "queue": "{{guild}}'s queue",
-    "noResults": "I did not found any musics. Please try a new search!"
+    "noResults": "I did not found any musics. Please try a new search!",
+    "invalidRemoveTrack": "This track number is invalid",
+    "usage": "remove <track-number>"
   },
   "play": {
     "usage": "<music>"
@@ -118,6 +120,12 @@
     "alreadyPaused": "The track is already paused",
     "resume":"▶ – Resuming music",
     "alreadyPlaying": "The music is already playing"
+  },
+  "genius": {
+    "usage": "<[lyrics <track-name>] | [annotation <annotation-id>]>"
+  },
+  "playnow": {
+    "usage": "<search-query>"
   }
 
 }

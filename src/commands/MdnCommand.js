@@ -7,7 +7,7 @@ class MdnCommand extends Command {
   constructor () {
     super('mdn')
     this.name = 'MDN'
-    this.usage = '<query>'
+    this.usage = 'mdn'
     this.category = 'util'
     this.usage = 'mdn'
   }

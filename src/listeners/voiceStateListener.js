@@ -7,9 +7,10 @@ class voiceStateListener extends EventListener {
   }
 
   async run (oldState, newState) {
-    const xuxa = await guild.findOne({ _id: oldState.guild.id })
-    const t = this.client.localeManager.getT(xuxa.language)
-    if (this.client.lavalinkManager.manager.players.has(oldState.guild.id)) {
+    const server = await guild.findOne({ _id: oldState.guild.id })
+    const t = this.client.localeManager.getT(server.language)
+    if (newState.id === this.client.user.id && newState.channelID === null) return this.client.lavalinkManager.manager.players.delete(newState.guild.id)
+    if (oldState.guild.me.voice.channel) {
       if (oldState.channelID === this.client.lavalinkManager.manager.voiceStates.get(oldState.guild.id).channel_id) {
         if (oldState.channel.members.size === 1) {
           this.client.player.get(oldState.guild.id).channel.send(t('descriptions:structures.allMembersLeft', { channel: oldState.channel.name }))

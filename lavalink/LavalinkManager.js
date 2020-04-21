@@ -20,7 +20,7 @@ class Player extends EventEmitter {
   }
 
   play (query) {
-    return getSongs(this.player.node, `ytsearch:${query}`).then(a => {
+    return getSongs(this.player.node, query.match(/((youtu(\.)?be)|(soundcloud))\.com/) ? query : `ytsearch:${query}`).then(a => {
       if (!a[0]) return null
       this._addToQueue(a[0])
       return a[0].info
@@ -28,9 +28,10 @@ class Player extends EventEmitter {
   }
 
   skip () {
+    const playerManager = this.player.manager.players
     if (this.playlist === true) return this.loadPlaylist(this.playlistSongs)
     const nextSong = this.queue.shift()
-    if (!nextSong) return
+    if (!nextSong) return playerManager.delete(this.player.id)
     this.player.play(nextSong.track)
     return this.emit('playMusic', nextSong)
   }
@@ -55,6 +56,7 @@ class Player extends EventEmitter {
   }
 
   _play (track) {
+    const playerManager = this.player.manager.players
     this.on('playMusic', async (track) => {
       const lang = await guild.findOne({ _id: this.channel.guild.id })
       const t = this.player.manager.client.localeManager.getT(lang.language)
@@ -68,7 +70,7 @@ class Player extends EventEmitter {
       if (data.reason === 'REPLACED') return
       if (this.repeat) return this.player.play(this.repeatTrack)
       const nextSong = this.queue.shift()
-      if (!nextSong) return
+      if (!nextSong) return playerManager.delete(this.player.id)
       this.player.play(nextSong.track)
       return this.emit('playMusic', nextSong)
     })
