@@ -39,7 +39,7 @@ class LastfmCommand extends Command {
       .setColor('#ba020e')
       .setFooter('Last.fm', 'https://images-ext-1.discordapp.net/external/RvmwukOFzFgqbYe5qWZVus7f5UcDhEA-0Hs1NUhDP5E/%3Fsize%3D2048/https/cdn.discordapp.com/icons/260438376270921729/a_ada961d5013cd7c6cab00879dd61f82d.png?width=475&height=475')
     // eslint-disable-next-line no-unused-expressions
-    currentTrack['@attr'] ? userEmbed.setThumbnail(currentTrack.image[3]['#text']) : undefined
+    currentTrack['@attr'] ? userEmbed.setThumbnail(currentTrack.image[3]['#text'].replace('300x300', '600x600')) : undefined
     message.channel.send(userEmbed)
   }
 

@@ -48,7 +48,7 @@ class Player extends EventEmitter {
   }
 
   playNow (query) {
-    getSongs(this.player.node, `ytsearch:${query}`).then(results => {
+    getSongs(this.player.node, query.match(/((youtu(\.)?be)|(soundcloud))\.com/) ? query : `ytsearch:${query}`).then(results => {
       if (!results[0]) return null
       this._play(results[0])
       return results[0].info

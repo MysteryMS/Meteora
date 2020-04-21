@@ -13,7 +13,10 @@ class PlaynowCommand extends Command {
     if (!args[0]) return this.explain(message)
     if (this.client.lavalinkManager.manager.players.has(message.guild.id)) {
       if (!message.member.voice.channelID) return message.reply(t('commands:music.noVoiceChannel'))
-      this.client.player.get(message.guild.id).playNow(args.join(' '))
+      this.client.lavalinkManager.manager.players.delete(message.guild.id)
+      this.client.player.get(message.guild.id).playNow(args.join(' ')).then(info => {
+        if (!info) return message.reply(t('commands:music.noResults'))
+      })
     } else {
       if (!message.member.voice.channelID) return message.reply(t('commands:music.noVoiceChannel'))
       const player = await this.client.lavalinkManager.join(message.member.voice.channelID)
