@@ -31,7 +31,11 @@ class Player extends EventEmitter {
     const playerManager = this.player.manager.players
     if (this.playlist === true) return this.loadPlaylist(this.playlistSongs)
     const nextSong = this.queue.shift()
-    if (!nextSong) return playerManager.delete(this.player.id)
+    if (!nextSong) {
+      playerManager.delete(this.player.id)
+      this.queue = undefined
+      return this.player.manager.client.player.delete(this.player.id)
+    }
     this.player.play(nextSong.track)
     return this.emit('playMusic', nextSong)
   }
@@ -50,7 +54,7 @@ class Player extends EventEmitter {
   playNow (query) {
     getSongs(this.player.node, query.match(/((youtu(\.)?be)|(soundcloud))\.com/) ? query : `ytsearch:${query}`).then(results => {
       if (!results[0]) return null
-      this._play(results[0])
+      this.player.play(results[0])
       return results[0].info
     })
   }
@@ -70,7 +74,10 @@ class Player extends EventEmitter {
       if (data.reason === 'REPLACED') return
       if (this.repeat) return this.player.play(this.repeatTrack)
       const nextSong = this.queue.shift()
-      if (!nextSong) return playerManager.delete(this.player.id)
+      if (!nextSong) {
+         playerManager.delete(this.player.id)
+        return this.player.manager.client.player.delete(this.player.id)
+      }
       this.player.play(nextSong.track)
       return this.emit('playMusic', nextSong)
     })
@@ -109,20 +116,12 @@ module.exports = class LavalinkManager {
     })
   }
 
-  // getBestHost () {
-  //   return nodes[Math.floor(Math.random() * nodes.length)]
-  // }
-
   async join (channel) {
     return new Player(await this.manager.join({
       guild: this.client.channels.cache.get(channel).guild.id,
       channel: channel,
       node: otherNodes[0].id
     }, { selfdeaf: true }))
-  }
-
-  async search (query) {
-    return getSongs(otherNodes[0], `ytsearch:${query}`)
   }
 }
 

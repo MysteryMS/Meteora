@@ -12,7 +12,7 @@ class PauseCommand extends Command {
     if (!player.playing) return message.reply(t('commands:music.notPlaying'))
     if (player.paused) return message.reply(t('commands:playPause.alreadyPaused'))
     player.pause(true)
-    message.reply(t('commands:playPause.paused'))
+    await message.reply(t('commands:playPause.paused'))
   }
 }
 

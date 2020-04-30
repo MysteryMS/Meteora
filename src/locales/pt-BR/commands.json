@@ -123,6 +123,13 @@
   },
   "genius": {
     "usage": "<[lyrics <música>] | [annotation <id-anotação>]>"
+  },
+  "playnow": {
+    "usage": "<argumento-de-pesquisa>"
+  },
+  "queue": {
+    "message": "# Tocando Agora: {{title}} ({{length}})\n\n< Próximas Faixas >\n{{tracks}}",
+    "usage": "remove <número-da-faixa>"
   }
 
 }

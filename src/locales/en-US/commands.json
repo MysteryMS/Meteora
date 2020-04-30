@@ -28,8 +28,7 @@
     "leave": "<:voiceleave:561612800804388914> – Disconnecting from `\uD83D\uDD08 {{channel}}`.",
     "queue": "{{guild}}'s queue",
     "noResults": "I did not found any musics. Please try a new search!",
-    "invalidRemoveTrack": "This track number is invalid",
-    "usage": "remove <track-number>"
+    "invalidRemoveTrack": "This track number is invalid"
   },
   "play": {
     "usage": "<music>"
@@ -126,6 +125,11 @@
   },
   "playnow": {
     "usage": "<search-query>"
+  },
+  "queue": {
+    "message": "# Now Playing: {{title}} ({{length}})\n\n< Next Tracks >\n{{tracks}}",
+
+    "usage": "remove <track-number>"
   }
 
 }
