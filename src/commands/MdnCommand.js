@@ -12,7 +12,7 @@ class MdnCommand extends Command {
   }
 
   async run (message, args, server, { t }) {
-    if (!args[0]) return message.reply(t('commands:mdn.noArgs'))
+    if (!args[0]) return this.explain(message)
     const res = await fetch(`https://mdn.pleb.xyz/search?q=${args.join(' ')}`)
     const body = await res.json()
     if (!body.Title || !body.Summary || !body.URL) return message.reply(t('commands:mdn.notFound', { search: args.join(' ') }))
