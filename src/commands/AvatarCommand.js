@@ -16,7 +16,7 @@ class AvatarCommand extends Command {
   async run (message, args) {
     const uEmbed = new MessageEmbed()
     const user = message.mentions.users.first() || this.client.users.cache.get(args[0]) || message.author
-    uEmbed.setImage(user.displayAvatarURL({ format: 'png', size: 2040 }))
+    uEmbed.setImage(user.displayAvatarURL({ format: 'png', size: 2048 }))
     uEmbed.setAuthor('Avatar de ' + user.username)
     const url = user.displayAvatarURL({ format: 'png' })
     const { body } = await got(url, { encoding: null })
