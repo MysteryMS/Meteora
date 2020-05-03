@@ -9,9 +9,10 @@ class ResumeCommand extends Command {
 
   async run (message, args, server, { t }) {
     const player = this.client.lavalinkManager.manager.players.get(message.guild.id)
+    if (!player) return message.reply(t('commands:music.notPlaying'))
     if (!player.paused) return message.reply(t('commands:playPause.alreadyPlaying'))
     player.pause(false)
-    message.reply(t('commands:playPause.resume'))
+    await message.reply(t('commands:playPause.resume'))
   }
 }
 

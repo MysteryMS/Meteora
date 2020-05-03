@@ -9,14 +9,14 @@ class AvatarCommand extends Command {
     this.name = 'Avatar'
     this.description = 'Veja o avatar de qualquer pessoa!'
     this.usage = '<@usuário/id>'
-    this.catrgory = 'utils'
+    this.category = 'utils'
     this.aliases = ['pfp']
   }
 
   async run (message, args) {
     const uEmbed = new MessageEmbed()
     const user = message.mentions.users.first() || this.client.users.cache.get(args[0]) || message.author
-    uEmbed.setImage(user.displayAvatarURL({ format: 'png' }))
+    uEmbed.setImage(user.displayAvatarURL({ format: 'png', size: 2040 }))
     uEmbed.setAuthor('Avatar de ' + user.username)
     const url = user.displayAvatarURL({ format: 'png' })
     const { body } = await got(url, { encoding: null })
