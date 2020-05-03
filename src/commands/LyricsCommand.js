@@ -23,7 +23,7 @@ class LyricsCommand extends Command {
       headers: { Authorization: `Bearer ${process.env.GENIUS_TOKEN}` }
     }).then(async r => {
       const response = await r.json()
-      if (!response.response.hits) return message.channel.send(t('commands:lyrics.notFound'))
+      if (!response.response.hits[0]) return message.channel.send(t('commands:lyrics.notFound'))
 
       const lyrics = await lyricist.song(response.response.hits[0].result.id, { fetchLyrics: true })
       if (!lyrics) message.channel.send(t('commands:lyrics.notFound'))
