@@ -17,6 +17,7 @@ class Player extends EventEmitter {
     this.playlistSongs = []
     this.playlist = false
     this.playlistId = ''
+    this.bb = false
   }
 
   play (query) {
@@ -42,6 +43,21 @@ class Player extends EventEmitter {
 
   seek (pos) {
     return this.player.seek(pos)
+  }
+
+  shuffle() {
+    return this.queue = this.queue.sort(() => Math.random() > 0.5 ? -1 : 1)
+  }
+
+  bassboost(bool) {
+    if (bool) {
+      this.player.equalizer([{ "band": 1, "gain": 1 }, { "band": 3, "gain": 1 }])
+      this.bb = true
+    } else {
+      this.player.equalizer([{ "band": 1, "gain": 0 }, { "band": 3, "gain": 0 }])
+      this.bb = false
+    }
+
   }
 
   _addToQueue (track) {

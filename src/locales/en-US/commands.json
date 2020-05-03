@@ -128,8 +128,11 @@
   },
   "queue": {
     "message": "# Now Playing: {{title}} ({{length}})\n\n< Next Tracks >\n{{tracks}}",
-
     "usage": "remove <track-number>"
+  },
+  "bassboost": {
+    "enabling": "\u1F50A – Turning bass boost on, this may take a while - be careful!",
+    "disabling": "\u1F50A – Turning bass boost off, this may take a while."
   }
 
 }

@@ -130,6 +130,10 @@
   "queue": {
     "message": "# Tocando Agora: {{title}} ({{length}})\n\n< Próximas Faixas >\n{{tracks}}",
     "usage": "remove <número-da-faixa>"
+  },
+  "bassboost": {
+    "enabling": "\u1F50A – Ativando o bass boost Isso pode levar algum tempo... - cuidado!",
+    "disabling": "\u1F50A – Desativando o bass boost. Isso pode levar algum tempo..."
   }
 
 }
