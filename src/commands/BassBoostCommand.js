@@ -1,11 +1,12 @@
 const Command = require('../structures/Command')
 
 class BassBoostCommand extends Command {
-  constructor() {
+  constructor () {
     super('bassboost', ['bb'])
     this.category = 'music'
     this.beta = true
   }
+
   async run (message, args, server, { t }) {
     const player = this.client.player.get(message.guild.id)
     if (!message.member.voice.channel) return message.reply(t('commands:music.noVoiceChannel'))

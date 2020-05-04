@@ -45,19 +45,18 @@ class Player extends EventEmitter {
     return this.player.seek(pos)
   }
 
-  shuffle() {
-    return this.queue = this.queue.sort(() => Math.random() > 0.5 ? -1 : 1)
+  shuffle () {
+    this.queue = this.queue.sort(() => Math.random() > 0.5 ? -1 : 1)
   }
 
-  bassboost(bool) {
+  bassboost (bool) {
     if (bool) {
-      this.player.equalizer([{ "band": 1, "gain": 1 }, { "band": 3, "gain": 1 }])
+      this.player.equalizer([{ band: 1, gain: 1 }, { band: 3, gain: 1 }])
       this.bb = true
     } else {
-      this.player.equalizer([{ "band": 1, "gain": 0 }, { "band": 3, "gain": 0 }])
+      this.player.equalizer([{ band: 1, gain: 0 }, { band: 3, gain: 0 }])
       this.bb = false
     }
-
   }
 
   _addToQueue (track) {
@@ -91,7 +90,7 @@ class Player extends EventEmitter {
       if (this.repeat) return this.player.play(this.repeatTrack)
       const nextSong = this.queue.shift()
       if (!nextSong) {
-         playerManager.delete(this.player.id)
+        playerManager.delete(this.player.id)
         return this.player.manager.client.player.delete(this.player.id)
       }
       this.player.play(nextSong.track)
