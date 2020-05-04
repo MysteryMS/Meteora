@@ -12,11 +12,11 @@ class BassBoostCommand extends Command {
     if (!message.member.voice.channel) return message.reply(t('commands:music.noVoiceChannel'))
     if (!this.client.lavalinkManager.manager.players.get(message.guild.id)) return message.reply(t('commands:music.notPlaying'))
     if (player.bb) {
-      player.bassboost(true)
-      message.channel.send(t('commands:bassboost.enabling'))
-    } else {
       player.bassboost(false)
       message.channel.send(t('commands:bassboost.disabling'))
+    } else {
+      player.bassboost(true)
+      message.channel.send(t('commands:bassboost.enabling'))
     }
   }
 }
