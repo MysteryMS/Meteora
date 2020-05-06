@@ -16,6 +16,7 @@ class voiceStateListener extends EventListener {
           this.client.player.get((oldState.guild || newState.guild).id).channel.send(t('descriptions:structures.allMembersLeft', { channel: oldState.channel.name }))
           await this.client.lavalinkManager.manager.leave(oldState.guild.id)
           this.client.lavalinkManager.manager.players.get(oldState.guild.id).destroy()
+          this.client.lavalinkManager.manager.players.delete(oldState.guild.id)
           this.client.player.delete(oldState.guild.id)
           this.client.lavalinkManager.manager.voiceServers.delete(oldState.guild.id)
         } else {
