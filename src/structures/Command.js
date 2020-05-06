@@ -112,9 +112,29 @@ class Command {
     embed.setDescription(t(`descriptions:descriptions.${this.label}`))
     embed.addField(t('descriptions:structures.embedHowUse'), `\`${server.prefix + usedLabel} ${t(`commands:${this.usage}.usage`)}\``, false)
     embed.addField(t('descriptions:structures.embedAliases'), `${!this.aliases ? unusedLabels.map((label) => '`' + server.prefix + label + '`').join(', ') : t('descriptions:structures.noAliases')}`, false)
+    embed.setColor('#1e1e1e')
+    embed.setFooter(t('descriptions:structures.executed'))
+    embed.setTimestamp(new Date())
 
+    message.channel.send({ embed })
+  }
+
+  async justify (message) {
+    const guild = require('../../models/guild')
+    const server = await guild.findOne({ _id: message.guild.id })
+    const t = this.client.localeManager.getT(server.language)
+    const splitted = message.content.split(' ')
+    const usedLabel = splitted[0].replace(server.prefix, '')
+    const allLabels = [this.label]
+    this.aliases.forEach((alias) => allLabels.push(alias))
+    const embed = new MessageEmbed()
+    const unusedLabels = allLabels.filter((label) => label !== usedLabel)
+    embed.setTitle('🔤 `' + server.prefix + usedLabel + '`')
+    embed.addField(t('descriptions:structures.embedAliases'), `${!this.aliases ? unusedLabels.map((label) => '`' + server.prefix + label + '`').join(', ') : t('descriptions:structures.noAliases')}`, false)
+    embed.setDescription(t(`descriptions:justify.${this.label}`, { prefix: server.prefix }))
     embed.setColor('#1e1e1e')
 
+    embed.setAuthor(message.author.tag, message.author.displayAvatarURL())
     embed.setFooter(t('descriptions:structures.executed'))
     embed.setTimestamp(new Date())
 

@@ -5,6 +5,7 @@
   "main": "app.js",
   "dependencies": {
     "@lavacord/discord.js": "latest",
+    "@sentry/node": "^5.15.5",
     "axios": "^0.18.0",
     "body-parser": "latest",
     "cheerio": "^1.0.0-rc.3",

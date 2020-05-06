@@ -53,5 +53,8 @@
     "counterEnable": "Ativa o contador de membros. Necessário colocar o ID na primeira vez.",
     "counterDisable": "Desativa o contador de membros.",
     "counterChangeChannel": "Troca o canal do contador de membros."
+  },
+  "justify": {
+    "lastfm": ":interrobang: Usagem:\n`{{prefix}}lastfm <usuário> [tipo] [tema]`\n\nOnde:\n`usuário`: O usuário do Last.fm\n`type`: Um dos `artist`, `tracks` ou `albums` (se nenhum for providenciado, o padrão`tracks` será usado)\n`tema`: Um dos `duotone/purplish`, `duotone/natural`, `duotone/divergent`, `duotone/bright-sun`, `duotone/yellish` or `duotone/horror` (se nenhum for providenciado, o padrão`duotone/natural` será usado)"
   }
 }

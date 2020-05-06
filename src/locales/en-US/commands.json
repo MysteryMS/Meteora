@@ -131,8 +131,9 @@
     "usage": "remove <track-number>"
   },
   "bassboost": {
-    "enabling": "\u1F50A – Turning bass boost on, this may take a while - be careful!",
-    "disabling": "\u1F50A – Turning bass boost off, this may take a while."
-  }
+    "enabling": "\uD83D\uDD0A – Turning bass boost on, this may take a while - be careful!",
+    "disabling": "\uD83D\uDD08 – Turning bass boost off, this may take a while."
+  },
+  "shuffle": "\uD83D\uDD00 – Queue shuffled!"
 
 }

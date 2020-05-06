@@ -29,11 +29,10 @@ class Player extends EventEmitter {
   }
 
   skip () {
-    const playerManager = this.player.manager.players
     if (this.playlist === true) return this.loadPlaylist(this.playlistSongs)
     const nextSong = this.queue.shift()
     if (!nextSong) {
-      playerManager.delete(this.player.id)
+      this.player.manager.destroy()
       this.queue = undefined
       return this.player.manager.client.player.delete(this.player.id)
     }
@@ -75,7 +74,6 @@ class Player extends EventEmitter {
   }
 
   _play (track) {
-    const playerManager = this.player.manager.players
     this.on('playMusic', async (track) => {
       const lang = await guild.findOne({ _id: this.channel.guild.id })
       const t = this.player.manager.client.localeManager.getT(lang.language)
@@ -90,7 +88,7 @@ class Player extends EventEmitter {
       if (this.repeat) return this.player.play(this.repeatTrack)
       const nextSong = this.queue.shift()
       if (!nextSong) {
-        playerManager.delete(this.player.id)
+        this.player.destroy()
         return this.player.manager.client.player.delete(this.player.id)
       }
       this.player.play(nextSong.track)

@@ -53,9 +53,8 @@
     "counterEnable": "Activates the counter. Must provide the ID just in the first time.",
     "counterDisable": "Deactivates the counter.",
     "counterChangeChannel": "Changes the channel counter."
+  },
+  "justify": {
+    "lastfm": ":interrobang: Usage:\n`{{prefix}}lastfm <user> [type] [theme]`\n\nWhere:\n`user`: The Last.fm user\n`type`: One of `artist`, `tracks` or `albums` (if none is provided, the default `tracks` will be used)\n`theme`: One of `duotone/purplish`, `duotone/natural`, `duotone/divergent`, `duotone/bright-sun`, `duotone/yellish` or `duotone/horror` (if none is provided, the default `duotone/natural` will be used)"
   }
-
-
-
-
 }

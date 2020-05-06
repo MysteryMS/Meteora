@@ -132,8 +132,9 @@
     "usage": "remove <número-da-faixa>"
   },
   "bassboost": {
-    "enabling": "\u1F50A – Ativando o bass boost Isso pode levar algum tempo... - cuidado!",
-    "disabling": "\u1F50A – Desativando o bass boost. Isso pode levar algum tempo..."
-  }
+    "enabling": "\uD83D\uDD0A – Ativando o bass boost Isso pode levar algum tempo... - cuidado!",
+    "disabling": "\uD83D\uDD08 – Desativando o bass boost. Isso pode levar algum tempo..."
+  },
+  "shuffle": "\uD83D\uDD00 – Fila misturada!"
 
 }
