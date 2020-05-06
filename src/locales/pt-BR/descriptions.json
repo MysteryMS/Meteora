@@ -55,6 +55,6 @@
     "counterChangeChannel": "Troca o canal do contador de membros."
   },
   "justify": {
-    "lastfm": ":interrobang: Usagem:\n`{{prefix}}lastfm <usuário> [tipo] [tema]`\n\nOnde:\n`usuário`: O usuário do Last.fm\n`type`: Um dos `artist`, `tracks` ou `albums` (se nenhum for providenciado, o padrão`tracks` será usado)\n`tema`: Um dos `duotone/purplish`, `duotone/natural`, `duotone/divergent`, `duotone/bright-sun`, `duotone/yellish` or `duotone/horror` (se nenhum for providenciado, o padrão`duotone/natural` será usado)n\n\nPowered by [Musicorum](https://musicorumapp.com)"
+    "lastfm": ":interrobang: Usagem:\n`{{prefix}}lastfm <usuário> [tipo] [tema]`\n\nOnde:\n`usuário`: O usuário do Last.fm\n`type`: Um dos `artist`, `tracks` ou `albums` (se nenhum for providenciado, o padrão`tracks` será usado)\n`tema`: Um dos `duotone/purplish`, `duotone/natural`, `duotone/divergent`, `duotone/bright-sun`, `duotone/yellish` ou `duotone/horror` (se nenhum for providenciado, o padrão `duotone/natural` será usado)n\n\nPowered by [Musicorum](https://musicorumapp.com)"
   }
 }
