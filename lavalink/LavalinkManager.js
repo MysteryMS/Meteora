@@ -89,7 +89,9 @@ class Player extends EventEmitter {
       const nextSong = this.queue.shift()
       if (!nextSong) {
         this.player.destroy()
-        return this.player.manager.client.player.delete(this.player.id)
+        this.player.manager.client.player.delete(this.player.id)
+        return this.player.manager.leave(this.channel.guild.id)
+
       }
       this.player.play(nextSong.track)
       return this.emit('playMusic', nextSong)
