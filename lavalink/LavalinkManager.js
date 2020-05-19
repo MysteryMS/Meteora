@@ -3,7 +3,7 @@ const { EventEmitter } = require('events')
 const guild = require('../models/guild')
 const pms = require('pretty-ms')
 require('colors')
-const otherNodes = [{ host: '13.90.193.26', port: '2333', password: 'youshallnotpass', id: '1' }]
+const otherNodes = [{ host: 'lavatechnology.herokuapp.com', port: '80', password: '194523', id: '1' }]
 
 class Player extends EventEmitter {
   constructor (player) {
