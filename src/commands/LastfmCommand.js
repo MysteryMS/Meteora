@@ -34,7 +34,7 @@ class LastfmCommand extends Command {
       body: JSON.stringify({ theme: theme[0], options: { user: args[0], period: '6month', top: top[1], pallete: theme[1], story: false, messages: { scrobbles: ['scrobbles', 'last 6 months'], subtitle: 'last 7 days', title: top[0] } } })
     }).then(async response => {
       const res = await response.json()
-      const buffer = Buffer.from(res.base64.replace('data:image/jpeg;base64,', ''), 'base64')
+      const buffer = Buffer.from(res.base64.replace('data:image/png;base64,', ''), 'base64')
       message.channel.send(new MessageAttachment(buffer))
     })
   }
