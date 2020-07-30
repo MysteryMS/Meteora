@@ -1,0 +1,79 @@
+package com.mystery.meteora.client.lavaPlayer
+
+import com.mystery.meteora.controller.model.Parser
+import com.sedmelluq.discord.lavaplayer.player.AudioPlayer
+import com.sedmelluq.discord.lavaplayer.player.event.AudioEventAdapter
+import com.sedmelluq.discord.lavaplayer.track.AudioTrack
+import com.sedmelluq.discord.lavaplayer.track.AudioTrackEndReason
+import net.dv8tion.jda.api.EmbedBuilder
+import net.dv8tion.jda.api.entities.Guild
+import net.dv8tion.jda.api.events.message.MessageReceivedEvent
+import java.awt.Color
+import java.util.concurrent.LinkedBlockingQueue
+
+
+class TrackScheduler(
+  private val audioPlayer: AudioPlayer
+) :
+  AudioEventAdapter() {
+  var loop = false
+  var bassBoost: Boolean = false
+  val queue: LinkedBlockingQueue<MusicScheduler> = LinkedBlockingQueue()
+  fun queue(track: AudioTrack, context: MessageReceivedEvent) {
+    if (!audioPlayer.startTrack(track, true)) {
+      queue.offer(MusicScheduler(track, context))
+    } else {
+      show(MusicScheduler(track, context))
+    }
+  }
+
+  fun next() {
+    val track = queue.poll()
+    if (track != null) {
+      audioPlayer.startTrack(track.track, false)
+      show(track)
+    }
+  }
+
+  fun loop() {
+    loop = !loop
+  }
+
+  fun bass(bass: Boolean) {
+    bassBoost = bass
+  }
+
+  fun stop(guild: Guild) {
+    queue.clear()
+    audioPlayer.stopTrack()
+    guild.audioManager.closeAudioConnection()
+  }
+
+  private fun show(track: MusicScheduler) {
+    val embed = EmbedBuilder()
+    embed.setDescription(
+      "<a:cd:521088033664270336> - Now Playing: `${track.track.info?.title}` by `${track.track.info?.author}` (${Parser().parse(
+        track.track.info?.length
+      )})"
+    )
+    embed.setFooter("Requested by ${track.context.author.name}", track.context.author.avatarUrl)
+    embed.setColor(Color(115, 140, 213))
+    val channel = PlayerController.findManager(track.context.guild.idLong)?.defaultChannel
+    channel?.sendMessage(embed.build())?.queue()
+  }
+
+  override fun onTrackEnd(player: AudioPlayer?, track: AudioTrack?, endReason: AudioTrackEndReason?) {
+    if (!endReason?.mayStartNext!!) return
+    if (loop) {
+      audioPlayer.startTrack(track?.makeClone(), false)
+    } else {
+      next()
+    }
+
+  }
+
+  override fun onTrackStart(player: AudioPlayer?, track: AudioTrack?) {
+  }
+
+
+}
