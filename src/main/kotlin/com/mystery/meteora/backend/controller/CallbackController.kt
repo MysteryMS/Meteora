@@ -61,8 +61,6 @@ class CallbackController(private val meteora: MeteoraKt) {
       val guildsObj = Klaxon().parseArray<Guild>(guildsRes)
       val availableGuilds = meteora.jda.guilds.filter { guild -> guild.memberCache.getElementById(parsedUser!!.id) !== null && guild.memberCache.getElementById(parsedUser!!.id)!!.hasPermission(Permission.MANAGE_SERVER)}
       val unavailableGuilds = guildsObj?.filter { guild -> guild.permissions and 40 != 0 }
-      //if (parsedUser?.error != null) return APIResponse(null, null, "${parsedUser.error}")
-      // val user = User(parsedUser!!.id, parsedUser.username, parsedUser.discriminator, parsedUser.avatarHash, null
       return APIResponse(parsedRes?.access_token, parsedUser, availableGuilds, unavailableGuilds)
     } catch (e: KlaxonException) {
       println(e)
