@@ -8,7 +8,6 @@ import com.mystery.meteora.backend.controller.models.OAuthResponse
 import com.mystery.meteora.backend.controller.models.User
 import com.mystery.meteora.backend.controller.models.responses.APIResponse
 import com.mystery.meteora.backend.controller.models.responses.ErrorResponse
-import net.dv8tion.jda.api.Permission
 import okhttp3.FormBody
 import okhttp3.OkHttpClient
 import okhttp3.Request
@@ -20,11 +19,6 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 
 class CallbackController(private val meteora: MeteoraKt) {
-  @GetMapping("/test")
-  fun test():String{
-    return meteora.jda.token
-  }
-
   @CrossOrigin
   @GetMapping("/user")
   fun login(@RequestParam("code") code: String): APIResponse {
@@ -64,10 +58,8 @@ class CallbackController(private val meteora: MeteoraKt) {
       val parsedUser = Klaxon().parse<User>(slashMeResponse)
       val guildsRes = client.newCall(guilds).execute().body()!!.string()
       val guildsObj = Klaxon().parseArray<Guild>(guildsRes)
-      val availableGuilds = meteora.jda.guilds.filter { guild -> guild.memberCache.getElementById(parsedUser!!.id) !== null && guild.memberCache.getElementById(parsedUser!!.id)!!.hasPermission(Permission.MANAGE_SERVER)}
-      val unavailableGuilds = guildsObj?.filter { guild -> guild.permissions and 40 != 0 }
-      //if (parsedUser?.error != null) return APIResponse(null, null, "${parsedUser.error}")
-      // val user = User(parsedUser!!.id, parsedUser.username, parsedUser.discriminator, parsedUser.avatarHash, null
+      val availableGuilds = guildsObj?.filter { guild -> guild.permissions and 40 != 0 && meteora.jda.guildCache.getElementById(guild.id) != null}
+      val unavailableGuilds = guildsObj?.filter { guild -> guild.permissions and 40 != 0 && meteora.jda.guildCache.getElementById(guild.id) == null }
       return APIResponse(parsedRes?.access_token, parsedUser, availableGuilds, unavailableGuilds)
     } catch (e: KlaxonException) {
       println(e)
