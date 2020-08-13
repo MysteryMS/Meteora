@@ -9,5 +9,4 @@ open class Main
 @ExperimentalStdlibApi
 fun main(args: Array<String>) {
   SpringApplication.run(Main::class.java, *args)
-  MeteoraKt().start()
 }
