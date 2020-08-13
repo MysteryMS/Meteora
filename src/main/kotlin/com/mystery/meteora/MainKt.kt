@@ -4,9 +4,9 @@ import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.SpringBootApplication
 
 @SpringBootApplication
-open class Main
+class MainKt
 
 @ExperimentalStdlibApi
 fun main(args: Array<String>) {
-  SpringApplication.run(Main::class.java, *args)
+  SpringApplication.run(MainKt::class.java, *args)
 }

@@ -7,7 +7,7 @@ plugins {
 }
 apply plugin: 'java'
 apply plugin: 'kotlin'
-mainClassName = 'com.mystery.meteora.MeteoraKt'
+mainClassName = 'com.mystery.meteora.MainKt'
 
 group 'com.mystery'
 version '1.0-SNAPSHOT'
@@ -42,7 +42,7 @@ compileTestKotlin {
 
 jar {
     manifest {
-        attributes 'Main-Class': 'com.mystery.meteora.MeteoraKt'
+        attributes 'Main-Class': 'com.mystery.meteora.MainKt'
     }
     from {
         configurations
