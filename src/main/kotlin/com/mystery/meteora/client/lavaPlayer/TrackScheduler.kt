@@ -18,12 +18,13 @@ class TrackScheduler(
   AudioEventAdapter() {
   var loop = false
   var bassBoost: Boolean = false
+  var requestedByAuthorId: Long = 0
   val queue: LinkedBlockingQueue<MusicScheduler> = LinkedBlockingQueue()
   fun queue(track: AudioTrack, context: MessageReceivedEvent) {
     if (!audioPlayer.startTrack(track, true)) {
-      queue.offer(MusicScheduler(track, context))
+      queue.offer(MusicScheduler(track, context, context.author.idLong))
     } else {
-      show(MusicScheduler(track, context))
+      show(MusicScheduler(track, context, context.author.idLong))
     }
   }
 
@@ -60,6 +61,7 @@ class TrackScheduler(
     embed.setColor(Color(115, 140, 213))
     val channel = PlayerController.findManager(track.context.guild.idLong)?.defaultChannel
     channel?.sendMessage(embed.build())?.queue()
+    requestedByAuthorId = track.context.author.idLong
   }
 
   override fun onTrackEnd(player: AudioPlayer?, track: AudioTrack?, endReason: AudioTrackEndReason?) {

@@ -1,6 +1,7 @@
 package com.mystery.meteora.client.commands
 
 import com.mystery.meteora.client.lavaPlayer.PlayerController
+import com.mystery.meteora.client.lavaPlayer.TrackScheduler
 import com.mystery.meteora.controller.model.Parser
 import com.mystery.meteora.handler.annotations.Command
 import com.mystery.meteora.handler.annotations.Module
@@ -21,10 +22,12 @@ class NowPlayingCommand(ctx: MessageReceivedEvent, args: String, prefix: String)
         val track = guildPlayer.player.playingTrack
         val embed = EmbedBuilder()
           .setTitle("Current track", track.info.uri)
-          .addField("Name", track.info.title, true)
-          .addField("Length", Parser().parse(track.duration), false)
+          .addField("Title", track.info.title, true)
+          .addField("Length", "${Parser().parse(track.duration)}/${Parser().parse(track.position)}", false)
           .addField("Author", track.info.author, true)
           .addField("Is Stream?", track.info.isStream.toString(), true)
+          .addField("Requested by", "<@${guildPlayer.trackScheduler.requestedByAuthorId}>", false)
+          .setImage("https://i.ytimg.com/vi/${track.info.identifier}/maxresdefault.jpg")
         context.channel.sendMessage(embed.build()).queue()
       }
     }

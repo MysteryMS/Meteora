@@ -12,7 +12,7 @@ import java.awt.Color
 @Module("Leave", "music")
 
 class LeaveCommand(ctx: MessageReceivedEvent, args: String, prefix: String) : BaseModule(ctx, args, prefix) {
-  @Command("leave", "dc", "quit", "disconnect")
+  @Command("leave", "dc", "quit", "disconnect", "sair")
   fun leave() {
     val guildPlayer = PlayerController.findManager(context.guild.idLong)
     if (guildPlayer == null) {

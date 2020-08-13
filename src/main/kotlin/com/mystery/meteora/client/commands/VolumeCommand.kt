@@ -2,6 +2,7 @@ package com.mystery.meteora.client.commands
 
 import com.mystery.meteora.client.lavaPlayer.PlayerController
 import com.mystery.meteora.controller.Helper
+import com.mystery.meteora.controller.PlayController
 import com.mystery.meteora.handler.annotations.Command
 import com.mystery.meteora.handler.annotations.Description
 import com.mystery.meteora.handler.annotations.Module
@@ -27,6 +28,10 @@ class VolumeCommand(ctx: MessageReceivedEvent, args: String, prefix: String) : B
     if (guildPlayer == null) {
       context.channel.sendMessage("There isn't an active player in this server.").queue()
     } else {
+      if (!PlayController().hasDjRole(context.guild.idLong)) {
+        context.channel.sendMessage("❌ – Only members with the DJ role can use this command.").queue()
+        return
+      }
       try {
         val playerVolume = PlayerController(context).manager.player.volume
         val volume = args.toInt()

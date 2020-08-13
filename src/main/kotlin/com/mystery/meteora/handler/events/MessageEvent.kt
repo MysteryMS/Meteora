@@ -17,12 +17,16 @@ class MessageEvent : ListenerAdapter() {
     val col = database.getCollection<Guild>()
     var guild = col.findOneById(event.guild.id)
     if (guild == null) {
-      col.insertOne(Guild(event.guild.id, ">"))
-      guild = col.findOneById(event.guild.id)
+      col.insertOne(Guild(event.guild.id, ">", null, "en-US"))
+      guild = col.findOneById(event.guild.id)!!
     }
-    val p = guild?.prefix
+    val p = guild.prefix
     client.close()
+    if (event.message.contentRaw == event.jda.selfUser.asMention || event.message.contentRaw == "<@!${event.jda.selfUser.idLong}>") {
+      event.channel.sendMessage("Hi there, ${event.author.asMention}. My prefix in this server is `$p`, if you need some help, just use `${p}help`!").queue()
+      return
+    }
     // val p = "mk."
-    Handler.executeCommand(event.message.contentRaw, event, p!!)
+    Handler.executeCommand(event.message.contentRaw, event, p)
   }
 }

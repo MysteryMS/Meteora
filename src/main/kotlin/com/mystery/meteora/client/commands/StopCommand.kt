@@ -1,6 +1,7 @@
 package com.mystery.meteora.client.commands
 
 import com.mystery.meteora.client.lavaPlayer.PlayerController
+import com.mystery.meteora.controller.PlayController
 import com.mystery.meteora.handler.annotations.Command
 import com.mystery.meteora.handler.annotations.Module
 import com.mystery.meteora.handler.modules.BaseModule
@@ -18,10 +19,16 @@ class StopCommand(ctx: MessageReceivedEvent, args: String, prefix: String) : Bas
       guildPlayer == null -> context.channel.sendMessage("There isn't an active player in this server.").queue()
       guildPlayer.player.playingTrack == null -> context.channel.sendMessage("There isn't an active track playing in this server.").queue()
       else -> {
+        if (!PlayController().hasDjRole(context.guild.idLong)) {
+          context.channel.sendMessage("❌ – Only members with the DJ role can use this command.").queue()
+          return
+        }
         val embed = EmbedBuilder()
         embed.setDescription("⏹ – Player stopped")
         embed.setColor(Color(59, 136, 195))
         PlayerController(context).manager.trackScheduler.stop(context.guild)
+        val player = PlayerController.findManager(context.guild.idLong)
+        PlayerController.guildsMusic.remove(player)
         context.channel.sendMessage(embed.build()).queue()
       }
     }
