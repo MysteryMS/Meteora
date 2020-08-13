@@ -8,6 +8,7 @@ import com.mystery.meteora.backend.controller.models.OAuthResponse
 import com.mystery.meteora.backend.controller.models.User
 import com.mystery.meteora.backend.controller.models.responses.APIResponse
 import com.mystery.meteora.backend.controller.models.responses.ErrorResponse
+import com.mystery.meteora.controller.Config
 import okhttp3.FormBody
 import okhttp3.OkHttpClient
 import okhttp3.Request
@@ -26,7 +27,7 @@ class CallbackController(private val meteora: MeteoraKt) {
     val client = OkHttpClient().newBuilder().build()
     val formBody = FormBody.Builder()
       .add("client_id", "464304679128530954")
-      .add("client_secret", "zkru1onfagR2rRtovTuAo6U3JcPsQ46E")
+      .add("client_secret", Config("./meteora.json").config?.clientConfig?.secret!!)
       .add("grant_type", "authorization_code")
       .add("redirect_uri", "http://localhost:3000/callback")
       .add("scope", "identify")

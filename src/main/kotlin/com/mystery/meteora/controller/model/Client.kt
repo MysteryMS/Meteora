@@ -1,5 +1,6 @@
 package com.mystery.meteora.controller.model
 
 data class Client(
-    val token: String
+    val token: String,
+    val secret: String
 )

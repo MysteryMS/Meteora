@@ -16,7 +16,7 @@ class Config(path: String) {
             config = Klaxon().parse<ConfigModel>(json)
         } else {
             file.createNewFile()
-            file.writeText(Klaxon().toJsonString(ConfigModel(Client(""))))
+            file.writeText(Klaxon().toJsonString(ConfigModel(Client("", ""))))
         }
     }
 }
