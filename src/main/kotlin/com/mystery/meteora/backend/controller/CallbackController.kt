@@ -20,6 +20,11 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 
 class CallbackController(private val meteora: MeteoraKt) {
+  @GetMapping("/test")
+  fun test():String{
+    return meteora.jda.token
+  }
+
   @CrossOrigin
   @GetMapping("/user")
   fun login(@RequestParam("code") code: String): APIResponse {
