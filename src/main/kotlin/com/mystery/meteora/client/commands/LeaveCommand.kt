@@ -1,6 +1,7 @@
 package com.mystery.meteora.client.commands
 
 import com.mystery.meteora.client.lavaPlayer.PlayerController
+import com.mystery.meteora.controller.DJController
 import com.mystery.meteora.handler.annotations.Command
 import com.mystery.meteora.handler.annotations.Module
 import com.mystery.meteora.handler.modules.BaseModule
@@ -15,17 +16,26 @@ class LeaveCommand(ctx: MessageReceivedEvent, args: String, prefix: String) : Ba
   @Command("leave", "dc", "quit", "disconnect", "sair")
   fun leave() {
     val guildPlayer = PlayerController.findManager(context.guild.idLong)
-    if (guildPlayer == null) {
-      context.channel.sendMessage("There isn't an active player in this server.").queue()
-    } else {
-      val channel = context.guild.members.find { member -> member.idLong == context.jda.selfUser.idLong }?.voiceState?.channel?.name
-      val player = PlayerController.findManager(context.guild.idLong)
-      val embed = EmbedBuilder()
-        .setDescription("<:voiceleave:561612800804388914> – Left `🔉 $channel`")
-        .setColor(Color(217, 63, 63))
-      PlayerController(context).manager.trackScheduler.stop(context.guild)
-      context.channel.sendMessage(embed.build()).queue()
-      PlayerController.guildsMusic.remove(player)
+    when {
+      guildPlayer == null -> {
+        context.channel.sendMessage("There isn't an active player in this server.").queue()
+      }
+      !DJController().hasDjRole(context) || PlayerController(context).manager.player.playingTrack != null -> {
+        context.channel.sendMessage("❌ – This command can only be used when the queue is empty or by members with the DJ role/admin permission")
+          .queue()
+        return
+      }
+      else -> {
+        val channel =
+          context.guild.members.find { member -> member.idLong == context.jda.selfUser.idLong }?.voiceState?.channel?.name
+        val player = PlayerController.findManager(context.guild.idLong)
+        val embed = EmbedBuilder()
+          .setDescription("<:voiceleave:561612800804388914> – Left `🔉 $channel`")
+          .setColor(Color(217, 63, 63))
+        PlayerController(context).manager.trackScheduler.stop(context.guild)
+        context.channel.sendMessage(embed.build()).queue()
+        PlayerController.guildsMusic.remove(player)
+      }
     }
   }
 }

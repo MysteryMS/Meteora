@@ -6,7 +6,7 @@ data class Guild(
         val id: String,
         val name: String,
         @Json("icon")
-        val iconHash: String,
+        val iconHash: String?,
         val permissions: Int
 
 )

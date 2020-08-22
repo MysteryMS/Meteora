@@ -1,7 +1,7 @@
 package com.mystery.meteora.client.commands
 
 import com.mystery.meteora.client.lavaPlayer.PlayerController
-import com.mystery.meteora.controller.PlayController
+import com.mystery.meteora.controller.DJController
 import com.mystery.meteora.handler.annotations.Command
 import com.mystery.meteora.handler.annotations.Module
 import com.mystery.meteora.handler.modules.BaseModule
@@ -25,8 +25,8 @@ class PauseCommand(ctx: MessageReceivedEvent, args: String, prefix: String) : Ba
         context.channel.sendMessage(embed.build()).queue()
       }
       else -> {
-        if (!PlayController().hasDjRole(context.guild.idLong)) {
-          context.channel.sendMessage("❌ – Only members with the DJ role can use this command.").queue()
+        if (!DJController().hasDjRole(context)) {
+          context.channel.sendMessage("❌ – Only members with the DJ role or the track's requester can use this command.").queue()
           return
         }
         context.channel.sendMessage(EmbedBuilder().setDescription("⏸ – Track paused").setColor(Color(59, 136, 195)).build()).queue()
@@ -45,8 +45,8 @@ class PauseCommand(ctx: MessageReceivedEvent, args: String, prefix: String) : Ba
           .setColor(Color(59, 136, 195))
         context.channel.sendMessage(embed.build()).queue()
       } else -> {
-      if (!PlayController().hasDjRole(context.guild.idLong)) {
-        context.channel.sendMessage("❌ – Only members with the DJ role can use this command.").queue()
+      if (!DJController().hasDjRole(context)) {
+        context.channel.sendMessage("❌ – Only members with the DJ role, admin permission or the track's requester can use this command.").queue()
         return
       }
       context.channel.sendMessage(EmbedBuilder().setDescription("▶ – Track resumed").setColor(Color(59, 136, 195)).build()).queue()

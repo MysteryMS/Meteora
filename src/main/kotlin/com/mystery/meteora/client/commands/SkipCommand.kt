@@ -1,6 +1,7 @@
 package com.mystery.meteora.client.commands
 
 import com.mystery.meteora.client.lavaPlayer.PlayerController
+import com.mystery.meteora.controller.DJController
 import com.mystery.meteora.controller.model.Guild
 import com.mystery.meteora.handler.annotations.Command
 import com.mystery.meteora.handler.annotations.Module
@@ -37,10 +38,10 @@ class SkipCommand(ctx: MessageReceivedEvent, args: String, prefix: String) : Bas
           skipTrack()
           return
         }
-        if (context.member?.roles?.contains(role)!! || context.member!!.user.idLong == PlayerController(context).manager.trackScheduler.requestedByAuthorId || context.member!!.hasPermission(Permission.ADMINISTRATOR)) {
+        if (DJController().hasDjRole(context)) {
           skipTrack()
         } else {
-          var shouldDie: Boolean = false
+          var shouldDie = false
           val members = PlayerController(context).manager.agreedMembers
           if (!guilds.contains(context.guild.idLong)) {
             guilds.add(context.guild.idLong)
@@ -56,9 +57,8 @@ class SkipCommand(ctx: MessageReceivedEvent, args: String, prefix: String) : Bas
           val reqMembers: Int = ((voiceChannelMembers * (70.0f/100.0f)).roundToInt())
           if (members.contains(context.member!!)) return
           members.add(context.member!!)
-          context.channel.sendMessage("Vote-skip started! **$reqMembers** required, **${reqMembers - members.size}** left").queue()
+          context.channel.sendMessage("Vote-skip started! **$reqMembers** members required, **${reqMembers - members.size}** left").queue()
           if (members.size == reqMembers) {
-            context.channel.sendMessage("☑️ – Vote-skip passed, track skipped.").queue()
             skipTrack()
             shouldDie = true
           }

@@ -13,7 +13,7 @@ import org.litote.kmongo.setTo
 import org.litote.kmongo.updateOne
 
 @Module("dj", "music")
-@Usage("<[role], [disabled>]")
+@Usage("<[role] || [disabled]>")
 
 class DjCommand(ctx: MessageReceivedEvent, args: String, prefix: String) : BaseModule(ctx, args, prefix) {
   @Command("djrole")
@@ -29,6 +29,10 @@ class DjCommand(ctx: MessageReceivedEvent, args: String, prefix: String) : BaseM
     }
     if (args == "") {
       Helper().explain(context, "djrole", "dj", prefix)
+      return
+    }
+    if (context.message.mentionedRoles.isEmpty()) {
+      context.channel.sendMessage("You must mention a role!").queue()
       return
     }
     val role = context.message.mentionedRoles[0]

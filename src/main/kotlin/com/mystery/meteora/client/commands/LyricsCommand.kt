@@ -21,7 +21,7 @@ import java.net.URL
 @Usage("<track-name>")
 
 class LyricsCommand(ctx: MessageReceivedEvent, args: String, prefix: String) : BaseModule(ctx, args, prefix) {
-  @Command("lyrics", "Letra")
+  @Command("lyrics", "letra", "ly")
   fun lyrics() {
     if (args == "") {
       Helper().explain(context, "lyrics", "Lyrics", prefix)

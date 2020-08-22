@@ -1,7 +1,7 @@
 package com.mystery.meteora.client.commands
 
 import com.mystery.meteora.client.lavaPlayer.PlayerController
-import com.mystery.meteora.controller.PlayController
+import com.mystery.meteora.controller.DJController
 import com.mystery.meteora.handler.annotations.Command
 import com.mystery.meteora.handler.annotations.Module
 import com.mystery.meteora.handler.modules.BaseModule
@@ -19,8 +19,8 @@ class StopCommand(ctx: MessageReceivedEvent, args: String, prefix: String) : Bas
       guildPlayer == null -> context.channel.sendMessage("There isn't an active player in this server.").queue()
       guildPlayer.player.playingTrack == null -> context.channel.sendMessage("There isn't an active track playing in this server.").queue()
       else -> {
-        if (!PlayController().hasDjRole(context.guild.idLong)) {
-          context.channel.sendMessage("❌ – Only members with the DJ role can use this command.").queue()
+        if (!DJController().hasDjRole(context)) {
+          context.channel.sendMessage("❌ – Only members with the DJ role, admin permission or the track's requester can use this command.").queue()
           return
         }
         val embed = EmbedBuilder()
