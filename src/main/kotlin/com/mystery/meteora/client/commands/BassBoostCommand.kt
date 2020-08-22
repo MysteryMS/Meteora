@@ -25,17 +25,14 @@ class BassBoostCommand(ctx: MessageReceivedEvent, args: String, prefix: String) 
       context.channel.sendMessage(embed.build()).queue()
       PlayerController(context).manager.player.setFilterFactory(equalizer)
       for (i in 1..3) {
-        equalizer.setGain(i, 1F)
+        equalizer.setGain(i, 0.6F)
       }
     } else {
-      scheduler.bass(false)
+      PlayerController(context).manager.player.setFilterFactory(null)
       val embed = EmbedBuilder()
         .setDescription("🥁 – Bass boost deactivated")
         .setColor(Color(157, 5, 34))
       context.channel.sendMessage(embed.build()).queue()
-      for (i in 1..3) {
-        equalizer.setGain(i, 0F)
-      }
     }
   }
 
