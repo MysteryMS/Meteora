@@ -20,7 +20,7 @@ class LeaveCommand(ctx: MessageReceivedEvent, args: String, prefix: String) : Ba
       guildPlayer == null -> {
         context.channel.sendMessage("There isn't an active player in this server.").queue()
       }
-      !DJController().hasDjRole(context) || PlayerController(context).manager.player.playingTrack != null -> {
+      !DJController().hasDjRole(context, false) || PlayerController(context).manager.player.playingTrack != null -> {
         context.channel.sendMessage("❌ – This command can only be used when the queue is empty or by members with the DJ role/admin permission")
           .queue()
         return

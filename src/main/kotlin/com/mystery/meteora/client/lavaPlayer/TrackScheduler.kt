@@ -28,6 +28,12 @@ class TrackScheduler(
     }
   }
 
+  fun playNow(track: AudioTrack, context: MessageReceivedEvent) {
+    audioPlayer.startTrack(track, false)
+    show(MusicScheduler(track, context, context.author.idLong))
+    requestedByAuthorId = context.author.idLong
+  }
+
   fun next() {
     val track = queue.poll()
     if (track != null) {

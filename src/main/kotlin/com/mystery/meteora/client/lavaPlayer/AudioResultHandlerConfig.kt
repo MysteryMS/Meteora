@@ -10,17 +10,22 @@ import java.awt.Color
 
 class AudioLoadResultHandlerConfig(
   private val trackScheduler: TrackScheduler,
-  private val context: MessageReceivedEvent
+  private val context: MessageReceivedEvent,
+  private val shouldPlayNow: Boolean
 ) : AudioLoadResultHandler {
 
   override fun loadFailed(exception: FriendlyException?) {
-    context.channel.sendMessage("Sorry, but something bad happened: ${exception.toString()}").queue()
+    context.channel.sendMessage("Sorry, but something bad happened: `${exception.toString()}`").queue()
   }
 
   override fun trackLoaded(track: AudioTrack?) {
     if (context.member?.voiceState?.inVoiceChannel()!!) {
       context.guild.audioManager.openAudioConnection(context.member?.voiceState?.channel)
       if (track != null) {
+        if (shouldPlayNow) {
+          trackScheduler.playNow(track, context)
+          return
+        }
         trackScheduler.queue(track, context)
         if (PlayerController(context).manager.trackScheduler.queue.size > 0) {
           val embed = EmbedBuilder()

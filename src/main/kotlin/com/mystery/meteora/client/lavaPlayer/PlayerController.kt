@@ -32,13 +32,31 @@ class PlayerController(private val context: MessageReceivedEvent) {
       playerManager.loadItemOrdered(
         manager,
         URI(query).toString(),
-        AudioLoadResultHandlerConfig(manager.trackScheduler, context)
+        AudioLoadResultHandlerConfig(manager.trackScheduler, context, false)
       )
     } catch (e: URISyntaxException) {
       playerManager.loadItemOrdered(
         manager,
         "ytsearch:$query",
-        AudioLoadResultHandlerConfig(manager.trackScheduler, context)
+        AudioLoadResultHandlerConfig(manager.trackScheduler, context, false)
+      )
+    }
+
+  }
+
+  fun playNow(query: String) {
+    val manager = addOrFindManager()
+    try {
+      playerManager.loadItemOrdered(
+        manager,
+        URI(query).toString(),
+        AudioLoadResultHandlerConfig(manager.trackScheduler, context, true)
+      )
+    } catch (e: URISyntaxException) {
+      playerManager.loadItemOrdered(
+        manager,
+        "ytsearch:$query",
+        AudioLoadResultHandlerConfig(manager.trackScheduler, context, true)
       )
     }
 

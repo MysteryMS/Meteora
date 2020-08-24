@@ -25,7 +25,7 @@ class PauseCommand(ctx: MessageReceivedEvent, args: String, prefix: String) : Ba
         context.channel.sendMessage(embed.build()).queue()
       }
       else -> {
-        if (!DJController().hasDjRole(context)) {
+        if (!DJController().hasDjRole(context, true)) {
           context.channel.sendMessage("❌ – Only members with the DJ role or the track's requester can use this command.").queue()
           return
         }
@@ -45,7 +45,7 @@ class PauseCommand(ctx: MessageReceivedEvent, args: String, prefix: String) : Ba
           .setColor(Color(59, 136, 195))
         context.channel.sendMessage(embed.build()).queue()
       } else -> {
-      if (!DJController().hasDjRole(context)) {
+      if (!DJController().hasDjRole(context, true)) {
         context.channel.sendMessage("❌ – Only members with the DJ role, admin permission or the track's requester can use this command.").queue()
         return
       }

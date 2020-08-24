@@ -11,7 +11,7 @@ import java.awt.Color
 @Module("loop", "music")
 
 class LoopCommand(ctx: MessageReceivedEvent, args: String, prefix: String) : BaseModule(ctx, args, prefix) {
-  @Command("loop", "repeat")
+  @Command("loop", "repeat", "rp", "r")
   fun loop() {
     val guildPlayer = PlayerController.findManager(context.guild.idLong)
     val embed = EmbedBuilder()

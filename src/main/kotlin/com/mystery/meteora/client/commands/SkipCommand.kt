@@ -38,7 +38,7 @@ class SkipCommand(ctx: MessageReceivedEvent, args: String, prefix: String) : Bas
           skipTrack()
           return
         }
-        if (DJController().hasDjRole(context)) {
+        if (DJController().hasDjRole(context, true)) {
           skipTrack()
         } else {
           var shouldDie = false
