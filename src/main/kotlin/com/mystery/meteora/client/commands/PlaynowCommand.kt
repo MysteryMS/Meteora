@@ -2,6 +2,7 @@ package com.mystery.meteora.client.commands
 
 import com.mystery.meteora.client.lavaPlayer.PlayerController
 import com.mystery.meteora.controller.DJController
+import com.mystery.meteora.controller.Helper
 import com.mystery.meteora.handler.annotations.Command
 import com.mystery.meteora.handler.annotations.Module
 import com.mystery.meteora.handler.annotations.Usage
@@ -14,7 +15,7 @@ class PlaynowCommand(ctx: MessageReceivedEvent, args: String, prefix: String) : 
   @Command("playnow", "pn", "tocaragora")
   fun playnow() {
     if (args == "") {
-      context.channel.sendMessage("esqueceu")
+      Helper().explain(context, "playnow", "Playnow", prefix)
       return
     }
     if (!context.member?.voiceState?.inVoiceChannel()!!) {
