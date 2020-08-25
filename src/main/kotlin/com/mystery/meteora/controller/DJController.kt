@@ -17,7 +17,7 @@ class DJController {
     val col = database.getCollection<Guild>()
     val guild = col.findOneById(context.guild.id)
     val roleId = guild?.djRole
-    val role = context.guild.roles.find { role -> role.idLong == roleId }
+    val role = context.guild.roles.find { role -> role.idLong == roleId } ?: return false
     client.close()
     return if (authorAllowed) {
       context.member?.roles?.contains(role)!! || context.member!!.user.idLong == PlayerController(context).manager.trackScheduler.requestedByAuthorId || context.member!!.hasPermission(Permission.ADMINISTRATOR)
