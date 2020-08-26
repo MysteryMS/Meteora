@@ -11,13 +11,13 @@ import org.litote.kmongo.findOneById
 import org.litote.kmongo.getCollection
 
 class DJController {
-  fun hasDjRole(context: MessageReceivedEvent, authorAllowed: Boolean): Boolean {
+  fun hasDjRole(context: MessageReceivedEvent, authorAllowed: Boolean): Boolean? {
     val client = KMongo.createClient()
     val database: MongoDatabase = client.getDatabase("test")
     val col = database.getCollection<Guild>()
     val guild = col.findOneById(context.guild.id)
     val roleId = guild?.djRole
-    val role = context.guild.roles.find { role -> role.idLong == roleId } ?: return false
+    val role = context.guild.roles.find { role -> role.idLong == roleId } ?: return null
     client.close()
     return if (authorAllowed) {
       context.member?.roles?.contains(role)!! || context.member!!.user.idLong == PlayerController(context).manager.trackScheduler.requestedByAuthorId || context.member!!.hasPermission(Permission.ADMINISTRATOR)

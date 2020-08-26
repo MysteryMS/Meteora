@@ -19,9 +19,8 @@ class StopCommand(ctx: MessageReceivedEvent, args: String, prefix: String) : Bas
       guildPlayer == null -> context.channel.sendMessage("There isn't an active player in this server.").queue()
       guildPlayer.player.playingTrack == null -> context.channel.sendMessage("There isn't an active track playing in this server.").queue()
       else -> {
-        if (!DJController().hasDjRole(context, true)) {
+        if (DJController().hasDjRole(context, true) != null && !DJController().hasDjRole(context, true)!! ) {
           context.channel.sendMessage("❌ – Only members with the DJ role, admin permission or the track's requester can use this command.").queue()
-          return
         }
         val embed = EmbedBuilder()
         embed.setDescription("⏹ – Player stopped")

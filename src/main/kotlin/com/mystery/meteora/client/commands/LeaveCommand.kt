@@ -15,19 +15,16 @@ import java.awt.Color
 class LeaveCommand(ctx: MessageReceivedEvent, args: String, prefix: String) : BaseModule(ctx, args, prefix) {
   @Command("leave", "dc", "quit", "disconnect", "sair")
   fun leave() {
-    val guildPlayer = PlayerController.findManager(context.guild.idLong)
-    when {
-      guildPlayer == null -> {
+    when (PlayerController.findManager(context.guild.idLong)) {
+      null -> {
         context.channel.sendMessage("There isn't an active player in this server.").queue()
       }
-      !DJController().hasDjRole(context, false) || PlayerController(context).manager.player.playingTrack != null -> {
-        context.channel.sendMessage("❌ – This command can only be used when the queue is empty or by members with the DJ role/admin permission")
-          .queue()
-        return
-      }
       else -> {
-        val channel =
-          context.guild.members.find { member -> member.idLong == context.jda.selfUser.idLong }?.voiceState?.channel?.name
+        if (DJController().hasDjRole(context, false) != null && (!DJController().hasDjRole(context, false)!! || PlayerController(context).manager.player.playingTrack != null)) {
+          context.channel.sendMessage("❌ – This command can only be used when the queue is empty or by members with the DJ role/admin permission").queue()
+          return
+        }
+        val channel = context.guild.members.find { member -> member.idLong == context.jda.selfUser.idLong }?.voiceState?.channel?.name
         val player = PlayerController.findManager(context.guild.idLong)
         val embed = EmbedBuilder()
           .setDescription("<:voiceleave:561612800804388914> – Left `🔉 $channel`")
