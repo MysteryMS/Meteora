@@ -7,8 +7,8 @@ import net.dv8tion.jda.api.events.message.MessageReceivedEvent
 import java.net.URI
 import java.net.URISyntaxException
 
-class PlayerController(private val context: MessageReceivedEvent) {
-  private val playerManager: AudioPlayerManager = DefaultAudioPlayerManager()
+class PlayerController(private val context: MessageReceivedEvent?) {
+  val playerManager: AudioPlayerManager = DefaultAudioPlayerManager()
   val manager: GuildMusicManager = addOrFindManager()
 
   companion object {
@@ -32,13 +32,13 @@ class PlayerController(private val context: MessageReceivedEvent) {
       playerManager.loadItemOrdered(
         manager,
         URI(query).toString(),
-        AudioLoadResultHandlerConfig(manager.trackScheduler, context, false)
+        AudioLoadResultHandlerConfig(manager.trackScheduler, context!!, false)
       )
     } catch (e: URISyntaxException) {
       playerManager.loadItemOrdered(
         manager,
         "ytsearch:$query",
-        AudioLoadResultHandlerConfig(manager.trackScheduler, context, false)
+        AudioLoadResultHandlerConfig(manager.trackScheduler, context!!, false)
       )
     }
 
@@ -50,13 +50,13 @@ class PlayerController(private val context: MessageReceivedEvent) {
       playerManager.loadItemOrdered(
         manager,
         URI(query).toString(),
-        AudioLoadResultHandlerConfig(manager.trackScheduler, context, true)
+        AudioLoadResultHandlerConfig(manager.trackScheduler, context!!, true)
       )
     } catch (e: URISyntaxException) {
       playerManager.loadItemOrdered(
         manager,
         "ytsearch:$query",
-        AudioLoadResultHandlerConfig(manager.trackScheduler, context, true)
+        AudioLoadResultHandlerConfig(manager.trackScheduler, context!!, true)
       )
     }
 
@@ -64,12 +64,12 @@ class PlayerController(private val context: MessageReceivedEvent) {
 
   private fun addOrFindManager(): GuildMusicManager {
     var manager = guildsMusic.find { x ->
-      x.idGuild == context.guild.idLong
+      x.idGuild == context!!.guild.idLong
     }
     return if (manager != null) {
       manager
     } else {
-      manager = GuildMusicManager(playerManager, context)
+      manager = GuildMusicManager(playerManager, context!!)
       context.guild.audioManager.sendingHandler = manager.jdaLavaConfig
       guildsMusic.add(manager)
       manager

@@ -1,7 +1,7 @@
 package com.mystery.meteora.client.commands
 
 import com.mystery.meteora.controller.Helper
-import com.mystery.meteora.controller.model.Guild
+import com.mystery.meteora.controller.model.Guilds
 import com.mystery.meteora.handler.annotations.Command
 import com.mystery.meteora.handler.annotations.Description
 import com.mystery.meteora.handler.annotations.Module
@@ -36,7 +36,7 @@ class PrefixCommand(ctx: MessageReceivedEvent, args: String, prefix: String) : B
         KMongo.createClient()
       val database = client.getDatabase("test")
       val collection = database.getCollection("guild")
-      collection.updateOne(Guild::_id eq context.guild.id, Guild::prefix setTo prefix)
+      collection.updateOne(Guilds::_id eq context.guild.id, Guilds::prefix setTo prefix)
       context.channel.sendMessage("Successfully changed the prefix to `$prefix`.").queue()
       client.close()
     }

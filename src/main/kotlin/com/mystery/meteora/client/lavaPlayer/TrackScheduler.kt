@@ -39,6 +39,8 @@ class TrackScheduler(
     if (track != null) {
       audioPlayer.startTrack(track.track, false)
       show(track)
+    } else {
+      PlayerController(null).playerManager.setPlayerCleanupThreshold(300)
     }
   }
 
@@ -59,9 +61,11 @@ class TrackScheduler(
   private fun show(track: MusicScheduler) {
     val embed = EmbedBuilder()
     embed.setDescription(
-      "<a:cd:521088033664270336> - Now Playing: `${track.track.info?.title}` by `${track.track.info?.author}` (${Parser().parse(
-        track.track.info?.length
-      )})"
+      "<a:cd:521088033664270336> - Now Playing: `${track.track.info?.title}` by `${track.track.info?.author}` (${
+        Parser().parse(
+          track.track.info?.length
+        )
+      })"
     )
     embed.setFooter("Requested by ${track.context.author.name}", track.context.author.avatarUrl)
     embed.setColor(Color(115, 140, 213))
@@ -71,6 +75,9 @@ class TrackScheduler(
   }
 
   override fun onTrackEnd(player: AudioPlayer?, track: AudioTrack?, endReason: AudioTrackEndReason?) {
+    if (endReason == AudioTrackEndReason.CLEANUP) {
+      println("bucetao")
+    }
     if (!endReason?.mayStartNext!!) return
     if (loop) {
       audioPlayer.startTrack(track?.makeClone(), false)
@@ -78,9 +85,6 @@ class TrackScheduler(
       next()
     }
 
-  }
-
-  override fun onTrackStart(player: AudioPlayer?, track: AudioTrack?) {
   }
 
 

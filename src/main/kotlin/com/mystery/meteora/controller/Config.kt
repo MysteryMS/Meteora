@@ -3,6 +3,7 @@ package com.mystery.meteora.controller
 import com.beust.klaxon.Klaxon
 import com.mystery.meteora.controller.model.Client
 import com.mystery.meteora.controller.model.ConfigModel
+import com.mystery.meteora.controller.model.Database
 import java.io.File
 
 class Config(path: String) {
@@ -16,7 +17,7 @@ class Config(path: String) {
             config = Klaxon().parse<ConfigModel>(json)
         } else {
             file.createNewFile()
-            file.writeText(Klaxon().toJsonString(ConfigModel(Client("", ""))))
+            file.writeText(Klaxon().toJsonString(ConfigModel(Client("", ""), Database(""))))
         }
     }
 }

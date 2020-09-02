@@ -1,7 +1,7 @@
 package com.mystery.meteora.client.commands
 
 import com.mystery.meteora.controller.Helper
-import com.mystery.meteora.controller.model.Guild
+import com.mystery.meteora.controller.model.Guilds
 import com.mystery.meteora.handler.annotations.Command
 import com.mystery.meteora.handler.annotations.Module
 import com.mystery.meteora.handler.annotations.Usage
@@ -22,7 +22,7 @@ class DjCommand(ctx: MessageReceivedEvent, args: String, prefix: String) : BaseM
     val database = client.getDatabase("test")
     val collection = database.getCollection("guild")
     if (args.split(' ')[0] == "disabled") {
-      collection.updateOne(Guild::_id eq context.guild.id, Guild::djRole setTo null)
+      collection.updateOne(Guilds::_id eq context.guild.id, Guilds::djRole setTo null)
       client.close()
       context.channel.sendMessage("\uD83C\uDFA7 – DJ role disabled.").queue()
       return
@@ -36,7 +36,7 @@ class DjCommand(ctx: MessageReceivedEvent, args: String, prefix: String) : BaseM
       return
     }
     val role = context.message.mentionedRoles[0]
-    collection.updateOne(Guild::_id eq context.guild.id, Guild::djRole setTo role.idLong)
+    collection.updateOne(Guilds::_id eq context.guild.id, Guilds::djRole setTo role.idLong)
     context.channel.sendMessage("\uD83C\uDFA7 – DJ role set to `${role.name}`").queue()
     client.close()
   }

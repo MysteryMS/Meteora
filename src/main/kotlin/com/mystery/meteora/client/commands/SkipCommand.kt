@@ -2,13 +2,12 @@ package com.mystery.meteora.client.commands
 
 import com.mystery.meteora.client.lavaPlayer.PlayerController
 import com.mystery.meteora.controller.DJController
-import com.mystery.meteora.controller.model.Guild
+import com.mystery.meteora.controller.model.Guilds
 import com.mystery.meteora.handler.annotations.Command
 import com.mystery.meteora.handler.annotations.Module
 import com.mystery.meteora.handler.modules.BaseModule
 import kotlinx.coroutines.*
 import net.dv8tion.jda.api.EmbedBuilder
-import net.dv8tion.jda.api.Permission
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent
 import org.litote.kmongo.KMongo
 import org.litote.kmongo.findOneById
@@ -31,14 +30,14 @@ class SkipCommand(ctx: MessageReceivedEvent, args: String, prefix: String) : Bas
       else -> {
         val client = KMongo.createClient()
         val database = client.getDatabase("test")
-        val collection = database.getCollection<Guild>()
+        val collection = database.getCollection<Guilds>()
         val djRoleId = collection.findOneById(context.guild.id)!!.djRole
         val role = context.guild.roles.find { role -> role.idLong == djRoleId }
         if (role == null) {
           skipTrack()
           return
         }
-        if (DJController().hasDjRole(context, true)) {
+        if (DJController().hasDjRole(context, true)!!) {
           skipTrack()
         } else {
           var shouldDie = false

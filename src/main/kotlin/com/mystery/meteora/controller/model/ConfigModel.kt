@@ -1,5 +1,6 @@
 package com.mystery.meteora.controller.model
 
 data class ConfigModel(
-    val clientConfig: Client
+    val clientConfig: Client,
+    val databaseConfig: Database
 )
