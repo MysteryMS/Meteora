@@ -20,7 +20,7 @@ class PlaynowCommand(ctx: MessageReceivedEvent, args: String, prefix: String) : 
     }
     if (!context.member?.voiceState?.inVoiceChannel()!!) {
       context.channel.sendMessage("Hey, ${context.author.asMention}, you must be in a voice channel before running this command!").queue()
-    } else if (!DJController().hasDjRole(context, false)) {
+    } else if (!DJController().hasDjRole(context, false)!!) {
       context.channel.sendMessage("❌ – Only members with the DJ role or admin permission can use this command.").queue()
       return
     } else {
