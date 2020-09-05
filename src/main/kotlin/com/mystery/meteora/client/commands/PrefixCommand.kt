@@ -34,7 +34,7 @@ class PrefixCommand(ctx: MessageReceivedEvent, args: String, prefix: String) : B
     } else {
       val client =
         KMongo.createClient()
-      val database = client.getDatabase("test")
+      val database = client.getDatabase("meteora")
       val collection = database.getCollection("guild")
       collection.updateOne(Guilds::_id eq context.guild.id, Guilds::prefix setTo prefix)
       context.channel.sendMessage("Successfully changed the prefix to `$prefix`.").queue()

@@ -29,7 +29,7 @@ class SkipCommand(ctx: MessageReceivedEvent, args: String, prefix: String) : Bas
       guildPlayer.player.playingTrack == null -> context.channel.sendMessage("There isn't an active track playing in this server.").queue()
       else -> {
         val client = KMongo.createClient()
-        val database = client.getDatabase("test")
+        val database = client.getDatabase("meteora")
         val collection = database.getCollection<Guilds>()
         val djRoleId = collection.findOneById(context.guild.id)!!.djRole
         val role = context.guild.roles.find { role -> role.idLong == djRoleId }
