@@ -21,7 +21,7 @@ class DjCommand(ctx: MessageReceivedEvent, args: String, prefix: String) : BaseM
   fun dj() {
     val client = KMongo.createClient(Config("./meteora.json").config?.databaseConfig?.connectionUri!!)
     val database = client.getDatabase("meteora")
-    val collection = database.getCollection("guild")
+    val collection = database.getCollection("guilds")
     if (args.split(' ')[0] == "disabled") {
       collection.updateOne(Guilds::_id eq context.guild.id, Guilds::djRole setTo null)
       client.close()

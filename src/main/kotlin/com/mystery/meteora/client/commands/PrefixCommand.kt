@@ -36,7 +36,7 @@ class PrefixCommand(ctx: MessageReceivedEvent, args: String, prefix: String) : B
       val client =
         KMongo.createClient(Config("./meteora.json").config?.databaseConfig?.connectionUri!!)
       val database = client.getDatabase("meteora")
-      val collection = database.getCollection("guild")
+      val collection = database.getCollection("guilds")
       collection.updateOne(Guilds::_id eq context.guild.id, Guilds::prefix setTo prefix)
       context.channel.sendMessage("Successfully changed the prefix to `$prefix`.").queue()
       client.close()
