@@ -1,5 +1,6 @@
 package com.mystery.meteora.client.commands
 
+import com.mystery.meteora.controller.Config
 import com.mystery.meteora.controller.Helper
 import com.mystery.meteora.controller.model.Guilds
 import com.mystery.meteora.handler.annotations.Command
@@ -18,7 +19,7 @@ import org.litote.kmongo.updateOne
 class DjCommand(ctx: MessageReceivedEvent, args: String, prefix: String) : BaseModule(ctx, args, prefix) {
   @Command("djrole")
   fun dj() {
-    val client = KMongo.createClient()
+    val client = KMongo.createClient(Config("./meteora.json").config?.databaseConfig?.connectionUri!!)
     val database = client.getDatabase("meteora")
     val collection = database.getCollection("guild")
     if (args.split(' ')[0] == "disabled") {

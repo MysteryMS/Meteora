@@ -11,7 +11,7 @@ import org.litote.kmongo.getCollection
 
 class DJController {
   fun hasDjRole(context: MessageReceivedEvent, authorAllowed: Boolean): Boolean? {
-    val client = KMongo.createClient()
+    val client = KMongo.createClient(Config("./meteora.json").config?.databaseConfig?.connectionUri!!)
     val database: MongoDatabase = client.getDatabase("meteora")
     val col = database.getCollection<Guilds>()
     val guild = col.findOneById(context.guild.id)

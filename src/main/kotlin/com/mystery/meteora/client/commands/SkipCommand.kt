@@ -1,6 +1,7 @@
 package com.mystery.meteora.client.commands
 
 import com.mystery.meteora.client.lavaPlayer.PlayerController
+import com.mystery.meteora.controller.Config
 import com.mystery.meteora.controller.DJController
 import com.mystery.meteora.controller.model.Guilds
 import com.mystery.meteora.handler.annotations.Command
@@ -28,7 +29,7 @@ class SkipCommand(ctx: MessageReceivedEvent, args: String, prefix: String) : Bas
       guildPlayer == null -> context.channel.sendMessage("There isn't an active player in this server.").queue()
       guildPlayer.player.playingTrack == null -> context.channel.sendMessage("There isn't an active track playing in this server.").queue()
       else -> {
-        val client = KMongo.createClient()
+        val client = KMongo.createClient(Config("./meteora.json").config?.databaseConfig?.connectionUri!!)
         val database = client.getDatabase("meteora")
         val collection = database.getCollection<Guilds>()
         val djRoleId = collection.findOneById(context.guild.id)!!.djRole

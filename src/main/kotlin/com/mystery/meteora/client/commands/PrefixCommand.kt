@@ -1,5 +1,6 @@
 package com.mystery.meteora.client.commands
 
+import com.mystery.meteora.controller.Config
 import com.mystery.meteora.controller.Helper
 import com.mystery.meteora.controller.model.Guilds
 import com.mystery.meteora.handler.annotations.Command
@@ -33,7 +34,7 @@ class PrefixCommand(ctx: MessageReceivedEvent, args: String, prefix: String) : B
       context.channel.sendMessage("The prefix is limited to 3 characters.").queue()
     } else {
       val client =
-        KMongo.createClient()
+        KMongo.createClient(Config("./meteora.json").config?.databaseConfig?.connectionUri!!)
       val database = client.getDatabase("meteora")
       val collection = database.getCollection("guild")
       collection.updateOne(Guilds::_id eq context.guild.id, Guilds::prefix setTo prefix)
