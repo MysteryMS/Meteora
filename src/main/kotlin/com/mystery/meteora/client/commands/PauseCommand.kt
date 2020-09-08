@@ -3,6 +3,7 @@ package com.mystery.meteora.client.commands
 import com.mystery.meteora.client.lavaPlayer.PlayerController
 import com.mystery.meteora.controller.Config
 import com.mystery.meteora.controller.DJController
+import com.mystery.meteora.controller.translate
 import com.mystery.meteora.handler.annotations.Command
 import com.mystery.meteora.handler.annotations.Module
 import com.mystery.meteora.handler.modules.BaseModule
@@ -17,20 +18,20 @@ class PauseCommand(ctx: MessageReceivedEvent, args: String, prefix: String, conf
   @Command("pause")
   fun pause() {
     when {
-      guildPlayer == null -> context.channel.sendMessage("There isn't an active player in this server.").queue()
-      guildPlayer.player.playingTrack == null -> context.channel.sendMessage("There isn't an active track playing in this server.").queue()
+      guildPlayer == null -> context.channel.sendMessage("global.noPlayer".translate(config, context.guild.id)).queue()
+      guildPlayer.player.playingTrack == null -> context.channel.sendMessage("global.noTrack".translate(config, context.guild.id)).queue()
       guildPlayer.player.isPaused -> {
         val embed = EmbedBuilder()
-          .setDescription("The player is already paused. Did you mean to resume the track? Use `${prefix}resume` instead.")
+          .setDescription("paused.alreadyPaused".translate(config, context.guild.id, prefix))
           .setColor(Color(59, 136, 195))
         context.channel.sendMessage(embed.build()).queue()
       }
       else -> {
         if (DJController().hasDjRole(context, true) != null && !DJController().hasDjRole(context, true)!!) {
-          context.channel.sendMessage("❌ – Only members with the DJ role or the track's requester can use this command.").queue()
+          context.channel.sendMessage("global.djRole".translate(config, context.guild.id)).queue()
           return
         }
-        context.channel.sendMessage(EmbedBuilder().setDescription("⏸ – Track paused").setColor(Color(59, 136, 195)).build()).queue()
+        context.channel.sendMessage(EmbedBuilder().setDescription("pause.paused".translate(config, context.guild.id)).setColor(Color(59, 136, 195)).build()).queue()
         guildPlayer.player.isPaused = true
       }
     }
@@ -39,18 +40,18 @@ class PauseCommand(ctx: MessageReceivedEvent, args: String, prefix: String, conf
   @Command("resume")
   fun resume() {
     when {
-      guildPlayer == null -> context.channel.sendMessage("There isn't an active player in this server.")
+      guildPlayer == null -> context.channel.sendMessage("global.noPlayer".translate(config, context.guild.id))
       !guildPlayer.player.isPaused -> {
         val embed = EmbedBuilder()
-          .setDescription("The player is already resumed. Did you mean to pause the track? Use `${prefix}pause` instead.")
+          .setDescription("resume.alreadyResumed".translate(config, context.guild.id))
           .setColor(Color(59, 136, 195))
         context.channel.sendMessage(embed.build()).queue()
       } else -> {
       if (DJController().hasDjRole(context, true) != null && !DJController().hasDjRole(context, true)!!) {
-        context.channel.sendMessage("❌ – Only members with the DJ role, admin permission or the track's requester can use this command.").queue()
+        context.channel.sendMessage("global.alternativeDjOnly".translate(config, context.guild.id)).queue()
         return
       }
-      context.channel.sendMessage(EmbedBuilder().setDescription("▶ – Track resumed").setColor(Color(59, 136, 195)).build()).queue()
+      context.channel.sendMessage(EmbedBuilder().setDescription("resume.resumed".translate(config, context.guild.id)).setColor(Color(59, 136, 195)).build()).queue()
       guildPlayer.player.isPaused = false
     }
     }

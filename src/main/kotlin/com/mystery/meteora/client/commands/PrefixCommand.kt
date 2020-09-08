@@ -3,6 +3,7 @@ package com.mystery.meteora.client.commands
 import com.mystery.meteora.controller.Config
 import com.mystery.meteora.controller.Helper
 import com.mystery.meteora.controller.model.Guilds
+import com.mystery.meteora.controller.translate
 import com.mystery.meteora.handler.annotations.Command
 import com.mystery.meteora.handler.annotations.Description
 import com.mystery.meteora.handler.annotations.Module
@@ -21,7 +22,7 @@ class PrefixCommand(ctx: MessageReceivedEvent, args: String, prefix: String, con
   fun prefix() {
     val permission = context.member?.hasPermission(Permission.MESSAGE_MANAGE)
     if (!permission!!) {
-      context.channel.sendMessage("In order to run this command, you need the `Manage Messages` permission!").queue()
+      context.channel.sendMessage("prefix.insufficientPerms".translate(config, context.guild.id)).queue()
       return
     }
     if (args == "") {
@@ -31,14 +32,13 @@ class PrefixCommand(ctx: MessageReceivedEvent, args: String, prefix: String, con
     val argsArray = args.split(' ').toTypedArray()
     val prefix = argsArray[0]
     if (prefix.length > 3) {
-      context.channel.sendMessage("The prefix is limited to 3 characters.").queue()
+      context.channel.sendMessage("prefix.maxValue".translate(config, context.guild.id)).queue()
     } else {
-      val client =
-        KMongo.createClient(Config("./meteora.json").config?.databaseConfig?.connectionUri!!)
+      val client = KMongo.createClient(config!!.config?.databaseConfig?.connectionUri!!)
       val database = client.getDatabase("meteora")
       val collection = database.getCollection("guilds")
       collection.updateOne(Guilds::_id eq context.guild.id, Guilds::prefix setTo prefix)
-      context.channel.sendMessage("Successfully changed the prefix to `$prefix`.").queue()
+      context.channel.sendMessage("prefix.changed".translate(config, context.guild.id, prefix)).queue()
       client.close()
     }
   }

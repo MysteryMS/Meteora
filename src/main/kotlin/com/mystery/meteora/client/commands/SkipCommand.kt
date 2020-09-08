@@ -4,6 +4,7 @@ import com.mystery.meteora.client.lavaPlayer.PlayerController
 import com.mystery.meteora.controller.Config
 import com.mystery.meteora.controller.DJController
 import com.mystery.meteora.controller.model.Guilds
+import com.mystery.meteora.controller.translate
 import com.mystery.meteora.handler.annotations.Command
 import com.mystery.meteora.handler.annotations.Module
 import com.mystery.meteora.handler.modules.BaseModule
@@ -26,10 +27,10 @@ class SkipCommand(ctx: MessageReceivedEvent, args: String, prefix: String, confi
   fun skip() {
     val guildPlayer = PlayerController.findManager(context.guild.idLong)
     when {
-      guildPlayer == null -> context.channel.sendMessage("There isn't an active player in this server.").queue()
-      guildPlayer.player.playingTrack == null -> context.channel.sendMessage("There isn't an active track playing in this server.").queue()
+      guildPlayer == null -> context.channel.sendMessage("global.noPlayer".translate(config, context.guild.id)).queue()
+      guildPlayer.player.playingTrack == null -> context.channel.sendMessage("global.noPlayer".translate(config, context.guild.id)).queue()
       else -> {
-        val client = KMongo.createClient(Config("./meteora.json").config?.databaseConfig?.connectionUri!!)
+        val client = KMongo.createClient(config!!.config?.databaseConfig?.connectionUri!!)
         val database = client.getDatabase("meteora")
         val collection = database.getCollection<Guilds>()
         val djRoleId = collection.findOneById(context.guild.id)!!.djRole
@@ -48,7 +49,7 @@ class SkipCommand(ctx: MessageReceivedEvent, args: String, prefix: String, confi
             GlobalScope.launch {
               delay(40000)
               if (shouldDie) return@launch
-              context.channel.sendMessage("❌ – Vote-skip timed out").queue()
+              context.channel.sendMessage("skip.voteskp.timeout").queue()
               members.clear()
               guilds.remove(context.guild.idLong)
             }
@@ -57,7 +58,7 @@ class SkipCommand(ctx: MessageReceivedEvent, args: String, prefix: String, confi
           val reqMembers: Int = ((voiceChannelMembers * (70.0f/100.0f)).roundToInt())
           if (members.contains(context.member!!)) return
           members.add(context.member!!)
-          context.channel.sendMessage("Vote-skip started! **$reqMembers** members required, **${reqMembers - members.size}** left").queue()
+          context.channel.sendMessage("skip.voteskip.started".translate(config, context.guild.id, reqMembers, reqMembers - members.size)).queue()
           if (members.size == reqMembers) {
             skipTrack()
             shouldDie = true

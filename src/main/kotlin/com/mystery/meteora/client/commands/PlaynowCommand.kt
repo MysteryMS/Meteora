@@ -4,6 +4,7 @@ import com.mystery.meteora.client.lavaPlayer.PlayerController
 import com.mystery.meteora.controller.Config
 import com.mystery.meteora.controller.DJController
 import com.mystery.meteora.controller.Helper
+import com.mystery.meteora.controller.translate
 import com.mystery.meteora.handler.annotations.Command
 import com.mystery.meteora.handler.annotations.Description
 import com.mystery.meteora.handler.annotations.Module
@@ -23,9 +24,9 @@ class PlaynowCommand(ctx: MessageReceivedEvent, args: String, prefix: String, co
       return
     }
     if (!context.member?.voiceState?.inVoiceChannel()!!) {
-      context.channel.sendMessage("Hey, ${context.author.asMention}, you must be in a voice channel before running this command!").queue()
+      context.channel.sendMessage("play.notInVoiceChannel".translate(config, context.guild.id, context.author.asMention)).queue()
     } else if (!DJController().hasDjRole(context, false)!!) {
-      context.channel.sendMessage("❌ – Only members with the DJ role or admin permission can use this command.").queue()
+      context.channel.sendMessage("global.djOnly".translate(config, context.guild.id)).queue()
       return
     } else {
       PlayerController(context).playNow(args)
