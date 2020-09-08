@@ -1,7 +1,9 @@
 package com.mystery.meteora.client.commands
 
 import com.mystery.meteora.client.lavaPlayer.PlayerController
+import com.mystery.meteora.controller.Config
 import com.mystery.meteora.controller.Helper
+import com.mystery.meteora.controller.translate
 import com.mystery.meteora.handler.annotations.Command
 import com.mystery.meteora.handler.annotations.Description
 import com.mystery.meteora.handler.annotations.Module
@@ -12,58 +14,58 @@ import net.dv8tion.jda.api.events.message.MessageReceivedEvent
 import java.awt.Color
 
 @Module("Forward", "music")
-@Usage("<time-in-seconds>")
-@Description("Sets the current time of a music, forwarding or rewinding it")
+@Usage("forward.usage")
+@Description("forward.description")
 
-class ForwardCommand(ctx: MessageReceivedEvent, args: String, prefix: String) : BaseModule(ctx, args, prefix) {
+class ForwardCommand(ctx: MessageReceivedEvent, args: String, prefix: String, config: Config) : BaseModule(ctx, args, prefix, config) {
   @Command("forward", "fw", "fwd")
   fun forward() {
     if (args == "") {
-      Helper().explain(context, "forward", "Forward", prefix)
+      Helper().explain(context, "forward", "Forward", prefix, config!!)
       return
     }
     try {
       val guildPlayer = PlayerController.findManager(context.guild.idLong)
       val time = args.split(' ')[0].toLong()
       when {
-        guildPlayer == null -> context.channel.sendMessage("There isn't an active player in this server.").queue()
-        guildPlayer.player.playingTrack == null -> context.channel.sendMessage("There isn't an active track playing in this server.").queue()
+        guildPlayer == null -> context.channel.sendMessage("global.noPlayer".translate(config!!, context.guild.id)).queue()
+        guildPlayer.player.playingTrack == null -> context.channel.sendMessage("global.noTrack".translate(config!!, context.guild.id)).queue()
         else -> {
           val embed = EmbedBuilder()
-            .setDescription("⏩ – Track forwarded in $time seconds")
+            .setDescription("forward.forwarded".translate(config!!, context.guild.id, time))
             .setColor(Color(59, 136, 195))
           context.channel.sendMessage(embed.build()).queue()
           guildPlayer.player.playingTrack.position = guildPlayer.player.playingTrack.position + (time * 1000)
         }
       }
     } catch (error: NumberFormatException) {
-      context.channel.sendMessage("Oops! Seems like your input is not a number.").queue()
+      context.channel.sendMessage("global.number.inputError".translate(config!!, context.guild.id)).queue()
     }
   }
 
   @Command("rewind", "rw", "rwd")
   fun rewind() {
     if (args == "") {
-      Helper().explain(context, "rewind", "Forward", prefix)
+      Helper().explain(context, "rewind", "Forward", prefix, config!!)
       return
     }
     try {
       val guildPlayer = PlayerController.findManager(context.guild.idLong)
       val time = args.split(' ')[0].toLong()
       when {
-        guildPlayer == null -> context.channel.sendMessage("There isn't an active player in this server.").queue()
-        guildPlayer.player.playingTrack == null -> context.channel.sendMessage("There isn't an active track playing in this server.").queue()
+        guildPlayer == null -> context.channel.sendMessage("global.noPlayer".translate(config!!, context.guild.id)).queue()
+        guildPlayer.player.playingTrack == null -> context.channel.sendMessage("global.noTrack".translate(config!!, context.guild.id)).queue()
         time > guildPlayer.player.playingTrack.position -> PlayerController(context).manager.trackScheduler.next()
         else -> {
           val embed = EmbedBuilder()
-            .setDescription(":rewind: – Track rewound in $time seconds")
+            .setDescription("rewind.rewound".translate(config!!, context.guild.id, time.toString()))
             .setColor(Color(59, 136, 195))
           context.channel.sendMessage(embed.build()).queue()
           guildPlayer.player.playingTrack.position = guildPlayer.player.playingTrack.position - (time * 1000)
         }
       }
     } catch (error: NumberFormatException) {
-      context.channel.sendMessage("Oops! Seems like your input is not a number.").queue()
+      context.channel.sendMessage("global.number.inputError".translate(config!!, context.guild.id)).queue()
     }
   }
 

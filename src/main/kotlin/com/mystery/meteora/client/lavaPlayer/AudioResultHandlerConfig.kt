@@ -15,7 +15,8 @@ class AudioLoadResultHandlerConfig(
 ) : AudioLoadResultHandler {
 
   override fun loadFailed(exception: FriendlyException?) {
-    context.channel.sendMessage("Sorry, but something bad happened: `${exception.toString()}`").queue()
+    context.jda.textChannelCache.getElementById(750788166012764220)!!.sendMessage("An error occurred in the guild `${context.guild.name} (${context.guild.id})`. Command is ${context.message.contentDisplay}.\nError: `${exception}`")
+    context.channel.sendMessage("Oh no! Something went wrong while using this command, but don't worry! We tracked the error and will solve as soon as possible.").queue()
   }
 
   override fun trackLoaded(track: AudioTrack?) {
@@ -39,7 +40,7 @@ class AudioLoadResultHandlerConfig(
   }
 
   override fun noMatches() {
-    context.channel.sendMessage("Oops! No tracks found, honey...").queue()
+    context.channel.sendMessage("Oops! No matches found...").queue()
   }
 
   override fun playlistLoaded(playlist: AudioPlaylist?) {

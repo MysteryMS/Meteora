@@ -1,6 +1,7 @@
 package com.mystery.meteora.client.commands
 
 import com.mystery.meteora.client.lavaPlayer.PlayerController
+import com.mystery.meteora.controller.Config
 import com.mystery.meteora.controller.Helper
 import com.mystery.meteora.handler.annotations.Command
 import com.mystery.meteora.handler.annotations.Description
@@ -12,14 +13,14 @@ import net.dv8tion.jda.api.events.message.MessageReceivedEvent
 import java.awt.Color
 
 @Module("Volume", "music")
-@Description("Changes the current player volume")
-@Usage("<volume>")
+@Description("volume.description")
+@Usage("volume.usage")
 
-class VolumeCommand(ctx: MessageReceivedEvent, args: String, prefix: String) : BaseModule(ctx, args, prefix) {
+class VolumeCommand(ctx: MessageReceivedEvent, args: String, prefix: String, config: Config) : BaseModule(ctx, args, prefix, config) {
   @Command("volume", "vol")
   fun volume() {
     if (args == "") {
-      Helper().explain(context, "volume", "Volume", prefix)
+      Helper().explain(context, "volume", "Volume", prefix, config!!)
       return
     }
     val guildPlayer = PlayerController.findManager(context.guild.idLong)

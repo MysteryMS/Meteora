@@ -14,8 +14,8 @@ class MessageEvent : ListenerAdapter() {
   override fun onMessageReceived(event: MessageReceivedEvent) {
     val config = Config("./meteora.json")
     if (!event.channelType.isGuild) return
-    val client = config.config?.databaseConfig?.connectionUri?.let { KMongo.createClient(it) }
-    val database: MongoDatabase = client!!.getDatabase("meteora")
+    val client = KMongo.createClient(config.config?.databaseConfig?.connectionUri!!)
+    val database: MongoDatabase = client.getDatabase("meteora")
     val col = database.getCollection<Guilds>()
     var guild = col.findOneById(event.guild.id)
     if (guild == null) {
@@ -29,6 +29,6 @@ class MessageEvent : ListenerAdapter() {
       return
     }
     // val p = "mk."
-    Handler.executeCommand(event.message.contentRaw, event, p)
+    Handler.executeCommand(event.message.contentRaw, event, p, config)
   }
 }

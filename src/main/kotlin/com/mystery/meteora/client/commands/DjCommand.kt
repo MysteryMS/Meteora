@@ -4,6 +4,7 @@ import com.mystery.meteora.controller.Config
 import com.mystery.meteora.controller.Helper
 import com.mystery.meteora.controller.model.Guilds
 import com.mystery.meteora.handler.annotations.Command
+import com.mystery.meteora.handler.annotations.Description
 import com.mystery.meteora.handler.annotations.Module
 import com.mystery.meteora.handler.annotations.Usage
 import com.mystery.meteora.handler.modules.BaseModule
@@ -14,12 +15,13 @@ import org.litote.kmongo.setTo
 import org.litote.kmongo.updateOne
 
 @Module("dj", "music")
-@Usage("<[role] || [disabled]>")
+@Usage("djrole.usage")
+@Description("djrole.description")
 
-class DjCommand(ctx: MessageReceivedEvent, args: String, prefix: String) : BaseModule(ctx, args, prefix) {
+class DjCommand(ctx: MessageReceivedEvent, args: String, prefix: String, config: Config) : BaseModule(ctx, args, prefix, config) {
   @Command("djrole")
   fun dj() {
-    val client = KMongo.createClient(Config("./meteora.json").config?.databaseConfig?.connectionUri!!)
+    val client = KMongo.createClient(config!!.config?.databaseConfig?.connectionUri!!)
     val database = client.getDatabase("meteora")
     val collection = database.getCollection("guilds")
     if (args.split(' ')[0] == "disabled") {
@@ -29,7 +31,7 @@ class DjCommand(ctx: MessageReceivedEvent, args: String, prefix: String) : BaseM
       return
     }
     if (args == "") {
-      Helper().explain(context, "djrole", "dj", prefix)
+      Helper().explain(context, "djrole", "dj", prefix, config!!)
       return
     }
     if (context.message.mentionedRoles.isEmpty()) {

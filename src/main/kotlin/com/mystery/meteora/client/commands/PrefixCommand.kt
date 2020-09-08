@@ -13,10 +13,10 @@ import net.dv8tion.jda.api.events.message.MessageReceivedEvent
 import org.litote.kmongo.*
 
 @Module("Prefix", "management")
-@Description("Changes the current bot prefix.")
-@Usage("<prefix>")
+@Description("prefix.description")
+@Usage("prefix.usage")
 
-class PrefixCommand(ctx: MessageReceivedEvent, args: String, prefix: String) : BaseModule(ctx, args, prefix) {
+class PrefixCommand(ctx: MessageReceivedEvent, args: String, prefix: String, config: Config) : BaseModule(ctx, args, prefix, config) {
   @Command("prefix")
   fun prefix() {
     val permission = context.member?.hasPermission(Permission.MESSAGE_MANAGE)
@@ -25,7 +25,7 @@ class PrefixCommand(ctx: MessageReceivedEvent, args: String, prefix: String) : B
       return
     }
     if (args == "") {
-      Helper().explain(context, "prefix", "Prefix", prefix)
+      Helper().explain(context, "prefix", "Prefix", prefix, config!!)
       return
     }
     val argsArray = args.split(' ').toTypedArray()

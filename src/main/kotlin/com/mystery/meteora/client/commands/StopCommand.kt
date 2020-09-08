@@ -1,6 +1,7 @@
 package com.mystery.meteora.client.commands
 
 import com.mystery.meteora.client.lavaPlayer.PlayerController
+import com.mystery.meteora.controller.Config
 import com.mystery.meteora.controller.DJController
 import com.mystery.meteora.handler.annotations.Command
 import com.mystery.meteora.handler.annotations.Module
@@ -11,7 +12,7 @@ import java.awt.Color
 
 @Module("StopCommand", "music")
 
-class StopCommand(ctx: MessageReceivedEvent, args: String, prefix: String) : BaseModule(ctx, args, prefix) {
+class StopCommand(ctx: MessageReceivedEvent, args: String, prefix: String, config: Config) : BaseModule(ctx, args, prefix, config) {
   @Command("stop")
   fun stop() {
     val guildPlayer = PlayerController.findManager(context.guild.idLong)

@@ -28,6 +28,7 @@ dependencies {
     implementation ("org.jetbrains.kotlin:kotlin-reflect")
     implementation ("com.sedmelluq:lavaplayer:1.3.50")
     implementation ("com.auth0:java-jwt:3.10.3")
+
 }
 
 

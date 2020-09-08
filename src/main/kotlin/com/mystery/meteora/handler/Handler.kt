@@ -2,6 +2,7 @@ package com.mystery.meteora.handler
 
 import com.mongodb.client.MongoCollection
 import com.mongodb.client.MongoDatabase
+import com.mystery.meteora.controller.Config
 import com.mystery.meteora.handler.annotations.Command
 import com.mystery.meteora.handler.annotations.Hidden
 import com.mystery.meteora.handler.events.MessageEvent
@@ -26,7 +27,7 @@ class Handler(jda: JDA) {
   companion object {
     var modules: List<Modules> = listOf()
       private set
-    fun executeCommand(message: String, context: MessageReceivedEvent, prefix: String) {
+    fun executeCommand(message: String, context: MessageReceivedEvent, prefix: String, config: Config?) {
       if (context.author.isBot) return
       if (message.startsWith(prefix)) {
         val msgFormat = message.substring(prefix.length, message.length)
@@ -37,7 +38,7 @@ class Handler(jda: JDA) {
                 x == messageSplit[0]
               } != null) {
               val args = msgFormat.substring(messageSplit[0].length, msgFormat.length).trim()
-              commandsFind.commandFunction.call(modulesFind.moduleClass.primaryConstructor?.call(context, args, prefix))
+              commandsFind.commandFunction.call(modulesFind.moduleClass.primaryConstructor?.call(context, args, prefix, config))
               return
             }
           }

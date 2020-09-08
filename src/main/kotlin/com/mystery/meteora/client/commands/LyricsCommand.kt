@@ -1,10 +1,13 @@
 package com.mystery.meteora.client.commands
 
 import com.beust.klaxon.Klaxon
+import com.mystery.meteora.controller.Config
 import com.mystery.meteora.controller.Helper
 import com.mystery.meteora.controller.geniusApi.searchRes.Tuso
 import com.mystery.meteora.controller.geniusApi.songMetadata.Tudo
+import com.mystery.meteora.controller.translate
 import com.mystery.meteora.handler.annotations.Command
+import com.mystery.meteora.handler.annotations.Description
 import com.mystery.meteora.handler.annotations.Module
 import com.mystery.meteora.handler.annotations.Usage
 import com.mystery.meteora.handler.modules.BaseModule
@@ -13,28 +16,24 @@ import net.dv8tion.jda.api.events.message.MessageReceivedEvent
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
 import org.jsoup.safety.Whitelist
-import org.litote.kmongo.json
 import java.awt.Color
 import java.net.URL
 
 @Module("Lyrics", "music")
-@Usage("<track-name>")
+@Usage("lyrics.usage")
+@Description("lyrics.description")
 
-class LyricsCommand(ctx: MessageReceivedEvent, args: String, prefix: String) : BaseModule(ctx, args, prefix) {
+class LyricsCommand(ctx: MessageReceivedEvent, args: String, prefix: String, config: Config) : BaseModule(ctx, args, prefix, config) {
   @Command("lyrics", "letra", "ly")
   fun lyrics() {
     if (args == "") {
-      Helper().explain(context, "lyrics", "Lyrics", prefix)
+      Helper().explain(context, "lyrics", "Lyrics", prefix, config!!)
       return
     }
     val request = URL("https://genius.com/api/search/?q=${args.replace(' ', '+')}").readText()
     val response = Klaxon().parse<Tuso>(request)
-    if (response?.response?.hits?.isEmpty()!!) {
-      context.channel.sendMessage("Sorry, no matches found \uD83D\uDC81\u200D♀️").queue()
-      return
-    }
-    if (response.response.hits[0].type != "song") {
-      context.channel.sendMessage("Sorry, no matches found \uD83D\uDC81\u200D♀️").queue()
+    if (response?.response?.hits?.isEmpty()!! || response.response.hits[0].type != "song") {
+      context.channel.sendMessage("lyrics.noMatches".translate(config, context.guild.id)).queue()
       return
     }
     val url = response.response.hits[0].result.url
@@ -69,7 +68,7 @@ class LyricsCommand(ctx: MessageReceivedEvent, args: String, prefix: String) : B
     val producers = if (tudo?.producers?.get(0)?.name == null) "\uD83E\uDD37\u200D♀️" else tudo.producers.joinToString(", ") { element -> element.name }
     val embed = EmbedBuilder()
       .setTitle(obj.title, obj.url)
-      .setDescription("Performed by `${obj.primaryArtist.name}`\nWritten by: $writers\nProduced by: $producers\nReleased at $releaseDate\nFrom the album `$album`")
+      .setDescription("lyrics.embedDescription".translate(config, context.guild.id, obj.primaryArtist.name, writers, producers, releaseDate, album))
       .setColor(Color(253, 250, 62))
       .setImage(obj.image)
       .setFooter(obj.primaryArtist.name, obj.primaryArtist.artistImage)

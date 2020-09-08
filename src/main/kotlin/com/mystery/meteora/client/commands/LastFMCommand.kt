@@ -2,9 +2,12 @@ package com.mystery.meteora.client.commands
 
 import com.beust.klaxon.Klaxon
 import com.beust.klaxon.KlaxonException
+import com.mystery.meteora.controller.Config
 import com.mystery.meteora.controller.Helper
 import com.mystery.meteora.controller.lastFmApi.Response
+import com.mystery.meteora.controller.translate
 import com.mystery.meteora.handler.annotations.Command
+import com.mystery.meteora.handler.annotations.Description
 import com.mystery.meteora.handler.annotations.Module
 import com.mystery.meteora.handler.annotations.Usage
 import com.mystery.meteora.handler.modules.BaseModule
@@ -18,13 +21,14 @@ import java.awt.Color
 import java.util.*
 
 @Module("lastfm", "music")
-@Usage("<username>")
+@Usage("lastfm.usage")
+@Description("lastfm.description")
 
-class LastFMCommand(ctx: MessageReceivedEvent, args: String, prefix: String) : BaseModule(ctx, args, prefix) {
+class LastFMCommand(ctx: MessageReceivedEvent, args: String, prefix: String, config: Config) : BaseModule(ctx, args, prefix, config) {
   @Command("lastfm", "lfm")
   fun lastfm() {
     if (args == "") {
-      Helper().explain(context, "lastfm", "lastfm", prefix)
+      Helper().explain(context, "lastfm", "lastfm", prefix, config!!)
       return
     }
     val client = OkHttpClient().newBuilder().build()
@@ -53,7 +57,7 @@ class LastFMCommand(ctx: MessageReceivedEvent, args: String, prefix: String) : B
         .setColor(Color(104, 235, 193))
       context.channel.sendFile(byteImage, "${context.author.id}.png").embed(embed.build()).queue()
     } catch(e: KlaxonException) {
-      context.channel.sendMessage("User `$args` not found \uD83D\uDC81\u200D♀️").queue()
+      context.channel.sendMessage("lastfm.noUser".translate(config!!, context.guild.id, args)).queue()
     }
   }
 }

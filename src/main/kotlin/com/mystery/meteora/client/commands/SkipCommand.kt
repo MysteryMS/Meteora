@@ -18,7 +18,7 @@ import kotlin.math.roundToInt
 
 @Module("SkipCommand", "music")
 
-class SkipCommand(ctx: MessageReceivedEvent, args: String, prefix: String) : BaseModule(ctx, args, prefix) {
+class SkipCommand(ctx: MessageReceivedEvent, args: String, prefix: String, config: Config) : BaseModule(ctx, args, prefix, config) {
   companion object {
     val guilds: MutableList<Long> = mutableListOf()
   }
