@@ -3,6 +3,7 @@ package com.mystery.meteora.handler
 import com.mongodb.client.MongoCollection
 import com.mongodb.client.MongoDatabase
 import com.mystery.meteora.controller.Config
+import com.mystery.meteora.controller.translate
 import com.mystery.meteora.handler.annotations.Command
 import com.mystery.meteora.handler.annotations.Hidden
 import com.mystery.meteora.handler.events.MessageEvent
@@ -44,7 +45,7 @@ class Handler(jda: JDA) {
           }
         }
       } else if (message.startsWith(context.jda.selfUser.asMention) || message.startsWith("<@!704182418571264020>")) {
-        context.channel.sendMessage("Hey there, ${context.author.asMention}! My prefix in this server is `$prefix`. If you need some help, just type `${prefix}help`.").queue()
+        context.channel.sendMessage("global.mention".translate(config, context.guild.id, context.author.asMention, prefix, prefix)).queue()
       }
     }
   }

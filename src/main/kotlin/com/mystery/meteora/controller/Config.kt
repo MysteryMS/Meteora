@@ -7,6 +7,9 @@ import com.mystery.meteora.controller.model.Database
 import java.io.File
 
 class Config(path: String) {
+    companion object {
+        val config = Config("./meteora.json")
+    }
     var config: ConfigModel? = null
         private set
 
@@ -17,7 +20,7 @@ class Config(path: String) {
             config = Klaxon().parse<ConfigModel>(json)
         } else {
             file.createNewFile()
-            file.writeText(Klaxon().toJsonString(ConfigModel(Client("", ""), Database(""))))
+            file.writeText(Klaxon().toJsonString(ConfigModel(Client("Your bot token goes here!", "Secret goes here, used for backend things."), Database("Database URI in mongodb:// format."))))
         }
     }
 }

@@ -1,5 +1,6 @@
 package com.mystery.meteora
 
+import com.mystery.meteora.client.events.ReactionAddEvent
 import com.mystery.meteora.client.events.ReadyEvent
 import com.mystery.meteora.client.events.VoiceChannelLeftEvent
 import com.mystery.meteora.client.events.VoiceChannelMoveEvent
@@ -23,7 +24,7 @@ class MeteoraKt {
     @ExperimentalStdlibApi
     @Bean
     fun start() {
-      jda.addEventListener(ReadyEvent(), VoiceChannelLeftEvent(), VoiceChannelMoveEvent())
+      jda.addEventListener(ReadyEvent(), VoiceChannelLeftEvent(), VoiceChannelMoveEvent(), ReactionAddEvent())
       Handler(jda).addModules("com.mystery.meteora")
     }
   }
