@@ -8,6 +8,7 @@ import com.mystery.meteora.handler.annotations.Description
 import com.mystery.meteora.handler.annotations.Module
 import com.mystery.meteora.handler.annotations.Usage
 import com.mystery.meteora.handler.modules.BaseModule
+import net.dv8tion.jda.api.Permission
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent
 import org.litote.kmongo.KMongo
 import org.litote.kmongo.eq
@@ -21,6 +22,10 @@ import org.litote.kmongo.updateOne
 class DjCommand(ctx: MessageReceivedEvent, args: String, prefix: String, config: Config) : BaseModule(ctx, args, prefix, config) {
   @Command("djrole")
   fun dj() {
+    if(!context.member?.hasPermission(Permission.MANAGE_ROLES)!!){
+      context.channel.sendMessage("You need the `Manage Roles` permission in order to execute this command!").queue();
+      return
+    }
     val client = KMongo.createClient(config!!.config?.databaseConfig?.connectionUri!!)
     val database = client.getDatabase("meteora")
     val collection = database.getCollection("guilds")
