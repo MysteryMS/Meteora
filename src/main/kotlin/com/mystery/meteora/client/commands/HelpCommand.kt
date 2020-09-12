@@ -16,7 +16,7 @@ class HelpCommand(ctx: MessageReceivedEvent, args: String, prefix: String, confi
   @Command("help", "h")
   fun help() {
     val embed = EmbedBuilder()
-       .setTitle("help.title".translate(config!!, context.guild.id))
+       .setTitle("help.title".translate(config!!, context.guild.id, context.author.name))
     val musicCommands = Handler.modules.filter { command -> command.category == "music" }
       .map { command -> "`$prefix${command.commands[0].names[0]}`" }
     val musicCmds = musicCommands.joinToString(", ")

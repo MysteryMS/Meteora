@@ -1,9 +1,13 @@
 package com.mystery.meteora.client.events
 
 import com.mystery.meteora.client.commands.LanguageCommand
+import com.mystery.meteora.client.commands.SkipCommand
 import com.mystery.meteora.controller.Config
 import com.mystery.meteora.controller.LocaleController
 import com.mystery.meteora.controller.model.Guilds
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import net.dv8tion.jda.api.entities.MessageReaction
 import net.dv8tion.jda.api.events.message.react.MessageReactionAddEvent
 import net.dv8tion.jda.api.hooks.ListenerAdapter
@@ -13,8 +17,15 @@ import org.litote.kmongo.setTo
 import org.litote.kmongo.updateOne
 
 class ReactionAddEvent : ListenerAdapter() {
+    private var shouldDie = false
     override fun onMessageReactionAdd(event: MessageReactionAddEvent) {
         val list = LanguageCommand.messages
+        GlobalScope.launch {
+            delay(10000)
+            if (shouldDie) return@launch
+            list.remove(event.messageIdLong)
+            event.retrieveMessage().queue { message -> message.clearReactions().queue() }
+        }
         if (event.user == event.jda.selfUser) return
         if (list.contains(event.messageIdLong)) {
             when (event.reactionEmote) {

@@ -49,7 +49,7 @@ class SkipCommand(ctx: MessageReceivedEvent, args: String, prefix: String, confi
             GlobalScope.launch {
               delay(40000)
               if (shouldDie) return@launch
-              context.channel.sendMessage("skip.voteskp.timeout").queue()
+              context.channel.sendMessage("skip.voteskip.timeout").queue()
               members.clear()
               guilds.remove(context.guild.idLong)
             }
