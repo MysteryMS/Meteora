@@ -49,7 +49,7 @@ class SkipCommand(ctx: MessageReceivedEvent, args: String, prefix: String, confi
             GlobalScope.launch {
               delay(40000)
               if (shouldDie) return@launch
-              context.channel.sendMessage("skip.voteskip.timeout").queue()
+              context.channel.sendMessage("skip.voteskip.timeout".translate(config, context.guild.id)).queue()
               members.clear()
               guilds.remove(context.guild.idLong)
             }
@@ -71,7 +71,7 @@ class SkipCommand(ctx: MessageReceivedEvent, args: String, prefix: String, confi
   private val guildPlayer = PlayerController.findManager(context.guild.idLong)
   val members = PlayerController(context).manager.agreedMembers
   val embed = EmbedBuilder()
-    .setDescription("⏭️ – Music Skipped")
+    .setDescription("skip.skipped".translate(config, context.guild.id))
     .setColor(Color(59, 136, 195))
   private fun skipTrack() {
     if (controller.queue.size == 0) {

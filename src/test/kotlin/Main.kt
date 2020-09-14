@@ -1,7 +1,11 @@
-import com.sedmelluq.discord.lavaplayer.tools.PlayerLibrary
-import kotlin.random.Random
+import java.util.*
 
-fun main() {
-    val msgNum = List(1) { Random.nextInt(1, 3) }
-    return println(PlayerLibrary.VERSION)
+fun test(): Boolean {
+    val englishBundle = ResourceBundle.getBundle("commands", Locale("en", "us"))
+    val portugueseBundle = ResourceBundle.getBundle("commands", Locale("pt", "br"))
+
+    for (item in englishBundle.keys) {
+        return !portugueseBundle.containsKey(item)
+    }
+    return true
 }

@@ -14,7 +14,7 @@ import java.awt.Color
 @Module("StopCommand", "music")
 
 class StopCommand(ctx: MessageReceivedEvent, args: String, prefix: String, config: Config) : BaseModule(ctx, args, prefix, config) {
-  @Command("stop")
+  @Command("stop", "parar")
   fun stop() {
     val guildPlayer = PlayerController.findManager(context.guild.idLong)
     when {
@@ -23,6 +23,7 @@ class StopCommand(ctx: MessageReceivedEvent, args: String, prefix: String, confi
       else -> {
         if (DJController().hasDjRole(context, true) != null && !DJController().hasDjRole(context, true)!! ) {
           context.channel.sendMessage("global.djOnly".translate(config, context.guild.id)).queue()
+          return
         }
         val embed = EmbedBuilder()
         embed.setDescription("stop.stopped".translate(config, context.guild.id))
