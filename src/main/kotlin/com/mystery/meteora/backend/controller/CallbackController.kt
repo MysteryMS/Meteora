@@ -62,8 +62,6 @@ class CallbackController(private val meteora: MeteoraKt) {
       val guildsRes = client.newCall(guilds).execute().body()!!.string()
       val guildsObj = Klaxon().parseArray<Guild>(guildsRes)
       val allGuilds: MutableList<LocalGuildModel> = mutableListOf()
-      val availableGuilds = guildsObj?.filter { guild -> guild.permissions and 40 != 0 && meteora.jda.guildCache.getElementById(guild.id) != null}
-      val unavailableGuilds = guildsObj?.filter { guild -> guild.permissions and 40 != 0 && meteora.jda.guildCache.getElementById(guild.id) == null }
       for (item in guildsObj!!) {
           if (item.permissions and 40 != 0) {
               allGuilds.add(LocalGuildModel(item.id, item.name, item.iconHash, item.permissions, meteora.jda.guildCache.getElementById(item.id) != null))
