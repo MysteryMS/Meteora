@@ -12,17 +12,19 @@ import com.mystery.meteora.controller.Config
 import okhttp3.FormBody
 import okhttp3.OkHttpClient
 import okhttp3.Request
+import org.springframework.boot.web.servlet.server.Session
 import org.springframework.web.bind.annotation.CrossOrigin
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
+import javax.servlet.http.HttpSession
 
 @RestController
 
 class CallbackController(private val meteora: MeteoraKt) {
   @CrossOrigin
-  @GetMapping("/user")
-  fun login(@RequestParam("code") code: String): APIResponse {
+  @GetMapping("/callback")
+  fun login(@RequestParam("code") code: String, session: HttpSession): APIResponse {
     if (code == "") return APIResponse(null, null, null, null, "Missing callback code")
     val client = OkHttpClient().newBuilder().build()
     val formBody = FormBody.Builder()
@@ -61,11 +63,16 @@ class CallbackController(private val meteora: MeteoraKt) {
       val guildsObj = Klaxon().parseArray<Guild>(guildsRes)
       val availableGuilds = guildsObj?.filter { guild -> guild.permissions and 40 != 0 && meteora.jda.guildCache.getElementById(guild.id) != null}
       val unavailableGuilds = guildsObj?.filter { guild -> guild.permissions and 40 != 0 && meteora.jda.guildCache.getElementById(guild.id) == null }
+      session.setAttribute("user_object", APIResponse(parsedRes?.access_token, parsedUser, availableGuilds, unavailableGuilds))
       return APIResponse(parsedRes?.access_token, parsedUser, availableGuilds, unavailableGuilds)
     } catch (e: KlaxonException) {
       println(e)
       val err = Klaxon().parse<ErrorResponse>(authorizationResponse)
       return APIResponse(null, null, null, null, err!!.errorDescription)
     }
+  }
+
+  @GetMapping("getUser")
+  fun getUser(@RequestParam("token") jwt: String) {
   }
 }
