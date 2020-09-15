@@ -29,7 +29,7 @@ class CallbackController(private val meteora: MeteoraKt) {
       .add("client_id", "464304679128530954")
       .add("client_secret", Config("./meteora.json").config?.clientConfig?.secret!!)
       .add("grant_type", "authorization_code")
-      .add("redirect_uri", "http://localhost:3000/callback")
+      .add("redirect_uri", "http://localhost:3000/user")
       .add("scope", "identify")
       .add("code", code)
       .build()
