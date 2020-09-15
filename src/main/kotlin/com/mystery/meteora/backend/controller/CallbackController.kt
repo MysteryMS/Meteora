@@ -73,6 +73,7 @@ class CallbackController(private val meteora: MeteoraKt) {
   }
 
   @GetMapping("getUser")
-  fun getUser(@RequestParam("token") jwt: String) {
+  fun getUser(session: HttpSession): Any? {
+    return session.getAttribute("user_object")
   }
 }
