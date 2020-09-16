@@ -17,27 +17,29 @@ import org.litote.kmongo.setTo
 import org.litote.kmongo.updateOne
 
 class ReactionAddEvent : ListenerAdapter() {
-    private var shouldDie = false
+    private var shouldDie = true
     override fun onMessageReactionAdd(event: MessageReactionAddEvent) {
         val list = LanguageCommand.messages
-        GlobalScope.launch {
-            delay(10000)
-            if (shouldDie) return@launch
-            list.remove(event.messageIdLong)
-            event.retrieveMessage().queue { message -> message.clearReactions().queue() }
-        }
         if (event.user == event.jda.selfUser) return
         if (list.contains(event.messageIdLong)) {
+            GlobalScope.launch {
+                delay(10000)
+                if (shouldDie) return@launch
+                list.remove(event.messageIdLong)
+                event.retrieveMessage().queue { message -> message.clearReactions().queue() }
+            }
             when (event.reactionEmote) {
                 MessageReaction.ReactionEmote.fromUnicode("\uD83C\uDDE7\uD83C\uDDF7", event.jda) -> {
                     event.retrieveMessage().queue { message -> message.delete().queue() }
                     event.channel.sendMessage("É isso aí! E o time brasileiro vence novamente! \uD83C\uDDE7\uD83C\uDDF7").queue()
+                    shouldDie = false
                     list.remove(event.messageIdLong)
                     LocaleController().changeLanguage("pt-BR", Config("./meteora.json"), event.guild.id)
                 }
                 MessageReaction.ReactionEmote.fromUnicode("\uD83C\uDDFA\uD83C\uDDF8", event.jda) -> {
                     event.retrieveMessage().queue { message -> message.delete().queue() }
                     event.channel.sendMessage("Oh! English? I really appreciate this language. \uD83C\uDDFA\uD83C\uDDF8").queue()
+                    shouldDie = false
                     list.remove(event.messageIdLong)
                     LocaleController().changeLanguage("en-US", Config("./meteora.json"), event.guild.id)
                 }
