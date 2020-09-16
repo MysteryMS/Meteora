@@ -3,6 +3,7 @@ package com.mystery.meteora.handler.events
 import com.mongodb.client.MongoDatabase
 import com.mystery.meteora.controller.Config
 import com.mystery.meteora.controller.model.Guilds
+import com.mystery.meteora.controller.translate
 import com.mystery.meteora.handler.Handler
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent
 import net.dv8tion.jda.api.hooks.ListenerAdapter
@@ -25,10 +26,9 @@ class MessageEvent : ListenerAdapter() {
     val p = guild.prefix
     client.close()
     if (event.message.contentRaw == event.jda.selfUser.asMention || event.message.contentRaw == "<@!${event.jda.selfUser.idLong}>") {
-      event.channel.sendMessage("Hi there, ${event.author.asMention}. My prefix in this server is `$p`, if you need some help, just use `${p}help`!").queue()
+      event.channel.sendMessage("global.mention".translate(config, event.guild.id, event.author.asMention, p, p)).queue()
       return
     }
-    // val p = "mk."
     Handler.executeCommand(event.message.contentRaw, event, p, config)
   }
 }

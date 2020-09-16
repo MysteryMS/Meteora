@@ -1,6 +1,7 @@
 package com.mystery.meteora.controller
 
 import com.beust.klaxon.Klaxon
+import com.mystery.meteora.controller.model.APITokens
 import com.mystery.meteora.controller.model.Client
 import com.mystery.meteora.controller.model.ConfigModel
 import com.mystery.meteora.controller.model.Database
@@ -20,7 +21,7 @@ class Config(path: String) {
             config = Klaxon().parse<ConfigModel>(json)
         } else {
             file.createNewFile()
-            file.writeText(Klaxon().toJsonString(ConfigModel(Client("Your bot token goes here!", "Secret goes here, used for backend things."), Database("Database URI in mongodb:// format."))))
+            file.writeText(Klaxon().toJsonString(ConfigModel(Client("Your bot token goes here!", "Secret goes here, used for backend things."), Database("Database URI in mongodb:// format."), APITokens("Your KSoft API token goes here."))))
         }
     }
 }

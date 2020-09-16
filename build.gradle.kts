@@ -8,7 +8,7 @@ plugins {
 }
 
 group "com.mystery"
-version "1.0-SNAPSHOT"
+version "2020.09-STABLE"
 java.sourceCompatibility = JavaVersion.VERSION_11
 
 repositories {

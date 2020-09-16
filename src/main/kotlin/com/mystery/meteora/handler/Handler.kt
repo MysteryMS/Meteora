@@ -1,7 +1,5 @@
 package com.mystery.meteora.handler
 
-import com.mongodb.client.MongoCollection
-import com.mongodb.client.MongoDatabase
 import com.mystery.meteora.controller.Config
 import com.mystery.meteora.controller.translate
 import com.mystery.meteora.handler.annotations.Command
@@ -12,9 +10,6 @@ import com.mystery.meteora.handler.modules.Commands
 import com.mystery.meteora.handler.modules.Modules
 import net.dv8tion.jda.api.JDA
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent
-import org.bson.Document
-import org.litote.kmongo.KMongo
-import org.litote.kmongo.findOneById
 import org.reflections.Reflections
 import kotlin.reflect.KClass
 import kotlin.reflect.full.findAnnotation
@@ -23,7 +18,6 @@ import kotlin.reflect.full.hasAnnotation
 import kotlin.reflect.full.primaryConstructor
 
 class Handler(jda: JDA) {
-
 
   companion object {
     var modules: List<Modules> = listOf()
