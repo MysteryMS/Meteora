@@ -17,7 +17,8 @@ import java.awt.Color
 @Description("volume.description")
 @Usage("volume.usage")
 
-class VolumeCommand(ctx: MessageReceivedEvent, args: String, prefix: String, config: Config) : BaseModule(ctx, args, prefix, config) {
+class VolumeCommand(ctx: MessageReceivedEvent, args: String, prefix: String, config: Config) :
+  BaseModule(ctx, args, prefix, config) {
   @Command("volume", "vol")
   fun volume() {
     if (args == "") {

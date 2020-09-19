@@ -3,6 +3,7 @@ package com.mystery.meteora.client.commands
 import com.mystery.meteora.controller.Config
 import com.mystery.meteora.controller.Helper
 import com.mystery.meteora.controller.model.Guilds
+import com.mystery.meteora.controller.translate
 import com.mystery.meteora.handler.annotations.Command
 import com.mystery.meteora.handler.annotations.Description
 import com.mystery.meteora.handler.annotations.Module
@@ -16,14 +17,15 @@ import org.litote.kmongo.setTo
 import org.litote.kmongo.updateOne
 
 @Module("dj", "music")
-@Usage("djrole.usage")
-@Description("djrole.description")
+@Usage("djRole.usage")
+@Description("djRole.description")
 
-class DjCommand(ctx: MessageReceivedEvent, args: String, prefix: String, config: Config) : BaseModule(ctx, args, prefix, config) {
+class DjCommand(ctx: MessageReceivedEvent, args: String, prefix: String, config: Config) :
+  BaseModule(ctx, args, prefix, config) {
   @Command("djrole")
   fun dj() {
-    if(!context.member?.hasPermission(Permission.MANAGE_ROLES)!!){
-      context.channel.sendMessage("You need the `Manage Roles` permission in order to execute this command!").queue();
+    if (!context.member?.hasPermission(Permission.MANAGE_ROLES)!!) {
+      context.channel.sendMessage("djrole.noPermission".translate(config, context.guild.id)).queue()
       return
     }
     val client = KMongo.createClient(config!!.config?.databaseConfig?.connectionUri!!)
@@ -32,20 +34,20 @@ class DjCommand(ctx: MessageReceivedEvent, args: String, prefix: String, config:
     if (args.split(' ')[0] == "disabled") {
       collection.updateOne(Guilds::_id eq context.guild.id, Guilds::djRole setTo null)
       client.close()
-      context.channel.sendMessage("\uD83C\uDFA7 – DJ role disabled.").queue()
+      context.channel.sendMessage("djRole.off".translate(config, context.guild.id)).queue()
       return
     }
     if (args == "") {
-      Helper().explain(context, "djrole", "dj", prefix, config!!)
+      Helper().explain(context, "djrole", "dj", prefix, config)
       return
     }
     if (context.message.mentionedRoles.isEmpty()) {
-      context.channel.sendMessage("You must mention a role!").queue()
+      context.channel.sendMessage("djRole.invalidRole").queue()
       return
     }
     val role = context.message.mentionedRoles[0]
     collection.updateOne(Guilds::_id eq context.guild.id, Guilds::djRole setTo role.idLong)
-    context.channel.sendMessage("\uD83C\uDFA7 – DJ role set to `${role.name}`").queue()
+    context.channel.sendMessage("djRole.set".translate(config, context.guild.id, role.name)).queue()
     client.close()
   }
 }

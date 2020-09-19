@@ -9,6 +9,7 @@ import com.mystery.meteora.backend.controller.models.OAuthResponse
 import com.mystery.meteora.backend.controller.models.User
 import com.mystery.meteora.backend.controller.models.responses.APIResponse
 import com.mystery.meteora.backend.controller.models.responses.ErrorResponse
+import com.mystery.meteora.backend.controller.models.responses.GuildResponse
 import com.mystery.meteora.controller.Config
 import okhttp3.FormBody
 import okhttp3.OkHttpClient
@@ -76,8 +77,20 @@ class CallbackController(private val meteora: MeteoraKt) {
     }
   }
 
-  @GetMapping("getUser")
+  @GetMapping("/me")
   fun getUser(session: HttpSession): Any? {
     return session.getAttribute("user_object")
+  }
+
+  @GetMapping("/guild")
+  fun getUser(@RequestParam("id") guildId: Long): GuildResponse? {
+    val client = OkHttpClient().newBuilder().build()
+    val request = Request.Builder()
+      .url("https://discord.com/api/guilds/$guildId")
+      .addHeader("Authorization", "Bot NDY0MzA0Njc5MTI4NTMwOTU0.Wz2vbQ.XWeNf6UsYpUWAu7GJ-MMKFx-nQo")
+      .get()
+      .build()
+    val response = client.newCall(request).execute().body()?.string()
+    return response?.let { Klaxon().parse<GuildResponse>(it) }
   }
 }

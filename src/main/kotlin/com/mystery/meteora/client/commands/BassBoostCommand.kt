@@ -14,18 +14,26 @@ import java.awt.Color
 
 @Module("Bassboost", "music")
 
-class BassBoostCommand(ctx: MessageReceivedEvent, args: String, prefix: String, config: Config) : BaseModule(ctx, args, prefix, config) {
+class BassBoostCommand(ctx: MessageReceivedEvent, args: String, prefix: String, config: Config) :
+  BaseModule(ctx, args, prefix, config) {
   @Command("bassboost", "bb")
   fun bass() {
     val scheduler = PlayerController(context).manager.trackScheduler
     val equalizer = EqualizerFactory()
     val guildPlayer = PlayerController.findManager(context.guild.idLong)
     when {
-      guildPlayer == null -> context.channel.sendMessage("global.noPlayer".translate(config!!, context.guild.id)).queue()
-      guildPlayer.player.playingTrack == null -> context.channel.sendMessage("global.noTrack".translate(config!!, context.guild.id)).queue()
+      guildPlayer == null -> context.channel.sendMessage("global.noPlayer".translate(config!!, context.guild.id))
+        .queue()
+      guildPlayer.player.playingTrack == null -> context.channel.sendMessage(
+          "global.noTrack".translate(
+              config!!,
+              context.guild.id
+          )
+      ).queue()
       else -> {
-        if (DJController().hasDjRole(context, false) != null && !DJController().hasDjRole(context, true)!! ) {
-          context.channel.sendMessage("global.alternativeDjOnly".translate(config!!, context.guild.id)).queue()
+        if (DJController().hasDjRole(context, false) != null && !DJController().hasDjRole(context, true)!!) {
+          context.channel.sendMessage("global.alternativeDjOnly".translate(config!!, context.guild.id))
+            .queue()
         } else {
           if (!scheduler.bassBoost) {
             scheduler.bass(true)

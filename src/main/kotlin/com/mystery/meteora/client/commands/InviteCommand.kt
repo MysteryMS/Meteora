@@ -11,7 +11,8 @@ import java.awt.Color
 
 @Module("invite", "util")
 
-class InviteCommand(ctx: MessageReceivedEvent, args: String, prefix: String, config: Config) : BaseModule(ctx, args, prefix, config) {
+class InviteCommand(ctx: MessageReceivedEvent, args: String, prefix: String, config: Config) :
+  BaseModule(ctx, args, prefix, config) {
   @Command("invite")
   fun invite() {
     val embed = EmbedBuilder()
