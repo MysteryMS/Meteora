@@ -16,7 +16,8 @@ import net.dv8tion.jda.api.events.message.MessageReceivedEvent
 @Usage("playnow.usage")
 @Description("playnow.description")
 
-class PlaynowCommand(ctx: MessageReceivedEvent, args: String, prefix: String, config: Config) : BaseModule(ctx, args, prefix, config) {
+class PlaynowCommand(ctx: MessageReceivedEvent, args: String, prefix: String, config: Config) :
+  BaseModule(ctx, args, prefix, config) {
   @Command("playnow", "pn", "tocaragora")
   fun playnow() {
     if (args == "") {
@@ -24,7 +25,13 @@ class PlaynowCommand(ctx: MessageReceivedEvent, args: String, prefix: String, co
       return
     }
     if (!context.member?.voiceState?.inVoiceChannel()!!) {
-      context.channel.sendMessage("play.notInVoiceChannel".translate(config, context.guild.id, context.author.asMention)).queue()
+      context.channel.sendMessage(
+        "play.notInVoiceChannel".translate(
+          config,
+          context.guild.id,
+          context.author.asMention
+        )
+      ).queue()
     } else if (!DJController().hasDjRole(context, false)!!) {
       context.channel.sendMessage("global.djOnly".translate(config, context.guild.id)).queue()
       return

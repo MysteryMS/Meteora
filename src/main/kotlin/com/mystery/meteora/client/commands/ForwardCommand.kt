@@ -17,7 +17,8 @@ import java.awt.Color
 @Usage("forward.usage")
 @Description("forward.description")
 
-class ForwardCommand(ctx: MessageReceivedEvent, args: String, prefix: String, config: Config) : BaseModule(ctx, args, prefix, config) {
+class ForwardCommand(ctx: MessageReceivedEvent, args: String, prefix: String, config: Config) :
+  BaseModule(ctx, args, prefix, config) {
   @Command("forward", "fw", "fwd")
   fun forward() {
     if (args == "") {
@@ -28,8 +29,14 @@ class ForwardCommand(ctx: MessageReceivedEvent, args: String, prefix: String, co
       val guildPlayer = PlayerController.findManager(context.guild.idLong)
       val time = args.split(' ')[0].toLong()
       when {
-        guildPlayer == null -> context.channel.sendMessage("global.noPlayer".translate(config!!, context.guild.id)).queue()
-        guildPlayer.player.playingTrack == null -> context.channel.sendMessage("global.noTrack".translate(config!!, context.guild.id)).queue()
+        guildPlayer == null -> context.channel.sendMessage("global.noPlayer".translate(config!!, context.guild.id))
+          .queue()
+        guildPlayer.player.playingTrack == null -> context.channel.sendMessage(
+          "global.noTrack".translate(
+            config!!,
+            context.guild.id
+          )
+        ).queue()
         else -> {
           val embed = EmbedBuilder()
             .setDescription("forward.forwarded".translate(config!!, context.guild.id, time))
@@ -53,8 +60,14 @@ class ForwardCommand(ctx: MessageReceivedEvent, args: String, prefix: String, co
       val guildPlayer = PlayerController.findManager(context.guild.idLong)
       val time = args.split(' ')[0].toLong()
       when {
-        guildPlayer == null -> context.channel.sendMessage("global.noPlayer".translate(config!!, context.guild.id)).queue()
-        guildPlayer.player.playingTrack == null -> context.channel.sendMessage("global.noTrack".translate(config!!, context.guild.id)).queue()
+        guildPlayer == null -> context.channel.sendMessage("global.noPlayer".translate(config!!, context.guild.id))
+          .queue()
+        guildPlayer.player.playingTrack == null -> context.channel.sendMessage(
+          "global.noTrack".translate(
+            config!!,
+            context.guild.id
+          )
+        ).queue()
         time > guildPlayer.player.playingTrack.position -> PlayerController(context).manager.trackScheduler.next()
         else -> {
           val embed = EmbedBuilder()

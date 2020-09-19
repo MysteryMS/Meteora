@@ -8,7 +8,8 @@ import net.dv8tion.jda.api.events.message.MessageReceivedEvent
 
 @Module("PingCommand", "util")
 
-class PingCommand(ctx: MessageReceivedEvent, args: String, prefix: String, config: Config) : BaseModule(ctx, args, prefix, config) {
+class PingCommand(ctx: MessageReceivedEvent, args: String, prefix: String, config: Config) :
+  BaseModule(ctx, args, prefix, config) {
   @Command("ping")
   fun ping() {
     val gatewayPing = context.jda.gatewayPing.toString()

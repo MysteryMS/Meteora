@@ -14,7 +14,8 @@ import java.awt.Color
 
 @Module("Queue", "music")
 
-class QueueCommand(ctx: MessageReceivedEvent, args: String, prefix: String, config: Config) : BaseModule(ctx, args, prefix, config) {
+class QueueCommand(ctx: MessageReceivedEvent, args: String, prefix: String, config: Config) :
+  BaseModule(ctx, args, prefix, config) {
   @Command("queue", "q", "fila")
   fun queue() {
     val guildPlayer = PlayerController.findManager(context.guild.idLong)
@@ -23,7 +24,8 @@ class QueueCommand(ctx: MessageReceivedEvent, args: String, prefix: String, conf
     val args = args.split(' ')
     when {
       guildPlayer == null -> context.channel.sendMessage("global.noPlayer".translate(config, context.guild.id)).queue()
-      trackSchedulerQueue.size == 0 -> context.channel.sendMessage("global.noTrack".translate(config, context.guild.id)).queue()
+      trackSchedulerQueue.size == 0 -> context.channel.sendMessage("global.noTrack".translate(config, context.guild.id))
+        .queue()
       removeAliases.contains(args[0]) -> {
         if (args[1] == "") {
           context.channel.sendMessage("queue.invalidPosition".translate(config, context.guild.id, prefix))
@@ -50,8 +52,17 @@ class QueueCommand(ctx: MessageReceivedEvent, args: String, prefix: String, conf
           "[${i + 1}] \"${track.track.info.title}\" by \"${track.track.info.author}\" (${Parser().parse(track.track.info.length)})"
         }
         var totalLength: Long = 0
-        trackSchedulerQueue.forEach { element -> totalLength += element.track.duration}
-        context.channel.sendMessage("queue.queue".translate(config, context.guild.id, context.guild.name, queueString, trackSchedulerQueue.size, Parser().parse(totalLength)))
+        trackSchedulerQueue.forEach { element -> totalLength += element.track.duration }
+        context.channel.sendMessage(
+          "queue.queue".translate(
+            config,
+            context.guild.id,
+            context.guild.name,
+            queueString,
+            trackSchedulerQueue.size,
+            Parser().parse(totalLength)
+          )
+        )
           .queue()
       }
     }

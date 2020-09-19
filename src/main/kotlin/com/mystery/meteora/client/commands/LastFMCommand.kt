@@ -24,7 +24,8 @@ import java.util.*
 @Usage("lastfm.usage")
 @Description("lastfm.description")
 
-class LastFMCommand(ctx: MessageReceivedEvent, args: String, prefix: String, config: Config) : BaseModule(ctx, args, prefix, config) {
+class LastFMCommand(ctx: MessageReceivedEvent, args: String, prefix: String, config: Config) :
+  BaseModule(ctx, args, prefix, config) {
   @Command("lastfm", "lfm")
   fun lastfm() {
     if (args == "") {
@@ -48,7 +49,7 @@ class LastFMCommand(ctx: MessageReceivedEvent, args: String, prefix: String, con
       .addHeader("X-Source", "meteora caralho")
       .build()
     val response = client.newCall(request).execute()
-      val base64 = response.body()!!.string().replace("data:image/jpeg;base64,", "")
+    val base64 = response.body()!!.string().replace("data:image/jpeg;base64,", "")
     try {
       val parsedResponse = Klaxon().parse<Response>(base64)!!
       val byteImage = Base64.getDecoder().decode(parsedResponse.base64)
@@ -56,7 +57,7 @@ class LastFMCommand(ctx: MessageReceivedEvent, args: String, prefix: String, con
         .setImage("attachment://${context.author.id}.png")
         .setColor(Color(104, 235, 193))
       context.channel.sendFile(byteImage, "${context.author.id}.png").embed(embed.build()).queue()
-    } catch(e: KlaxonException) {
+    } catch (e: KlaxonException) {
       context.channel.sendMessage("lastfm.noUser".translate(config!!, context.guild.id, args)).queue()
     }
   }

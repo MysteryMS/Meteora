@@ -9,11 +9,12 @@ import net.dv8tion.jda.api.events.message.MessageReceivedEvent
 
 @Module("Support", "utils")
 
-class SupportCommand(ctx: MessageReceivedEvent, args: String, prefix: String, config: Config) : BaseModule(ctx, args, prefix, config) {
+class SupportCommand(ctx: MessageReceivedEvent, args: String, prefix: String, config: Config) :
+  BaseModule(ctx, args, prefix, config) {
   @Command("support", "sup", "server")
   fun support() {
-      context.author.openPrivateChannel().queue { channel ->
-          channel.sendMessage("invite.description".translate(config, context.guild.id)).queue()
-      }
-   }
+    context.author.openPrivateChannel().queue { channel ->
+      channel.sendMessage("invite.description".translate(config, context.guild.id)).queue()
+    }
+  }
 }

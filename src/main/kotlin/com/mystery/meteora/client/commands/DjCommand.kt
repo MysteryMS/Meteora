@@ -20,10 +20,11 @@ import org.litote.kmongo.updateOne
 @Usage("djRole.usage")
 @Description("djRole.description")
 
-class DjCommand(ctx: MessageReceivedEvent, args: String, prefix: String, config: Config) : BaseModule(ctx, args, prefix, config) {
+class DjCommand(ctx: MessageReceivedEvent, args: String, prefix: String, config: Config) :
+  BaseModule(ctx, args, prefix, config) {
   @Command("djrole")
   fun dj() {
-    if(!context.member?.hasPermission(Permission.MANAGE_ROLES)!!){
+    if (!context.member?.hasPermission(Permission.MANAGE_ROLES)!!) {
       context.channel.sendMessage("djrole.noPermission".translate(config, context.guild.id)).queue()
       return
     }
