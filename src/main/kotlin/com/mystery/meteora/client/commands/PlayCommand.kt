@@ -1,5 +1,6 @@
 package com.mystery.meteora.client.commands
 
+import com.mystery.meteora.MeteoraKt
 import com.mystery.meteora.client.lavaPlayer.PlayerController
 import com.mystery.meteora.controller.Config
 import com.mystery.meteora.controller.Helper
@@ -32,6 +33,9 @@ class PlayCommand(ctx: MessageReceivedEvent, args: String, prefix: String, confi
         )
       ).queue()
     } else {
+      if (args.split(' ')[0] == "-f") {
+        MeteoraKt().context = context
+      }
       PlayerController(context).play(args)
     }
   }

@@ -1,4 +1,4 @@
-package com.mystery.meteora.backend.controller.models
+package com.mystery.meteora.backend.controller.models.discord
 
 data class Role(
     val id: String,
