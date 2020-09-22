@@ -1,4 +1,4 @@
-package com.mystery.meteora.handler.modules
+package com.mystery.meteora.controller
 
 import java.awt.Graphics2D
 import java.awt.RenderingHints

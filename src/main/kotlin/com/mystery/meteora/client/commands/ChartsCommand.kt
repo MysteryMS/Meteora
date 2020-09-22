@@ -3,17 +3,17 @@ package com.mystery.meteora.client.commands
 import com.beust.klaxon.Klaxon
 import com.mystery.meteora.apiResponses.deezerApi.Data
 import com.mystery.meteora.controller.Config
+import com.mystery.meteora.controller.GraphicUtils
 import com.mystery.meteora.handler.annotations.Command
 import com.mystery.meteora.handler.annotations.Module
 import com.mystery.meteora.handler.modules.BaseModule
-import com.mystery.meteora.handler.modules.GraphicUtils
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent
-import okhttp3.OkHttpClient
-import okhttp3.Request
 import java.awt.Font
 import java.awt.image.BufferedImage
+import java.awt.image.BufferedImageOp
+import java.awt.image.ConvolveOp
+import java.awt.image.Kernel
 import java.io.ByteArrayOutputStream
-import java.net.URI
 import java.net.URL
 import javax.imageio.ImageIO
 
@@ -22,15 +22,10 @@ import javax.imageio.ImageIO
 
 class ChartsCommand(ctx: MessageReceivedEvent, args: String, prefix: String, config: Config) :
   BaseModule(ctx, args, prefix, config) {
-  private val buffer = BufferedImage(600, 500, BufferedImage.TYPE_INT_RGB)
-  private val graphics = buffer.createGraphics()
-  val client = OkHttpClient().newBuilder().build()
-  val request = Request.Builder()
-    .url("https://api.deezer.com/chart/0/tracks")
-    .get()
-    .build()
-  private val response = client.newCall(request).execute().body()!!.string()
-  private val parsedResponse = Klaxon().parse<Data>(response)
+  private var bufferedImage = BufferedImage(600, 500, BufferedImage.TYPE_INT_RGB)
+  private val graphics = bufferedImage.createGraphics()
+  private val response = com.mystery.meteora.controller.Request().build("GET", "https://api.deezer.com/chart/0/tracks")
+  private val parsedResponse = Klaxon().parse<Data>(response!!)
 
   @Command("charts")
   fun charts() {
@@ -39,17 +34,29 @@ class ChartsCommand(ctx: MessageReceivedEvent, args: String, prefix: String, con
     val extraLightFont = Font("Poppins ExtraLight", Font.PLAIN, 34)
     val uri = URL(parsedResponse!!.data[0].album.cover_big)
     val image = ImageIO.read(uri)
-    graphics.drawImage(image,0, 0, 600, 500, null)
-    graphics.font = Font("Poppins", Font.BOLD, 50)
+    graphics.drawImage(image, 0, 0, 600, 500, null)
+    val radius = 11
+    val size = radius * 2 + 1
+    val weight = 1.0f / (size * size)
+    val data = FloatArray(300000)
+    for (i in data.indices) {
+      data[i] = weight
+    }
+    val kernel = Kernel(13, 13, data)
+    val op = ConvolveOp(kernel, ConvolveOp, null) // TODO(crop edges)
+    bufferedImage = op.filter(bufferedImage, null)
+    val graphics2 = bufferedImage.createGraphics()
+    GraphicUtils.setQuality(graphics2)
+    graphics2.font = Font("Poppins", Font.BOLD, 50)
     var center = getCenter(boldFont, "Deezer Charts")
-    graphics.drawString("Deezer Charts", 300 - center, 50)
-    graphics.font = extraLightFont
+    graphics2.drawString("Deezer Charts", 300 - center, 50)
+    graphics2.font = extraLightFont
     center = getCenter(extraLightFont, "Top Tracks")
-    graphics.drawString("Top Tracks", 300 - center, 115)
+    graphics2.drawString("Top Tracks", 300 - center, 115)
 
 
     val baos = ByteArrayOutputStream()
-    ImageIO.write(buffer, "png", baos)
+    ImageIO.write(bufferedImage, "png", baos)
     context.channel.sendFile(baos.toByteArray(), "buseta.png").queue()
   }
 

@@ -17,6 +17,7 @@ repositories {
 }
 
 dependencies {
+    implementation ("com.twelvemonkeys.imageio:imageio-jpeg:3.6")
     implementation ("net.dv8tion:JDA:4.2.0_175")
     implementation ("org.reflections:reflections:0.9.12")
     implementation ("org.springframework.boot:spring-boot-starter-web")
