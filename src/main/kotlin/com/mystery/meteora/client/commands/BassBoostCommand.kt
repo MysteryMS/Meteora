@@ -42,7 +42,7 @@ class BassBoostCommand(ctx: MessageReceivedEvent, args: String, prefix: String, 
               .setColor(Color(157, 5, 34))
             context.channel.sendMessage(embed.build()).queue()
             PlayerController(context).manager.player.setFilterFactory(equalizer)
-            for (i in 1..3) {
+            for (i in 1..5) {
               equalizer.setGain(i, 0.6F)
             }
           } else {

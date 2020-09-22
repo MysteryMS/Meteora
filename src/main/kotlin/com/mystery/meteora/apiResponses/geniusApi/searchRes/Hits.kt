@@ -1,4 +1,4 @@
-package com.mystery.meteora.controller.geniusApi.searchRes
+package com.mystery.meteora.apiResponses.geniusApi.searchRes
 
 data class Hits(
   val result: Result,

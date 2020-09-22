@@ -1,6 +1,7 @@
 package com.mystery.meteora.client.lavaPlayer
 
 
+import com.mystery.meteora.backend.controller.models.deezer.TrackObject
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayerManager
 import com.sedmelluq.discord.lavaplayer.player.DefaultAudioPlayerManager
 import com.sedmelluq.discord.lavaplayer.source.AudioSourceManagers
@@ -42,6 +43,10 @@ class PlayerController(private val context: MessageReceivedEvent?) {
         AudioLoadResultHandlerConfig(manager.trackScheduler, context!!, false)
       )
     }
+
+  }
+
+  fun loadFlow(list: List<TrackObject>) {
 
   }
 

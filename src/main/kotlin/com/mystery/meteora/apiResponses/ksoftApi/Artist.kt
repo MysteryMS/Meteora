@@ -1,4 +1,4 @@
-package com.mystery.meteora.controller.ksoftApi
+package com.mystery.meteora.apiResponses.ksoftApi
 
 data class Artist(
         val name: String

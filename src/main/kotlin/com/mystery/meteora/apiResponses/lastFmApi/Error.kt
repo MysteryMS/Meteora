@@ -1,4 +1,4 @@
-package com.mystery.meteora.controller.lastFmApi
+package com.mystery.meteora.apiResponses.lastFmApi
 
 data class Error(
   val error: String?

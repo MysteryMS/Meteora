@@ -4,7 +4,7 @@ import com.beust.klaxon.Klaxon
 import com.beust.klaxon.KlaxonException
 import com.mystery.meteora.controller.Config
 import com.mystery.meteora.controller.Helper
-import com.mystery.meteora.controller.lastFmApi.Response
+import com.mystery.meteora.apiResponses.lastFmApi.Response
 import com.mystery.meteora.controller.translate
 import com.mystery.meteora.handler.annotations.Command
 import com.mystery.meteora.handler.annotations.Description
