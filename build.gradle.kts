@@ -14,10 +14,12 @@ java.sourceCompatibility = JavaVersion.VERSION_11
 repositories {
     mavenCentral()
     jcenter()
+  maven("https://jitpack.io")
 }
 
 dependencies {
-    implementation ("io.sentry:sentry:1.7.30")
+    implementation("se.michaelthelin.spotify:spotify-web-api-java:6.3.0")
+  implementation("io.sentry:sentry:1.7.30")
     implementation ("net.dv8tion:JDA:4.2.0_175")
     implementation ("org.reflections:reflections:0.9.12")
     implementation ("org.springframework.boot:spring-boot-starter-web")
@@ -49,7 +51,6 @@ tasks.withType<KotlinCompile> {
 }
 
 tasks.test {
-    useJUnit()
-
-    maxHeapSize = "1G"
+  useJUnit()
+  maxHeapSize = "1G"
 }
