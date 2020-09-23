@@ -6,6 +6,7 @@ import com.sedmelluq.discord.lavaplayer.player.AudioLoadResultHandler
 import com.sedmelluq.discord.lavaplayer.tools.FriendlyException
 import com.sedmelluq.discord.lavaplayer.track.AudioPlaylist
 import com.sedmelluq.discord.lavaplayer.track.AudioTrack
+import io.sentry.Sentry
 import net.dv8tion.jda.api.EmbedBuilder
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent
 import java.awt.Color
@@ -22,6 +23,7 @@ class AudioLoadResultHandlerConfig(
     val msgNum = List(1) { Random.nextInt(1, 3) }
     context.jda.textChannelCache.getElementById(750788166012764220)!!.sendMessage("An error occurred in the guild `${context.guild.name} (${context.guild.id})`. Command is `${context.message.contentDisplay}`.\nError is `${exception}`")
     context.channel.sendMessage("global.error.loadFailed${msgNum[0]}".translate(config, context.guild.id)).queue()
+    Sentry.capture(exception)
   }
 
   override fun trackLoaded(track: AudioTrack?) {
