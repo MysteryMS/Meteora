@@ -7,6 +7,7 @@ import com.mystery.meteora.handler.annotations.Command
 import com.mystery.meteora.handler.annotations.Module
 import com.mystery.meteora.handler.modules.BaseModule
 import net.dv8tion.jda.api.EmbedBuilder
+import net.dv8tion.jda.api.Permission
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent
 
 @Module("Language", "management")
@@ -18,6 +19,10 @@ class LanguageCommand(ctx: MessageReceivedEvent, args: String, prefix: String, c
 
   @Command("language", "lang", "idioma")
   fun prefix() {
+    if (context.member?.hasPermission(Permission.MESSAGE_MANAGE)!!) {
+      context.channel.sendMessage("language.noPerms".translate(config, context.guild.id))
+      return
+    }
     val portugueseAliases = mutableListOf("ptbr", "pt-br", "pt_br", "portuguese", "brazilian", "brazil")
     val englishAliases = mutableListOf("enus", "en-us", "en_us", "english", "american")
     if (portugueseAliases.contains(args.split(" ")[0].toLowerCase())) {
