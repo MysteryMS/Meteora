@@ -17,6 +17,7 @@ repositories {
 }
 
 dependencies {
+    implementation ("io.sentry:sentry:1.7.30")
     implementation ("net.dv8tion:JDA:4.2.0_175")
     implementation ("org.reflections:reflections:0.9.12")
     implementation ("org.springframework.boot:spring-boot-starter-web")
@@ -28,7 +29,7 @@ dependencies {
     implementation ("org.jetbrains.kotlin:kotlin-reflect")
     implementation ("com.sedmelluq:lavaplayer:1.3.50")
     implementation ("com.auth0:java-jwt:3.10.3")
-    testImplementation("junit:junit:4.13")
+    testImplementation ("junit:junit:4.13")
 
 }
 
