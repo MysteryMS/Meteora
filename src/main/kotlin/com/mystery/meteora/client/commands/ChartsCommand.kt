@@ -42,8 +42,8 @@ class ChartsCommand(ctx: MessageReceivedEvent, args: String, prefix: String, con
     for (i in data.indices) {
       data[i] = weight
     }
-    val kernel = Kernel(13, 13, data)
-    val op = ConvolveOp(kernel, ConvolveOp, null) // TODO(crop edges)
+    val kernel = Kernel(13, 13, null)
+    val op = ConvolveOp(kernel, 0, null)
     bufferedImage = op.filter(bufferedImage, null)
     val graphics2 = bufferedImage.createGraphics()
     GraphicUtils.setQuality(graphics2)

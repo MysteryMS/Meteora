@@ -5,6 +5,7 @@ import com.mystery.meteora.controller.Config
 import com.mystery.meteora.controller.model.Guilds
 import com.mystery.meteora.controller.translate
 import com.mystery.meteora.handler.Handler
+import io.sentry.Sentry
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent
 import net.dv8tion.jda.api.hooks.ListenerAdapter
 import org.litote.kmongo.KMongo
@@ -29,6 +30,11 @@ class MessageEvent : ListenerAdapter() {
       event.channel.sendMessage("global.mention".translate(config, event.guild.id, event.author.asMention, p, p)).queue()
       return
     }
-    Handler.executeCommand(event.message.contentRaw, event, p, config)
+    try {
+      Handler.executeCommand(event.message.contentRaw, event, p, config)
+    } catch (e: Throwable) {
+      println("An error occurred: ${e.cause} - ${e.message}\nSent to sentry!")
+      Sentry.capture(e)
+    }
   }
 }
