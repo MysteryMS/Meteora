@@ -15,7 +15,8 @@ import net.dv8tion.jda.api.events.message.MessageReceivedEvent
 @Usage("play.usage")
 @Description("play.description")
 
-class PlayCommand(ctx: MessageReceivedEvent, args: String, prefix: String, config: Config) : BaseModule(ctx, args, prefix, config) {
+class PlayCommand(ctx: MessageReceivedEvent, args: String, prefix: String, config: Config) :
+  BaseModule(ctx, args, prefix, config) {
   @Command("play", "p")
   fun play() {
     if (args == "") {
@@ -23,7 +24,13 @@ class PlayCommand(ctx: MessageReceivedEvent, args: String, prefix: String, confi
       return
     }
     if (!context.member?.voiceState?.inVoiceChannel()!!) {
-      context.channel.sendMessage("play.notInVoiceChannel".translate(config, context.guild.id, context.author.asMention)).queue()
+      context.channel.sendMessage(
+        "play.notInVoiceChannel".translate(
+          config,
+          context.guild.id,
+          context.author.asMention
+        )
+      ).queue()
     } else {
       PlayerController(context).play(args)
     }

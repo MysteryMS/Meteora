@@ -8,7 +8,9 @@ import com.mystery.meteora.controller.translate
 import com.mystery.meteora.handler.annotations.Command
 import com.mystery.meteora.handler.annotations.Module
 import com.mystery.meteora.handler.modules.BaseModule
-import kotlinx.coroutines.*
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import net.dv8tion.jda.api.EmbedBuilder
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent
 import org.litote.kmongo.KMongo
@@ -19,16 +21,23 @@ import kotlin.math.roundToInt
 
 @Module("SkipCommand", "music")
 
-class SkipCommand(ctx: MessageReceivedEvent, args: String, prefix: String, config: Config) : BaseModule(ctx, args, prefix, config) {
+class SkipCommand(ctx: MessageReceivedEvent, args: String, prefix: String, config: Config) :
+  BaseModule(ctx, args, prefix, config) {
   companion object {
     val guilds: MutableList<Long> = mutableListOf()
   }
+
   @Command("skip")
   fun skip() {
     val guildPlayer = PlayerController.findManager(context.guild.idLong)
     when {
       guildPlayer == null -> context.channel.sendMessage("global.noPlayer".translate(config, context.guild.id)).queue()
-      guildPlayer.player.playingTrack == null -> context.channel.sendMessage("global.noPlayer".translate(config, context.guild.id)).queue()
+      guildPlayer.player.playingTrack == null -> context.channel.sendMessage(
+        "global.noPlayer".translate(
+          config,
+          context.guild.id
+        )
+      ).queue()
       else -> {
         val client = KMongo.createClient(config!!.config?.databaseConfig?.connectionUri!!)
         val database = client.getDatabase("meteora")
@@ -55,10 +64,17 @@ class SkipCommand(ctx: MessageReceivedEvent, args: String, prefix: String, confi
             }
           }
           val voiceChannelMembers = context.member!!.voiceState?.channel?.members?.size!! - 1
-          val reqMembers: Int = ((voiceChannelMembers * (70.0f/100.0f)).roundToInt())
+          val reqMembers: Int = ((voiceChannelMembers * (70.0f / 100.0f)).roundToInt())
           if (members.contains(context.member!!)) return
           members.add(context.member!!)
-          context.channel.sendMessage("skip.voteskip.started".translate(config, context.guild.id, reqMembers, reqMembers - members.size)).queue()
+          context.channel.sendMessage(
+            "skip.voteskip.started".translate(
+              config,
+              context.guild.id,
+              reqMembers,
+              reqMembers - members.size
+            )
+          ).queue()
           if (members.size == reqMembers) {
             skipTrack()
             shouldDie = true
@@ -67,12 +83,14 @@ class SkipCommand(ctx: MessageReceivedEvent, args: String, prefix: String, confi
       }
     }
   }
+
   val controller = PlayerController(context).manager.trackScheduler
   private val guildPlayer = PlayerController.findManager(context.guild.idLong)
   val members = PlayerController(context).manager.agreedMembers
   val embed = EmbedBuilder()
     .setDescription("skip.skipped".translate(config, context.guild.id))
     .setColor(Color(59, 136, 195))
+
   private fun skipTrack() {
     if (controller.queue.size == 0) {
       if (guildPlayer!!.trackScheduler.loop) {

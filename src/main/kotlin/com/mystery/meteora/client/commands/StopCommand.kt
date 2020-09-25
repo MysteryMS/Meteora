@@ -13,15 +13,21 @@ import java.awt.Color
 
 @Module("StopCommand", "music")
 
-class StopCommand(ctx: MessageReceivedEvent, args: String, prefix: String, config: Config) : BaseModule(ctx, args, prefix, config) {
+class StopCommand(ctx: MessageReceivedEvent, args: String, prefix: String, config: Config) :
+  BaseModule(ctx, args, prefix, config) {
   @Command("stop", "parar")
   fun stop() {
     val guildPlayer = PlayerController.findManager(context.guild.idLong)
     when {
       guildPlayer == null -> context.channel.sendMessage("global.noPlayer".translate(config, context.guild.id)).queue()
-      guildPlayer.player.playingTrack == null -> context.channel.sendMessage("global.noTrack".translate(config, context.guild.id)).queue()
+      guildPlayer.player.playingTrack == null -> context.channel.sendMessage(
+        "global.noTrack".translate(
+          config,
+          context.guild.id
+        )
+      ).queue()
       else -> {
-        if (DJController().hasDjRole(context, true) != null && !DJController().hasDjRole(context, true)!! ) {
+        if (DJController().hasDjRole(context, true) != null && !DJController().hasDjRole(context, true)!!) {
           context.channel.sendMessage("global.djOnly".translate(config, context.guild.id)).queue()
           return
         }

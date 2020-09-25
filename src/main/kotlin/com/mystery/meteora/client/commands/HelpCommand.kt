@@ -12,11 +12,12 @@ import java.awt.Color
 
 @Module("Help", "util")
 
-class HelpCommand(ctx: MessageReceivedEvent, args: String, prefix: String, config: Config) : BaseModule(ctx, args, prefix, config) {
+class HelpCommand(ctx: MessageReceivedEvent, args: String, prefix: String, config: Config) :
+  BaseModule(ctx, args, prefix, config) {
   @Command("help", "h")
   fun help() {
     val embed = EmbedBuilder()
-       .setTitle("help.title".translate(config!!, context.guild.id, context.author.name))
+      .setTitle("help.title".translate(config!!, context.guild.id, context.author.name))
     val musicCommands = Handler.modules.filter { command -> command.category == "music" }
       .map { command -> "`$prefix${command.commands[0].names[0]}`" }
     val musicCmds = musicCommands.joinToString(", ")

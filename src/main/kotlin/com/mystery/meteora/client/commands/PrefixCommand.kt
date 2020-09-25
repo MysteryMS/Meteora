@@ -11,13 +11,17 @@ import com.mystery.meteora.handler.annotations.Usage
 import com.mystery.meteora.handler.modules.BaseModule
 import net.dv8tion.jda.api.Permission
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent
-import org.litote.kmongo.*
+import org.litote.kmongo.KMongo
+import org.litote.kmongo.eq
+import org.litote.kmongo.setTo
+import org.litote.kmongo.updateOne
 
 @Module("Prefix", "management")
 @Description("prefix.description")
 @Usage("prefix.usage")
 
-class PrefixCommand(ctx: MessageReceivedEvent, args: String, prefix: String, config: Config) : BaseModule(ctx, args, prefix, config) {
+class PrefixCommand(ctx: MessageReceivedEvent, args: String, prefix: String, config: Config) :
+  BaseModule(ctx, args, prefix, config) {
   @Command("prefix")
   fun prefix() {
     val permission = context.member?.hasPermission(Permission.MESSAGE_MANAGE)

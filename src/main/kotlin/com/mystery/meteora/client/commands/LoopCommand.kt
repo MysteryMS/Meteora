@@ -12,15 +12,22 @@ import java.awt.Color
 
 @Module("loop", "music")
 
-class LoopCommand(ctx: MessageReceivedEvent, args: String, prefix: String, config: Config) : BaseModule(ctx, args, prefix, config) {
+class LoopCommand(ctx: MessageReceivedEvent, args: String, prefix: String, config: Config) :
+  BaseModule(ctx, args, prefix, config) {
   @Command("loop", "repeat", "rp", "r")
   fun loop() {
     val guildPlayer = PlayerController.findManager(context.guild.idLong)
     val embed = EmbedBuilder()
       .setColor(Color(59, 136, 195))
     when {
-      guildPlayer == null -> context.channel.sendMessage("global.noPlayer".translate(config!!, context.guild.id)).queue()
-      guildPlayer.player.playingTrack == null -> context.channel.sendMessage("global.noTrack".translate(config!!, context.guild.id)).queue()
+      guildPlayer == null -> context.channel.sendMessage("global.noPlayer".translate(config!!, context.guild.id))
+        .queue()
+      guildPlayer.player.playingTrack == null -> context.channel.sendMessage(
+        "global.noTrack".translate(
+          config!!,
+          context.guild.id
+        )
+      ).queue()
       PlayerController(context).manager.trackScheduler.loop -> {
         embed.setDescription("loop.off".translate(config!!, context.guild.id))
         context.channel.sendMessage(embed.build()).queue()
