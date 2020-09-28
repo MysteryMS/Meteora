@@ -42,7 +42,7 @@ class AudioLoadResultHandlerConfig(
         trackScheduler.queue(track, context)
         if (PlayerController(context).manager.trackScheduler.queue.size > 0) {
           val embed = EmbedBuilder()
-            .setDescription("queue.added".translate(config, context.guild.id))
+            .setDescription("queue.added".translate(config, context.guild.id, track.info.title))
             .setColor(Color(152, 153, 153))
           context.channel.sendMessage(embed.build()).queue()
         }

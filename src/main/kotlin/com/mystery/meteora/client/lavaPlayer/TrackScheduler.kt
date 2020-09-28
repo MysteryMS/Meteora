@@ -41,8 +41,6 @@ class TrackScheduler(
     if (track != null) {
       audioPlayer.startTrack(track.track, false)
       show(track)
-    } else {
-      PlayerController(null).playerManager.setPlayerCleanupThreshold(300)
     }
   }
 

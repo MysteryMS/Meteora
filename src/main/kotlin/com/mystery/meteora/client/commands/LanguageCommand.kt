@@ -19,8 +19,8 @@ class LanguageCommand(ctx: MessageReceivedEvent, args: String, prefix: String, c
 
   @Command("language", "lang", "idioma")
   fun prefix() {
-    if (context.member?.hasPermission(Permission.MESSAGE_MANAGE)!!) {
-      context.channel.sendMessage("language.noPerms".translate(config, context.guild.id))
+    if (!context.member?.hasPermission(Permission.MESSAGE_MANAGE)!!) {
+      context.channel.sendMessage("language.noPerms".translate(config, context.guild.id)).queue()
       return
     }
     val portugueseAliases = mutableListOf("ptbr", "pt-br", "pt_br", "portuguese", "brazilian", "brazil")

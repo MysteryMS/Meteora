@@ -33,7 +33,6 @@ class MessageEvent : ListenerAdapter() {
     try {
       Handler.executeCommand(event.message.contentRaw, event, p, config)
     } catch (e: Throwable) {
-      println("An error occurred: ${e.cause} - ${e.message}\nSent to sentry!")
       Sentry.capture(e)
     }
   }
