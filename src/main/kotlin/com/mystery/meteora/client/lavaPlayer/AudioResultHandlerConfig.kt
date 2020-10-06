@@ -22,7 +22,7 @@ class AudioLoadResultHandlerConfig(
 
   override fun loadFailed(exception: FriendlyException?) {
     val msgNum = List(1) { Random.nextInt(1, 3) }
-    context.jda.textChannelCache.getElementById(750788166012764220)!!.sendMessage("An error occurred in the guild `${context.guild.name} (${context.guild.id})`. Command is `${context.message.contentDisplay}`.\nError is `${exception}`")
+    context.jda.textChannelCache.getElementById(750788166012764220)!!.sendMessage("An error occurred in the guild `${context.guild.name} (${context.guild.id})`. Command is `${context.message.contentDisplay}`.\nError is `${exception}`").queue()
     context.channel.sendMessage("global.error.loadFailed${msgNum[0]}".translate(config, context.guild.id)).queue()
     Sentry.capture(exception)
   }

@@ -4,6 +4,7 @@ import com.mystery.meteora.client.QueueObject
 import com.mystery.meteora.client.lavaPlayer.MusicScheduler
 import com.mystery.meteora.client.lavaPlayer.PlayerController
 import com.mystery.meteora.controller.Config
+import com.mystery.meteora.controller.PaginatorController
 import com.mystery.meteora.controller.model.Parser
 import com.mystery.meteora.controller.translate
 import com.mystery.meteora.handler.annotations.Command
@@ -76,12 +77,13 @@ class QueueCommand(ctx: MessageReceivedEvent, args: String, prefix: String, conf
             }
           }
           context.channel.sendMessage(list[0]).queue { message ->
-            pages[message.guild.idLong] = QueueObject(message.idLong, list, 0)
+            pages[message.guild.idLong] = QueueObject(message.idLong, list)
             message.addReaction("⬅️").queue()
             message.addReaction("➡️").queue()
             GlobalScope.launch {
               delay(15000)
               pages.remove(message.guild.idLong)
+              PaginatorController.guilds.remove(message.guild.idLong)
                message.clearReactions().queue()
             }
           }
