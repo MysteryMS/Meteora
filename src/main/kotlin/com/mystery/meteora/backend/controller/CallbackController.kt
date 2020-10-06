@@ -105,9 +105,7 @@ class CallbackController<Guild>(private val meteora: MeteoraKt) {
       context.channel.sendMessage("vc n ta no voice putiane").queue()
       return
     }
-    for (item in flowList) {
-      PlayerController(context).play("${item.title} - ${item.artist.name}")
-    }
+    PlayerController(context).loadFlow(flowList)
     PlayCommand.map.remove(state)
   }
 }

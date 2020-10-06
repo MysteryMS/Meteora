@@ -15,7 +15,8 @@ import kotlin.random.Random
 class AudioLoadResultHandlerConfig(
   private val trackScheduler: TrackScheduler,
   private val context: MessageReceivedEvent,
-  private val shouldPlayNow: Boolean
+  private val shouldPlayNow: Boolean,
+  private val silent: Boolean
 ) : AudioLoadResultHandler {
   private val config = Config("./meteora.json")
 
@@ -27,6 +28,12 @@ class AudioLoadResultHandlerConfig(
   }
 
   override fun trackLoaded(track: AudioTrack?) {
+    if (silent) {
+      if (track != null) {
+        trackScheduler.queue(track, context)
+      }
+      return
+    }
     if (context.member?.voiceState?.inVoiceChannel()!!) {
       val client = context.guild.selfMember
       if (client.voiceState?.inVoiceChannel()!! && client.voiceState!!.channel?.idLong != context.member!!.voiceState?.channel?.idLong) {

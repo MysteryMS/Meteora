@@ -6,6 +6,10 @@ import com.mystery.meteora.controller.translate
 import com.mystery.meteora.handler.annotations.Command
 import com.mystery.meteora.handler.annotations.Module
 import com.mystery.meteora.handler.modules.BaseModule
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import net.dv8tion.jda.api.EmbedBuilder
 import net.dv8tion.jda.api.Permission
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent
@@ -15,6 +19,7 @@ class LanguageCommand(ctx: MessageReceivedEvent, args: String, prefix: String, c
   BaseModule(ctx, args, prefix, config) {
   companion object {
     val messages = mutableListOf<Long>()
+    var shouldDie = false
   }
 
   @Command("language", "lang", "idioma")
@@ -39,6 +44,13 @@ class LanguageCommand(ctx: MessageReceivedEvent, args: String, prefix: String, c
     context.channel.sendMessage(embed.build()).queue { message ->
       message.addReaction("\uD83C\uDDE7\uD83C\uDDF7").queue(); message.addReaction("\uD83C\uDDFA\uD83C\uDDF8")
       .queue(); messages.add(message.idLong)
+      GlobalScope.launch {
+        delay(10000)
+        if (shouldDie) this.cancel()
+        println("oi perereca")
+        messages.remove(context.messageIdLong)
+        message.clearReactions().queue()
+      }
     }
   }
 }
