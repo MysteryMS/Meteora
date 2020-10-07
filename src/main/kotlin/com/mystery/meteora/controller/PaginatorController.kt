@@ -15,7 +15,7 @@ class PaginatorController(
                 guilds[msg.guild.idLong] = 0
             }
             var currentPage = guilds[msg.guild.idLong]!!
-            if (currentPage + 1 == map[msg.guild.idLong]!!.list.size) return@queue
+            if (currentPage + 1 > map[msg.guild.idLong]!!.list.size) return@queue
             guilds[msg.guild.idLong] = ++currentPage
             val newMessage = map[msg.guild.idLong]!!.list[currentPage]
             msg.editMessage(newMessage).queue()

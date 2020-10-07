@@ -6,6 +6,7 @@ import com.mystery.meteora.controller.Config
 import com.mystery.meteora.controller.LocaleController
 import com.mystery.meteora.controller.PaginatorController
 import kotlinx.coroutines.*
+import net.dv8tion.jda.api.Permission
 import net.dv8tion.jda.api.entities.MessageReaction
 import net.dv8tion.jda.api.entities.User
 import net.dv8tion.jda.api.events.message.react.MessageReactionAddEvent
@@ -16,6 +17,7 @@ class ReactionAddEvent : ListenerAdapter() {
     val list = LanguageCommand.messages
     if (event.user == event.jda.selfUser) return
     if (list.contains(event.messageIdLong)) {
+      if (!event.member?.hasPermission(Permission.MESSAGE_MANAGE)!!) return
       if (event.reactionEmote == MessageReaction.ReactionEmote.fromUnicode("\uD83C\uDDE7\uD83C\uDDF7", event.jda)) {
         event.retrieveMessage().queue { message -> message.delete().queue() }
         LanguageCommand.shouldDie = false

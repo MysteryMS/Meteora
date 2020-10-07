@@ -59,6 +59,7 @@ class AudioLoadResultHandlerConfig(
   }
 
   override fun noMatches() {
+    if (silent) return
     context.channel.sendMessage("queue.noMatches".translate(config, context.guild.id)).queue()
   }
 

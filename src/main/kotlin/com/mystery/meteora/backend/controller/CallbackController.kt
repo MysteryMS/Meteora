@@ -108,7 +108,7 @@ class CallbackController(private val meteora: MeteoraKt) {
       return
     }
     PlayerController(context).loadFlow(flowList)
-    context.channel.sendMessage("deezer.flowLoaded".translate(config, context.guild.id, flowList.size))
+    context.channel.sendMessage("deezer.flowLoaded".translate(config, context.guild.id, flowList.size)).queue()
     PlayCommand.map.remove(state)
   }
 }

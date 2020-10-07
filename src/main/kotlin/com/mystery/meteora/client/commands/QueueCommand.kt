@@ -62,8 +62,10 @@ class QueueCommand(ctx: MessageReceivedEvent, args: String, prefix: String, conf
             pages.remove(context.guild.idLong)
           }
           val list: MutableList<String> = mutableListOf()
-          val header = "Perereca"
-          val footer = "xumbinoh"
+          var totalLength: Long = 0
+          trackSchedulerQueue.forEach { element -> totalLength += element.track.duration }
+          val header = "queue.header".translate(config, context.guild.id, context.guild.name)
+          val footer = "queue.footer".translate(config, context.guild.id, trackSchedulerQueue.size, Parser().parse(totalLength))
           var size = 0
           var items = ""
           trackSchedulerQueue.forEachIndexed { index, ms ->
@@ -99,7 +101,7 @@ class QueueCommand(ctx: MessageReceivedEvent, args: String, prefix: String, conf
             config,
             context.guild.id,
             context.guild.name,
-            queueString,
+          queueString.joinToString("\n"),
             trackSchedulerQueue.size,
             Parser().parse(totalLength)
           )
