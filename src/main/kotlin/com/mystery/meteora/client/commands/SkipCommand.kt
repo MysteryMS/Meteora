@@ -9,6 +9,7 @@ import com.mystery.meteora.handler.annotations.Command
 import com.mystery.meteora.handler.annotations.Module
 import com.mystery.meteora.handler.modules.BaseModule
 import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.cancel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import net.dv8tion.jda.api.EmbedBuilder
@@ -57,8 +58,9 @@ class SkipCommand(ctx: MessageReceivedEvent, args: String, prefix: String, confi
             guilds.add(context.guild.idLong)
             GlobalScope.launch {
               delay(40000)
-              if (shouldDie) return@launch
-              context.channel.sendMessage("skip.voteskip.timeout".translate(config, context.guild.id)).queue()
+              if (shouldDie) this.cancel()
+              context.channel.sendMessage("skip.voteskip.timeout".translate(config, context.guild.id))
+                .queue()
               members.clear()
               guilds.remove(context.guild.idLong)
             }
