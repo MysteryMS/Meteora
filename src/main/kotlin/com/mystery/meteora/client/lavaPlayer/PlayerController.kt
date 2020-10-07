@@ -1,5 +1,7 @@
 package com.mystery.meteora.client.lavaPlayer
 
+
+import com.mystery.meteora.backend.controller.models.deezer.TrackObject
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayerManager
 import com.sedmelluq.discord.lavaplayer.player.DefaultAudioPlayerManager
 import com.sedmelluq.discord.lavaplayer.source.AudioSourceManagers
@@ -8,7 +10,7 @@ import java.net.URI
 import java.net.URISyntaxException
 
 class PlayerController(private val context: MessageReceivedEvent?) {
-  val playerManager: AudioPlayerManager = DefaultAudioPlayerManager()
+  private val playerManager: AudioPlayerManager = DefaultAudioPlayerManager()
   val manager: GuildMusicManager = addOrFindManager()
 
   companion object {
@@ -32,16 +34,26 @@ class PlayerController(private val context: MessageReceivedEvent?) {
       playerManager.loadItemOrdered(
         manager,
         URI(query).toString(),
-        AudioLoadResultHandlerConfig(manager.trackScheduler, context!!, false)
+        AudioLoadResultHandlerConfig(manager.trackScheduler, context!!, shouldPlayNow = false, silent = false)
       )
     } catch (e: URISyntaxException) {
       playerManager.loadItemOrdered(
         manager,
         "ytsearch:$query",
-        AudioLoadResultHandlerConfig(manager.trackScheduler, context!!, false)
+        AudioLoadResultHandlerConfig(manager.trackScheduler, context!!, shouldPlayNow = false, silent = false)
       )
     }
 
+  }
+
+  fun loadFlow(list: List<TrackObject>) {
+    for (item in list) {
+      playerManager.loadItemOrdered(
+        manager,
+        "ytsearch:${item.title} - ${item.artist}",
+        AudioLoadResultHandlerConfig(manager.trackScheduler, context!!, shouldPlayNow = false, silent = true)
+      )
+    }
   }
 
   fun playNow(query: String) {
@@ -50,16 +62,15 @@ class PlayerController(private val context: MessageReceivedEvent?) {
       playerManager.loadItemOrdered(
         manager,
         URI(query).toString(),
-        AudioLoadResultHandlerConfig(manager.trackScheduler, context!!, true)
+        AudioLoadResultHandlerConfig(manager.trackScheduler, context!!, shouldPlayNow = true, silent = false)
       )
     } catch (e: URISyntaxException) {
       playerManager.loadItemOrdered(
         manager,
         "ytsearch:$query",
-        AudioLoadResultHandlerConfig(manager.trackScheduler, context!!, true)
+        AudioLoadResultHandlerConfig(manager.trackScheduler, context!!, shouldPlayNow = true, silent = false)
       )
     }
-
   }
 
   private fun addOrFindManager(): GuildMusicManager {

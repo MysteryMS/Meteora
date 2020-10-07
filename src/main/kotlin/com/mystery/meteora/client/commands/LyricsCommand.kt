@@ -3,7 +3,7 @@ package com.mystery.meteora.client.commands
 import com.beust.klaxon.Klaxon
 import com.mystery.meteora.controller.Config
 import com.mystery.meteora.controller.Helper
-import com.mystery.meteora.controller.ksoftApi.Data
+import com.mystery.meteora.apiResponses.ksoftApi.Data
 import com.mystery.meteora.controller.translate
 import com.mystery.meteora.handler.annotations.Command
 import com.mystery.meteora.handler.annotations.Description

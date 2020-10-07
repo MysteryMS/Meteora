@@ -1,6 +1,8 @@
 package com.mystery.meteora.client.lavaPlayer
 
+import com.mystery.meteora.controller.Config
 import com.mystery.meteora.controller.model.Parser
+import com.mystery.meteora.controller.translate
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayer
 import com.sedmelluq.discord.lavaplayer.player.event.AudioEventAdapter
 import com.sedmelluq.discord.lavaplayer.track.AudioTrack
@@ -59,11 +61,15 @@ class TrackScheduler(
   private fun show(track: MusicScheduler) {
     val embed = EmbedBuilder()
     embed.setDescription(
-      "<a:cd:521088033664270336> - Now Playing: `${track.track.info?.title}` by `${track.track.info?.author}` (${
+      "play.nowPlaying".translate(
+        Config("./meteora.json"),
+        track.context.guild.id,
+        track.track.info?.title!!,
+        track.track.info?.author!!,
         Parser().parse(
           track.track.info?.length
         )
-      })"
+      )
     )
     embed.setFooter("Requested by ${track.context.author.name}", track.context.author.avatarUrl)
     embed.setColor(Color(115, 140, 213))

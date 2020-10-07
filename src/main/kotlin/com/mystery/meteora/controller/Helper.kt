@@ -5,6 +5,7 @@ import com.mystery.meteora.handler.annotations.Description
 import com.mystery.meteora.handler.annotations.Usage
 import net.dv8tion.jda.api.EmbedBuilder
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent
+import java.awt.Font
 import kotlin.reflect.full.findAnnotation
 
 class Helper {
@@ -22,7 +23,11 @@ class Helper {
     val embed = EmbedBuilder()
       .setTitle("helper.commandUsage".translate(config, context.guild.id))
       .setDescription(description!!.translate(config, context.guild.id))
-      .addField("helper.usage".translate(config, context.guild.id), "`${prefix}${commandName} " + "${usage?.translate(config, context.guild.id, usage)}`", false)
+      .addField(
+        "helper.usage".translate(config, context.guild.id),
+        "`${prefix}${commandName} " + "${usage?.translate(config, context.guild.id, usage)}`",
+        false
+      )
       .addField("helper.aliases".translate(config, context.guild.id), labels, false)
     context.channel.sendMessage(embed.build()).queue()
   }

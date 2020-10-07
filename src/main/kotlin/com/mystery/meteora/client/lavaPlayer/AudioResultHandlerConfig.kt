@@ -15,18 +15,25 @@ import kotlin.random.Random
 class AudioLoadResultHandlerConfig(
   private val trackScheduler: TrackScheduler,
   private val context: MessageReceivedEvent,
-  private val shouldPlayNow: Boolean
+  private val shouldPlayNow: Boolean,
+  private val silent: Boolean
 ) : AudioLoadResultHandler {
   private val config = Config("./meteora.json")
 
   override fun loadFailed(exception: FriendlyException?) {
     val msgNum = List(1) { Random.nextInt(1, 3) }
-    context.jda.textChannelCache.getElementById(750788166012764220)!!.sendMessage("An error occurred in the guild `${context.guild.name} (${context.guild.id})`. Command is `${context.message.contentDisplay}`.\nError is `${exception}`")
+    context.jda.textChannelCache.getElementById(750788166012764220)!!.sendMessage("An error occurred in the guild `${context.guild.name} (${context.guild.id})`. Command is `${context.message.contentDisplay}`.\nError is `${exception}`").queue()
     context.channel.sendMessage("global.error.loadFailed${msgNum[0]}".translate(config, context.guild.id)).queue()
     Sentry.capture(exception)
   }
 
   override fun trackLoaded(track: AudioTrack?) {
+    if (silent) {
+      if (track != null) {
+        trackScheduler.queue(track, context)
+      }
+      return
+    }
     if (context.member?.voiceState?.inVoiceChannel()!!) {
       val client = context.guild.selfMember
       if (client.voiceState?.inVoiceChannel()!! && client.voiceState!!.channel?.idLong != context.member!!.voiceState?.channel?.idLong) {
@@ -52,6 +59,7 @@ class AudioLoadResultHandlerConfig(
   }
 
   override fun noMatches() {
+    if (silent) return
     context.channel.sendMessage("queue.noMatches".translate(config, context.guild.id)).queue()
   }
 

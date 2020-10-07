@@ -32,7 +32,7 @@ class PlaynowCommand(ctx: MessageReceivedEvent, args: String, prefix: String, co
           context.author.asMention
         )
       ).queue()
-    } else if (!DJController().hasDjRole(context, false)!!) {
+    } else if (DJController().hasDjRole(context, false) == false) {
       context.channel.sendMessage("global.djOnly".translate(config, context.guild.id)).queue()
       return
     } else {

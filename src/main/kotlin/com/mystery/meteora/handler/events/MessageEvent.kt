@@ -33,6 +33,8 @@ class MessageEvent : ListenerAdapter() {
     try {
       Handler.executeCommand(event.message.contentRaw, event, p, config)
     } catch (e: Throwable) {
+      println(e.localizedMessage)
+      e.printStackTrace()
       Sentry.capture(e)
     }
   }

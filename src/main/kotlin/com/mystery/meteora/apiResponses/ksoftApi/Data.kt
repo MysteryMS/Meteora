@@ -1,4 +1,4 @@
-package com.mystery.meteora.controller.ksoftApi
+package com.mystery.meteora.apiResponses.ksoftApi
 
 data class Data(
         val data: MutableList<Item> = mutableListOf()

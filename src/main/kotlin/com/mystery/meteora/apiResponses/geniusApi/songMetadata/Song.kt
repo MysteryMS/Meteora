@@ -1,4 +1,4 @@
-package com.mystery.meteora.controller.geniusApi.songMetadata
+package com.mystery.meteora.apiResponses.geniusApi.songMetadata
 
 import com.beust.klaxon.Json
 

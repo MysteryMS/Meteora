@@ -1,6 +1,6 @@
 package com.mystery.meteora.backend.controller.models.responses
 
-import com.mystery.meteora.backend.controller.models.Role
+import com.mystery.meteora.backend.controller.models.discord.Role
 
 data class GuildResponse(
     val id: String,

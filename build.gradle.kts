@@ -14,10 +14,15 @@ java.sourceCompatibility = JavaVersion.VERSION_11
 repositories {
   mavenCentral()
   jcenter()
+  maven {
+    url = uri("https://jitpack.io")
+  }
 }
 
 dependencies {
+  implementation("com.github.Devoxin:lavaplayer:1.3.52")
   implementation("net.dv8tion:JDA:4.2.0_175")
+  implementation ("io.sentry:sentry:1.7.30")
   implementation("org.reflections:reflections:0.9.12")
   implementation("org.springframework.boot:spring-boot-starter-web")
   implementation("org.litote.kmongo:kmongo:4.0.3")
@@ -26,14 +31,14 @@ dependencies {
   implementation("com.beust:klaxon:5.0.1")
   implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
   implementation("org.jetbrains.kotlin:kotlin-reflect")
-  implementation("com.sedmelluq:lavaplayer:1.3.50")
+  // implementation("com.sedmelluq:lavaplayer:1.3.50")
   implementation("com.auth0:java-jwt:3.10.3")
-
+  testImplementation("junit:junit:4.13")
 
 }
 
 tasks.named<Test>("test") {
-    useJUnitPlatform()
+  useJUnitPlatform()
 }
 
 tasks.withType<Test> {
@@ -48,7 +53,7 @@ tasks.withType<KotlinCompile> {
 }
 
 tasks.test {
-    useJUnit()
+  useJUnit()
 
-    maxHeapSize = "1G"
+  maxHeapSize = "1G"
 }
