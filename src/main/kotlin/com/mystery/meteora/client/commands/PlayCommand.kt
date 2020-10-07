@@ -4,6 +4,7 @@ import com.mystery.meteora.MeteoraKt
 import com.mystery.meteora.client.lavaPlayer.PlayerController
 import com.mystery.meteora.controller.Config
 import com.mystery.meteora.controller.Helper
+import com.mystery.meteora.controller.StateController
 import com.mystery.meteora.controller.translate
 import com.mystery.meteora.handler.annotations.Command
 import com.mystery.meteora.handler.annotations.Description
@@ -38,13 +39,9 @@ class PlayCommand(ctx: MessageReceivedEvent, args: String, prefix: String, confi
       ).queue()
     } else {
       if (args.split(' ')[0] == "-f") {
-        val charPool: List<Char> = ('a'..'z') + ('A'..'Z') + ('0'..'9')
-        val state = (1..35)
-          .map { kotlin.random.Random.nextInt(0, charPool.size) }
-          .map(charPool::get)
-          .joinToString("")
+        val state = StateController.getState()
         val embed = EmbedBuilder()
-          .setDescription("Clica [aqui](https://connect.deezer.com/oauth/auth.php?app_id=436102&redirect_uri=http://localhost:4210/deezer&perms=basic_access&state=$state)")
+          .setDescription("play.deezer".translate(config, context.guild.id, "https://connect.deezer.com/oauth/auth.php?app_id=436102&redirect_uri=http://localhost:4210/deezer&perms=basic_access&state=$state"))
           .build()
         map[state] = context
         context.channel.sendMessage(embed).queue()

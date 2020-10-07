@@ -39,7 +39,7 @@ class PauseCommand(ctx: MessageReceivedEvent, args: String, prefix: String, conf
           return
         }
         context.channel.sendMessage(
-          EmbedBuilder().setDescription("pause.paused".translate(config, context.guild.id))
+          EmbedBuilder().setDescription("pause.paused".translate(config, context.guild.id, prefix))
             .setColor(Color(59, 136, 195)).build()
         ).queue()
         guildPlayer.player.isPaused = true

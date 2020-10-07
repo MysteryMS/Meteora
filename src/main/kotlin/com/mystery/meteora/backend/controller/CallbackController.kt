@@ -15,6 +15,7 @@ import com.mystery.meteora.client.commands.PlayCommand
 import com.mystery.meteora.client.lavaPlayer.PlayerController
 import com.mystery.meteora.controller.Config
 import com.mystery.meteora.controller.Request
+import com.mystery.meteora.controller.translate
 import org.springframework.web.bind.annotation.CrossOrigin
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestParam
@@ -23,7 +24,7 @@ import javax.servlet.http.HttpSession
 
 @RestController
 
-class CallbackController<Guild>(private val meteora: MeteoraKt) {
+class CallbackController(private val meteora: MeteoraKt) {
   @CrossOrigin
   @GetMapping("/callback")
   fun login(@RequestParam("code") code: String, session: HttpSession): APIResponse {
@@ -101,11 +102,13 @@ class CallbackController<Guild>(private val meteora: MeteoraKt) {
       }
     }
     val context = PlayCommand.map[state]
+    val config = Config("./meteora.json")
     if (context!!.guild.memberCache.getElementById(context.member!!.id) == null) {
-      context.channel.sendMessage("vc n ta no voice putiane").queue()
+      context.channel.sendMessage("deezer.missingVc".translate(config, context.guild.id)).queue()
       return
     }
     PlayerController(context).loadFlow(flowList)
+    context.channel.sendMessage("deezer.flowLoaded".translate(config, context.guild.id, flowList.size))
     PlayCommand.map.remove(state)
   }
 }
